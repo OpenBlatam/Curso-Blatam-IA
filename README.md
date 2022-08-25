@@ -1,3 +1,12 @@
+
+Features 
+[] Add to calendar
+[] Stripe
+[] Paypal
+[] Crypto check out 
+
+
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/dc4a526c-394c-4001-8452-b63ce3c1c77b/deploy-status)](https://app.netlify.com/sites/ecosystem-support/deploys)
 
 <p align="center">

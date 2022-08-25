@@ -25,6 +25,7 @@ import {
   HOME_URL
 } from '../../constants';
 import { DevconGrantsLayout } from './DevconGrantsLayout';
+import Testimonials from "../Testimonials";
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
@@ -100,10 +101,11 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
 
   return (
     <Container maxW='100%' p={0} {...props}>
+
       <Box px={{ base: 5, md: 12 }} py={{ base: 3, md: 8 }}>
         <Nav />
       </Box>
-
+        <NewsletterSignup />
       {renderContent()}
 
       <Forms />
@@ -111,8 +113,8 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       <FooterBackgroundImage />
 
       <NewsletterSignup />
-
-      <Footer />
+        <Testimonials></Testimonials>
+    <Footer />
     </Container>
   );
 };

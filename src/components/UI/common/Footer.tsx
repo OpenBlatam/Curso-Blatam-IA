@@ -8,6 +8,12 @@ import { PageText } from '../text';
 import efLogoSVG from '../../../../public/images/blatam.jpeg';
 import githubLogoSVG from '../../../../public/images/github-logo.svg';
 import twitterLogoSVG from '../../../../public/images/twitter-logo.svg';
+import IconTwitter from '../../../components/assets/icons/twitter.svg';
+import IconGithub from '../../../components/assets/icons/github.svg';
+
+import IconYoutube from '../../../components/assets/icons/youtube.svg';
+import IconTelegram from '../../../components/assets/icons/telegram.svg';
+import IconDiscord from '../../../components/assets/icons/discord.svg';
 
 import {
   ABOUT_URL,
@@ -16,6 +22,9 @@ import {
   ESP_TWITTER_URL,
   ETHEREUM_COOKIE_POLICY_URL,
   ETHEREUM_GITHUB_URL,
+  DISCORD_GITHUB_URL,
+  YOUTUBE_GITHUB_URL,
+  TELEGRAM_GITHUB_URL,
   ETHEREUM_ORG_URL,
   ETHEREUM_PRIVACY_POLICY_URL,
   ETHEREUM_TERMS_OF_USE_URL,
@@ -79,7 +88,7 @@ export const Footer: FC = () => {
             </Link>
             <Link href={ETHEREUM_TERMS_OF_USE_URL} isExternal _hover={{ textDecoration: 'none' }}>
               <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Terms of Use
+                Terminos de Uso
               </ImportantText>
             </Link>
             <Link href={ETHEREUM_COOKIE_POLICY_URL} isExternal _hover={{ textDecoration: 'none' }}>
@@ -96,15 +105,30 @@ export const Footer: FC = () => {
         </Flex>
 
         <Flex justifyContent='center' alignItems='center' pt={3} pb={6} mt={{ lg: 7 }}>
-          <Box mr={8}>
+          <Box mr={2.5}>
             <Link href={ESP_TWITTER_URL} isExternal>
-              <Image src={twitterLogoSVG} alt='Twitter logo' height={42} width={52} />
+              <Image src={IconTwitter} alt='Twitter logo' height={51} width={50} />
             </Link>
           </Box>
 
-          <Box>
+          <Box mr={2.5}>
             <Link href={ETHEREUM_GITHUB_URL} isExternal>
-              <Image src={githubLogoSVG} alt='GitHub logo' height={51} width={50} />
+              <Image src={IconGithub} alt='GitHub logo' height={51} width={50} />
+            </Link>
+          </Box>
+          <Box mr={2.5}>
+            <Link href={DISCORD_GITHUB_URL} isExternal>
+              <Image src={IconDiscord} alt='GitHub logo' height={51} width={50} />
+            </Link>
+          </Box>
+          <Box mr={2.5}>
+            <Link href={YOUTUBE_GITHUB_URL} isExternal>
+              <Image src={IconYoutube} alt='GitHub logo' height={51} width={50} />
+            </Link>
+          </Box>
+          <Box>
+            <Link href={TELEGRAM_GITHUB_URL} isExternal>
+              <Image src={IconTelegram} alt='GitHub logo' height={51} width={50} />
             </Link>
           </Box>
         </Flex>

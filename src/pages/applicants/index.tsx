@@ -6,7 +6,7 @@ import Image from 'next/image';
 import {
   ApplicantsSidebar,
   ApplicationTypeCard,
-  ApplicationTypeCard2,
+  ApplicationTypeCard2, FAQItem,
   PageMetadata,
   PageSection,
   PageSubheading,
@@ -149,9 +149,7 @@ const Applicants: NextPage = () => {
                 </Center>
 
                 <PageText mb={6}>
-                  We don&apos;t often fund dapps or front-end platforms, although this is not a hard
-                  rule and there are exceptions - for example, where an application serves as a
-                  research or educational tool, or a reference implementation of a new standard.
+
                 </PageText>
               </section>
             </Stack>

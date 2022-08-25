@@ -69,37 +69,31 @@ const OfficeHours: NextPage = () => {
                   eventos presenciados, pero prueba de que provino del grupo más grande de potencia de CPU
                 </PageText>
 
-                <PageText>Office Hours might be a good fit if you:</PageText>
+                <PageText>Las comoponentes principales de Bitcoin son:</PageText>
 
                 <Stack mb={6}>
                   <List>
                     <ListItem>
-                      Need non-financial support such as guidance or help identifying resources.
+                    <strong> Descentralizado </strong>
                     </ListItem>
                     <ListItem>
-                      Are considering applying for a grant and have questions or want to get
-                      feedback before submitting.
+                      Sin censura
                     </ListItem>
                     <ListItem>
-                      Aren&apos;t sure whether your project fits within our scope and want to find
-                      out what kind of support might be available to you.
+                     Libertad de tu dinero.
                     </ListItem>
                   </List>
                 </Stack>
 
                 <PageText>
-                  An office hours session is <strong>not</strong> an application for a grant or
-                  other formal support, or a chance to pitch your project. The purpose of these
-                  sessions is for us to provide answers or guidance so you can take your next steps
-                  with greater confidence - so focus on letting us know what you need, and giving us
-                  whatever context will help us understand your goals and challenges.
+
                 </PageText>
               </section>
             </Stack>
 
             <Stack spacing={10}>
               <section id='process' ref={ref2}>
-                <PageSection mb={6}>Process</PageSection>
+                <PageSection mb={6}>Proceso</PageSection>
 
                 <Stack spacing={3}>
                   <ProcessStep title='Request'>

@@ -3,7 +3,8 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 
 import { HomeAboutCard, PageMetadata, PageSection, PageText } from '../components/UI';
-
+import  bbva  from '../../public/images/bbva.svg';
+import ethglobal from '../../public/images/ethglobal-logo-vector.png';
 import smallSucculentSVG from '../../public/images/small-succulent.svg';
 import mediumSucculentSVG from '../../public/images/medium-succulent.svg';
 import bigSucculentSVG from '../../public/images/big-succulent.svg';
@@ -70,7 +71,7 @@ const Home: NextPage = () => {
                 <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -20 }}>
                   <Box>
                     <Image
-                      src={smallSucculentSVG}
+                      src={bbva}
                       alt='small succulent plant representing allocation in 2019'
                       layout='fixed'
                     />
@@ -78,104 +79,38 @@ const Home: NextPage = () => {
                 </GridItem>
                 <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
                   <Stack>
-                    <PageSection as='h4' textAlign='left' mb={2}>
-                      2019
-                    </PageSection>
 
-                    <Box>
-                      <PageText
-                        fontSize={{ base: 'allocations', md: 'h1' }}
-                        fontWeight={200}
-                        mb={1}
-                      >
-                        $7.7{' '}
-                        <PageText as='span' fontSize='stats'>
-                          million
-                        </PageText>
-                      </PageText>
-                    </Box>
 
-                    <PageText fontSize='faq.question' fontWeight={400} mb={1}>
-                      68 projects
-                    </PageText>
+
+
                   </Stack>
                 </GridItem>
                 <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -16 }}>
-                  <Box>
-                    <Image
-                      src={mediumSucculentSVG}
-                      alt='medium succulent plant representing allocation in 2020'
-                      layout='fixed'
-                    />
-                  </Box>
+
                 </GridItem>
                 <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
                   <Stack>
-                    <PageSection as='h4' textAlign='left' mb={2}>
-                      2020
-                    </PageSection>
+             >
 
-                    <Box>
-                      <PageText
-                        fontSize={{ base: 'allocations', md: 'h1' }}
-                        fontWeight={200}
-                        mb={1}
-                      >
-                        $12.9{' '}
-                        <PageText as='span' fontSize='stats'>
-                          million
-                        </PageText>
-                      </PageText>
-                    </Box>
 
-                    <PageText fontSize='faq.question' fontWeight={400} mb={1}>
-                      99 projects
-                    </PageText>
                   </Stack>
                 </GridItem>
-                <GridItem
-                  alignSelf='center'
-                  justifySelf='center'
-                  mr={{ lg: 6, xl: 0, xl2: -12 }}
-                  mb={{ base: 8, lg: 0 }}
-                >
-                  <Box>
-                    <Image
-                      src={bigSucculentSVG}
-                      alt='big opened succulent plant representing allocation in 2021'
-                      layout='fixed'
-                    />
-                  </Box>
-                </GridItem>
+
                 <GridItem alignSelf='center' mb={{ base: 8, lg: 0 }}>
                   <Stack>
-                    <PageSection as='h4' textAlign='left' mb={2}>
-                      2021
-                    </PageSection>
 
                     <Box>
-                      <PageText
-                        fontSize={{ base: 'allocations', md: 'h1' }}
-                        fontWeight={200}
-                        mb={1}
-                      >
-                        $26.9{' '}
-                        <PageText as='span' fontSize='stats'>
-                          million
-                        </PageText>
-                      </PageText>
+
                     </Box>
 
-                    <PageText fontSize='faq.question' fontWeight={400} mb={1}>
-                      136 projects
-                    </PageText>
+
                   </Stack>
                 </GridItem>
               </Grid>
 
               <Stack mt={{ lg: 7 }}>
                 <PageText fontSize='input' textAlign='center' p={4}>
-                  * ESP grants and support are not inclusive of all EF allocations
+                    Únete a miles de personas que confían en Blatam
                 </PageText>
               </Stack>
             </Box>
@@ -190,15 +125,13 @@ const Home: NextPage = () => {
                 width: 540,
                 height: 311.098
               }}
-              title='What we support'
+              title='¿Por qué elegir Blatam?'
               link={ABOUT_URL}
             >
               <PageText mb={6}>
-                We award dozens of grants each quarter, across a variety of categories. We support{' '}
-                <strong>open source projects</strong> that strengthen Ethereum&apos;s foundations,
-                with a particular focus on builder tools, infrastructure, research, community
-                resources and other public goods. Funding is generally directed toward supporting
-                builders rather than end users.
+                Clases en vivo y mentorías
+
+                Nuestras clases son online y en vivo. Y son impartidas por instructores expertos en el ecosistema, quienes podrán resolver todas tus dudas durante tu aprendizaje.
               </PageText>
             </HomeAboutCard>
           </section>
@@ -212,14 +145,12 @@ const Home: NextPage = () => {
                 width: 540,
                 height: 298.968
               }}
-              title='Who We Support'
+              title='Nuestra oferta académica'
               link={WHO_WE_SUPPORT_URL}
             >
               <PageText mb={6}>
-                Our grantees come from all over the world and represent many different backgrounds,
-                disciplines and levels of experience. We have supported individuals and teams of all
-                kinds - companies, DAOs, nonprofits, institutions, academics, developers, educators,
-                community organizers and more. Learn more and see a list of recent grantees.
+
+                Mejora tus oportunidades profesionales e incremente tus ingresos
               </PageText>
             </HomeAboutCard>
           </section>
@@ -233,20 +164,15 @@ const Home: NextPage = () => {
                 width: 540,
                 height: 280.666
               }}
-              title='How We Support'
+              title='Conoce a tus blatam experts'
               link={HOW_WE_SUPPORT_URL}
             >
               <PageText mb={6}>
-                We aim to deploy resources, both financial and non-financial, where they will have
-                the biggest impact. We try to keep our processes flexible and evolving in order to
-                be open to new ideas and support builders of all kinds.
+                El mundo necesita profesionales en blockchain, conviértete en el siguiente
               </PageText>
 
               <PageText>
-                Grants are awarded through a formal application and evaluation process, while our
-                office hours are an opportunity to explore a broad range of support through an
-                informal conversation with a member of the ESP team, such as project feedback,
-                advice, help navigating the ecosystem or guidance on submitting a grant application.
+
               </PageText>
             </HomeAboutCard>
           </section>

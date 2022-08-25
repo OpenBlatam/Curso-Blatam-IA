@@ -5,8 +5,10 @@ import { FC } from 'react';
 import { PageSubheading } from '../UI';
 import { ButtonLink } from '../../components';
 
-import homepageHero from '../../../public/images/homepage-hero.png';
+import homepageHero2 from '../../../public/images/homepage-hero.png';
+import homepageHero from '../../components/assets/images/background-triangles.png';
 import homepageHeroMobile from '../../../public/images/homepage-hero-mobile.png';
+import homepageHeroMobile2 from '../../components/assets/images/background-triangles.png';
 
 import { APPLICANTS_URL } from '../../constants';
 
@@ -25,10 +27,10 @@ export const HomepageHero: FC = () => {
         <PageSubheading
           as='h1'
           fontSize={{ base: 'homepage', md: 'h1' }}
-          fontWeight={100}
+          fontWeight={170}
           lineHeight={{ base: '36px', md: '48px' }}
           textAlign='left'
-          mb={{ base: 6, md: 10 }}
+          mb={{ base: 9, md: 10 }}
         >
           Aprende todo sobre blockchain. <strong> en vivo y con expertos </strong>
 
@@ -41,7 +43,7 @@ export const HomepageHero: FC = () => {
       <Box>
         <Box display={{ base: 'block', md: 'none' }}>
           <Image
-            src={homepageHeroMobile}
+            src={homepageHeroMobile2}
             alt='People gathered around the Ethereum tree'
             layout='responsive'
             objectFit='cover'
@@ -54,7 +56,7 @@ export const HomepageHero: FC = () => {
         <Box display={{ base: 'none', md: 'block' }} mt={6}>
           <Box>
             <Image
-              src={homepageHero}
+              src={homepageHero2}
               alt='People gathered around the Ethereum tree'
               layout='fill'
               objectFit='cover'

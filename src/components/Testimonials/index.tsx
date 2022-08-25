@@ -9,6 +9,7 @@ import { getUniqueID } from "../../utils";
 import HeadingBox from "../common/HeadingBox";
 import SectionLayout from "../common/SectionLayout";
 import TweetCard from "./TweetCard";
+import FaceCard from "./TweetCard";
 import tweets from "./tweets";
 
 const Testimonials = () => {
@@ -21,9 +22,9 @@ const Testimonials = () => {
       pb={{ base: "8", sm: "16", lg: "24", xl: "36" }}
     >
       <HeadingBox
-        title="What's buzzing?"
-        titleProps={{ color: "twitter.500" }}
-        subtitle="Hear our whispers across the internet"
+        title="Que dicen de nosotros en Google"
+        titleProps={{ color: "rainbow" }}
+        subtitle="en twitter y las redes sociales"
         subtitleProps={{
           fontSize: { base: "lg", sm: "xl", md: "2xl", lg: "3xl" }
         }}
@@ -44,7 +45,7 @@ const Testimonials = () => {
           >
             {tweetList.map((tweet) => (
               <TweetCard key={tweet.handle} {...tweet} />
-            ))}
+              ))}
           </Stack>
         ))}
       </SimpleGrid>

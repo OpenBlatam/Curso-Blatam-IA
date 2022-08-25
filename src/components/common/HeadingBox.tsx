@@ -51,7 +51,7 @@ const HeadingBox: React.FC<BoxProps & HeadingBoxProps> = ({
         fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
         letterSpacing="tight"
         maxW={{ md: "80%", lg: "60%", xl: "50%" }}
-        color={useColorModeValue("blackAlpha.800", "whiteAlpha.800")}
+        color={useColorModeValue("pink", "pink")}
         {...subtitleProps}
       >
         {subtitle}
