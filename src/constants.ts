@@ -20,9 +20,9 @@ export const PROJECT_GRANTS_URL = '/applicants/project-grants';
 export const ACADEMIC_GRANTS_URL = '/academic-grants';
 export const DEVCON_GRANTS_URL = '/devcon-grants';
 export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
-  { text: 'Mission and Scope', href: `${APPLICANTS_URL}/#mission-and-scope` },
-  { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` },
-  { text: 'Application types', href: `${APPLICANTS_URL}/#application-types` }
+  { text: 'Misión y Objetivo', href: `${APPLICANTS_URL}/#mission-and-scope` },
+  { text: 'Cuando', href: `${APPLICANTS_URL}/#how-we-support` },
+  { text: 'Temario', href: `${APPLICANTS_URL}/#application-types` }
 ];
 export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${OFFICE_HOURS_URL}/#description` },
@@ -101,11 +101,11 @@ export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 
 // ethereum ecosystem
-export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
+export const ETHEREUM_ORG_URL = 'https://blatam.org/';
 export const ETHEREUM_COOKIE_POLICY_URL = 'https://ethereum.org/en/cookie-policy/';
 export const ETHEREUM_PRIVACY_POLICY_URL = 'https://ethereum.org/en/privacy-policy/';
 export const ETHEREUM_TERMS_OF_USE_URL = 'https://ethereum.org/en/terms-of-use/';
-export const ETHEREUM_GITHUB_URL = 'https://github.com/ethereum';
+export const ETHEREUM_GITHUB_URL = 'https://github.com/blockchain-mexico';
 export const ETHEREUM_JOBS_URL = 'https://ethereum.org/en/community/#ethereum-jobs';
 export const ETHEREUM_COMMUNITY_URL = 'https://ethereum.org/en/community/';
 export const ETHEREUM_BROAD_ECOSYSTEM_URL =
@@ -117,14 +117,14 @@ export const EF_PHILOSOPHY_URL = 'https://ethereum.foundation/philosophy/';
 export const EF_JOBS_URL = 'https://ethereum.bamboohr.com/jobs/';
 
 // ESP external links
-export const ESP_BLOG_URL = 'https://blog.ethereum.org/category/ecosystem-support-program/';
-export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
-export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
+export const ESP_BLOG_URL = 'https://blatam.org';
+export const ESP_TWITTER_URL = 'https://twitter.com/blatam_';
+export const ESP_EMAIL_ADDRESS = 'hola@blockahins.com';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
 
 // applicants tabs
-export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
+export const APPLICANTS_TABS = ['Resumen', 'Bitcoin', 'Ethereum', 'NFTs y Metaversos'];
 export const APPLICANTS_TABS_MAP: TabsMap = {
   [APPLICANTS_URL]: 0,
   [OFFICE_HOURS_URL]: 1,
@@ -148,10 +148,11 @@ export const ABOUT_TABS_MAP: TabsMap = {
 
 // nav
 export const NAV_LINKS: NavLink[] = [
-  { href: HOME_URL, text: 'Home' },
-  { href: APPLICANTS_URL, text: 'How to Apply' },
-  { href: ABOUT_URL, text: 'About ESP' },
-  { href: ESP_BLOG_URL, text: 'Blog' }
+  { href: HOME_URL, text: 'Inicio' },
+  { href: APPLICANTS_URL, text: 'Cursos' },
+  { href: ABOUT_URL, text: 'Becas' },
+  { href: ESP_BLOG_URL, text: 'Exchange' },
+  { href: ESP_BLOG_URL, text: 'Academy' }
 ];
 
 // external links

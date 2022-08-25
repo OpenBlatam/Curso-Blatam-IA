@@ -32,7 +32,7 @@ export const ApplicationAttentionMsg: FC = () => {
           href={OFFICE_HOURS_URL}
           _hover={{ textDecoration: 'none' }}
         >
-          Office Hours
+        Bitcoin
         </Link>{' '}
         before submitting.
       </PageText>

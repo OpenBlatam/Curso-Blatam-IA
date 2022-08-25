@@ -30,11 +30,12 @@ export const HomepageHero: FC = () => {
           textAlign='left'
           mb={{ base: 6, md: 10 }}
         >
-          We provide grants and other support to the builders of the Ethereum ecosystem.
+          Aprende todo sobre blockchain. <strong> en vivo y con expertos </strong>
+
         </PageSubheading>
 
         <Flex justifyContent={{ base: 'center', md: 'flex-start' }}>
-          <ButtonLink label='Learn more' link={APPLICANTS_URL} width='177px' />
+          <ButtonLink label='Aprende más' link={APPLICANTS_URL} width='177px' />
         </Flex>
       </Stack>
       <Box>

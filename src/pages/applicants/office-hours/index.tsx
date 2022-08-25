@@ -41,7 +41,7 @@ const OfficeHours: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Office Hours'
+        title='Bitcoin'
         description='Connect with a member of the Ecosystem Support team for support other than funding, including help with a grant application.'
       />
 
@@ -55,12 +55,18 @@ const OfficeHours: NextPage = () => {
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
               <section id='description' ref={ref}>
-                <PageSubheading mb={8}>Office Hours</PageSubheading>
+                <PageSubheading mb={8}>Bitcoin</PageSubheading>
 
                 <PageText mb={6}>
-                  Office Hours are a chance to connect directly with a member of the EF&apos;s
-                  Ecosystem Support team for support other than funding, including support with the
-                  process of submitting a grant application.
+                  Una versión puramente peer-to-peer de dinero electrónico permitiría en línea
+                  pagos para ser enviados directamente de una parte a otra sin pasar por un
+                  institución financiera. Las firmas digitales proporcionan parte de la solución, pero la principal
+                  los beneficios se pierden si todavía se requiere un tercero de confianza para evitar el doble gasto.
+                  Proponemos una solución al problema del doble gasto utilizando una red peer-to-peer.
+                  La red marca el tiempo de las transacciones mezclándolas en una cadena continua de
+                  prueba de trabajo basada en hash, formando un registro que no se puede cambiar sin rehacer
+                  la prueba de trabajo. La cadena más larga no sólo sirve como prueba de la secuencia de
+                  eventos presenciados, pero prueba de que provino del grupo más grande de potencia de CPU
                 </PageText>
 
                 <PageText>Office Hours might be a good fit if you:</PageText>

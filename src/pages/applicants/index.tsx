@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Stack } from '@chakra-ui/react';
+import {Box, Button, Center, Flex, Stack} from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 import Image from 'next/image';
@@ -6,6 +6,7 @@ import Image from 'next/image';
 import {
   ApplicantsSidebar,
   ApplicationTypeCard,
+  ApplicationTypeCard2,
   PageMetadata,
   PageSection,
   PageSubheading,
@@ -49,27 +50,18 @@ const Applicants: NextPage = () => {
 
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
-              <PageSubheading mb={6}>ESP Grants and Support Overview</PageSubheading>
+              <PageSubheading mb={6}>¿Qué lograrás con esta certificación?</PageSubheading>
 
               <section id='mission-and-scope' ref={ref}>
-                <PageSection mb={6}>Mission and Scope</PageSection>
+                <PageSection mb={6}>Misión y Objetivo </PageSection>
 
                 <PageText mb={6}>
-                  As the public facing allocation arm of the Ethereum Foundation, ESP provides
-                  funding and other forms of support to eligible projects working to improve
-                  Ethereum. We focus on work that strengthens Ethereum&apos;s foundations and
-                  enables future builders, such as open source tooling, building blocks and
-                  libraries, research, community building, educational resources, open standards,
-                  infrastructure and protocol improvements.
+                  En esta certificación blockchain te enseñamos conceptos fundamentales, te explicamos cómo las industrias se están abriendo caminos prometedores en esta tecnología, qué herramientas existen y cómo usarlas. Te mostramos cómo funcionan las criptomonedas para que tengas mayor criterio a la hora de tomar decisiones para tus negocios. Además, exploramos el futuro de blockchain y las oportunidades que genera.
                 </PageText>
 
                 <PageText mb={8}>
-                  ESP support is generally directed toward enabling builders rather than end-users:
-                  strengthening Ethereum&apos;s infrastructure, expanding the range of tools
-                  available to those building on Ethereum, gaining a deeper understanding of
-                  cryptographic primitives, and growing the builder ecosystem through education and
-                  community development. We&apos;re open to supporting work from people and teams of
-                  all kinds.
+
+                  Nuestros egresados están posicionados como referentes en empresas líderes
                 </PageText>
 
                 <Center mb={12}>
@@ -85,7 +77,7 @@ const Applicants: NextPage = () => {
                           />
                         </Box>
                         <Flex h='37px' alignItems='center'>
-                          <PageText fontWeight={600}>Software and protocol developers</PageText>
+                          <PageText fontWeight={600}>Comenzar tu carrera en web3 / blockchain</PageText>
                         </Flex>
                       </Flex>
 
@@ -99,7 +91,7 @@ const Applicants: NextPage = () => {
                           />
                         </Box>
                         <Flex h='40px' alignItems='center'>
-                          <PageText fontWeight={600}>Researchers</PageText>
+                          <PageText fontWeight={600}>Research</PageText>
                         </Flex>
                       </Flex>
 
@@ -108,7 +100,7 @@ const Applicants: NextPage = () => {
                           <Image src={academicsSVG} alt='Academics vector' height={36} width={40} />
                         </Box>
                         <Flex h='36px' alignItems='center'>
-                          <PageText fontWeight={600}>Academics</PageText>
+                          <PageText fontWeight={600}>Academia</PageText>
                         </Flex>
                       </Flex>
                     </Stack>
@@ -124,7 +116,7 @@ const Applicants: NextPage = () => {
                           />
                         </Box>
                         <Flex h='36px' alignItems='center'>
-                          <PageText fontWeight={600}>Community organizers</PageText>
+                          <PageText fontWeight={600}>Convertirte en creador de contenido de calidad</PageText>
                         </Flex>
                       </Flex>
 
@@ -133,7 +125,7 @@ const Applicants: NextPage = () => {
                           <Image src={designersSVG} alt='Designers vector' height={38} width={40} />
                         </Box>
                         <Flex h='38px' alignItems='center'>
-                          <PageText fontWeight={600}>Designers</PageText>
+                          <PageText fontWeight={600}>Diseño</PageText>
                         </Flex>
                       </Flex>
 
@@ -148,7 +140,7 @@ const Applicants: NextPage = () => {
                         </Box>
                         <Flex h='40px' alignItems='center' maxW={{ base: '235px', md: '275px' }}>
                           <PageText fontWeight={600}>
-                            Other grant programs and public goods funding platforms
+                            Incrementar tus ingresos asesorando proyectos
                           </PageText>
                         </Flex>
                       </Flex>
@@ -166,62 +158,103 @@ const Applicants: NextPage = () => {
 
             <Stack spacing={10}>
               <section id='how-we-support' ref={ref2}>
-                <PageSection mb={6}>How we support</PageSection>
+                <PageSection mb={6}>Proximas Fechas</PageSection>
 
                 <PageText mb={6}>
-                  Grants are direct funding, awarded following a formal application, evaluation, and
-                  input from technical advisors. Grants are not donations or equity investments. We
-                  give grants to support recipients in building things that are vital to
-                  Ethereum&apos;s success, without the need to commercialize their work, so that
-                  these resources remain free and open to all. ESP grants are separated into two
-                  categories, small grants and project grants, each with a different process and
-                  criteria.
+
+
+                 <strong>Cupo limitado</strong>
                 </PageText>
 
                 <PageText mb={6}>
-                  ESP also provides non-financial support. The Ethereum Foundation has many valuable
-                  resources in addition to funding: visibility; access to a massive collective
-                  knowledge base; a creative and dedicated team; connections to leading developers,
-                  researchers and community members. Our goal is to deploy these resources as
-                  impactfully as we can. If funding isn&apos;t what&apos;s needed, builders can also
-                  book an office hours session for non-financial support such as project feedback or
-                  help navigating the Ethereum ecosystem.
+                  No te quedes fuera de la próxima certificación
                 </PageText>
               </section>
 
               <section id='application-types' ref={ref3}>
-                <PageSection mb={6}>Application types</PageSection>
+                <PageSection mb={6}>Módulos que incluye la certificación
+                 </PageSection>
 
                 <PageText mb={6}>
-                  There are several ways to request support from ESP. Choose an application type to
-                  see which one might be a fit for you and learn more about the process.
+                  <strong> Clases virtuales en vivo y contenido actualizado </strong>
                 </PageText>
 
                 <PageText mb={6}>
-                  Before submitting, please take time to understand the criteria and expectations
-                  for each type of application, as well as ESP&apos;s mission and scope in order to
-                  make sure you provide the appropriate information and context for us to make an
-                  informed decision on how to proceed with your application.
+
                 </PageText>
 
                 <Center>
                   <Stack spacing={4}>
-                    <ApplicationTypeCard title='Office Hours' link={OFFICE_HOURS_URL}>
-                      Office Hours are a chance to connect directly with a member of the EF&apos;s
-                      Ecosystem Support team for support other than funding, including support with
-                      the process of submitting a grant application.
+                    <ApplicationTypeCard2 title='Dinero' link={OFFICE_HOURS_URL}>
+                      Las historias generales del dinero tienden a considerar metales preciosos, formas específicas de moneda o
+                      amplios sistemas monetarios, pero rara vez se enfocan en cómo la gente común usa y crea...
+                      <Button> Módulo  1</Button>
+                    </ApplicationTypeCard2>
+                    <ApplicationTypeCard title='Bitcoin' link={OFFICE_HOURS_URL}>
+                      … El papel de los mineros es asegurar la red y procesar cada transacción de Bitcoin. Los
+                      mineros logran esto resolviendo un problema computacional que les permite encadenar …
+                      <Button> Módulo  2</Button>
+                    </ApplicationTypeCard>
+                    <ApplicationTypeCard2 title='Blockchain' link={OFFICE_HOURS_URL}>
+                      La tecnología Blockchain no solo está en la base de todas las criptomonedas, sino que ha encontrado
+                      amplia aplicación en la industria financiera más tradicional. También abrió la puerta a nuevos...
+                      <Button> Módulo  3</Button>
+                    </ApplicationTypeCard2>
+                    <ApplicationTypeCard2 title='Criptografía' link={OFFICE_HOURS_URL}>
+                      … Este capítulo trata sobre la teoría de la criptografía. La criptografía se trata de la comunicación.
+                      en presencia de adversarios. La criptología proporciona métodos que permiten una comunicación...
+                      <Button> Módulo  4</Button>
+                    </ApplicationTypeCard2>
+                    <ApplicationTypeCard2 title='Consenso' link={OFFICE_HOURS_URL}>
+                      … Bitcoin establece un consenso sobre la cadena de bloques de forma descentralizada y seudónima
+                      Todos los participantes de Bitcoin siguen el mismo consenso de validez de bloque prescrito (BVC), es decir, un...
+                      <Button> Módulo  5</Button>
+                    </ApplicationTypeCard2>
+                    <ApplicationTypeCard2 title='Redes Distribuidas' link={OFFICE_HOURS_URL}>
+                      … En las redes heterárquicas o distribuidas, ningún componentenodo-… las redes distribuidas
+                      naturales las mismas relaciones jearárquicas a las que estamos acostumbrados en las redes
+                      <Button> Módulo  6</Button>
+                    </ApplicationTypeCard2>
+                    <ApplicationTypeCard2 title='Bloques' link={OFFICE_HOURS_URL}>
+                      … Cada bloque está vinculado al bloque anterior y al siguiente, y la cadena completa se actualiza cada
+                      … para editar o eliminar bloques de datos cuando los bloques se registran en el libro mayor de blockchain. Por lo tanto, es ……
+                      <Button> Módulo  7</Button>
+                    </ApplicationTypeCard2>
+                    <ApplicationTypeCard title='Ethereum' link={OFFICE_HOURS_URL}>
+                      … Ethereum es una importante plataforma basada en blockchain para contratos inteligentes … La propuesta de valor central
+                      de Ethereum es un completo ... Proporcionamos una descripción técnica de Ethereum, esquema abierto ...
+                      <Button> Modulo 8</Button>
+                    </ApplicationTypeCard>
+                    <ApplicationTypeCard2 title='Tokens' link={OFFICE_HOURS_URL}>
+                      … de tokens y análisis comparativo de tokens … del estándar de tokens ERC20 que describe las reglas
+                      y los estándares para los tokens de criptomonedas, todas las DApps y las nuevas empresas están utilizando el token ERC20...
+                      <Button> Módulo  9</Button>
+                    </ApplicationTypeCard2>
+                    <ApplicationTypeCard title='NFTs y Metaversos' link={OFFICE_HOURS_URL}>
+                      … (NFT) en plataformas de metaverso, como Decentraland. Ya estamos asistiendo a la formación
+                      del metaverso... los jugadores en el ecosistema del metaverso incluyen puertas de enlace del metaverso que...
+                      <Button>Módulo  10</Button>
+                    </ApplicationTypeCard>
+                    <ApplicationTypeCard2 title='DeFi y Daos' link={OFFICE_HOURS_URL}>
+                      … una plataforma DeFi era MakerDAO (el término DAO significa “Autónomo Descentralizado”).
+                      Organization”), que también produjo y hoy mantiene la moneda estable DAI. La DAO y…<Button> Modulo 11</Button>
+                    </ApplicationTypeCard2>
+                    <ApplicationTypeCard title='Blockchain Canvas' link={OFFICE_HOURS_URL}>
+                      … de la tecnología blockchain tiene sentido y dónde podría ser mejor una solución diferente En este
+                      papel un Blockchain Canvas... Por lo tanto, este lienzo se centra en la identificación de específicos...
+                      <Button> Módulo  12</Button>
                     </ApplicationTypeCard>
 
-                    <ApplicationTypeCard title='Small Grants' link={SMALL_GRANTS_URL}>
-                      Small grants, capped at $30,000, have a streamlined application and evaluation
-                      process to deliver a decision around two weeks after submission.
-                    </ApplicationTypeCard>
+                    <ApplicationTypeCard2 title='Avanzado' link={SMALL_GRANTS_URL}>
+                      llamamos la columna vertebral de Bitcoin, ... construida sobre el protocolo de la columna vertebral, centrándose específicamente en...
+                      <Button> Módulo  13</Button>
+                    </ApplicationTypeCard2>
 
-                    <ApplicationTypeCard title='Project Grants' link={PROJECT_GRANTS_URL}>
-                      Project grants have no specific funding cap, and undergo a more intensive
-                      process of review and potentially rescoping. Timelines vary widely depending
-                      on scope and complexity.
-                    </ApplicationTypeCard>
+                    <ApplicationTypeCard2 title='Research' link={PROJECT_GRANTS_URL}>
+                      … de Bitcoin desde entonces ha ayudado a avanzar en el campo y el estado del arte … el campo de la falla bizantina
+                      tolerancia y delinear ventajas... Por lo tanto, destacamos que la tolerancia a fallas bizantinas debería...
+                      <Button> Módulo 14</Button>
+                    </ApplicationTypeCard2>
                   </Stack>
                 </Center>
               </section>

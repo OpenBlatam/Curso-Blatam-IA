@@ -1,7 +1,7 @@
 import { Stack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
-
+import {Button} from "@chakra-ui/react";
 import { Description, NavigationTabs } from '../UI';
 
 import applicantsHero from '../../../public/images/applicants-hero.png';
@@ -75,13 +75,18 @@ export const ApplicantsLayout: FC = ({ children }) => {
     <>
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3} display={!isGranteeFinance ? 'block' : 'none'}>
         <section id='hero'>
+          <Button>  ✅Certifiación </Button>
+          <Button> 🔴En vivo </Button>
+
+
           <Description
-            title='How to Apply'
+            title='Blockchain Consultant'
             img={{ src: applicantsHero, alt: 'Kid watching plants grow', width: 450, height: 248 }}
           >
-            Whether you&apos;re working on a specific project, or you&apos;re still exploring
-            possibilities, you can connect with our team for guidance.
+            Aprende desde cero todos los conceptos fundamentales de blockchain.
+            <strong> Duración 4 semanas</strong>
           </Description>
+          <Button> 🌟5 / 5 estrellas </Button>
         </section>
       </Stack>
 

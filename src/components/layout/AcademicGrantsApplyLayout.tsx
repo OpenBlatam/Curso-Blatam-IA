@@ -11,7 +11,7 @@ export const AcademicGrantsApplyLayout: FC = ({ children }) => {
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
         <section id='hero'>
           <Description
-            title='How to Apply'
+            title=''
             img={{
               src: applicantsHero,
               alt: 'Kid watching plants grow',
@@ -19,8 +19,7 @@ export const AcademicGrantsApplyLayout: FC = ({ children }) => {
               height: 248
             }}
           >
-            Whether you&apos;re working on a specific project, or you&apos;re still exploring
-            possibilities, you can connect with our team for guidance.
+              Aprende desde cero todos los conceptos fundamentales de blockchain.
           </Description>
         </section>
 

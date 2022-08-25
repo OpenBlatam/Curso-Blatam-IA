@@ -26,27 +26,20 @@ const Home: NextPage = () => {
           <Flex direction={{ base: 'column', md: 'row' }}>
             <Stack mb={{ base: 10, md: 0 }} w={{ md: '100%' }} mr={{ base: 0, md: 12 }}>
               <section id='mission'>
-                <PageSection mb={6}>The Ethereum Foundation&apos;s Mission</PageSection>
+                <PageSection mb={6}>La Mision de Blatam </PageSection>
 
                 <PageText fontSize='stats' fontWeight={100} lineHeight='32px'>
-                  Our mission is to do what is best for Ethereum&apos;s long-term success. Our role
-                  is to <strong>allocate resources to critical projects</strong>, to be a valued
-                  voice within the Ethereum ecosystem, and to advocate for Ethereum to the outside
-                  world.
+                  Cursos y certificaciones desde cero y avanzados, para que te conviertas en <strong> todo un profesional de la tecnología más demandada del momento.</strong>
                 </PageText>
               </section>
             </Stack>
 
             <Stack w={{ md: '90%' }} mb={{ md: 8 }}>
               <section id='esp-role'>
-                <PageSection mb={6}>Ecosystem Support Program&apos;s Role</PageSection>
+                <PageSection mb={6}>Únete a miles de personas que confían en Blatam</PageSection>
 
                 <PageText mb={1}>
-                  As the public facing allocation arm of the Ethereum Foundation, ESP provides
-                  funding and other forms of support to eligible projects working to improve
-                  Ethereum. We focus on work that strengthens Ethereum&apos;s foundations and
-                  enables future builders, such as developer tools, research, community building,
-                  infrastructure and open standards.
+                  es un hub educativo dedicado a la formación y posicionamiento de profesionales en el  <strong> ecosistema de tecnología y Blockchain.</strong>
                 </PageText>
               </section>
             </Stack>

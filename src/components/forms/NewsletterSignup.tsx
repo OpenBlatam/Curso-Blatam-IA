@@ -103,12 +103,11 @@ export const NewsletterSignup: FC = () => {
     >
       <Stack mt={2} mb={{ base: 6, lg: 0 }} mr={{ base: 0, lg: 12 }}>
         <ImportantText color='brand.ready.text' textAlign={{ base: 'center', lg: 'left' }} as='h3'>
-          Join our newsletter to stay tuned!
+          Suscríbete a nuestro newsletter
         </ImportantText>
 
         <PageText textAlign={{ base: 'center', lg: 'left' }} fontSize='input'>
-          Sign up to receive ESP updates to your inbox! You&apos;ll hear from us every few weeks,
-          and we&apos;ll only ever contact you with ESP news.
+          Estas por unirte a la comunidad más grande de profesionales referentes en el ecosistema blockchain de Latinoamérica
         </PageText>
       </Stack>
 
@@ -119,7 +118,7 @@ export const NewsletterSignup: FC = () => {
               <Input
                 id='newsletter-email'
                 type='email'
-                placeholder='Enter your email'
+                placeholder='Ingresa tu email'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -129,7 +128,7 @@ export const NewsletterSignup: FC = () => {
                   required: true,
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid email address'
+                    message: 'Correo invalido'
                   }
                 })}
               />
@@ -161,7 +160,7 @@ export const NewsletterSignup: FC = () => {
                   onMouseLeave={() => setButtonHovered(false)}
                   pointerEvents={!isValid ? 'none' : 'auto'}
                 >
-                  <ImportantText color='white'>Sign up</ImportantText>
+                  <ImportantText color='white'>SUBSCRIBIRME</ImportantText>
                 </MotionButton>
               </Box>
             </Center>

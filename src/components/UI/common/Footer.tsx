@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { ImportantText } from '../headings';
 import { PageText } from '../text';
 
-import efLogoSVG from '../../../../public/images/ef-logo.svg';
+import efLogoSVG from '../../../../public/images/blatam.jpeg';
 import githubLogoSVG from '../../../../public/images/github-logo.svg';
 import twitterLogoSVG from '../../../../public/images/twitter-logo.svg';
 
@@ -34,7 +34,7 @@ export const Footer: FC = () => {
         alignItems={{ lg: 'flex-start' }}
       >
         <Center px={5} py={8}>
-          <Image src={efLogoSVG} alt='Ethereum Foundation logo' height={64} width={200} />
+          <Image src={efLogoSVG} alt='Ethereum Foundation logo' height={94} width={100} />
         </Center>
 
         <Center px={{ base: 5, lg: 12 }} display={{ base: 'block', lg: 'none' }}>
@@ -51,22 +51,22 @@ export const Footer: FC = () => {
           <Stack mb={{ base: 2, lg: 0 }} mr={{ lg: 32 }}>
             <Link href={HOME_URL} _hover={{ textDecoration: 'none' }}>
               <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Home
+                Inicio
               </ImportantText>
             </Link>
             <Link href={APPLICANTS_URL} _hover={{ textDecoration: 'none' }}>
               <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                How to Apply
+                Cursos
               </ImportantText>
             </Link>
             <Link href={ABOUT_URL} _hover={{ textDecoration: 'none' }}>
               <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                About ESP
+                Becas
               </ImportantText>
             </Link>
             <Link href={ESP_BLOG_URL} isExternal _hover={{ textDecoration: 'none' }}>
               <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Blog
+                Exchange
               </ImportantText>
             </Link>
           </Stack>
@@ -89,7 +89,7 @@ export const Footer: FC = () => {
             </Link>
             <Link href={ETHEREUM_ORG_URL} isExternal _hover={{ textDecoration: 'none' }}>
               <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Ethereum.org
+                Blatam.org
               </ImportantText>
             </Link>
           </Stack>
@@ -117,7 +117,7 @@ export const Footer: FC = () => {
 
         <Stack px={5} pt={{ base: 3, lg: 6 }} pb={{ base: 5, lg: 10 }}>
           <PageText color='white' textAlign='center'>
-            {`© ${new Date().getFullYear()} Ethereum Foundation. All rights reserved.`}
+            {`© ${new Date().getFullYear()} Blatam All rights reserved.`}
           </PageText>
         </Stack>
       </Stack>

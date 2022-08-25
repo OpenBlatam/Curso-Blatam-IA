@@ -26,7 +26,7 @@ import { CloseIcon, HamburgerIcon, NavLinkIcon } from './UI/icons';
 
 import { selectedLink } from '../utils';
 
-import logoSVG from '../../public/images/esp-logo.svg';
+import logoSVG from '../../public/images/blatam.jpeg';
 
 import { ESP_BLOG_URL, ETHEREUM_ORG_URL, HOME_URL, NAV_LINKS } from '../constants';
 
@@ -43,7 +43,7 @@ export const Nav: FC = () => {
           sx={isOpen ? { transitionDelay: '0.15s', filter: 'brightness(10)' } : undefined}
           zIndex={9999}
         >
-          <Image src={logoSVG} alt='Ecosystem Support Program logo' height={64} width={148} />
+          <Image src={logoSVG} alt='Ecosystem Support Program logo' height={85} width={100} />
         </Box>
 
         <Box display={{ base: 'block', md: 'none' }}>
@@ -91,7 +91,7 @@ export const Nav: FC = () => {
 
                     <Link href={ETHEREUM_ORG_URL} isExternal _hover={{ textDecoration: 'none' }}>
                       <ImportantText color='white' textAlign='center'>
-                        Ethereum.org
+                        Blatam.org
                       </ImportantText>
                     </Link>
                   </Stack>

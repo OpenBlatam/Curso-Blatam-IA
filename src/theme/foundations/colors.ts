@@ -1,6 +1,6 @@
 export const colors = {
   brand: {
-    accent: '#f85858',
+    accent: '#F50087',
     button: {
       shadow: '#e34550'
     },

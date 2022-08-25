@@ -3,7 +3,7 @@ import { theme as base } from '@chakra-ui/react';
 export const Heading = {
   variants: {
     'page-section': {
-      fontFamily: `Maison Neue Mono, ${base.fonts?.heading}`
+      fontFamily: `SFPro Mono, ${base.fonts?.heading}`
     }
   }
 };
