@@ -5,12 +5,14 @@ import { FC } from 'react';
 import { ImportantText } from '../headings';
 import { PageText } from '../text';
 
+import IconArrowUpward from '../../assets/icons/arrow_upward.svg';
 import efLogoSVG from '../../../../public/images/blatam.jpeg';
 import githubLogoSVG from '../../../../public/images/github-logo.svg';
 import twitterLogoSVG from '../../../../public/images/twitter-logo.svg';
 import IconTwitter from '../../../components/assets/icons/twitter.svg';
 import IconGithub from '../../../components/assets/icons/github.svg';
-
+import IconFace from '../../../components/assets/icons/facebook.svg';
+import IconInstagram from '../../../components/assets/icons/instagram.svg';
 import IconYoutube from '../../../components/assets/icons/youtube.svg';
 import IconTelegram from '../../../components/assets/icons/telegram.svg';
 import IconDiscord from '../../../components/assets/icons/discord.svg';
@@ -28,7 +30,7 @@ import {
   ETHEREUM_ORG_URL,
   ETHEREUM_PRIVACY_POLICY_URL,
   ETHEREUM_TERMS_OF_USE_URL,
-  HOME_URL
+  HOME_URL, ESP_FACE_URL, ESP_INSTAGRAM_URL
 } from '../../../constants';
 
 export const Footer: FC = () => {
@@ -106,6 +108,16 @@ export const Footer: FC = () => {
 
         <Flex justifyContent='center' alignItems='center' pt={3} pb={6} mt={{ lg: 7 }}>
           <Box mr={2.5}>
+            <Link href={ESP_FACE_URL} isExternal>
+              <Image src={IconFace} alt='Twitter logo' height={51} width={50} />
+            </Link>
+          </Box>
+          <Box mr={2.5}>
+            <Link href={ESP_INSTAGRAM_URL} isExternal>
+              <Image src={IconInstagram} alt='Twitter logo' height={51} width={50} />
+            </Link>
+          </Box>
+          <Box mr={2.5}>
             <Link href={ESP_TWITTER_URL} isExternal>
               <Image src={IconTwitter} alt='Twitter logo' height={51} width={50} />
             </Link>
@@ -136,9 +148,9 @@ export const Footer: FC = () => {
 
       <Stack>
         <Center px={{ base: 5, lg: 12 }} mt={{ lg: 10 }}>
+
           <Divider borderColor='brand.divider.100' opacity={1} />
         </Center>
-
         <Stack px={5} pt={{ base: 3, lg: 6 }} pb={{ base: 5, lg: 10 }}>
           <PageText color='white' textAlign='center'>
             {`© ${new Date().getFullYear()} Blatam All rights reserved.`}

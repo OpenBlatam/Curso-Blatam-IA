@@ -25,18 +25,18 @@ export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
   { text: 'Temario', href: `${APPLICANTS_URL}/#application-types` }
 ];
 export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${OFFICE_HOURS_URL}/#description` },
-  { text: 'Process', href: `${OFFICE_HOURS_URL}/#process` },
+  { text: 'Resumen', href: `${OFFICE_HOURS_URL}/#description` },
+  { text: 'Proceso', href: `${OFFICE_HOURS_URL}/#process` },
   { text: 'Eligibility', href: `${OFFICE_HOURS_URL}/#eligibility` },
   { text: 'What we offer', href: `${OFFICE_HOURS_URL}/#what-we-offer` },
   { text: "What we DON'T offer", href: `${OFFICE_HOURS_URL}/#what-we-dont-offer` },
   { text: 'Before submitting', href: `${OFFICE_HOURS_URL}/#before-submitting` },
-  { text: 'FAQ', href: `${OFFICE_HOURS_URL}/#faq` },
-  { text: 'Apply', href: `${OFFICE_HOURS_URL}/#apply` }
+  { text: 'Preguntas frecuentes', href: `${OFFICE_HOURS_URL}/#faq` },
+  { text: 'Aplica', href: `${OFFICE_HOURS_URL}/#apply` }
 ];
 export const SIDEBAR_PROJECT_GRANTS_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${PROJECT_GRANTS_URL}/#description` },
-  { text: 'Process', href: `${PROJECT_GRANTS_URL}/#process` },
+  { text: 'Resumen', href: `${PROJECT_GRANTS_URL}/#description` },
+  { text: 'Proceso', href: `${PROJECT_GRANTS_URL}/#process` },
   { text: 'Requirements', href: `${PROJECT_GRANTS_URL}/#requirements` },
   { text: 'Eligibility', href: `${PROJECT_GRANTS_URL}/#eligibility` },
   { text: 'What is NOT eligible', href: `${PROJECT_GRANTS_URL}/#what-is-not-eligible` },
@@ -44,12 +44,12 @@ export const SIDEBAR_PROJECT_GRANTS_LINKS: SidebarLink[] = [
     text: 'Tips for submitting a great application',
     href: `${PROJECT_GRANTS_URL}/#tips-application`
   },
-  { text: 'FAQ', href: `${PROJECT_GRANTS_URL}/#faq` },
-  { text: 'Apply', href: `${PROJECT_GRANTS_URL}/#apply` }
+  { text: 'Preguntas frecuentes', href: `${PROJECT_GRANTS_URL}/#faq` },
+  { text: 'Aplica', href: `${PROJECT_GRANTS_URL}/#apply` }
 ];
 export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${SMALL_GRANTS_URL}/#description` },
-  { text: 'Process', href: `${SMALL_GRANTS_URL}/#process` },
+  { text: 'Resumen', href: `${SMALL_GRANTS_URL}/#description` },
+  { text: 'Proceso', href: `${SMALL_GRANTS_URL}/#process` },
   { text: 'Requirements', href: `${SMALL_GRANTS_URL}/#requirements` },
   { text: 'Eligibility', href: `${SMALL_GRANTS_URL}/#eligibility` },
   { text: 'What is NOT eligible', href: `${SMALL_GRANTS_URL}/#what-is-not-eligible` },
@@ -57,8 +57,8 @@ export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
     text: 'Tips for submitting a great application',
     href: `${SMALL_GRANTS_URL}/#tips-application`
   },
-  { text: 'FAQ', href: `${SMALL_GRANTS_URL}/#faq` },
-  { text: 'Apply', href: `${SMALL_GRANTS_URL}/#apply` }
+  { text: 'Preguntas frecuentes', href: `${SMALL_GRANTS_URL}/#faq` },
+  { text: 'Aplica', href: `${SMALL_GRANTS_URL}/#apply` }
 ];
 export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${ACADEMIC_GRANTS_URL}/#description` },
@@ -72,7 +72,7 @@ export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${ACADEMIC_GRANTS_URL}/#apply` }
 ];
 export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${DEVCON_GRANTS_URL}/#description` },
+  { text: 'Resumen', href: `${DEVCON_GRANTS_URL}/#description` },
   { text: 'Who', href: `${DEVCON_GRANTS_URL}/#who` },
   { text: 'Eligibility', href: `${DEVCON_GRANTS_URL}/#eligibility` },
   { text: 'How to apply', href: `${DEVCON_GRANTS_URL}/#how-to-apply` },
@@ -111,6 +111,9 @@ export const YOUTUBE_GITHUB_URL = 'https://www.youtube.com/channel/UCud6nL-pEA-W
 export const TELEGRAM_GITHUB_URL = 'https://t.me/+NMA6zQgp-IcwOWYx';
 export const ETHEREUM_JOBS_URL = 'https://ethereum.org/en/community/#ethereum-jobs';
 export const ETHEREUM_COMMUNITY_URL = 'https://ethereum.org/en/community/';
+export const NFT_COMMUNITY_URL = 'https://twitter.com/beeple';
+export const METAVERSE_COMMUNITY_URL = 'https://www.youtube.com/watch?v=Uvufun6xer8&t=367s';
+
 export const ETHEREUM_BROAD_ECOSYSTEM_URL =
   'https://ethereum.org/en/community/grants/#broad-ethereum-ecosystem';
 export const ETHEREUM_GRANTS_URL = 'https://ethereum.org/en/community/grants/';
@@ -122,6 +125,8 @@ export const EF_JOBS_URL = 'https://ethereum.bamboohr.com/jobs/';
 // ESP external links
 export const ESP_BLOG_URL = 'https://blatam.org';
 export const ESP_TWITTER_URL = 'https://twitter.com/blatam_';
+export const ESP_FACE_URL = 'https://www.facebook.com/blatamoficial';
+export const ESP_INSTAGRAM_URL = 'https://www.instagram.com/blatam_/';
 export const ESP_EMAIL_ADDRESS = 'hola@blockahins.com';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
@@ -142,7 +147,7 @@ export const APPLICANTS_TABS_MAP: TabsMap = {
 };
 
 // about tabs
-export const ABOUT_TABS = ['What We Support', 'Who We Support', 'How We Support'];
+export const ABOUT_TABS = ['Porque elegir blatam', 'Who We Support', 'Conoce a tus expertos blatam'];
 export const ABOUT_TABS_MAP: TabsMap = {
   [ABOUT_URL]: 0,
   [WHO_WE_SUPPORT_URL]: 1,

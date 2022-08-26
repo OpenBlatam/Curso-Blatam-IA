@@ -18,10 +18,11 @@ import {
 import {
   ETHEREUM_COMMUNITY_URL,
   ETHEREUM_GRANTS_URL,
-  ETHRESEARCH_URL,
+  ETHRESEARCH_URL, METAVERSE_COMMUNITY_URL, NFT_COMMUNITY_URL,
   PROJECT_GRANTS_APPLY_URL,
   SIDEBAR_PROJECT_GRANTS_LINKS
 } from '../../../constants';
+import * as https from "https";
 
 const ProjectGrants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
@@ -52,29 +53,33 @@ const ProjectGrants: NextPage = () => {
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={2}>
               <section id='description' ref={ref}>
-                <PageSubheading mb={8}>Project grants</PageSubheading>
+                <PageSubheading mb={8}>Nfts y Metaversos</PageSubheading>
 
                 <PageText mb={6}>
-                  Project grants undergo an intensive process of review and potentially rescoping.
-                  There is no hard limit on the size of the request, and the timeline for a decision
-                  is typically two months but varies depending on factors such as the technical
-                  nature of the work, amount of due diligence required, and how much revision is
-                  required from the original proposal. A Project Grant might be a good fit if any of
-                  the following apply to your project:
+                  El mercado de tokens no fungibles <strong> (NFT) </strong> se está multiplicando en
+                  años recientes. El concepto de NFT proviene originalmente de un token estándar de Ethereum, con el objetivo de distinguir cada token con distinguibles
+                  señales. Este tipo de token se puede vincular con propiedades virtuales/digitales
+                  como sus identificaciones únicas.
+                  <strong>Metaverso</strong> como paradigma en evolución de la próxima generación de Internet, tiene como objetivo construir un espacio virtual compartido totalmente inmersivo, hiperespaciotemporal y autosuficiente para que los humanos
+                  jugar, trabajar y socializar. Impulsado por los avances recientes en los mercados emergentes
+                  tecnologías como la realidad extendida, la inteligencia artificial y
+                  blockchain, el metaverso está pasando de la ciencia ficción a una realidad próxima.
+                <strong> Características:</strong>
                 </PageText>
 
                 <Stack>
                   <List>
+
                     <ListItem>
-                      More complex, or larger in scope: the proposed work has multiple components or
-                      stages, a longer project timeline, or will require you to make new long-term
-                      hires.
+                      1) Inmersión: La inmersión significa que el
+                      espacio virtual generado por computadora es suficientemente realista para permitir
+                      los usuarios se sientan psicológica y emocionalmente inmersos
                     </ListItem>
-                    <ListItem>Higher-cost: your expected budget exceeds $30,000.</ListItem>
+                    <ListItem>2) Hiperespaciotemporalidad: El mundo real está restringido por la
+                      finitud del espacio e irreversibilidad del tiempo.</ListItem>
                     <ListItem>
-                      A mature idea: you have thought deeply about your goals and strategy, asked
-                      yourself difficult questions to validate your approach, and thoroughly
-                      researched the state of the art in your chosen domain.
+                      3) Sostenibilidad: La sostenibilidad indica que el metaverso mantiene un ciclo económico cerrado y un valor constante
+                      sistema con un alto nivel de independencia.
                     </ListItem>
                   </List>
                 </Stack>
@@ -83,7 +88,6 @@ const ProjectGrants: NextPage = () => {
 
             <Stack mb={20}>
               <section id='attention'>
-                <ApplicationAttentionMsg />
               </section>
             </Stack>
 
@@ -255,116 +259,61 @@ const ProjectGrants: NextPage = () => {
               </section>
 
               <section id='faq' ref={ref7}>
-                <PageSection mb={6}>FAQ</PageSection>
+                <PageSection mb={6}>Preguntas frecuentes </PageSection>
 
                 <Accordion allowToggle>
-                  <FAQItem question='Is my application confidential?'>
+                  <FAQItem question='¿Por que los NFTs tienen valor?'>
                     <PageText>
-                      Applications are not shared with the public. However, any information you
-                      provide may be shared with advisors in the review process, so let us know in
-                      your application if there&apos;s something you want us to keep confidential!
+                      Pues es sencillo, porque creen que su valor va aumentar con el tiempo, y luego podrán venderlo por más dinero.
                     </PageText>
                   </FAQItem>
 
-                  <FAQItem question='Can I remain anonymous?'>
+                  <FAQItem question='¿Cuál es el NFT mas caro que se ha vendido?'>
                     <PageText>
-                      Mostly, yes. We are legally required to perform KYC before transferring funds
-                      to you, and will need to know your real identity to complete that process.
-                      However, we are happy to keep that information confidential outside of the few
-                      members of the EF team involved in KYC processing, and use a pseudonym or omit
-                      your name entirely in any communications that will be visible to anyone else.
-                    </PageText>
-                  </FAQItem>
-
-                  <FAQItem question='What currency are grants paid in?'>
-                    <PageText>We can provide payment in ETH, DAI, or Fiat currency.</PageText>
-                  </FAQItem>
-
-                  <FAQItem question='Is my for-profit company eligible for a grant?'>
-                    <PageText mb={6}>
-                      Ethereum&apos;s ecosystem is unique in the way it embraces both
-                      entrepreneurship and collaboration, and we want to keep it that way. We
-                      believe that builders can and should be able to build a business while
-                      continuing to contribute to FOSS and public goods.
-                    </PageText>
-
-                    <PageText>
-                      Although ESP does not fund work that is intended to be monetized, we are happy
-                      to hear from for-profit entities that are building public goods. We regularly
-                      fund components or areas of work carried out by for-profit companies, as long
-                      as the specific funded work fits within our scope and remains free and open to
-                      anyone.
-                    </PageText>
-                  </FAQItem>
-
-                  <FAQItem question='Will anybody actually read my application?'>
-                    <PageText>
-                      Yes! The team meets weekly to review every submission we receive, and give
-                      careful consideration to whether the project is eligible and what we can do to
-                      support. We love learning about the amazing work people are doing in the
-                      ecosystem, even when that work is outside of our scope.
-                    </PageText>
-                  </FAQItem>
-
-                  <FAQItem question='Will you give me a million dollars?'>
-                    <PageText>
-                      Probably not. Grant sizes vary widely depending on the scope and expected
-                      length of the project - anywhere from $250 USD for an individual tackling a
-                      distinct task or research problem, to $200k+ for a dedicated team working on a
-                      multi-year timeline. Project grant applicants will have the opportunity to
-                      work with the ESP team on determining an appropriate request based on the
-                      scope of their proposed work.
-                    </PageText>
-                  </FAQItem>
-
-                  <FAQItem question="What happens if I'm not awarded a grant?">
-                    <PageText mb={6}>
-                      Don&apos;t be discouraged! We have a finite scope and sometimes it&apos;s just
-                      not a fit, or not the right time - that doesn&apos;t mean the work you&apos;re
-                      doing isn&apos;t important. Consider continuing to develop your idea at a
-                      hackathon or by posting to forums like{' '}
+                      El NFT más caro jamás vendido del artista
                       <Link
-                        fontWeight={700}
-                        color='brand.orange.100'
-                        href={ETHRESEARCH_URL}
-                        isExternal
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href={NFT_COMMUNITY_URL}
+                          isExternal
                       >
-                        ethresear.ch
-                      </Link>
-                      , looking into{' '}
-                      <Link
-                        fontWeight={700}
-                        color='brand.orange.100'
-                        href={ETHEREUM_GRANTS_URL}
-                        isExternal
-                      >
-                        other funding sources
-                      </Link>
-                      , or participating in{' '}
-                      <Link
-                        fontWeight={700}
-                        color='brand.orange.100'
-                        href={ETHEREUM_COMMUNITY_URL}
-                        isExternal
-                      >
-                        community groups or events
+                           Beeple,
                       </Link>{' '}
-                      for new perspectives and possibilities within the vast and vibrant Ethereum
-                      ecosystem.
+                    que se convertía a su vez en la tercera obra más cara jamás vendida en una subasta por un artista vivo. La obra es un collage compuesto por 5000 piezas de trabajo que el artista ha ido haciendo cada día desde 2007.
+                      Se vendio en  $69.3 millones de dólares.
+                    </PageText>
+                  </FAQItem>
+                  <FAQItem question='¿Cuál es el futuro de metaverso?'>
+                    <PageText mb={6}>
+
+                      Tras la pandemia, el metaverso es una nueva revolución digital que está adquiriendo cada vez mayor relevancia a la hora de conectar a las personas en un nuevo mundo virtual en el que confluyen distintas tecnologías, como la Realidad Aumentada y la Virtual, para potenciar su valor.
+                      <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href={METAVERSE_COMMUNITY_URL}
+                          isExternal
+                      >
+                        Meta
+                        (Facebook)
+                      </Link>{' '}
+                    pretender ser el lider en esta industria.
                     </PageText>
 
                     <PageText>
-                      You can also reapply in the future if you feel that something has changed. If
-                      you&apos;re considering reapplying, we recommend signing up for office hours
-                      first before restarting the application process.
+
                     </PageText>
                   </FAQItem>
+
+
+
+
+
                 </Accordion>
               </section>
 
               <section id='apply' ref={ref8}>
                 <Stack mt={6}>
-                  <ReadyToApply link={`${PROJECT_GRANTS_APPLY_URL}`} />
+                  //ReadyToApply link={`${PROJECT_GRANTS_APPLY_URL}`} />
                 </Stack>
               </section>
             </Stack>
