@@ -25,12 +25,12 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
           lineHeight='22px'
           textAlign='center'
         >
-          Ready to apply?
+          ¿Quieres una beca?
         </Heading>
       </Stack>
 
       <Center>
-        <ButtonLink label='Apply' link={link} width='208px' isApplyButton />
+        <ButtonLink label='Applica' link={link} width='208px' isApplyButton />
       </Center>
     </Stack>
   );

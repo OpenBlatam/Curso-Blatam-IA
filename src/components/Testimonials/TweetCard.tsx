@@ -37,11 +37,11 @@ const TweetCard: React.FC<TweetCardProps> = ({
   const tweetContentProps: TextProps = {
     fontSize: { base: "sm", md: "md" }
   };
-
+/*
   const trackMetric = () => {
     mp.track("Twitter Card Trigger", { handle, date, url });
   };
-
+*/
   return (
     <Link href={url} target="_blank" _hover={{ textDecoration: "none" }}>
       <Box
@@ -121,10 +121,6 @@ const FaceCard2: React.FC<TweetCardProps> = ({
     fontSize: { base: "sm", md: "md" }
   };
 
-  const trackMetric = () => {
-    mp.track("Twitter Card Trigger", { handle, date, url });
-  };
-
   return (
       <Link href={url} target="_blank" _hover={{ textDecoration: "none" }}>
         <Box
@@ -136,7 +132,7 @@ const FaceCard2: React.FC<TweetCardProps> = ({
             _hover={{
               backgroundColor: useColorModeValue("blackAlpha.100", "whiteAlpha.100")
             }}
-            onClick={trackMetric}
+            //onClick={trackMetric}
         >
           <Box
               display="flex"

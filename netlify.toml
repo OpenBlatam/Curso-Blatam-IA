@@ -8,7 +8,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Access-Control-Allow-Origin = "https://matomo.ethereum.org"
+    Access-Control-Allow-Origin = "https://blatam.org"
 
 # Legacy pages from current site
 

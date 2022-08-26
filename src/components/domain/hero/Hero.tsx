@@ -4,7 +4,6 @@ import Logo from '../../assets/images/hero/hero-logo-mobile.svg'
 import Rays from './images/Rays'
 import { useTranslations } from 'next-intl'
 import { CallToAction } from './call-to-action'
-import AddToCalendar from '../add-to-calendar'
 import Mountains from 'assets/images/mtn-all-layers.svg'
 
 const useParallax = (elementRef: any) => {
@@ -79,7 +78,6 @@ export const Hero = () => {
           <Logo alt={intl('global_title')} className={css['logo']} />
           <div className={css['add-to-cal']}>
             <div>
-              <AddToCalendar />
             </div>
           </div>
         </div>

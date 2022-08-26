@@ -52,34 +52,31 @@ const SmallGrants: NextPage = () => {
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={-4}>
               <section id='description' ref={ref}>
-                <PageSubheading mb={8}>Small Grants</PageSubheading>
+                <PageSubheading mb={8}>Ethereum</PageSubheading>
 
                 <PageText mb={6}>
-                  Small grants, <strong>capped at $30,000</strong>, have a streamlined application
-                  and evaluation process to deliver a decision around two weeks after submission.
+                  Ethereum es la tecnología administrada por la comunidad que impulsa el éter de criptomonedas (ETH) y miles de aplicaciones descentralizadas.
                 </PageText>
 
                 <PageText>
-                  A small grants application might be a good fit if <strong>any</strong> of the
-                  following apply to your project:
+                   <strong>Características:</strong>
+
                 </PageText>
 
                 <Stack mb={6}>
                   <List>
                     <ListItem>
-                      In early stage: you&apos;ve started work but are still testing assumptions or
-                      working toward a proof of concept.
+                      La minería ha sido desde el principio muy descentralizada. Además, los protocolos de consenso (basados en el algoritmo Ethash) son muy exigentes y se dirigen hacia la minería por medio de tarjetas gráficas (GPU).
                     </ListItem>
                     <ListItem>
-                      Experimental: you have an idea that&apos;s a little “out there” but
-                      potentially impactful - and the only way to find out is to try it.
+                      La emisión anual es limitada. El máximo establecido son 18 millones de criptomonedas. Sin embargo, la emisión total de Ethers es ilimitada.
+
                     </ListItem>
-                    <ListItem>Time sensitive: you need a decision within a few weeks.</ListItem>
-                    <ListItem>Smaller in scope: funding request comes in under $30,000.</ListItem>
+                    <ListItem>                      La creación novedosa de una forma de medir el trabajo realizado, GAS, es uno de sus alicientes. Además, este indicador permite saber el coste de las operaciones realizadas. También sirve para calcular el tamaño de sus bloques, que se miden por una cantidad concreta de GAS.
+                    </ListItem>
                     <ListItem>
-                      Community event related: sponsorship requests for events focused on
-                      Ethereum&apos;s technology and community can also be submitted via the small
-                      grants pipeline.
+                      La gestión de pagos es más rápida que en Bitcoins. Las razones son dos. La primera, la producción de bloques en cortos períodos de tiempo. La segunda es la escalabilidad de Ethereum.
+
                     </ListItem>
                   </List>
                 </Stack>
@@ -88,7 +85,6 @@ const SmallGrants: NextPage = () => {
 
             <Stack mb={20}>
               <section id='attention'>
-                <ApplicationAttentionMsg />
               </section>
             </Stack>
 
@@ -254,117 +250,27 @@ const SmallGrants: NextPage = () => {
               </section>
 
               <section id='faq' ref={ref7}>
-                <PageSection mb={6}>FAQ</PageSection>
+                <PageSection mb={6}>Preguntas frecuentes</PageSection>
 
                 <Accordion allowToggle>
-                  <FAQItem question='Is my application confidential?'>
+                  <FAQItem question='¿En que es diferente a Bitcoin?'>
                     <PageText>
-                      Applications are not shared with the public. However, any information you
-                      provide may be shared with advisors in the review process, so let us know in
-                      your application if there&apos;s something you want us to keep confidential!
+                      Mientras que Bitcoin se acepta más ampliamente y se considera una moneda digital internacional, Ether sólo se acepta para las transacciones de aplicaciones digitales (Dapps) que se ejecutan en la red Ethereum.
                     </PageText>
                   </FAQItem>
 
-                  <FAQItem question='Can I remain anonymous?'>
+                  <FAQItem question='¿Quién lo creo?'>
                     <PageText>
-                      Mostly, yes. We are legally required to perform KYC before transferring funds
-                      to you, and will need to know your real identity to complete that process.
-                      However, we are happy to keep that information confidential outside of the few
-                      members of the EF team involved in KYC processing, and use a pseudonym or omit
-                      your name entirely in any communications that will be visible to anyone else.
+                      La plataforma Ethereum fue creada en 2015 por el programador Vitalik Buterin, con la perspectiva de crear un instrumento para aplicaciones descentralizadas y colaborativas.
                     </PageText>
                   </FAQItem>
 
-                  <FAQItem question='What currency are grants paid in?'>
-                    <PageText>We can provide payment in ETH, DAI, or Fiat currency.</PageText>
-                  </FAQItem>
-
-                  <FAQItem question='Is my for-profit company eligible for a grant?'>
-                    <PageText mb={6}>
-                      Ethereum&apos;s ecosystem is unique in the way it embraces both
-                      entrepreneurship and collaboration, and we want to keep it that way. We
-                      believe that builders can and should be able to build a business while
-                      continuing to contribute to FOSS and public goods.
-                    </PageText>
-
-                    <PageText>
-                      Although we do not fund work that is intended to be monetized, we are happy to
-                      hear from for-profit entities that are building public goods. We regularly
-                      fund components or areas of work carried out by for-profit companies, as long
-                      as the specific funded work fits within our scope and remains free and open to
-                      anyone.
-                    </PageText>
-                  </FAQItem>
-
-                  <FAQItem question='Will anybody actually read my application?'>
-                    <PageText>
-                      Yes! The team meets weekly to review every submission we receive, and give
-                      careful consideration to whether the project is eligible and what we can do to
-                      support. We love learning about the amazing work people are doing in the
-                      ecosystem, even when that work is outside of our scope.
-                    </PageText>
-                  </FAQItem>
-
-                  <FAQItem question='What if I need more than $30,000?'>
-                    <PageText>
-                      Small grants have a hard limit of $30,000, but if you anticipate needing more
-                      to get to the finish line, you have options. You can apply for Project Grants,
-                      which have no funding cap. If your project is otherwise a better fit for a
-                      small grant, e.g. it&apos;s more experimental or in early stages, consider
-                      applying for a small grant for a specific component or phase of work, and we
-                      can revisit the possibility of funding additional work as you approach the
-                      finish line on your initial grant.
-                    </PageText>
-                  </FAQItem>
-
-                  <FAQItem question='What happens if I’m not awarded a grant?'>
-                    <PageText mb={6}>
-                      Don&apos;t be discouraged! We have a finite scope and sometimes it&apos;s just
-                      not a fit, or not the right time - that doesn&apos;t mean the work you&apos;re
-                      doing isn&apos;t important. Consider continuing to develop your idea at a
-                      hackathon or by posting to forums like{' '}
-                      <Link
-                        fontWeight={700}
-                        color='brand.orange.100'
-                        href={ETHRESEARCH_URL}
-                        isExternal
-                      >
-                        ethresear.ch
-                      </Link>
-                      , looking into{' '}
-                      <Link
-                        fontWeight={700}
-                        color='brand.orange.100'
-                        href={ETHEREUM_GRANTS_URL}
-                        isExternal
-                      >
-                        other funding sources
-                      </Link>
-                      , or participating in{' '}
-                      <Link
-                        fontWeight={700}
-                        color='brand.orange.100'
-                        href={ETHEREUM_COMMUNITY_URL}
-                        isExternal
-                      >
-                        community groups or events
-                      </Link>{' '}
-                      for new perspectives and possibilities within the vast and vibrant Ethereum
-                      ecosystem.
-                    </PageText>
-
-                    <PageText>
-                      You can also reapply in the future if you feel that something has changed. If
-                      you&apos;re considering reapplying, we recommend signing up for office hours
-                      first before restarting the application process.
-                    </PageText>
-                  </FAQItem>
                 </Accordion>
               </section>
 
               <section id='apply' ref={ref8}>
                 <Stack mt={6}>
-                  <ReadyToApply link={`${SMALL_GRANTS_APPLY_URL}`} />
+                  //ReadyToApply link={`${SMALL_GRANTS_APPLY_URL}`} />
                 </Stack>
               </section>
             </Stack>

@@ -90,8 +90,6 @@ const Home: NextPage = () => {
                 </GridItem>
                 <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
                   <Stack>
-             >
-
 
                   </Stack>
                 </GridItem>
