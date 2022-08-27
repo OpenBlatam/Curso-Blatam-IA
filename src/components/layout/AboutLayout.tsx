@@ -62,12 +62,17 @@ export const AboutLayout: FC = ({ children }) => {
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
         <section id='hero'>
           <Description
-            title='About ESP'
+            title='¿Por qué elegir Blatam?'
             img={{ src: aboutHero, alt: 'People reading about the ESP', width: 498, height: 296 }}
           >
-            We provide grants and other support for open source projects that strengthen
-            Ethereum&apos;s foundations, with a particular focus on builder tools, infrastructure,
-            research and public goods.
+            1.Clases en vivo y actualizadas
+            Impartidas por instructores referentes en el ecosistema blockchain.
+            2.Eventos
+            exclusivos
+            Podrás unirte a webinars, entrevistas y eventos exclusivos.
+            3.Acceso a nuestra
+            comunidad
+            Formarás parte de la comunidad más activa del ecosistema.
           </Description>
         </section>
       </Stack>

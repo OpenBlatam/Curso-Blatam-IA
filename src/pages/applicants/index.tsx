@@ -218,7 +218,7 @@ const Applicants: NextPage = () => {
                       … para editar o eliminar bloques de datos cuando los bloques se registran en el libro mayor de blockchain. Por lo tanto, es ……
                       <Button> Módulo  7</Button>
                     </ApplicationTypeCard2>
-                    <ApplicationTypeCard title='Ethereum' link={OFFICE_HOURS_URL}>
+                    <ApplicationTypeCard title='Ethereum' link={SMALL_GRANTS_URL}>
                       … Ethereum es una importante plataforma basada en blockchain para contratos inteligentes … La propuesta de valor central
                       de Ethereum es un completo ... Proporcionamos una descripción técnica de Ethereum, esquema abierto ...
                       <Button> Modulo 8</Button>
@@ -233,15 +233,15 @@ const Applicants: NextPage = () => {
                       del metaverso... los jugadores en el ecosistema del metaverso incluyen puertas de enlace del metaverso que...
                       <Button>Módulo  10</Button>
                     </ApplicationTypeCard>
-                    <ApplicationTypeCard2 title='DeFi y Daos' link={OFFICE_HOURS_URL}>
+                    <ApplicationTypeCard2 title='DeFi y Daos' link={PROJECT_GRANTS_URL}>
                       … una plataforma DeFi era MakerDAO (el término DAO significa “Autónomo Descentralizado”).
                       Organization”), que también produjo y hoy mantiene la moneda estable DAI. La DAO y…<Button> Modulo 11</Button>
                     </ApplicationTypeCard2>
-                    <ApplicationTypeCard title='Blockchain Canvas' link={OFFICE_HOURS_URL}>
+                    <ApplicationTypeCard2 title='Blockchain Canvas' link={OFFICE_HOURS_URL}>
                       … de la tecnología blockchain tiene sentido y dónde podría ser mejor una solución diferente En este
                       papel un Blockchain Canvas... Por lo tanto, este lienzo se centra en la identificación de específicos...
                       <Button> Módulo  12</Button>
-                    </ApplicationTypeCard>
+                    </ApplicationTypeCard2>
 
                     <ApplicationTypeCard2 title='Avanzado' link={SMALL_GRANTS_URL}>
                       llamamos la columna vertebral de Bitcoin, ... construida sobre el protocolo de la columna vertebral, centrándose específicamente en...

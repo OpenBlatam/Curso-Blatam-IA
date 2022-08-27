@@ -18,23 +18,27 @@ const About: NextPage = () => {
         <Stack mb={12}>
           <section id='our-scope'>
             <PageSection mb={6} textAlign='center'>
-              Our scope
+              Nuestro objetivo
             </PageSection>
 
             <PageText mb={6}>
-              ESP focuses on strengthening Ethereum&apos;s foundations and enabling future builders:
-              improving infrastructure, expanding the range of tools available to those building on
-              Ethereum, deepening our understanding of cryptographic primitives, and growing the
-              builder ecosystem through education and community development. The work we support is
-              open source, non-commercial and built for positive sum outcomes.
+             <strong> Hacer DeFi accesible para todos en LATAM. </strong>
             </PageText>
 
             <PageText>
-              ESP support is generally directed toward enabling builders rather than end-users:
-              strengthening Ethereum&apos;s infrastructure, expanding the range of tools available
-              to those building on Ethereum, gaining a deeper understanding of cryptographic
-              primitives, and growing the builder ecosystem through education and community
-              development.
+            Hay muchas cosas , pero solo nHay muchas cosas , pero solo nos importa la educación y la inclusión de web 3 a la población.
+
+            </PageText>
+
+            <PageSection mb={6} textAlign='center'>
+              Becas
+
+            </PageSection>
+
+            <PageText>
+              ¿Quieres una beca? comunicate con nosotros en nuestras redes sociales.
+
+
             </PageText>
           </section>
         </Stack>

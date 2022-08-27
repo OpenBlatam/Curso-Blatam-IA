@@ -117,6 +117,7 @@ const OfficeHours: NextPage = () => {
               <section id='eligibility' ref={ref3}>
 
                 <Accordion allowToggle>
+                  <PageSection mb={6}>Preguntas frecuentes</PageSection>
                   <FAQItem question='¿Hay facilidades de pago??'>
                     <PageText>
                       Aceptamos 4 formas de pago: Tarjeta de crédito, transferencia bancaria, criptomonedas y Paypal. Con este último puedes tener hasta 6 MSI. En nuestro sitio web los pagos se realizan con Stripe.
@@ -137,7 +138,7 @@ const OfficeHours: NextPage = () => {
 
               <section id='apply' ref={ref8}>
                 <Stack mt={6}>
-                  //ReadyToApply link={`${OFFICE_HOURS_APPLY_URL}`} />
+
                 </Stack>
               </section>
             </Stack>

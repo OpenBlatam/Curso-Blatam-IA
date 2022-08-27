@@ -1,8 +1,9 @@
+
 import axios from 'redaxios';
 import { Box, Link, Stack } from '@chakra-ui/react';
 import type { GetStaticProps, NextPage } from 'next';
 import Papa from 'papaparse';
-
+import Head from 'next/head';
 import { LatestGranteesList } from '../../components/forms';
 import { PageSection, PageText, PageMetadata } from '../../components/UI';
 

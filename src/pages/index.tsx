@@ -1,8 +1,16 @@
-import { Box, Flex, Grid, GridItem, Stack } from '@chakra-ui/react';
+import {Accordion, Box, Flex, Grid, GridItem, Stack} from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
-import { HomeAboutCard, PageMetadata, PageSection, PageText } from '../components/UI';
+import {
+    FAQItem,
+    HomeAboutCard,
+    HomeAboutCard2,
+    HomeAboutCard3,
+    PageMetadata,
+    PageSection,
+    PageText
+} from '../components/UI';
 import  bbva  from '../../public/images/bbva.svg';
 import ethglobal from '../../public/images/ethglobal-logo-vector.png';
 import smallSucculentSVG from '../../public/images/small-succulent.svg';
@@ -11,8 +19,10 @@ import bigSucculentSVG from '../../public/images/big-succulent.svg';
 import whatWeSupportTree from '../../public/images/what-we-support-tree.png';
 import whoWeSupportRoots from '../../public/images/who-we-support-roots.png';
 import howWeSupportRoots from '../../public/images/how-we-support-roots.png';
+import Instructor from '../../public/images/adan2.jpg';
 
-import { ABOUT_URL, HOW_WE_SUPPORT_URL, WHO_WE_SUPPORT_URL } from '../constants';
+import {ABOUT_URL, APPLICANTS_URL, HOW_WE_SUPPORT_URL, LINKELIND_URL, WHO_WE_SUPPORT_URL} from '../constants';
+import {ButtonLink} from "../components";
 
 const Home: NextPage = () => {
   return (
@@ -27,7 +37,7 @@ const Home: NextPage = () => {
           <Flex direction={{ base: 'column', md: 'row' }}>
             <Stack mb={{ base: 10, md: 0 }} w={{ md: '100%' }} mr={{ base: 0, md: 12 }}>
               <section id='mission'>
-                <PageSection mb={6}>La Mision de Blatam </PageSection>
+                <PageSection mb={6}>La misión de Blatam</PageSection>
 
                 <PageText fontSize='stats' fontWeight={100} lineHeight='32px'>
                   Cursos y certificaciones desde cero y avanzados, para que te conviertas en <strong> todo un profesional de la tecnología más demandada del momento.</strong>
@@ -135,7 +145,7 @@ const Home: NextPage = () => {
           </section>
 
           <section id='who-we-support'>
-            <HomeAboutCard
+            <HomeAboutCard3
               bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
               img={{
                 src: whoWeSupportRoots,
@@ -147,14 +157,53 @@ const Home: NextPage = () => {
               link={WHO_WE_SUPPORT_URL}
             >
               <PageText mb={6}>
+                  <Accordion allowToggle>
+                      <PageSection mb={6}>Preguntas frecuentes</PageSection>
+                      <FAQItem question='¿Hay facilidades de pago??'>
+                          <PageText>
+                              Aceptamos 4 formas de pago: Tarjeta de crédito, transferencia bancaria, criptomonedas y Paypal. Con este último puedes tener hasta 6 MSI. En nuestro sitio web los pagos se realizan con Stripe.
+                          </PageText>
+                      </FAQItem>
 
+                      <FAQItem question='¿Qué pasa si se me complica el horario establecido del curso?'>
+                          <PageText>¡No te preocupes! Las clases se graban, así que puedes ver la clase grabada en tu plataforma cuando quieras. Además, puedes asistir a cualquier otra generación presencial y recuperar tu clase..</PageText>
+                      </FAQItem>
+
+                      <FAQItem question='¿La certificación tiene algún respaldo?'>
+                          <PageText>
+                              Ser la unica academia de blockchain afilidad a ETH Global, así como las empresas que colaboran con nosotros nos respaldan.
+                          </PageText>
+                      </FAQItem>
+                  </Accordion>
                 Mejora tus oportunidades profesionales e incremente tus ingresos
               </PageText>
-            </HomeAboutCard>
+            </HomeAboutCard3>
+          </section>
+          <section id='who-we-support'>
+            <HomeAboutCard2
+                bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
+                img={{
+                  src: Instructor,
+                  alt: 'supported categories tree',
+                  width: 540,
+                  height: 298.968
+                }}
+                title='Expertos y apasionados por el ecosistema blockchain que hoy son referentes en Latam'
+                link={LINKELIND_URL}
+            >
+              <PageText mb={6}>
+
+                  Twitter @Adanpablo2
+                Adan Muñoz Pablo
+                Founder & CEO de Blatam
+
+              </PageText>
+            </HomeAboutCard2>
           </section>
 
+
           <section id='how-we-support'>
-            <HomeAboutCard
+            <HomeAboutCard3
               bgGradient='linear(to-br, brand.howWeSupport.bgGradient.start 2.29%, brand.howWeSupport.bgGradient.end 101.37%)'
               img={{
                 src: howWeSupportRoots,
@@ -167,12 +216,13 @@ const Home: NextPage = () => {
             >
               <PageText mb={6}>
                 El mundo necesita profesionales en blockchain, conviértete en el siguiente
+                  <ButtonLink label='Aprende más' link={APPLICANTS_URL} width='177px' />
               </PageText>
 
               <PageText>
 
               </PageText>
-            </HomeAboutCard>
+            </HomeAboutCard3>
           </section>
         </Stack>
       </Box>

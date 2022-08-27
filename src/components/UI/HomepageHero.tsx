@@ -37,7 +37,7 @@ export const HomepageHero: FC = () => {
         </PageSubheading>
 
         <Flex justifyContent={{ base: 'center', md: 'flex-start' }}>
-          <ButtonLink label='Aprende más' link={APPLICANTS_URL} width='177px' />
+          <ButtonLink label='Cursos' link={APPLICANTS_URL} width='177px' />
         </Flex>
       </Stack>
       <Box>

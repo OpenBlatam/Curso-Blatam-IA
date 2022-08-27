@@ -10,6 +10,8 @@ export const HOME_URL = '/';
 // about
 export const ABOUT_URL = '/about';
 export const WHO_WE_SUPPORT_URL = '/about/who-we-support';
+export const LINKELIND_URL = 'https://www.linkedin.com/in/adan-mu%C3%B1oz-pablo-17a34a131/?originalSubdomain=mx';
+
 export const HOW_WE_SUPPORT_URL = '/about/how-we-support';
 
 // applicants
@@ -27,38 +29,17 @@ export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
 export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'Resumen', href: `${OFFICE_HOURS_URL}/#description` },
   { text: 'Proceso', href: `${OFFICE_HOURS_URL}/#process` },
-  { text: 'Eligibility', href: `${OFFICE_HOURS_URL}/#eligibility` },
-  { text: 'What we offer', href: `${OFFICE_HOURS_URL}/#what-we-offer` },
-  { text: "What we DON'T offer", href: `${OFFICE_HOURS_URL}/#what-we-dont-offer` },
-  { text: 'Before submitting', href: `${OFFICE_HOURS_URL}/#before-submitting` },
   { text: 'Preguntas frecuentes', href: `${OFFICE_HOURS_URL}/#faq` },
-  { text: 'Aplica', href: `${OFFICE_HOURS_URL}/#apply` }
 ];
 export const SIDEBAR_PROJECT_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Resumen', href: `${PROJECT_GRANTS_URL}/#description` },
   { text: 'Proceso', href: `${PROJECT_GRANTS_URL}/#process` },
-  { text: 'Requirements', href: `${PROJECT_GRANTS_URL}/#requirements` },
-  { text: 'Eligibility', href: `${PROJECT_GRANTS_URL}/#eligibility` },
-  { text: 'What is NOT eligible', href: `${PROJECT_GRANTS_URL}/#what-is-not-eligible` },
-  {
-    text: 'Tips for submitting a great application',
-    href: `${PROJECT_GRANTS_URL}/#tips-application`
-  },
   { text: 'Preguntas frecuentes', href: `${PROJECT_GRANTS_URL}/#faq` },
-  { text: 'Aplica', href: `${PROJECT_GRANTS_URL}/#apply` }
 ];
 export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Resumen', href: `${SMALL_GRANTS_URL}/#description` },
   { text: 'Proceso', href: `${SMALL_GRANTS_URL}/#process` },
-  { text: 'Requirements', href: `${SMALL_GRANTS_URL}/#requirements` },
-  { text: 'Eligibility', href: `${SMALL_GRANTS_URL}/#eligibility` },
-  { text: 'What is NOT eligible', href: `${SMALL_GRANTS_URL}/#what-is-not-eligible` },
-  {
-    text: 'Tips for submitting a great application',
-    href: `${SMALL_GRANTS_URL}/#tips-application`
-  },
   { text: 'Preguntas frecuentes', href: `${SMALL_GRANTS_URL}/#faq` },
-  { text: 'Aplica', href: `${SMALL_GRANTS_URL}/#apply` }
 ];
 export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${ACADEMIC_GRANTS_URL}/#description` },
@@ -147,7 +128,7 @@ export const APPLICANTS_TABS_MAP: TabsMap = {
 };
 
 // about tabs
-export const ABOUT_TABS = ['Porque elegir blatam', 'Who We Support', 'Conoce a tus expertos blatam'];
+export const ABOUT_TABS = ['Porque elegir blatam',];
 export const ABOUT_TABS_MAP: TabsMap = {
   [ABOUT_URL]: 0,
   [WHO_WE_SUPPORT_URL]: 1,
