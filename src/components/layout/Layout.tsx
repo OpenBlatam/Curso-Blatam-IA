@@ -1,6 +1,7 @@
 import { Box, Container, ContainerProps, Text } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
 import { useRouter } from 'next/router';
+import FloatingWhatsApp from 'react-floating-whatsapp'
 
 import { Footer, FooterBackgroundImage, HomepageHero } from '../UI';
 import { Forms, NewsletterSignup } from '../forms';
@@ -113,7 +114,19 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       <FooterBackgroundImage />
 
       <NewsletterSignup />
-        <Testimonials></Testimonials>
+        <Testimonials />
+
+        <FloatingWhatsApp
+            phoneNumber="+525530326229"
+            statusMessage="Responde en minutos"
+            accountName="Blatam expert"
+            chatMessage="Hola,¿En que te puedo ayudar?"
+            placeholder="Escribe tu duda"
+            allowClickAway
+            notification
+            notificationDelay={60000} // 1 minute
+            notificationSound
+        />
     <Footer />
     </Container>
   );

@@ -6,40 +6,18 @@ import Papa from 'papaparse';
 import Head from 'next/head';
 import { LatestGranteesList } from '../../components/forms';
 import { PageSection, PageText, PageMetadata } from '../../components/UI';
+import { useRouter } from 'next/router'
 
 import { CURRENT_GRANTS_QUARTERS, ESP_BLOG_URL } from '../../constants';
 
 import { Grant } from '../../types';
 
-// getStaticProps runs server-side only (on build-time)
-// https://nextjs.org/docs/basic-features/data-fetching/get-static-props#write-server-side-code-directly
-export const getStaticProps: GetStaticProps = async context => {
-  const grants = await axios
-    .get(process.env.GOOGLE_GRANTS_SHEET_API_URL!)
-    .then(res => {
-      return new Promise<Grant[]>((resolve, reject) => {
-        Papa.parse(res.data, {
-          header: true,
-          complete: results => resolve(results.data as Grant[]),
-          error: err => reject(err.message)
-        });
-      });
-    })
-    .catch(err => console.error(err.toJSON()));
-
-  return {
-    props: {
-      grants
-    }
-  };
-};
 
 interface Props {
   grants: Grant[];
 }
 
 const WhoWeSupport: NextPage<Props> = ({ grants }) => {
-  const grantsList = grants.filter(grant => CURRENT_GRANTS_QUARTERS.includes(grant.Quarter));
 
   return (
     <>
@@ -95,7 +73,6 @@ const WhoWeSupport: NextPage<Props> = ({ grants }) => {
               periodically, so make sure to check back once in a while for updates!
             </PageText>
 
-            <LatestGranteesList grantsList={grantsList} />
           </section>
         </Stack>
       </Box>
