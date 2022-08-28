@@ -7,7 +7,7 @@ const PageNotFound: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Page Not Found | Ethereum Foundation ESP</title>
+        <title>Page Not Found | Blatam Academy </title>
         <meta name='description' content='Page Not Found' />
       </Head>
 

@@ -26,7 +26,7 @@ const About: NextPage = () => {
             </PageText>
 
             <PageText>
-            Hay muchas cosas , pero solo nHay muchas cosas , pero solo nos importa la educación y la inclusión de web 3 a la población.
+            Hay muchas cosas, pero solo nos importa la educación y la inclusión de web 3 a la población.
 
             </PageText>
 

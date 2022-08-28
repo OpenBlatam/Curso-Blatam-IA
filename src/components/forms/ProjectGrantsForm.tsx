@@ -100,7 +100,7 @@ export const ProjectGrantsForm: FC = () => {
         } else {
           toast({
             ...TOAST_OPTIONS,
-            title: 'Something went wrong while submitting, please try again.',
+            title: 'Algo salió mal durante el envío, inténtalo de nuevo.',
             status: 'error'
           });
 

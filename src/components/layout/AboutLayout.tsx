@@ -1,8 +1,8 @@
-import { Stack } from '@chakra-ui/react';
+import {ListItem, Stack} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 
-import { Description, NavigationTabs } from '../UI';
+import {Description, List, NavigationTabs} from '../UI';
 
 import {
   ABOUT_URL,
@@ -65,14 +65,21 @@ export const AboutLayout: FC = ({ children }) => {
             title='¿Por qué elegir Blatam?'
             img={{ src: aboutHero, alt: 'People reading about the ESP', width: 498, height: 296 }}
           >
-            1.Clases en vivo y actualizadas
-            Impartidas por instructores referentes en el ecosistema blockchain.
-            2.Eventos
-            exclusivos
-            Podrás unirte a webinars, entrevistas y eventos exclusivos.
-            3.Acceso a nuestra
-            comunidad
-            Formarás parte de la comunidad más activa del ecosistema.
+            <List>
+              <ListItem>
+                <strong>  1.Clases en vivo y actualizadas</strong>. Impartidas por instructores referentes en el ecosistema blockchain.
+              </ListItem>
+              <ListItem>
+               <strong> 2.Eventos
+                 exclusivos. </strong>
+                Podrás unirte a webinars, entrevistas y eventos exclusivos.
+              </ListItem>
+              <ListItem>
+               <strong> 3.Acceso a nuestra
+                 comunidad: </strong> Formarás parte de la comunidad más activa del ecosistema.
+              </ListItem>
+            </List>
+
           </Description>
         </section>
       </Stack>

@@ -81,7 +81,7 @@ export const NewsletterSignup: FC = () => {
       .catch(err => {
         toast({
           ...TOAST_OPTIONS,
-          title: 'Something went wrong. Please try again',
+          title: 'Algo salió mal durante el envío, inténtalo de nuevo.',
           status: 'error'
         });
 
@@ -160,7 +160,7 @@ export const NewsletterSignup: FC = () => {
                   onMouseLeave={() => setButtonHovered(false)}
                   pointerEvents={!isValid ? 'none' : 'auto'}
                 >
-                  <ImportantText color='white'>SUBSCRIBIRME</ImportantText>
+                  <ImportantText color='white'>SUSCRIBIRME</ImportantText>
                 </MotionButton>
               </Box>
             </Center>

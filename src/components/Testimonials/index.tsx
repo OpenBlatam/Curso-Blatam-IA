@@ -11,10 +11,13 @@ import SectionLayout from "../common/SectionLayout";
 import TweetCard from "./TweetCard";
 import FaceCard from "./TweetCard";
 import tweets from "./tweets";
+import useIsMobile from "../../hooks/uselsMobile";
 
 const Testimonials = () => {
   const ROWS = useBreakpointValue({ base: 1, md: 2, lg: 3 }) || 1;
   const CHUNK_SIZE = Math.floor(tweets.length / ROWS);
+  const isBrowser = typeof window !== "undefined";
+  const isMobile = useIsMobile();
 
   return (
     <SectionLayout

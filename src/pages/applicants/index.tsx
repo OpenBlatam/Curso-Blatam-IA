@@ -156,7 +156,7 @@ const Applicants: NextPage = () => {
 
             <Stack spacing={10}>
               <section id='how-we-support' ref={ref2}>
-                <PageSection mb={6}>Proximas Fechas</PageSection>
+                <PageSection mb={6}>Próximas fechas</PageSection>
 
                 <PageText mb={6}>
 

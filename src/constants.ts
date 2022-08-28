@@ -2,7 +2,7 @@ import { UseToastOptions } from '@chakra-ui/react';
 import { NavLink, SidebarLink, TabsMap } from './types';
 
 // metadata
-export const HEAD_TITLE = 'Ethereum Foundation ESP';
+export const HEAD_TITLE = 'Blatam Academy';
 
 // home
 export const HOME_URL = '/';

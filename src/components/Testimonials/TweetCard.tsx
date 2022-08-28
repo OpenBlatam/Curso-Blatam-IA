@@ -11,7 +11,51 @@ import {
 import { FaTwitter } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { ImQuotesLeft } from "react-icons/im";
+import className from "../../utils/classname";
+import globalClassName from "../../utils/globalclassname";
 //import mp from "../../services/mixpanel";
+import css from './name.module.css';
+import VerifiedBadgeSvg from '../../../public/images/VerifiedBadge.svg';
+import Padlock from "./Padlock";
+
+type NameProps = {
+  name: string;
+  clickableProfileLink?: boolean;
+  isVerified?: boolean;
+  isProtected?: boolean;
+};
+
+const name = ({
+                name, clickableProfileLink, isVerified, isProtected,
+              }: NameProps) => (
+    <span
+        {...className(
+            globalClassName('author-name'),
+            css.name,
+            clickableProfileLink && css.clickable,
+        )}
+    >
+    <span>{ name }</span>
+      {isVerified && (
+          <img
+              src={VerifiedBadgeSvg}
+              alt="verified twitter acount"
+              {...className(
+                  globalClassName('verified-badge'),
+                  css.verifiedBadge,
+              )}
+          />
+      )}
+      {isProtected && (
+          <Padlock
+              {...className(
+                  globalClassName('protected-icon'),
+                  css.padlock,
+              )}
+          />
+      )}
+  </span>
+);
 
 export interface TweetCardProps {
   name: string;
@@ -74,7 +118,7 @@ const TweetCard: React.FC<TweetCardProps> = ({
         <HStack alignItems="flex-start">
           <Avatar src={image} size="sm" my="1" />
           <Box>
-            <HStack spacing="1" mb="2" flexWrap="wrap">
+            <HStack spacing="1" mb="1" flexWrap="wrap">
               <Text fontWeight="medium" {...tweetMetaProps}>
                 {name}
               </Text>

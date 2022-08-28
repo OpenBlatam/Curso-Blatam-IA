@@ -115,7 +115,6 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
 
       <NewsletterSignup />
         <Testimonials />
-
         <FloatingWhatsApp
             phoneNumber="+525530326229"
             statusMessage="Responde en minutos"
