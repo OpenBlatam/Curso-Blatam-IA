@@ -29,7 +29,7 @@ const Home: NextPage = () => {
     <>
       <PageMetadata
         title='Incio'
-        description='Hacemos que DeFi y web 3 sea facail para todos.'
+        description='Hacemos que DeFi y web 3 sea fácil para todos.'
       />
 
       <Box mx={{ md: 12 }} bg='white' position='relative'>
