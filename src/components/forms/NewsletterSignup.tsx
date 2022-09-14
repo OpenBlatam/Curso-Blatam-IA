@@ -42,7 +42,7 @@ export const NewsletterSignup: FC = () => {
     if (errors.email) {
       toast({
         ...TOAST_OPTIONS,
-        title: 'Email is not valid, please try again.',
+        title: 'El correo electrónico no es válido, inténtalo de nuevo.',
         status: 'error'
       });
 
@@ -56,7 +56,7 @@ export const NewsletterSignup: FC = () => {
         if (res.ok) {
           toast({
             ...TOAST_OPTIONS,
-            title: 'Thank you for sign up!',
+            title: '¡Gracias por registrarte!',
             status: 'success'
           });
 

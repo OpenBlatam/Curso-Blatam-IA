@@ -114,18 +114,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       <FooterBackgroundImage />
 
       <NewsletterSignup />
-        <Testimonials />
-        <FloatingWhatsApp
-            phoneNumber="+525530326229"
-            statusMessage="Responde en minutos"
-            accountName="Blatam expert"
-            chatMessage="Hola,¿En que te puedo ayudar?"
-            placeholder="Escribe tu duda"
-            allowClickAway
-            notification
-            notificationDelay={60000} // 1 minute
-            notificationSound
-        />
+
     <Footer />
     </Container>
   );

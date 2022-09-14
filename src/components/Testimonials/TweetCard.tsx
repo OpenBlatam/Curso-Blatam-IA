@@ -89,9 +89,9 @@ const TweetCard: React.FC<TweetCardProps> = ({
   return (
     <Link href={url} target="_blank" _hover={{ textDecoration: "none" }}>
       <Box
-        padding="4"
+        padding="2"
         my="2"
-        borderRadius="10px"
+        borderRadius="1px"
         shadow="md"
         transition="0.2s all"
         _hover={{
@@ -115,10 +115,10 @@ const TweetCard: React.FC<TweetCardProps> = ({
           />
           <Icon as={FaTwitter} w={4} h={4} mb="4" color="twitter.500" />
         </Box>
-        <HStack alignItems="flex-start">
+        <HStack alignItems="center">
           <Avatar src={image} size="sm" my="1" />
           <Box>
-            <HStack spacing="1" mb="1" flexWrap="wrap">
+            <HStack spacing="0.1" mb="1" flexWrap="wrap">
               <Text fontWeight="medium" {...tweetMetaProps}>
                 {name}
               </Text>
