@@ -131,10 +131,8 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
             px="0.1"
         >
 
-            <TweetEmbed tweetId="1272472978471690241" />
             <TweetEmbed tweetId="1259204395767681030" />
             <TweetEmbed tweetId="1216941119814152197" />
-        <TweetEmbed tweetId="1559988448517292033" />
         </Box>
     <Footer />
     </Container>
