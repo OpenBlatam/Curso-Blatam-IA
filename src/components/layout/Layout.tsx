@@ -1,4 +1,4 @@
-import { Box, Container, ContainerProps, Text } from '@chakra-ui/react';
+import {Box, Container, ContainerProps, Text, useColorModeValue} from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import FloatingWhatsApp from 'react-floating-whatsapp'
@@ -27,6 +27,8 @@ import {
 } from '../../constants';
 import { DevconGrantsLayout } from './DevconGrantsLayout';
 import Testimonials from "../Testimonials";
+import TweetEmbed from 'react-tweet-embed'
+import {left, right} from "@popperjs/core";
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
@@ -114,7 +116,26 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       <FooterBackgroundImage />
 
       <NewsletterSignup />
+        <Box
+            padding="2"
+            my="2"
+            borderRadius="10px"
+            shadow="md"
+            transition="0.2s all"
+            _hover={{
+                backgroundColor: useColorModeValue("blackAlpha.100", "whiteAlpha.100")
+            }}
+            display="flex"
+            alignItems="center"
+            justifyContent="space-around"
+            px="0.1"
+        >
 
+            <TweetEmbed tweetId="1272472978471690241" />
+            <TweetEmbed tweetId="1259204395767681030" />
+            <TweetEmbed tweetId="1216941119814152197" />
+        <TweetEmbed tweetId="1559988448517292033" />
+        </Box>
     <Footer />
     </Container>
   );
