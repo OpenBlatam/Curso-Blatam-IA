@@ -29,11 +29,10 @@ import { DevconGrantsLayout } from './DevconGrantsLayout';
 import Testimonials from "../Testimonials";
 import TweetEmbed from 'react-tweet-embed'
 import {left, right} from "@popperjs/core";
-import useIsMobile from "../../hooks/uselsMobile";
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
-  const isMobile = useIsMobile();
+
 
     const renderContent = (): ReactNode => {
     if (router.pathname === HOME_URL) {
@@ -92,9 +91,6 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       router.pathname === DEVCON_GRANTS_APPLY_URL ||
       router.pathname === DEVCON_GRANTS_THANK_YOU_PAGE_URL
     ) {
-        React.useEffect(() => {
-            console.log('isMobile: ', isMobile);
-        }, [isMobile]);
       return (
         <Box mt={-6}>
           <main>
