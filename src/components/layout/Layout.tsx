@@ -130,9 +130,28 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
             justifyContent="space-around"
             px="0.1"
         >
-
+            <div>
             <TweetEmbed tweetId="1259204395767681030" />
+            </div>
+        </Box>
+        <Box
+            padding="2"
+            my="2"
+            borderRadius="10px"
+            shadow="md"
+            transition="0.2s all"
+            _hover={{
+                backgroundColor: useColorModeValue("blackAlpha.100", "whiteAlpha.100")
+            }}
+            display="flex"
+            alignItems="center"
+            justifyContent="space-around"
+            px="0.1"
+        >
+
+            <div>
             <TweetEmbed tweetId="1216941119814152197" />
+            </div>
         </Box>
     <Footer />
     </Container>
