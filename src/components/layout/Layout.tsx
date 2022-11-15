@@ -1,5 +1,5 @@
 import {Box, Container, ContainerProps, Text, useColorModeValue} from '@chakra-ui/react';
-import { FC, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import FloatingWhatsApp from 'react-floating-whatsapp'
 
@@ -29,11 +29,13 @@ import { DevconGrantsLayout } from './DevconGrantsLayout';
 import Testimonials from "../Testimonials";
 import TweetEmbed from 'react-tweet-embed'
 import {left, right} from "@popperjs/core";
+import useIsMobile from "../../hooks/uselsMobile";
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
+  const isMobile = useIsMobile();
 
-  const renderContent = (): ReactNode => {
+    const renderContent = (): ReactNode => {
     if (router.pathname === HOME_URL) {
       return (
         <>
@@ -90,6 +92,9 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       router.pathname === DEVCON_GRANTS_APPLY_URL ||
       router.pathname === DEVCON_GRANTS_THANK_YOU_PAGE_URL
     ) {
+        React.useEffect(() => {
+            console.log('isMobile: ', isMobile);
+        }, [isMobile]);
       return (
         <Box mt={-6}>
           <main>
@@ -143,8 +148,8 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
             _hover={{
                 backgroundColor: useColorModeValue("blackAlpha.100", "whiteAlpha.100")
             }}
-            display="flex"
-            alignItems="center"
+            display="left"
+            alignItems="left"
             justifyContent="space-around"
             px="0.1"
         >
