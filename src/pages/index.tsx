@@ -118,7 +118,7 @@ const Home: NextPage = () => {
 
               <Stack mt={{ lg: 7 }}>
                 <PageText fontSize='input' textAlign='center' p={4}>
-                    Únete a miles de personas que confían en Blatam
+                    Únete a miles de personas que confían en Blatam y en Blockchain
                 </PageText>
               </Stack>
             </Box>
@@ -159,9 +159,9 @@ const Home: NextPage = () => {
               <PageText mb={6}>
                   <Accordion allowToggle>
                       <PageSection mb={6}>Preguntas frecuentes</PageSection>
-                      <FAQItem question='¿Hay facilidades de pago??'>
+                      <FAQItem question='¿Hay facilidades de pago?'>
                           <PageText>
-                              Aceptamos 4 formas de pago: Tarjeta de crédito, transferencia bancaria, criptomonedas y Paypal. Con este último puedes tener hasta 6 MSI. En nuestro sitio web los pagos se realizan con Stripe.
+                              Aceptamos 4 formas de pago: Tarjeta de crédito, transferencia bancaria, criptomonedas y Paypal. Con este último puedes tener hasta <strong>6 MSI </strong>. En nuestro sitio web los pagos se realizan con <strong> Stripe .</strong>
                           </PageText>
                       </FAQItem>
 
@@ -171,11 +171,13 @@ const Home: NextPage = () => {
 
                       <FAQItem question='¿La certificación tiene algún respaldo?'>
                           <PageText>
-                              Ser la unica academia de blockchain afilidad a ETH Global, así como las empresas que colaboran con nosotros nos respaldan.
+                              Ser la unica academia de blockchain afilidad a <strong> ETH Global </strong> , así como las empresas que colaboran con nosotros nos respaldan.
                           </PageText>
                       </FAQItem>
                   </Accordion>
-                Mejora tus oportunidades profesionales e incremente tus ingresos
+               <strong>
+                   Mejora tus oportunidades profesionales e incremente tus ingresos
+               </strong>
               </PageText>
             </HomeAboutCard3>
           </section>
