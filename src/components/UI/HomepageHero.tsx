@@ -11,8 +11,10 @@ import homepageHeroMobile from '../../../public/images/homepage-hero-mobile.png'
 import homepageHeroMobile2 from '../../components/assets/images/background-triangles.png';
 
 import { APPLICANTS_URL } from '../../constants';
+import {useTranslation} from "react-i18next";
 
 export const HomepageHero: FC = () => {
+  const { t } = useTranslation();
   return (
     <Stack mb={6}>
       <Stack
@@ -32,7 +34,7 @@ export const HomepageHero: FC = () => {
           textAlign='left'
           mb={{ base: 9, md: 10 }}
         >
-          Aprende todo sobre blockchain. <strong> en vivo  </strong>
+          {t('Intro')}Aprende todo sobre blockchain. <strong> en vivo  </strong>
 
         </PageSubheading>
 
