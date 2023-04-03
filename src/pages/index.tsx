@@ -47,7 +47,7 @@ const Home: NextPage = () => {
 
             <Stack w={{ md: '90%' }} mb={{ md: 8 }}>
               <section id='esp-role'>
-                <PageSection mb={6}>Únete a miles de personas que confían en Blatam</PageSection>
+                <PageSection mb={6}>Únete a miles de personas que confían en Blatam y en blockchain</PageSection>
 
                 <PageText mb={1}>
                   es un hub educativo dedicado a la formación y posicionamiento de profesionales en el  <strong> ecosistema de tecnología y Blockchain.</strong>
@@ -139,7 +139,7 @@ const Home: NextPage = () => {
               <PageText mb={6}>
                 Clases en vivo y mentorías
 
-                Nuestras clases son online y en vivo. Y son impartidas por instructores expertos en el ecosistema, quienes podrán resolver todas tus dudas durante tu aprendizaje.
+                Nuestras clases son online y en vivo. Y son impartidas por instructores con expertise en el ecosistema, quienes podrán resolver todas tus <strong>dudas durante tu aprendizaje. </strong>.
               </PageText>
             </HomeAboutCard>
           </section>
@@ -188,18 +188,20 @@ const Home: NextPage = () => {
                   width: 540,
                   height: 298.968
                 }}
-                title='Expertos y apasionados por el ecosistema blockchain que hoy son referentes en Latam'
+                title='Apasionados por el ecosistema blockchain que hoy son referentes en LATAM'
                 link={LINKELIND_URL}
             >
               <PageText mb={6}>
 
-                  Twitter @Adanpablo2
-                Adan Muñoz Pablo
+               <strong>Adan Muñoz Pablo </strong>
                 Founder & CEO de Blatam
+
+
 
               </PageText>
             </HomeAboutCard2>
-          </section>
+
+        </section>
 
 
           <section id='how-we-support'>
@@ -211,11 +213,11 @@ const Home: NextPage = () => {
                 width: 540,
                 height: 280.666
               }}
-              title='Conoce a tus blatam experts'
+              title='Conoce a tus profesores de Blatam'
               link={HOW_WE_SUPPORT_URL}
             >
               <PageText mb={6}>
-                El mundo necesita profesionales en blockchain, conviértete en el siguiente
+                El mundo necesita profesionales en blockchain, <strong> conviértete en el siguiente</strong>
                   <ButtonLink label='Aprende más' link={APPLICANTS_URL} width='177px' />
               </PageText>
 

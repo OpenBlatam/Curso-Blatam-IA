@@ -11,7 +11,7 @@ const About: NextPage = () => {
     <>
       <PageMetadata
         title='What We Support'
-        description="Aprende todo sobre blockchain. en vivo y con expertos"
+        description="Aprende todo sobre blockchain. en vivo y certificado"
       />
 
       <Box bg='white' position='relative' px={{ md: 20, lg: 60 }} py={{ md: 12 }}>

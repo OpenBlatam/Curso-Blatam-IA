@@ -32,7 +32,7 @@ export const HomepageHero: FC = () => {
           textAlign='left'
           mb={{ base: 9, md: 10 }}
         >
-          Aprende todo sobre blockchain. <strong> en vivo y con expertos </strong>
+          Aprende todo sobre blockchain. <strong> en vivo  </strong>
 
         </PageSubheading>
 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -25,9 +25,11 @@ import favicon32 from '../../public/images/favicon-32x32.png';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  //const [locale, setLocale] = useState<string>(i18n.language);
 
   useEffect(() => {
     init({
+      url: process.env.NEXT_PUBLIC_MATOMO_URL!,
       url: process.env.NEXT_PUBLIC_MATOMO_URL!,
       siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID!
     });
