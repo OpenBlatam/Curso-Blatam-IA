@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     init({
       url: process.env.NEXT_PUBLIC_MATOMO_URL!,
-      url: process.env.NEXT_PUBLIC_MATOMO_URL!,
+      //url: process.env.NEXT_PUBLIC_MATOMO_URL!,
       siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID!
     });
   }, []);
