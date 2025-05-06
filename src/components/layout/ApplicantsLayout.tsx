@@ -123,10 +123,10 @@ export const ApplicantsLayout: FC = ({ children }) => {
           <Button> 🔴 En vivo </Button>
 
           <Description
-            title='Blockchain Consultant'
+            title='Curso de Inteligencia Artificial aplicada al Marketing Digital'
             img={{ src: applicantsHero2, alt: 'Kid watching plants grow', width: 450, height: 248 }}
           >
-            Aprende desde cero todos los conceptos fundamentales de blockchain.
+            Aprende desde cero todos los conceptos fundamentales de IA y  descubre cómo integrar inteligencia artificial en tus estrategias de marketing.
             <strong> Duración 4 semanas</strong>
           </Description>
           <Button> 🌟5 / 5 estrellas </Button>

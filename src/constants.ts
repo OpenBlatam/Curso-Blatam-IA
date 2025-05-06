@@ -140,8 +140,6 @@ export const NAV_LINKS: NavLink[] = [
   { href: HOME_URL, text: 'Inicio' },
   { href: APPLICANTS_URL, text: 'Cursos' },
   { href: ABOUT_URL, text: 'Becas' },
-  { href: ESP_BLOG_URL, text: 'Exchange' },
-  { href: ESP_BLOG_URL, text: 'Academy' }
 ];
 
 // external links

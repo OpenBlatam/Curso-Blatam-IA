@@ -34,7 +34,7 @@ export const HomepageHero: FC = () => {
           textAlign='left'
           mb={{ base: 9, md: 10 }}
         >
-          Aprende todo sobre blockchain. <strong> en vivo  </strong>
+          Aprende todo sobre IA-Inteligencia Artificial. <strong> Online en vivo  </strong>
 
         </PageSubheading>
 

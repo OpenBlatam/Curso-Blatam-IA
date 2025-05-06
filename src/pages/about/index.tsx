@@ -5,10 +5,12 @@ import Image from 'next/image';
 import { PageSection, PageText, PageMetadata } from '../../components/UI';
 
 import aboutSVG from '../../../public/images/about.png';
+import HeaderPromo from '../../components/UI/headings/Header-Promo';
 
 const About: NextPage = () => {
   return (
     <>
+  
       <PageMetadata
         title='What We Support'
         description="Aprende todo sobre blockchain. en vivo y certificado"
@@ -22,7 +24,7 @@ const About: NextPage = () => {
             </PageSection>
 
             <PageText mb={6}>
-             <strong> Hacer DeFi accesible para todos en LATAM. </strong>
+             <strong> Hacer DeFi Y IA accesible para todos en LATAM. </strong>
             </PageText>
 
             <PageText>

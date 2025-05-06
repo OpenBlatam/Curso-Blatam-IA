@@ -23,13 +23,15 @@ import Instructor from '../../public/images/adan2.jpg';
 
 import {ABOUT_URL, APPLICANTS_URL, HOW_WE_SUPPORT_URL, LINKELIND_URL, WHO_WE_SUPPORT_URL} from '../constants';
 import {ButtonLink} from "../components";
+import HeaderPromo from '../components/UI/headings/Header-Promo';
 
 const Home: NextPage = () => {
   return (
     <>
+         <HeaderPromo />
       <PageMetadata
         title='Incio'
-        description='Hacemos que DeFi y web 3 sea fácil para todos.'
+        description='Hacemos que la IA  sea fácil para todos.'
       />
 
       <Box mx={{ md: 12 }} bg='white' position='relative'>
@@ -47,10 +49,10 @@ const Home: NextPage = () => {
 
             <Stack w={{ md: '90%' }} mb={{ md: 8 }}>
               <section id='esp-role'>
-                <PageSection mb={6}>Únete a miles de personas que confían en Blatam y en blockchain</PageSection>
+                <PageSection mb={6}>Únete a miles de personas que confían en Blatam</PageSection>
 
                 <PageText mb={1}>
-                  es un hub educativo dedicado a la formación y posicionamiento de profesionales en el  <strong> ecosistema de tecnología y Blockchain.</strong>
+                  es un hub educativo dedicado a la formación y posicionamiento de profesionales en el  <strong> ecosistema de tecnología e Inteligencia Artificial.</strong>
                 </PageText>
               </section>
             </Stack>
@@ -118,7 +120,7 @@ const Home: NextPage = () => {
 
               <Stack mt={{ lg: 7 }}>
                 <PageText fontSize='input' textAlign='center' p={4}>
-                    Únete a miles de personas que confían en Blatam y en Blockchain
+                    Únete a miles de personas que confían en Blatam y en tecnologías como IA y blockchain.
                 </PageText>
               </Stack>
             </Box>
@@ -190,7 +192,7 @@ const Home: NextPage = () => {
                   width: 540,
                   height: 298.968
                 }}
-                title='Apasionados por el ecosistema blockchain que hoy son referentes en LATAM'
+                title='Apasionados por el ecosistema en Inteligencia Artifical  que hoy son referentes en LATAM'
                 link={LINKELIND_URL}
             >
               <PageText mb={6}>
@@ -219,7 +221,7 @@ const Home: NextPage = () => {
               link={HOW_WE_SUPPORT_URL}
             >
               <PageText mb={6}>
-                El mundo necesita profesionales en blockchain, <strong> conviértete en el siguiente</strong>
+                El mundo necesita profesionales en inteligencia artificial, <strong> conviértete en el siguiente</strong>
                   <ButtonLink label='Aprende más' link={APPLICANTS_URL} width='177px' />
               </PageText>
 

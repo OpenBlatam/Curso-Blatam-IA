@@ -107,7 +107,7 @@ export const NewsletterSignup: FC = () => {
         </ImportantText>
 
         <PageText textAlign={{ base: 'center', lg: 'left' }} fontSize='input'>
-          Estas por unirte a la comunidad más grande de profesionales referentes en el ecosistema blockchain de Latinoamérica
+          Estas por unirte a la comunidad más grande de profesionales referentes en el ecosistema blockchain y IA de Latinoamérica
         </PageText>
       </Stack>
 

@@ -16,6 +16,9 @@ import IconInstagram from '../../../components/assets/icons/instagram.svg';
 import IconYoutube from '../../../components/assets/icons/youtube.svg';
 import IconTelegram from '../../../components/assets/icons/telegram.svg';
 import IconDiscord from '../../../components/assets/icons/discord.svg';
+// pages/index.tsx
+import WhatsappButton from '../../../components/UI/icons/whats-app';
+import { FloatingWhatsApp } from 'react-floating-whatsapp';
 
 import {
   ABOUT_URL,
@@ -75,11 +78,7 @@ export const Footer: FC = () => {
                 Becas
               </ImportantText>
             </Link>
-            <Link href={ESP_BLOG_URL} isExternal _hover={{ textDecoration: 'none' }}>
-              <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Exchange
-              </ImportantText>
-            </Link>
+           
           </Stack>
 
           <Stack>
@@ -145,9 +144,19 @@ export const Footer: FC = () => {
           </Box>
         </Flex>
       </Flex>
-
+      <main className="p-8">
+      <h1 className="text-2xl font-bold mb-4">Bienvenido</h1>
+      <WhatsappButton phoneNumber="525530326229" message="Hola, me interesa tu servicio" />
+    </main>
+    <FloatingWhatsApp
+    phoneNumber="+525530326229"
+    accountName="Soporte (Maria)"
+    statusMessage="¡Hola! ¿En qué puedo ayudarte?"
+    chatMessage="¡Hola! ¿En qué puedo ayudarte?"
+    placeholder="Escribe tu mensaje..."
+  />
       <Stack>
-        <Center px={{ base: 5, lg: 12 }} mt={{ lg: 10 }}>
+        <Center px={{ base: 5, lg: 12 }} mt={{ lg: 13 }}>
 
           <Divider borderColor='brand.divider.100' opacity={1} />
         </Center>

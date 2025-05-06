@@ -55,18 +55,29 @@ const OfficeHours: NextPage = () => {
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
               <section id='description' ref={ref}>
-                <PageSubheading mb={8}>Bitcoin</PageSubheading>
+                <PageSubheading mb={8}>Recopilación y análisis de datos</PageSubheading>
 
                 <PageText mb={6}>
-                  Una versión puramente peer-to-peer de dinero electrónico permitiría en línea
-                  pagos para ser enviados directamente de una parte a otra sin pasar por un
-                  institución financiera. Las firmas digitales proporcionan parte de la solución, pero la principal
-                  los beneficios se pierden si todavía se requiere un tercero de confianza para evitar el doble gasto.
-                  Proponemos una solución al problema del doble gasto utilizando una red peer-to-peer.
-                  La red marca el tiempo de las transacciones mezclándolas en una cadena continua de
-                  prueba de trabajo basada en hash, formando un registro que no se puede cambiar sin rehacer
-                  la prueba de trabajo. La cadena más larga no sólo sirve como prueba de la secuencia de
-                  eventos presenciados, pero prueba de que provino del grupo más grande de potencia de CPU
+                <section className="p-4 max-w-2xl mx-auto">
+      <h2 className="text-2xl font-bold mb-4">📊 Recopilación y Análisis de Datos</h2>
+      <p className="mb-4">
+        En esta unidad aprenderás a aprovechar el poder de la inteligencia artificial para transformar datos en decisiones de marketing efectivas. Exploraremos técnicas modernas para gestionar información, identificar patrones y personalizar mensajes según el comportamiento del usuario.
+      </p>
+
+      <ul className="list-none space-y-2">
+        <li>✔ Segmentación de audiencia y personalización de mensajes</li>
+        <li>✔ Recopilación, organización y gestión eficiente de datos</li>
+        <li>✔ Técnicas de análisis de datos aplicadas al marketing digital</li>
+        <li>
+          ✔ Herramientas de IA para análisis y automatización:
+          <ul className="ml-6 list-disc mt-2 space-y-1 text-sm">
+            <li><strong>GPT-3 Demo</strong> – generación de contenido inteligente</li>
+            <li><strong>Platforms</strong> – plataformas de IA aplicadas al análisis de datos</li>
+            <li><strong>Crayon</strong> – análisis competitivo automatizado</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
                 </PageText>
 
                 <PageText>Las comoponentes principales de Bitcoin son:</PageText>
