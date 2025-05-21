@@ -28,6 +28,7 @@ import Banner from '../components/UI/main/Banner';
 import PromoBanner from '../components/layout/PromoBanner';
 import BlatamBanner from '../components/layout/BlatamBanner';
 import BlatamBannerMain from '../components/layout/BlatamBannerMain';
+import ProfessionalGoalsSection from '../components/UI/main/ProfessionalGoalsSection';
 
 const Home: NextPage = () => {
   return (
@@ -70,7 +71,7 @@ const Home: NextPage = () => {
               </section>
             </Stack>
           </Flex>
-
+          <ProfessionalGoalsSection />
           <section id='stats'>
             <Box
               justifyContent='center'
