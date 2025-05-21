@@ -7,6 +7,8 @@ const AiSparkleIcon = () => <span className={styles.icon}>✨</span>; // Placeho
 const DownloadIcon = () => <span className={styles.icon}>⬇️</span>; // Placeholder
 
 const LearningPathPromo: React.FC = () => {
+  const downloadLink = "https://drive.google.com/file/d/1eqA6DNqmJphgCWuN26iAD6uGUX11NRxW/view?usp=sharing";
+
   return (
     <section className={styles.promoSection}>
       <p className={styles.preHeading}>PROGRAMA</p>
@@ -19,10 +21,18 @@ const LearningPathPromo: React.FC = () => {
           Aprende con IA
         </button>
 
-        <button className={styles.downloadButton}>
+        {/* Changed to an <a> tag for the download link */}
+        <a
+          href={downloadLink}
+          className={styles.downloadButton} // Use the same styling as before
+          target="_blank" // Open the link in a new tab
+          rel="noopener noreferrer" // Security best practice for external links
+          // If you want to suggest a filename for the download (browser support varies):
+          // download="nombre-del-programa.pdf" // Replace with actual filename and extension
+        >
           <DownloadIcon />
           Descargar programa
-        </button>
+        </a>
       </div>
     </section>
   );

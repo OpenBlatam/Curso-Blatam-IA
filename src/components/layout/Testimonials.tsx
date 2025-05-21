@@ -22,7 +22,7 @@ const testimonialsData: Testimonial[] = [
   {
     id: 1,
     flag: <FlagMX />,
-    authorImage: '/images/authors/author-placeholder-1.jpg', // Replace with actual path
+    authorImage: '/images/Testimonio1.png', // Replace with actual path
     authorName: 'Lucía Pérez', // Example name for the leftmost card
     authorRole: 'en Manifiesto Learn', // Example role
     quote:
@@ -31,7 +31,7 @@ const testimonialsData: Testimonial[] = [
   {
     id: 2,
     flag: <FlagMX />, // Assuming this is also MX from image context
-    authorImage: '/images/authors/ariadna-menedin.jpg', // Replace with actual path
+    authorImage: '/images/Testimonio2.png', // Replace with actual path
     authorName: 'Ariadna Menedin',
     authorRole: 'Carrera de Diseño UX UI',
     quote:
@@ -40,7 +40,7 @@ const testimonialsData: Testimonial[] = [
   {
     id: 3,
     flag: <FlagAR />,
-    authorImage: '/images/authors/maria-sol-poncelas.jpg', // Replace with actual path
+    authorImage: '/images/Testimonio3.png', // Replace with actual path
     authorName: 'María Sol Poncelas',
     authorRole: 'Carrera de Data',
     quote:
@@ -49,11 +49,47 @@ const testimonialsData: Testimonial[] = [
   {
     id: 4, // Adding another one for carousel effect
     flag: <FlagMX />,
-    authorImage: '/images/authors/author-placeholder-2.jpg', // Replace with actual path
+    authorImage: '/images/Testimonio4.png', // Replace with actual path
     authorName: 'Carlos Ruiz',
     authorRole: 'Carrera de Desarrollo Web',
     quote:
       'Aprendí muchísimo y las clases en vivo fueron clave para resolver dudas al instante. ¡Totalmente recomendado!',
+  },
+  {
+    id: 5, // Adding another one for carousel effect
+    flag: <FlagMX />,
+    authorImage: '/images/Testimonio5.png', // Replace with actual path
+    authorName: 'Ariadna Menedin',
+    authorRole: 'Carrera de Diseño UX UI',
+    quote:
+      '"Con el acompañamiento de Blatam pude hacer aportes estratégicos y co-crear soluciones digitales que ya se encuentran implementadas en los canales de Banco Galicia".',
+  },
+  {
+    id: 6, // Adding another one for carousel effect
+    flag: <FlagMX />,
+    authorImage: '/images/Testimonio6.png', // Replace with actual path
+    authorName: 'María Sol Poncelas',
+    authorRole: 'Carrera de Data',
+    quote:
+      '"El curso representó superarme a mi misma, a mis miedos, a ir por otros caminos distintos a los que transito todos los días. Estoy segura que mi mirada de las cosas cambió completamente".',
+  },
+  {
+    id: 7, // Adding another one for carousel effect
+    flag: <FlagMX />,
+    authorImage: '/images/Testimonio7.png', // Replace with actual path
+    authorName: 'Maria Paula Spinelli',
+    authorRole: 'Curso de Diseño UX UI',
+    quote:
+      '"Este curso me permitió aprender sobre diseño de soluciones digitales centradas en el cliente, desde la investigación hasta la evaluación final, creando experiencias excepcionales. Fue una experiencia increíble con compañeros y docentes excelentes."',
+  },
+  {
+    id: 8, // Adding another one for carousel effect
+    flag: <FlagMX />,
+    authorImage: '/images/Testimonio8.png', // Replace with actual path
+    authorName: 'Josefina Brarda',
+    authorRole: 'Carrera de Diseño UX/UI',
+    quote:
+      '"Hace un tiempo decidí darle una vuelta a mi carrera profesional, explorar el mundo IT, y me animé a especializarme en Diseño UX/UI de la mano de Blatam.Ahora, tras años de esfuerzo, trabajo como Diseñadora UX/UI en Accenture".',
   },
 ];
 

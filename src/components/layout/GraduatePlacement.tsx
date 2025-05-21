@@ -15,37 +15,31 @@ interface CompanyPlacement {
 const companyPlacementsData: CompanyPlacement[] = [
   {
     name: 'Mercado Libre',
-    logoUrl: '/logos/mercado-libre.png', // Replace with actual path or import SVG
-    graduates: '+1.805 graduados',
+    logoUrl: '/logos/mercadolibre.svg', // Replace with actual path or import SVG
+    graduates: '+8 graduados',
     altText: 'Mercado Libre Logo',
   },
   {
     name: 'Accenture',
-    logoUrl: '/logos/accenture.png', // Replace with actual path
-    graduates: '+1.808 graduados',
+    logoUrl: '/logos/Accenture.svg', // Replace with actual path
+    graduates: '+80 graduados',
     altText: 'Accenture Logo',
   },
   {
     name: 'Globant',
-    logoUrl: '/logos/globant.png', // Replace with actual path
+    logoUrl: '/logos/Globant_Logo.svg', // Replace with actual path
     graduates: '+688 graduados',
     altText: 'Globant Logo',
   },
   {
     name: 'Galicia',
-    logoUrl: '/logos/galicia.png', // Replace with actual path
+    logoUrl: '/logos/Logo_Banco_Galicia.svg', // Replace with actual path
     graduates: '+883 graduados',
     altText: 'Galicia Logo',
   },
   {
-    name: 'PedidosYa',
-    logoUrl: '/logos/pedidos-ya.png', // Replace with actual path
-    graduates: '+545 graduados',
-    altText: 'PedidosYa Logo',
-  },
-  {
     name: 'NaranjaX',
-    logoUrl: '/logos/naranja-x.png', // Replace with actual path
+    logoUrl: '/logos/naranja-x-1.svg', // Replace with actual path
     graduates: '+584 graduados',
     altText: 'NaranjaX Logo',
   },

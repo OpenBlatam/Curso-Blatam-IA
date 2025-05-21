@@ -24,8 +24,8 @@ const EmployabilityProgramMockup = () => {
     { id: 4, name: 'EJERCICIO 4', progress: 0 },
   ];
   // Placeholder for user avatar and video thumbnail
-  const userAvatar = '/placeholder-avatar.png';
-  const videoThumbnail = '/placeholder-woman-presenting.jpg';
+  const userAvatar = '/images/Testimonio6.png';
+  const videoThumbnail = '/videos/tutor_ia.mp4';
 
   return (
     <div className={featureStyles.employabilityMockupContainer}>
@@ -48,10 +48,6 @@ const EmployabilityProgramMockup = () => {
               <span className={featureStyles.exerciseProgressText}>{ex.progress}%</span>
             </div>
           ))}
-        </div>
-        <div className={featureStyles.videoThumbnail}>
-          <img src={videoThumbnail} alt="Video Thumbnail" />
-          <span className={featureStyles.playIcon}>▶</span>
         </div>
       </div>
       <CoderCampLogo />

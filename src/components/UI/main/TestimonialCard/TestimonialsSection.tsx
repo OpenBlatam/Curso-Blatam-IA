@@ -5,7 +5,7 @@ import styles from './TestimonialsSection.module.css';
 
 const testimonialsData: TestimonialCardProps[] = [
   {
-    avatarSrc: 'public/images/Testimonio1.png', // Corrected path for public directory
+    avatarSrc: '/images/Testimonio1.png', // Corrected path for public directory
     name: 'Jesús Miguel Fuentes Wissmann',
     role: 'Curso de SEO',
     countryCode: 'CL',
