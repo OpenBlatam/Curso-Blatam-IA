@@ -34,7 +34,7 @@ const BlatamBannerMain: React.FC = () => {
             <p className={styles.installment}>+12 meses sin interés</p>
           </div>
 
-          <Link href="/inscripcion" legacyBehavior>
+          <Link href="/applicants" legacyBehavior>
             <a className={styles.ctaButton}>
               <FireIcon />
               Inscribirme ahora

@@ -111,7 +111,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       <Box px={{ base: 5, md: 12 }} py={{ base: 3, md: 8 }}>
         <Nav />
       </Box>
-        <NewsletterSignup />
+       
       {renderContent()}
 
       <Forms />
