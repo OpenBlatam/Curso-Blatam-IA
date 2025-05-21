@@ -16,7 +16,7 @@ const infoItemsData: InfoItemProps[] = [
   {
     icon: '🗓️', // Placeholder for Calendar Icon (e.g., <FiCalendar />)
     label: 'Duración',
-    value: '7 semanas',
+    value: '4 semanas',
   },
   {
     icon: ' poświęcenie', // Placeholder for Dedication Icon (e.g., <FiClock />)

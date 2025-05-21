@@ -1,0 +1,145 @@
+/* components/TestimonialsSection/TestimonialsSection.module.css */
+.testimonialsSection {
+    background-color: #1a1a2e; /* Dark background for the section */
+    color: #ffffff;
+    padding: 60px 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .headerContainer {
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the start for varied heights */
+    gap: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  }
+  
+  .titleGroup {
+    flex: 2; /* Allows title group to take more space */
+    min-width: 300px; /* Minimum width before wrapping */
+    text-align: left;
+  }
+  
+  .category {
+    font-size: 0.75rem; /* 12px */
+    font-weight: 600;
+    color: #e0e0e0; /* Lighter text for category */
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  
+  .mainTitle {
+    font-size: 2.25rem; /* 36px, adjust as needed */
+    font-weight: bold;
+    line-height: 1.3;
+    margin: 0;
+    color: #ffffff;
+  }
+  
+  .statsGroup {
+    flex: 1;
+    min-width: 200px; /* Minimum width for stats */
+    text-align: right;
+    padding-top: 5px; /* Small alignment adjustment */
+  }
+  
+  .statsCategory {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #c0c0c0;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  
+  .statsNumber {
+    font-size: 3rem; /* 48px */
+    font-weight: bold;
+    color: #4dffbf; /* Bright accent color from one of the images */
+    line-height: 1;
+    margin: 0;
+  }
+  
+  .statsLabel {
+    font-size: 0.875rem; /* 14px */
+    color: #e0e0e0;
+    margin-top: 2px;
+  }
+  
+  .testimonialsGrid {
+    display: grid;
+    /* Using auto-fit to create as many columns as fit, with a min width */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1300px; /* Max width for the grid itself */
+    margin: 0 auto;
+    align-items: stretch; /* Makes cards in the same row stretch to the same height if needed */
+  }
+  
+  /* For a masonry-like effect, you might need more complex CSS (columns) or a JS library.
+     A simple column-based approach (might not be ideal with CSS Grid directly for row-filling):
+  .testimonialsGrid {
+    column-count: 3; // Adjust column count
+    column-gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .testimonialsGrid > * { // Target TestimonialCard directly if wrapped
+    break-inside: avoid-column;
+    margin-bottom: 20px; // Space between items in the same column
+    display: block; // Ensure it behaves as a block for column layout
+  }
+  */
+  
+  
+  .ctaContainer {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .viewMoreButton {
+    background-color: #ffffff;
+    color: #1a1a2e; /* Dark text to match section background */
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem; /* 16px */
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .viewMoreButton:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .mainTitle {
+      font-size: 1.8rem; /* Smaller title on mobile */
+    }
+    .statsNumber {
+      font-size: 2.5rem;
+    }
+    .headerContainer {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .titleGroup, .statsGroup {
+      text-align: center;
+      flex: none; /* Reset flex basis */
+      width: 100%;
+    }
+    .statsGroup {
+       margin-top: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+     .testimonialsGrid {
+      grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+  }

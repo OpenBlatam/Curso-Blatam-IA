@@ -24,11 +24,13 @@ import Instructor from '../../public/images/adan2.jpg';
 import {ABOUT_URL, APPLICANTS_URL, HOW_WE_SUPPORT_URL, LINKELIND_URL, WHO_WE_SUPPORT_URL} from '../constants';
 import {ButtonLink} from "../components";
 import HeaderPromo from '../components/UI/headings/Header-Promo';
-import Banner from '../components/UI/main/Banner';
 import PromoBanner from '../components/layout/PromoBanner';
 import BlatamBanner from '../components/layout/BlatamBanner';
 import BlatamBannerMain from '../components/layout/BlatamBannerMain';
 import ProfessionalGoalsSection from '../components/UI/main/ProfessionalGoalsSection';
+import FeaturesSection from '../components/UI/main/FeatureCard/FeaturesSection';
+import AdditionalFeaturesSection from '../components/UI/main/FeatureCard/AdditionalFeaturesSection';
+import TestimonialsSection from '../components/UI/main/TestimonialCard/TestimonialsSection';
 
 const Home: NextPage = () => {
   return (
@@ -72,6 +74,9 @@ const Home: NextPage = () => {
             </Stack>
           </Flex>
           <ProfessionalGoalsSection />
+          <FeaturesSection />
+          <AdditionalFeaturesSection />
+          <TestimonialsSection />
           <section id='stats'>
             <Box
               justifyContent='center'
@@ -177,7 +182,7 @@ const Home: NextPage = () => {
                       <PageSection mb={6}>Preguntas frecuentes</PageSection>
                       <FAQItem question='¿Hay facilidades de pago?'>
                           <PageText>
-                              Aceptamos 4 formas de pago: Tarjeta de crédito, transferencia bancaria, criptomonedas y Paypal. Con este último puedes tener hasta <strong>6 MSI </strong>. En nuestro sitio web los pagos se realizan con <strong> Stripe .</strong>
+                              Aceptamos 4 formas de pago: Tarjeta de crédito, transferencia bancaria, criptomonedas y Paypal. Con este último puedes tener hasta <strong>12 MSI </strong>. En nuestro sitio web los pagos se realizan con <strong> Stripe .</strong>
                           </PageText>
                       </FAQItem>
 

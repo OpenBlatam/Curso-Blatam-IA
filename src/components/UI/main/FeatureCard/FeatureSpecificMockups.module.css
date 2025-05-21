@@ -1,0 +1,621 @@
+/* components/FeaturesSection/FeatureSpecificMockups.module.css */
+
+/* General Icon Style */
+.icon {
+    font-size: 1.2rem; /* Adjust as needed */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* --- Video Call Mockup --- */
+  .videoCallContainer {
+    width: 100%;
+    height: 100%;
+    background-color: #1e1e1e; /* Dark background for the call UI */
+    border-radius: 6px; /* Rounded corners for the inner mock-up */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: white;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .participantsGrid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 4px; /* Small gap between participant tiles */
+  }
+  
+  /* components/FeaturesSection/FeatureSpecificMockups.module.css */
+
+/* ... existing styles ... */
+
+.participantTile {
+    background-color: #3a3a3a;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; /* Good to have when using Image with fixed dimensions or fill */
+  }
+  
+  /* This class is applied to the <Image> component */
+  .participantImage {
+    /* next/image with fixed width/height will create an img tag.
+       If the image's natural aspect ratio differs from width/height props,
+       object-fit can control how it's displayed. */
+    object-fit: cover; /* or 'contain', 'scale-down', etc. */
+    border-radius: 4px; /* If you want rounded images inside the tile */
+  }
+  
+  /* For GamificationMockup and layout="fill" */
+  .videoPlayerContainer {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    border-radius: 6px;
+    position: relative; /* REQUIRED for layout="fill" on next/image */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white;
+  }
+  
+  /* This class is applied to the <Image> component with layout="fill" */
+  .videoBgImage {
+    /* When using layout="fill", the Image component itself does not take additional styles like opacity directly.
+       It creates an img tag that fills the parent. If you need to style the img tag itself,
+       you might need to wrap the Image component or use global styles if className doesn't work as expected.
+       However, objectFit is a prop on the Image component itself.
+       The opacity: 0.8 was on the img tag before, you might need to apply it to a wrapper or reconsider.
+       For simplicity, if opacity is crucial, wrap the Image in a div with that opacity or apply it to .videoPlayerContainer
+       and adjust child elements' opacity if needed.
+    */
+     /* opacity: 0.8; */ /* This might not apply directly to the Image component's wrapper. */
+                      /* Consider applying opacity to the parent or a pseudo-element if needed. */
+  }
+  
+  /* ... rest of your styles ... */
+  
+  .initials {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #5c5c5c; /* Background for initials */
+    width: 40px; /* Adjust size */
+    height: 40px; /* Adjust size */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .micMuted {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.8rem;
+    background-color: rgba(0,0,0,0.5);
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+  
+  .callControls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    gap: 15px; /* Space between icons */
+    background-color: #252525; /* Slightly different background for controls */
+    margin: 8px -8px -8px -8px; /* Extend to edges */
+    padding: 12px 8px;
+  }
+  
+  .callControls .icon {
+    color: #b0b0b0;
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+  .callControls .icon:hover {
+    color: #ffffff;
+  }
+  .callControls .leaveIcon {
+    color: #ff4d4d; /* Red for leave button */
+  }
+  .spacer {
+    width: 20px; /* Adds some space before leave/participants icons */
+  }
+  
+  
+  /* --- Gamification Mockup --- */
+  .videoPlayerContainer {
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Black background for video player */
+    border-radius: 6px; /* Rounded corners for the inner mock-up */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Pushes progress bar and controls to bottom */
+    color: white;
+  }
+  
+  .videoBgImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8; /* Slight dim for text overlay */
+  }
+  
+  .videoOverlayTop {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .videoOverlayNotification {
+    position: absolute;
+    top: 40px; /* Adjust as needed */
+    right: 10px;
+    background-color: #ffffff;
+    color: #333;
+    padding: 10px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+  }
+  .videoOverlayNotification .icon {
+    color: #4CAF50; /* Green gift icon */
+    font-size: 1.5rem;
+  }
+  .videoOverlayNotification strong {
+    display: block;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #222;
+  }
+  .videoOverlayNotification p {
+    margin: 2px 0 0 0;
+    font-size: 0.75rem;
+    color: #555;
+  }
+  .pointsBadge {
+    background-color: #e0f2f1; /* Light teal background */
+    color: #00796b; /* Teal text */
+    padding: 3px 6px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-left: auto;
+  }
+  
+  
+  .videoProgressBarContainer {
+    width: calc(100% - 20px); /* Full width minus padding */
+    margin: 0 10px 5px 10px; /* Padding from edges */
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    z-index: 1; /* Above video background */
+  }
+  
+  .videoProgressBar {
+    width: 60%; /* Example progress */
+    height: 100%;
+    background-color: #ffcc00; /* Yellow progress bar */
+    border-radius: 3px;
+  }
+  
+  .videoPlayerControls {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: rgba(0,0,0,0.5); /* Semi-transparent controls background */
+    gap: 15px;
+    z-index: 1;
+    font-size: 1rem;
+  }
+  .volumeIcon {
+    margin-left: auto; /* Pushes volume to the right */
+  }
+
+  /* components/FeaturesSection/FeatureSpecificMockups.module.css */
+/* ... (keep existing styles from the previous response) ... */
+
+/* --- Employability Program Mockup --- */
+.employabilityMockupContainer {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; /* White background for the module */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* For Coder Camp Logo positioning */
+    font-family: Arial, sans-serif; /* Example font */
+  }
+  
+  .mockupHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .userAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ccc; /* Placeholder */
+    margin-right: 8px;
+    object-fit: cover;
+  }
+  
+  .mockupMenuDots {
+    margin-left: auto;
+    color: #777;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .mockupBody {
+    display: flex;
+    gap: 16px;
+    flex-grow: 1;
+  }
+  
+  .progressList {
+    flex: 2; /* Takes more space */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .progressTitle {
+    font-size: 0.9rem; /* 14px */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .exerciseItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.8rem; /* 13px */
+  }
+  
+  .exerciseName {
+    color: #555;
+    width: 80px; /* Adjust as needed */
+    flex-shrink: 0;
+  }
+  
+  .progressBarContainer {
+    flex-grow: 1;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 0 8px;
+    overflow: hidden;
+  }
+  
+  .progressBar {
+    height: 100%;
+    background-color: #ffd700; /* Yellow color from image */
+    border-radius: 4px;
+  }
+  
+  .exerciseProgressText {
+    font-size: 0.75rem;
+    color: #777;
+    width: 30px; /* Fixed width for alignment */
+    text-align: right;
+  }
+  
+  .videoThumbnail {
+    flex: 1;
+    background-color: #ddd; /* Placeholder */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* For play icon */
+    overflow: hidden; /* To clip image */
+    min-height: 120px; /* Ensure it has some height */
+  }
+  .videoThumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .playIcon {
+    position: absolute;
+    font-size: 1.5rem;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .coderCampLogo {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #4A4A4A;
+    line-height: 1.1;
+    text-align: right;
+  }
+  
+  
+  /* --- Certificate Mockup --- */
+  .certificateMockupContainer {
+    width: 100%;
+    height: 100%;
+    background-color: #2A2A3D; /* Dark background for certificate */
+    color: #E0E0E0; /* Light text color */
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Times New Roman', serif; /* Example certificate font */
+    text-align: center;
+  }
+  
+  .certificateHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative; /* For badge positioning */
+  }
+  
+  .coderhouseLogoSmall {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #FFF; /* White logo text */
+    letter-spacing: 1px;
+  }
+  
+  .badge10 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -10px; /* Adjust to overlap top border slightly if needed */
+    background-color: #FFD700; /* Yellow badge */
+    color: #1E1E2F; /* Dark text on badge */
+    font-weight: bold;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    line-height: 1;
+  }
+  
+  .certificateLabel {
+    background-color: #fff;
+    color: #333;
+    font-size: 0.65rem;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+  
+  .certificateBody {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+  }
+  
+  .certificateBody h2 { /* "Carrera de Product Marketing" */
+    font-size: 1.2rem; /* Adjust as needed */
+    font-weight: normal;
+    color: #B0B0D0; /* Lighter color for course type */
+    margin: 0 0 5px 0;
+  }
+  
+  .certificateBody h1 { /* "Luz García" */
+    font-size: 1.8rem; /* Adjust as needed */
+    font-weight: bold;
+    color: #FFFFFF;
+    margin: 0 0 15px 0;
+  }
+  
+  .certificateDescription {
+    font-size: 0.75rem; /* 12px */
+    line-height: 1.5;
+    color: #C0C0E0;
+    max-width: 80%;
+    margin: 0 auto 15px auto;
+  }
+  
+  .certificateDate {
+    font-size: 0.7rem;
+    color: #A0A0C0;
+  }
+  
+  .certificateFooter {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+    margin-top: auto; /* Pushes to bottom */
+  }
+  
+  .signatureLine {
+    width: 100px; /* Adjust as needed */
+    height: 1px;
+    background-color: #7070A0; /* Signature line color */
+    margin-top: 10px; /* Space for "signature" text if you add it */
+  
+}
+
+/* components/FeaturesSection/FeatureSpecificMockups.module.css */
+/* ... (keep all your existing styles) ... */
+
+/* --- Gamification Mockup --- */
+.videoPlayerContainer {
+    /* ... existing styles ... */
+    position: relative; /* Ensure this is set for absolute positioning of overlays */
+    overflow: hidden; /* Good to prevent animated elements from showing outside bounds pre-animation */
+  }
+  
+  /* Add Keyframes for the notification animation */
+  @keyframes slideInFromRightAndFade {
+    0% {
+      opacity: 0;
+      transform: translateX(100%); /* Start off-screen to the right */
+    }
+    70% { /* Optional: add a little bounce or overshot effect point */
+      opacity: 1;
+      transform: translateX(-5%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0); /* End in its final position */
+    }
+  }
+  
+  /* Style for the notification overlay */
+  .videoOverlayNotification {
+    position: absolute;
+    top: 40px; /* Adjust as needed from your existing styles */
+    right: 10px;
+    background-color: #ffffff;
+    color: #333;
+    padding: 10px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    z-index: 20; /* Ensure it's above other elements like the video background */
+  
+    /* Apply the animation */
+    opacity: 0; /* Start hidden, animation will make it visible */
+    animation-name: slideInFromRightAndFade;
+    animation-duration: 0.7s; /* Duration of the animation */
+    animation-timing-function: ease-out; /* How the animation progresses */
+    animation-fill-mode: forwards; /* Retain the state of the last keyframe when animation ends */
+    animation-delay: 0.3s; /* Optional: delay before the animation starts */
+  }
+  
+  .videoOverlayNotification .icon {
+    color: #4CAF50;
+    font-size: 1.5rem;
+  }
+  .videoOverlayNotification strong {
+    display: block;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #222;
+  }
+  .videoOverlayNotification p {
+    margin: 2px 0 0 0;
+    font-size: 0.75rem;
+    color: #555;
+  }
+  .pointsBadge {
+    background-color: #e0f2f1;
+    color: #00796b;
+    padding: 3px 6px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-left: auto;
+  }
+ /* components/FeaturesSection/FeatureSpecificMockups.module.css */
+/* ... (keep all your existing styles including @keyframes) ... */
+
+@keyframes slideInFromRightAndFade {
+    0% {
+      opacity: 0;
+      transform: translateX(100%); /* Start off-screen to the right */
+    }
+    70% {
+      opacity: 1;
+      transform: translateX(-5%); /* Slight bounce */
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);   /* End in its final position */
+    }
+  }
+  
+  /* Style for the notification overlay */
+  .videoOverlayNotification {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    background-color: #ffffff;
+    color: #333;
+    padding: 10px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    z-index: 20;
+  
+    /* Apply the animation */
+    opacity: 0; /* Start hidden, animation will make it visible.
+                   Since the animation starts with opacity:0, this ensures
+                   it's correctly set before the first iteration and on reset for loops. */
+    animation-name: slideInFromRightAndFade;
+    animation-duration: 2.7s;
+    animation-timing-function: ease-out;
+    /* animation-fill-mode: forwards; */ /* 'forwards' is less relevant for infinite loops
+                                         as the animation never truly "stops" at the end state
+                                         to hold it. The loop restarts from keyframe 0%. */
+    animation-delay: 19.9s; /* Delay before the first animation cycle starts */
+    animation-iteration-count: infinite; /* This makes the animation repeat indefinitely */
+    /* Optional: Add a delay between iterations by adjusting keyframes or using multiple animations */
+    /* For a pause between loops, you'd typically extend the animation duration
+       and have a "still" period at the end of the keyframes.
+       For example, if you want a 2s pause after the 0.7s animation:
+       Make animation-duration: 2.7s;
+       And adjust keyframes:
+       0% { opacity: 0; transform: translateX(100%); }
+       (0.7/2.7 * 100)% { opacity: 1; transform: translateX(-5%); } // approx 26%
+       (0.7/2.7 * 100 + a tiny bit)% { opacity: 1; transform: translateX(0); } // approx 26%
+       100% { opacity: 1; transform: translateX(0); } // Stays visible and still for the remainder
+       Then on loop, it will jump back to 0% (opacity:0, translateX(100%)).
+       However, this makes the "fade out and slide out" part of the loop instant.
+       A smoother loop might need separate in and out animations if you want a distinct pause
+       and a graceful exit before re-entry.
+  
+       For now, this will make the slide-in animation repeat.
+    */
+  }
+  
+  /* ... (rest of your styles for .videoOverlayNotification children and other classes) ... */ 
+  
+  /* ... (rest of your styles for .videoPlayerContainer, .videoBgImage, etc.) ... */

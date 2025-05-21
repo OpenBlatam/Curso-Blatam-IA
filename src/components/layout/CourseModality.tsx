@@ -39,7 +39,7 @@ const CourseModality: React.FC = () => {
           </p>
           <div className={styles.featureImageWrapper}>
             <Image
-              src="/images/live-class-simulation.jpg" // Replace with your actual image path
+              src="/images/Live.png" // Replace with your actual image path
               alt="Simulación de clase online en vivo"
               width={400} // Adjust to your image's aspect ratio
               height={250} // Adjust to your image's aspect ratio
@@ -60,7 +60,7 @@ const CourseModality: React.FC = () => {
           </p>
           <div className={styles.featureImageWrapper}>
             <Image
-              src="/images/on-demand-content-user.jpg" // Replace with your actual image path
+              src="/images/Ondemand.png" // Replace with your actual image path
               alt="Persona estudiando contenido on demand"
               width={400} // Adjust to your image's aspect ratio
               height={250} // Adjust to your image's aspect ratio

@@ -26,7 +26,7 @@ const testimonialsData: Testimonial[] = [
     authorName: 'Lucía Pérez', // Example name for the leftmost card
     authorRole: 'en Manifiesto Learn', // Example role
     quote:
-      'Con mi 7mo curso con Coderhouse, estoy fortaleciendo mi posición a Product Manager.',
+      'Con mi 7mo curso con Blatam, estoy fortaleciendo mi posición a Product Manager.',
   },
   {
     id: 2,
@@ -35,7 +35,7 @@ const testimonialsData: Testimonial[] = [
     authorName: 'Ariadna Menedin',
     authorRole: 'Carrera de Diseño UX UI',
     quote:
-      '"Con el acompañamiento de Coderhouse pude hacer aportes estratégicos y co-crear soluciones digitales que ya se encuentran implementadas en los canales de Banco Galicia".',
+      '"Con el acompañamiento de Blatam pude hacer aportes estratégicos y co-crear soluciones digitales que ya se encuentran implementadas en los canales de Banco Galicia".',
   },
   {
     id: 3,
@@ -44,7 +44,7 @@ const testimonialsData: Testimonial[] = [
     authorName: 'María Sol Poncelas',
     authorRole: 'Carrera de Data',
     quote:
-      '"El curso representó superar una barrera autoimpuesta, a mis miedos, a ir por nuevos caminos distintos a los que transitaba todos los días. Estoy segura que mi paso por Coderhouse cosas cambió completamente."',
+      '"El curso representó superar una barrera autoimpuesta, a mis miedos, a ir por nuevos caminos distintos a los que transitaba todos los días. Estoy segura que mi paso por Blatam cosas cambió completamente."',
   },
   {
     id: 4, // Adding another one for carousel effect

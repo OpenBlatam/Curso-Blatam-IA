@@ -1,12 +1,24 @@
 // components/ProfessionalGoalsSection/ProfessionalGoalsSection.tsx
 import Image from 'next/image';
+import React, { useState } from 'react'; // Import useState
+import ReactPlayer from 'react-player/lazy';
 import styles from './ProfessionalGoalsSection.module.css';
 
-// Placeholder images - replace with your actual image paths or components
-const personImage = "/placeholder-person.jpg"; // Example path
-const coderAiImage = "/placeholder-coder-ai.png"; // Example path
+// ACTION: Verify these paths are correct relative to your 'public' folder
+const personImage = "/placeholder-person.jpg"; // e.g., if in public/images/placeholder-person.jpg, use "/images/placeholder-person.jpg"
+const coderAiVideoPath = "/tutor_ia.mp4";    // e.g., if in public/videos/tutor_ia.mp4, use "/videos/tutor_ia.mp4"
 
 const ProfessionalGoalsSection = () => {
+  const [isCoderAiVideoPlaying, setIsCoderAiVideoPlaying] = useState(false);
+
+  const handleVideoHoverPlay = () => {
+    setIsCoderAiVideoPlaying(true);
+  };
+
+  const handleVideoHoverPause = () => {
+    setIsCoderAiVideoPlaying(false);
+  };
+
   return (
     <section className={styles.container}>
       <div className={styles.header}>
@@ -23,13 +35,8 @@ const ProfessionalGoalsSection = () => {
       <div className={styles.contentWrapper}>
         <div className={styles.column}>
           <div className={styles.imageContainer}>
-            {/* Using a simple div for the placeholder. 
-              Replace with Next/Image if you have the images.
-              Example with Next/Image (ensure you have width and height):
-              <Image src={personImage} alt="Modalidades" layout="fill" objectFit="cover" className={styles.image} />
-            */}
             <div className={styles.imagePlaceholder}>
-              {/* If using actual images, you might prefer the Next/Image component */}
+              {/* Ensure personImage path is correct */}
               <img src={personImage} alt="Persona sonriendo" className={styles.image} />
             </div>
             <span className={`${styles.imageLabel} ${styles.modalidadesLabel}`}>
@@ -39,36 +46,29 @@ const ProfessionalGoalsSection = () => {
         </div>
 
         <div className={styles.column}>
-          <div className={styles.imageContainer}>
-            {/* Using a simple div for the placeholder. 
-              Replace with Next/Image if you have the images.
-            */}
-            <div className={styles.imagePlaceholder}>
-              {/* Placeholder for the Coder AI chat interface */}
-              <div className={styles.coderAiChat}>
-                <div className={styles.chatHeader}>
-                  <span>🤖 Tutor-AI ✨</span>
-                  <div>
-                    <span>_</span> {/* Minimize */}
-                    <span>▢</span> {/* Maximize/Restore */}
-                    <span>X</span> {/* Close */}
-                  </div>
-                </div>
-                <div className={styles.chatBody}>
-                  <p className={styles.chatWelcome}>
-                    <strong>Hola! Soy Tutor-AI ✨</strong>
-                  </p>
-                  <p className={styles.chatDescription}>
-                    Seré tu tutor personal en esta cursada. Estoy preparado
-                    para contestar preguntas relacionadas a cualquiera de los
-                    cursos de...
-                  </p>
-                </div>
-                <div className={styles.chatInputArea}>
-                  <input type="text" placeholder="Escribe tu pregunta aquí..." className={styles.chatInput} />
-                  {/* You can add a send button icon here */}
-                </div>
-              </div>
+          {/* Apply hover events to the direct parent of ReactPlayer or imageContainer */}
+          <div
+            className={styles.imageContainer} // Or styles.videoWrapper if you have that as direct parent
+            onMouseEnter={handleVideoHoverPlay}
+            onMouseLeave={handleVideoHoverPause}
+          >
+            <div className={styles.videoWrapper}> {/* Ensures ReactPlayer fills this */}
+              <ReactPlayer
+                className={styles.reactPlayer}
+                url={coderAiVideoPath} // ACTION: Ensure this path is correct!
+                playing={isCoderAiVideoPlaying} // Controlled by state
+                loop
+                muted // Important for autoplay-like behavior on hover
+                playsinline
+                width="100%"
+                height="100%"
+                controls={false} // Typically no controls for hover-to-play background video
+                // Optional: Show a preview image when not playing (if video doesn't show first frame)
+                // light="/path/to/your/video-thumbnail.jpg" 
+                // If using 'light', playing prop might behave differently,
+                // ReactPlayer typically plays on click when 'light' is true.
+                // For hover, direct control of 'playing' is usually better.
+              />
             </div>
             <span className={`${styles.imageLabel} ${styles.coderAiLabel}`}>
               CODER AI

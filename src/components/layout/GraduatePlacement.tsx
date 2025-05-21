@@ -60,7 +60,7 @@ const GraduatePlacement: React.FC = () => {
           La plataforma con más graduados en empresas líderes
         </h2>
         <p className={styles.description}>
-          En Coderhouse, nuestro principal objetivo es ayudarte a conseguir
+          En Blatam, nuestro principal objetivo es ayudarte a conseguir
           empleo o avanzar en tu carrera profesional. Por eso, nos enorgullece
           ser la plataforma educativa con la mayor cantidad de graduados en
           empresas de prestigio.

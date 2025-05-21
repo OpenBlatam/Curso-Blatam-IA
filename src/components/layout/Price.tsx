@@ -31,7 +31,7 @@ const PricingBanner: React.FC = () => {
           <Info className="w-4 h-4 cursor-pointer" />
           {showTooltip && (
             <div className="absolute z-10 top-full left-1/2 -translate-x-1/2 mt-2 w-72 p-3 text-sm text-black bg-white rounded-xl shadow-lg">
-              Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, te devolvemos la totalidad del dinero invertido. Solo aplica para tu primer curso en Coderhouse.
+              Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, te devolvemos la totalidad del dinero invertido. Solo aplica para tu primer curso en Blatam.
             </div>
           )}
         </div>

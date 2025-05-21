@@ -177,3 +177,131 @@
       max-width: none; /* Remove max-width when stacked */
     }
   }
+  /* ProfessionalGoalsSection.module.css */
+.reactPlayer > div { /* Target the immediate div ReactPlayer often creates */
+    /* This helps ensure the inner video tag also tries to fill */
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .reactPlayer video { /* Target the video element itself if needed */
+      object-fit: cover; /* Or 'contain' based on your preference */
+      width: 100%;
+      height: 100%;
+  }
+
+  /* components/ProfessionalGoalsSection/ProfessionalGoalsSection.module.css */
+
+/* Ensure this container has dimensions and handles overflow */
+.imageContainer {
+    position: relative;
+    width: 100%;
+    border-radius: 8px; /* Ensure this is applied */
+    overflow: hidden;   /* This is crucial */
+    aspect-ratio: 4 / 3; /* Or your desired aspect ratio */
+    background-color: #000; /* Fallback background, good for debugging */
+    display: flex; /* If you want to use flex for alignment of .videoWrapper */
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* This div will directly contain ReactPlayer */
+  .videoWrapper {
+    width: 100%;
+    height: 100%;
+    position: relative; /* If .reactPlayer is positioned absolutely */
+  }
+  
+  /* Styles for the ReactPlayer's wrapper div (applied via className prop) */
+  .reactPlayer {
+    /* ReactPlayer props width="100%" and height="100%" should make it fill .videoWrapper.
+       If .videoWrapper has position: relative, you can use absolute positioning here
+       if needed, but it's often not necessary. */
+  }
+  
+  /* You might need to target the actual <video> tag rendered by ReactPlayer
+     if object-fit is not working as expected via props or default behavior. */
+  .reactPlayer video {
+    object-fit: cover !important; /* or 'contain' */
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: inherit; /* Inherit border-radius from imageContainer if desired */
+  }
+  
+  .imageLabel {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    font-weight: bold;
+    z-index: 10; /* Ensure label is above the video */
+  }
+ /* components/ProfessionalGoalsSection/ProfessionalGoalsSection.module.css */
+/* ... (ensure these styles are robust from previous suggestions) ... */
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3; /* Or your desired aspect ratio */
+    background-color: #000; /* This is why you see black boxes - good for debug */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; /* Optional: Indicate interactivity for the hover area */
+  }
+  
+  .imagePlaceholder { /* For the static image column */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  
+  .videoWrapper { /* Direct parent of ReactPlayer */
+    width: 100%;
+    height: 100%;
+    position: relative; /* If .reactPlayer itself is absolutely positioned */
+  }
+  
+  .reactPlayer {
+    /* If .videoWrapper is relative, .reactPlayer can be absolute to fill it */
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+  }
+  
+  /* Ensure the video tag inside ReactPlayer fills and covers */
+  .reactPlayer video {
+    object-fit: cover !important; /* Or 'contain' */
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: inherit; /* If you want to inherit imageContainer's radius */
+  }
+  
+  .imageLabel {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    font-weight: bold;
+    z-index: 10;
+  }
+  
+  /* ... rest of your CSS ... */ 
+  /* ... rest of your styles ... */
