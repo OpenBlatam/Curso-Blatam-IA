@@ -12,10 +12,12 @@ import homepageHeroMobile2 from '../../components/assets/images/background-trian
 
 import { APPLICANTS_URL } from '../../constants';
 import {useTranslation} from "react-i18next";
+import BlatamBannerMain from '../layout/BlatamBannerMain';
 
 export const HomepageHero: FC = () => {
   const { t } = useTranslation();
   return (
+    
     <Stack mb={6}>
       <Stack
         px={{ base: 5, md: 9 }}

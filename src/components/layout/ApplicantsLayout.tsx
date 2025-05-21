@@ -18,7 +18,15 @@ import {
   SMALL_GRANTS_URL
 } from '../../constants';
 import PromoBanner from './PromoBanner';
-
+import PricingBanner from './Price';
+import CourseBuyButton from './CourseBuyButton';
+import CourseInfoBar from './CourseInfoBar';
+import GraduatePlacement from './GraduatePlacement';
+import Testimonials from './Testimonials';
+import PricingSection from './PricingSection';
+import CourseModality from './CourseModality';
+import LearningPathPromo from './LearningPathPromo';
+import BlatamBanner from './BlatamBanner';
 const useParallax = (elementRef: any) => {
   const [parallaxMultiplier, setParallaxMultiplier] = React.useState(0)
 
@@ -119,7 +127,8 @@ export const ApplicantsLayout: FC = ({ children }) => {
   return (
     <>
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3} display={!isGranteeFinance ? 'block' : 'none'}>
-        <section id='hero'>
+        <section id='hero'i>
+        <BlatamBanner />
           <Button>  ✅<strong> Certificación </strong>  </Button>
           <Button> 🔴 En vivo </Button>
 
@@ -139,13 +148,24 @@ export const ApplicantsLayout: FC = ({ children }) => {
         duration=""
         paymentLinkText="Ver medios de pago"
       />
+ <CourseBuyButton
+        itemType="curso"
+        gumroadLink="https://astrixial.gumroad.com/l/ia"
+        tooltipText="Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, te devolvemos la totalidad del dinero invertido. Solo aplica para tu primer curso en Blatam."
+></CourseBuyButton>
+<CourseInfoBar />
+
+<CourseModality />
+<LearningPathPromo />
         </section>
       </Stack>
 
       <NavigationTabs tabIndex={tabIndex} handleChange={handleChange} tabsList={APPLICANTS_TABS} />
-
       <Stack px={{ base: !isGranteeFinance ? 5 : 0, md: 12 }}>
         <Stack mb={8}>{children}</Stack>
+        <GraduatePlacement />
+        <Testimonials />
+        <PricingSection />
       </Stack>
     </>
   );

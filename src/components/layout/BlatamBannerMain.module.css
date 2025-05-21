@@ -1,0 +1,229 @@
+/* components/BlatamBanner.module.css */
+.bannerContainer {
+    background-color: #1a202c; /* Dark background */
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the mainContentWrapper */
+    padding: 40px 20px; /* Increased padding for more space */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: relative;
+    overflow: hidden; /* Important for angled pseudo-elements */
+    min-height: 200px; /* Give it some minimum height */
+  }
+  
+  /* Angled "EXTENDIMOS" labels using pseudo-elements */
+  .bannerContainer::before,
+  .bannerContainer::after {
+    content: '- EXTENDIMOS -';
+    position: absolute;
+    background-color: #ff4500; /* Orange/Red color */
+    color: #ffffff;
+    padding: 8px 60px; /* Make them longer */
+    font-size: 0.9rem; /* Slightly larger text */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 1; /* Below content but above background */
+    white-space: nowrap;
+  }
+  
+  .bannerContainer::before {
+    top: 25px; /* Adjust vertical position */
+    left: -50px; /* Adjust horizontal position & overlap */
+    transform: rotate(-45deg);
+    transform-origin: top left;
+  }
+  
+  .bannerContainer::after {
+    bottom: 25px; /* Adjust vertical position for bottom right */
+    right: -50px; /* Adjust horizontal position & overlap */
+    transform: rotate(-45deg); /* Same angle, but position makes it look mirrored */
+    transform-origin: bottom right;
+  }
+  
+  
+  .mainContentWrapper {
+    position: relative; /* For positioning feature tags */
+    z-index: 2; /* Ensure content is above pseudo-elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column; /* Stack discount info and CTA button */
+    align-items: center;
+    gap: 20px; /* Space between discount info and CTA */
+    margin-bottom: 30px; /* Space for feature tags if they are below */
+  }
+  
+  .discountInfo {
+    display: flex;
+    align-items: baseline;
+    gap: 10px; /* Reduced gap for tighter discount info */
+  }
+  
+  .hotLabel {
+    font-size: 2.5rem; /* Adjusted size */
+    font-weight: bold;
+    color: #ffffff;
+    /* Consider a specific "HOT" font or a text-shadow for impact */
+    /* text-shadow: 0 0 5px #ff8c00, 0 0 10px #ff8c00; */
+  }
+  
+  .saleText {
+    font-size: 1rem;
+    font-style: italic;
+    color: #f0f0f0;
+    align-self: flex-end; /* Align with bottom of hotLabel/discountNumber */
+    padding-bottom: 5px; /* Fine-tune alignment */
+  }
+  
+  .discount {
+    display: flex;
+    align-items: baseline;
+  }
+  
+  .discountNumber {
+    font-size: 4.5rem; /* Larger discount number */
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 1;
+  }
+  
+  .discountPercent {
+    font-size: 2rem; /* Adjusted */
+    color: #ffffff;
+    line-height: 1;
+    margin-left: 5px;
+    font-weight: bold;
+  }
+  
+  .discountOff {
+    font-size: 1.2rem; /* Adjusted */
+    font-weight: bold;
+    color: #ffffff;
+    margin-left: 8px;
+    align-self: flex-end; /* Align with bottom of discountNumber */
+    padding-bottom: 8px; /* Fine-tune alignment */
+  }
+  
+  .installment {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-top: 8px; /* Space above installment text */
+    width: 100%; /* Ensure it's centered under the discount info */
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  .ctaButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #ff4500; /* Matching "EXTENDIMOS" label color */
+    color: #ffffff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  .ctaButton:hover {
+    background-color: #e03e00; /* Darker shade on hover */
+    transform: translateY(-2px);
+  }
+  
+  .ctaButton .icon {
+    font-size: 1.2em;
+    line-height: 1;
+  }
+  
+  /* Feature Tags Styling and Positioning */
+  .featureTagsContainer {
+    position: absolute; /* Position relative to mainContentWrapper */
+    width: 140%; /* Wider than content to allow tags to float around */
+    height: 120%; /* Taller than content */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* So they don't interfere with clicks */
+    /* border: 1px dashed white; For debugging positioning */
+  }
+  
+  .featureTag {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #f0f0f0;
+    padding: 4px 10px;
+    border-radius: 12px; /* Pill shape */
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  /*
+    Individual positioning for each tag.
+    These are percentages relative to featureTagsContainer.
+    Adjust these values to get the desired placement.
+  */
+  .featureTag1 { top: 10%; left: 15%; transform: rotate(-5deg); }
+  .featureTag2 { top: 5%; right: 10%; transform: rotate(8deg); }
+  .featureTag3 { bottom: 15%; left: 5%; transform: rotate(5deg); }
+  .featureTag4 { bottom: 10%; right: 20%; transform: rotate(-10deg); }
+  
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .bannerContainer {
+      padding: 30px 15px;
+      min-height: auto;
+    }
+    .bannerContainer::before, .bannerContainer::after {
+      padding: 6px 40px;
+      font-size: 0.75rem;
+    }
+    .bannerContainer::before { top: 15px; left: -30px; }
+    .bannerContainer::after { bottom: 15px; right: -30px; }
+  
+  
+    .hotLabel { font-size: 2rem; }
+    .discountNumber { font-size: 3.5rem; }
+    .discountPercent { font-size: 1.5rem; }
+    .discountOff { font-size: 1rem; }
+    .installment { font-size: 0.8rem; }
+    .ctaButton { font-size: 1rem; padding: 10px 25px; }
+  
+    .featureTagsContainer {
+      display: none; /* Hide tags on smaller screens to avoid clutter */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .discountInfo {
+      flex-direction: column; /* Stack discount elements */
+      align-items: center;
+      gap: 5px;
+    }
+    .saleText, .discountOff {
+      align-self: center;
+      padding-bottom: 0;
+    }
+    .installment {
+      margin-top: 15px;
+    }
+    .content {
+      margin-bottom: 0; /* No space needed for tags if hidden */
+    }
+  }

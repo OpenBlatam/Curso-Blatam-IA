@@ -24,11 +24,24 @@ import Instructor from '../../public/images/adan2.jpg';
 import {ABOUT_URL, APPLICANTS_URL, HOW_WE_SUPPORT_URL, LINKELIND_URL, WHO_WE_SUPPORT_URL} from '../constants';
 import {ButtonLink} from "../components";
 import HeaderPromo from '../components/UI/headings/Header-Promo';
+import Banner from '../components/UI/main/Banner';
+import PromoBanner from '../components/layout/PromoBanner';
+import BlatamBanner from '../components/layout/BlatamBanner';
+import BlatamBannerMain from '../components/layout/BlatamBannerMain';
 
 const Home: NextPage = () => {
   return (
     <>
-         <HeaderPromo />
+    <BlatamBannerMain />
+              <PromoBanner
+        discount="65% OFF"
+        originalPrice="$4,290 MXN"
+        newPrice="$1,502 MXN"
+        additionalInfo="Hasta 12 meses sin interés de $125 MXN"
+        duration=""
+        paymentLinkText="Ver medios de pago"
+      />
+
       <PageMetadata
         title='Incio'
         description='Hacemos que la IA  sea fácil para todos.'

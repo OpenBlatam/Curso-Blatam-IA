@@ -22,11 +22,12 @@ import '@fontsource/libre-franklin/700.css';
 import favicon from '../../public/images/favicon.ico';
 import favicon16 from '../../public/images/favicon-16x16.png';
 import favicon32 from '../../public/images/favicon-32x32.png';
+import Header from '../components/layout/Header';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   //const [locale, setLocale] = useState<string>(i18n.language);
-
+  const headerHeight = '80px'; // Match the initial height of your Header
   useEffect(() => {
     init({
       url: process.env.NEXT_PUBLIC_MATOMO_URL!,
@@ -37,6 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+    <Header />
       <Head>
         <link rel='icon' type='image/x-icon' href={favicon.src} />
         <link rel='icon' type='image/png' sizes='32x32' href={favicon32.src} />

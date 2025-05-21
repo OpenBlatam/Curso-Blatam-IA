@@ -1,0 +1,90 @@
+/* components/GraduatePlacement.module.css */
+.placementSection {
+    padding: 40px 20px;
+    background-color: #ffffff; /* Assuming a white background */
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #2d3748; /* Default dark text color */
+  }
+  
+  .textContainer {
+    max-width: 700px; /* Control the width of the text block */
+    margin: 0 auto 40px auto;
+  }
+  
+  .preHeading {
+    font-size: 0.75rem; /* 12px */
+    font-weight: 700;
+    color: #4a5568; /* A slightly lighter dark color */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  
+  .mainHeading {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 700;
+    color: #1a202c; /* Very dark, almost black */
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  
+  .description {
+    font-size: 1rem; /* 16px */
+    color: #4a5568;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  
+  .logosGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 30px 20px; /* Row and column gap */
+    max-width: 900px; /* Max width for the logo grid */
+    margin: 0 auto 40px auto;
+    align-items: center; /* Vertically align items if they have different heights */
+  }
+  
+  /* For a fixed 3-column layout as in the image for wider screens */
+  @media (min-width: 768px) {
+    .logosGrid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  
+  .logoItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically within the item */
+  }
+  
+  .logoPlaceholder {
+    height: 60px; /* Adjust as needed based on your logo aspect ratios */
+    width: 100%; /* Take full width of grid cell */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .companyLogoImage {
+    max-height: 50px; /* Control max height of the logo */
+    max-width: 150px; /* Control max width of the logo */
+    object-fit: contain; /* Ensure logo scales correctly */
+  }
+  
+  .graduatesCount {
+    font-size: 0.875rem; /* 14px */
+    color: #4a5568;
+  }
+  
+  .disclaimer {
+    font-size: 0.75rem; /* 12px */
+    color: #718096; /* Even lighter grey */
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }

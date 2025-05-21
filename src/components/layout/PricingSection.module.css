@@ -1,0 +1,173 @@
+/* components/PricingSection.module.css */
+.pricingSectionContainer {
+    padding: 40px 20px;
+    background-color: #f8f9fa; /* Light grey background for the whole section */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #2d3748;
+  }
+  
+  .preHeading {
+    font-size: 0.75rem; /* 12px */
+    font-weight: 700;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  
+  .mainHeading {
+    font-size: 1.8rem; /* ~28px, adjust as needed */
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 24px;
+  }
+  
+  .contentCard {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0; /* Light border as in image */
+    border-radius: 12px;
+    padding: 24px 30px;
+    display: flex;
+    flex-direction: column; /* Stack columns on small screens */
+    gap: 30px; /* Gap between features and pricing when stacked */
+    position: relative; /* For absolute positioning of Hot Sale badge */
+  }
+  
+  @media (min-width: 768px) { /* Apply two-column layout for medium screens and up */
+    .contentCard {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  
+  .featuresList {
+    flex: 1.5; /* Give more space to features list if needed */
+    min-width: 280px; /* Ensure it has some minimum width */
+  }
+  
+  .featuresList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .featuresList li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.95rem; /* ~15px */
+    color: #333;
+  }
+  
+  .icon { /* For checkmark */
+    color: #28a745; /* Green checkmark, or use an SVG */
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .iconInfo { /* For info icon */
+    color: #718096;
+    margin-left: 8px;
+    font-size: 0.8em;
+    border: 1px solid #bdc7d4;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: help;
+  }
+  
+  .pricingDetails {
+    flex: 1;
+    text-align: right; /* Align text to the right as in the image */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align items to the end (right) */
+    min-width: 250px; /* Ensure pricing details have some space */
+    position: relative; /* For the Hot Sale badge positioning relative to this container */
+  }
+  
+  
+  .hotSaleBadge {
+    position: absolute;
+    top: -10px; /* Adjust to position correctly relative to parent's padding */
+    right: -15px; /* Adjust to position correctly */
+    background-color: #1a202c; /* Dark background for badge */
+    color: #ffffff;
+    font-size: 0.7rem; /* Small text */
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 12px 0 12px 0; /* Custom rounding for the badge shape */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    /* For the exact "HOT SALE" logo with fire, you'd use an SVG or image */
+    /* This is a simplified text version */
+  }
+  
+  
+  .priceOffer {
+    margin-top: 20px; /* Space from top, considering Hot Sale badge */
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align to the right */
+    gap: 10px;
+  }
+  
+  .discountBadge {
+    background-color: #dc3545; /* Red for discount */
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  
+  .originalPrice {
+    font-size: 0.9rem; /* Slightly smaller */
+    color: #718096; /* Grey color */
+    text-decoration: line-through;
+  }
+  
+  .currentPrice {
+    font-size: 2.2rem; /* Large current price, ~35px */
+    font-weight: 700;
+    color: #1a202c;
+    margin: 0 0 8px 0;
+  }
+  
+  .financingInfo {
+    font-size: 0.8rem;
+    color: #4a5568;
+    margin-bottom: 12px;
+  }
+  
+  .paymentMethodsLink {
+    font-size: 0.85rem;
+    color: #007bff; /* Standard link blue */
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  
+  .paymentMethodsLink:hover {
+    text-decoration: none;
+  }
+  
+  /* Responsive adjustments for pricing details if needed */
+  @media (max-width: 767px) {
+    .pricingDetails {
+      align-items: center; /* Center pricing details when stacked */
+      text-align: center;
+    }
+    .hotSaleBadge {
+      top: 5px; /* Adjust for stacked layout */
+      right: 5px;
+    }
+    .priceOffer, .currentPrice, .financingInfo, .paymentMethodsLink {
+      justify-content: center;
+      width: 100%;
+    }
+  }

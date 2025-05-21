@@ -1,0 +1,111 @@
+/* components/LearningPathPromo.module.css */
+.promoSection {
+    padding: 30px 20px;
+    background-color: #f8f9fa; /* Light grey background */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #2d3748;
+  }
+  
+  .preHeading {
+    font-size: 0.75rem; /* 12px */
+    font-weight: 700;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  
+  .mainHeading {
+    font-size: 1.8rem; /* ~28px */
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 16px; /* Space before the divider */
+  }
+  
+  .divider {
+    border: 0;
+    height: 1px;
+    background-color: #e2e8f0; /* Light grey for the divider */
+    margin-bottom: 24px; /* Space after the divider */
+  }
+  
+  .actionsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align buttons to the left */
+    gap: 16px; /* Space between the two buttons/tags */
+  }
+  
+  .aiTagButton {
+    display: inline-flex; /* To keep icon and text together */
+    align-items: center;
+    background-color: #f0e6ff; /* Light purple background */
+    color: #5a0fc8; /* Purple text color */
+    border: 2px solid;
+    /* Attempting the gradient border effect */
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #8a3ffc, #33b18a); /* Purple to Greenish gradient */
+    /* Fallback border if border-image is not supported or for simpler effect */
+    /* border-color: #8a3ffc; */
+    padding: 8px 16px;
+    border-radius: 20px; /* Pill shape */
+    font-size: 0.875rem; /* 14px */
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .aiTagButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  }
+  
+  .aiTagButton .icon {
+    margin-right: 8px;
+    font-size: 1em; /* Match text size or adjust */
+  }
+  
+  .downloadButton {
+    display: inline-flex; /* To keep icon and text together */
+    align-items: center;
+    background-color: #ffffff;
+    color: #2d3748; /* Dark text color */
+    border: 1px solid #e2e8f0; /* Light border */
+    padding: 10px 20px;
+    border-radius: 8px; /* Standard button rounding */
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.07),
+    0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07); /* Multiple subtle layers */
+
+  }
+  
+  .downloadButton:hover {
+    background-color: #f7fafc; /* Slightly off-white on hover */
+    border-color: #cbd5e0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  }
+  
+  .downloadButton .icon {
+    margin-right: 8px;
+    font-size: 1em; /* Match text size or adjust */
+  }
+
+    box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.07),
+    0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07); /* Multiple subtle layers */
+
+  
+  /* Responsive adjustments if needed, though this layout is quite simple */
+  @media (min-width: 768px) {
+    .actionsContainer {
+      flex-direction: row; /* Place buttons side-by-side on larger screens */
+      align-items: center;
+    }
+  }

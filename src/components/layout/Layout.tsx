@@ -29,6 +29,7 @@ import { DevconGrantsLayout } from './DevconGrantsLayout';
 import Testimonials from "../Testimonials";
 import TweetEmbed from 'react-tweet-embed'
 import {left, right} from "@popperjs/core";
+import BlatamBannerMain from './BlatamBannerMain';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
@@ -38,6 +39,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
     if (router.pathname === HOME_URL) {
       return (
         <>
+          <BlatamBannerMain />
           <HomepageHero />
 
           {children}
