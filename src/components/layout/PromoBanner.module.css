@@ -1,0 +1,72 @@
+.promoBanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  width: 600px;
+  box-sizing: border-box;
+}
+
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.discountContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.discount {
+  background-color: #ff5733;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  color: #333;
+  font-size: 0.9em;
+}
+
+.newPrice {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #333;
+}
+
+.additionalInfo {
+  color: #666;
+  font-size: 0.8em;
+}
+
+.rightSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.paymentLink {
+  color: #333;
+  text-decoration: underline;
+  font-size: 0.85em;
+  cursor: pointer;
+}
+
+.hotDealBadge {
+  background-color: #333;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 15px;
+  font-size: 0.75em;
+  font-weight: bold;
+}

@@ -3,7 +3,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import React from 'react';
 
 interface WhatsappButtonProps {
-  phoneNumber: "525530326229"; // Ejemplo: "5491123456789"
+  phoneNumber: "15557666703"; // Ejemplo: "5491123456789"
   message?: string;
 }
 

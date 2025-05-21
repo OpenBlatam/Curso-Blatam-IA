@@ -146,10 +146,10 @@ export const Footer: FC = () => {
       </Flex>
       <main className="p-8">
       <h1 className="text-2xl font-bold mb-4">Bienvenido</h1>
-      <WhatsappButton phoneNumber="525530326229" message="Hola, me interesa tu servicio" />
+      <WhatsappButton phoneNumber="15557666703" message="Hola, me interesa tu servicio" />
     </main>
     <FloatingWhatsApp
-    phoneNumber="+525530326229"
+    phoneNumber="+15557666703"
     accountName="Soporte (Maria)"
     statusMessage="¡Hola! ¿En qué puedo ayudarte?"
     chatMessage="¡Hola! ¿En qué puedo ayudarte?"

@@ -1,0 +1,68 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .modalContent h2 {
+    margin: 0 0 10px;
+    font-size: 1.2em;
+  }
+  
+  .modalContent p {
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  .modalContent hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+  }
+  
+  .cardLogos {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  
+  .cardLogo {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .offerText {
+    color: #28a745;
+    font-size: 0.9em;
+    margin: 10px 0;
+  }
+  
+  .closeButton {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }

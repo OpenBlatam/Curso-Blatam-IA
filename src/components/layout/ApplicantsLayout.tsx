@@ -17,6 +17,7 @@ import {
   PROJECT_GRANTS_URL,
   SMALL_GRANTS_URL
 } from '../../constants';
+import PromoBanner from './PromoBanner';
 
 const useParallax = (elementRef: any) => {
   const [parallaxMultiplier, setParallaxMultiplier] = React.useState(0)
@@ -130,6 +131,14 @@ export const ApplicantsLayout: FC = ({ children }) => {
             <strong> Duración 4 semanas</strong>
           </Description>
           <Button> 🌟5 / 5 estrellas </Button>
+          <PromoBanner
+        discount="65% OFF"
+        originalPrice="$4,290 MXN"
+        newPrice="$1,502 MXN"
+        additionalInfo="Hasta 12 meses sin interés de $125 MXN"
+        duration=""
+        paymentLinkText="Ver medios de pago"
+      />
         </section>
       </Stack>
 
