@@ -12,6 +12,10 @@ import {
     PageText
 } from '../components/UI';
 import  bbva  from '../../public/images/bbva.svg';
+import accenture from '../../public/logos/Accenture.svg'; 
+import mercadolibre from '../../public/logos/mercadolibre.svg'; 
+import gloabant from '../../public/logos/Globant_Logo.svg'; 
+
 import ethglobal from '../../public/images/ethglobal-logo-vector.png';
 import smallSucculentSVG from '../../public/images/small-succulent.svg';
 import mediumSucculentSVG from '../../public/images/medium-succulent.svg';
@@ -35,7 +39,7 @@ import TestimonialsSection from '../components/UI/main/TestimonialCard/Testimoni
 const Home: NextPage = () => {
   return (
     <>
-    <BlatamBannerMain />
+    <BlatamBanner />
               <PromoBanner
         discount="65% OFF"
         originalPrice="$4,290 MXN"
@@ -68,7 +72,7 @@ const Home: NextPage = () => {
                 <PageSection mb={6}>Únete a miles de personas que confían en Blatam</PageSection>
 
                 <PageText mb={1}>
-                  es un hub educativo dedicado a la formación y posicionamiento de profesionales en el  <strong> ecosistema de tecnología e Inteligencia Artificial.</strong>
+                  es un hub platforma educativa dedicada a la formación y posicionamiento de profesionales en el  <strong> ecosistema de tecnología e Inteligencia Artificial.</strong>
                 </PageText>
               </section>
             </Stack>
@@ -106,8 +110,22 @@ const Home: NextPage = () => {
                       alt='small succulent plant representing allocation in 2019'
                       layout='fixed'
                     />
+                    
                   </Box>
+                  
                 </GridItem>
+                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -20 }}>
+                  <Box>
+                    <Image
+                      src={accenture}
+                      alt='small succulent plant representing allocation in 2019'
+                      layout='fixed'
+                    />
+                    
+                  </Box>
+                  
+                </GridItem>
+                
                 <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
                   <Stack>
 
