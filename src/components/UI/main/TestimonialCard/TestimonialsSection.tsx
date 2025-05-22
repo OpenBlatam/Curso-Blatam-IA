@@ -5,7 +5,7 @@ import styles from './TestimonialsSection.module.css';
 
 const testimonialsData: TestimonialCardProps[] = [
   {
-    avatarSrc: '/images/Testimonio1.png', // Corrected path for public directory
+    avatarSrc: '/images/Testimonio9.png', // Corrected path for public directory
     name: 'Jesús Miguel Fuentes Wissmann',
     role: 'Curso de SEO',
     countryCode: 'CL',
@@ -13,7 +13,7 @@ const testimonialsData: TestimonialCardProps[] = [
     linkedinUrl: '#', // Placeholder LinkedIn URL
   },
   {
-    avatarSrc: '/images/testimonials/placeholder-avatar-2.jpg', // Path for public directory
+    avatarSrc: '/images/Testimonio7.png', // Path for public directory
     name: 'Rocío Valenzuela Alarcón',
     role: 'Curso de Community Manager y Publicidad',
     countryCode: 'CL',
@@ -21,7 +21,7 @@ const testimonialsData: TestimonialCardProps[] = [
     linkedinUrl: '#', // Placeholder LinkedIn URL
   },
   {
-    avatarSrc: '/images/testimonials/placeholder-avatar-3.jpg', // Path for public directory
+    avatarSrc: '/images/Testimonio6.png', // Path for public directory
     name: 'Angelica Benitez',
     role: 'UX Writer - DIAN',
     countryCode: 'CO',
@@ -29,7 +29,7 @@ const testimonialsData: TestimonialCardProps[] = [
     linkedinUrl: '#', // Placeholder LinkedIn URL
   },
   {
-    avatarSrc: '/images/testimonials/placeholder-avatar-4.jpg', // Path for public directory
+    avatarSrc: '/images/Testimonio5.png', // Path for public directory
     name: 'Maria Sol Poncelas',
     role: 'Carrera de Data',
     countryCode: 'AR', // Added example countryCode
@@ -37,7 +37,7 @@ const testimonialsData: TestimonialCardProps[] = [
     linkedinUrl: '#', // Added example linkedinUrl
   },
   {
-    avatarSrc: '/images/testimonials/placeholder-avatar-5.jpg', // Path for public directory
+    avatarSrc: '/images/Testimonio3.png', // Path for public directory
     name: 'Josefina Brando',
     role: 'Carrera de Diseño UX/UI',
     countryCode: 'UY',
@@ -64,7 +64,7 @@ const TestimonialsSection = () => {
         <div className={styles.titleGroup}>
           <p className={styles.category}>TESTIMONIOS</p>
           <h2 className={styles.mainTitle}>
-            Únete a la comunidad online y en vivo más grande de Latinoamérica.
+            <strong>Únete a la comunidad online y en vivo más grande de Latinoamérica.</strong>
           </h2>
         </div>
         <div className={styles.statsGroup}>

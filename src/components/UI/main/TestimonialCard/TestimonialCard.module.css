@@ -1,5 +1,22 @@
 /* components/TestimonialCard/TestimonialCard.module.css */
-.card {
+
+/* Define the keyframe animation for floating/moving */
+@keyframes floatAnimation {
+    0% {
+      transform: translateY(0px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); /* Initial shadow */
+    }
+    50% {
+      transform: translateY(-4px); /* Moves up slightly */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Slightly more pronounced shadow when lifted */
+    }
+    100% {
+      transform: translateY(0px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); /* Back to initial shadow */
+    }
+  }
+  
+  .card {
     background-color: #ffffff;
     border-radius: 8px;
     padding: 20px 24px;
@@ -10,7 +27,19 @@
     text-align: left;
     height: 100%; /* For grid layout to fill height if needed */
     font-family: Arial, sans-serif;
+    /* Apply the animation */
+    animation: floatAnimation 4s ease-in-out infinite;
+    /* transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Keep for hover if needed */
   }
+  
+  /* Optional: Pause animation on hover if it's too distracting,
+     and maybe add a different hover effect like scaling up.
+  .card:hover {
+    animation-play-state: paused;
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  }
+  */
   
   .header {
     display: flex;
@@ -25,6 +54,8 @@
   .avatar {
     border-radius: 50%;
     object-fit: cover;
+    /* Assuming you use <Image> from Next.js, width and height will be props there */
+    /* If using <img>, set width/height here or on the element e.g., width: 50px; height: 50px; */
   }
   
   .userInfo {
@@ -64,16 +95,18 @@
   
   .quoteBody {
     position: relative;
+    padding-top: 10px; /* Add padding if quote mark is large */
   }
   
   .quoteMark {
-    font-size: 2.5rem; /* 40px */
+    font-size: 3rem; /* Increased size slightly for more visual impact */
     color: #e0e0e0; /* Light grey quote mark */
     position: absolute;
-    top: -10px; /* Adjust positioning */
-    left: -5px;  /* Adjust positioning */
+    top: -5px;  /* Adjusted positioning (was -10px) */
+    left: -10px; /* Adjusted positioning (was -5px) */
     line-height: 1;
     font-weight: bold;
+    z-index: 0; /* Ensure it's behind text if overlapping */
   }
   
   .quoteText {
@@ -81,32 +114,44 @@
     color: #333;
     line-height: 1.6;
     margin: 0;
-    padding-left: 10px; /* Space for the quote mark to peek */
-    position: relative; /* To ensure text is above quote mark */
-    z-index: 1;
+    /* padding-left: 10px; /* Removed if quote mark is positioned more freely */
+    position: relative;
+    z-index: 1; /* Ensure text is above quote mark */
   }
   
   .linkedinButton {
-    display: inline-flex; /* Changed from flex to inline-flex */
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: #f0f0f0; /* Light grey background */
-    color: #0077b5; /* LinkedIn blue */
+    background-color: #f0f0f0;
+    color: #0077b5;
     padding: 8px 12px;
     border-radius: 4px;
     font-size: 0.8125rem; /* 13px */
     font-weight: 500;
     text-decoration: none;
-    margin-top: auto; /* Pushes button to the bottom if card is in a flex column */
-    align-self: flex-start; /* Aligns button to the start of the cross axis */
-    transition: background-color 0.2s ease;
+    margin-top: auto; /* Pushes button to the bottom */
+    align-self: flex-start;
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Added transform transition */
   }
   
   .linkedinButton:hover {
     background-color: #e0e0e0;
+    transform: translateY(-2px); /* Slight lift on hover for the button */
   }
   
-  .linkedinButton svg {
+  .linkedinButton svg { /* Assuming you use an SVG icon for LinkedIn */
     width: 16px;
     height: 16px;
+    fill: currentColor; /* So it takes the button's text color if needed */
+  }
+  
+  /* Accessibility: Reduce motion if user prefers */
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      animation: none;
+    }
+    .linkedinButton:hover {
+      transform: none;
+    }
   }

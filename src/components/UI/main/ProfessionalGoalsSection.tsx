@@ -1,21 +1,29 @@
 // components/ProfessionalGoalsSection/ProfessionalGoalsSection.tsx
-import Image from 'next/image';
-import React, { useState } from 'react'; // Import useState
-import ReactPlayer from 'react-player/lazy';
+import React, { useState } from 'react';
+import ReactPlayer from 'react-player/lazy'; // Using lazy load is good!
 import styles from './ProfessionalGoalsSection.module.css';
 
-// ACTION: Verify these paths are correct relative to your 'public' folder
-const personImage = "/placeholder-person.jpg"; // e.g., if in public/images/placeholder-person.jpg, use "/images/placeholder-person.jpg"
-const coderAiVideoPath = "/tutor_ia.mp4";    // e.g., if in public/videos/tutor_ia.mp4, use "/videos/tutor_ia.mp4"
+// ACTION: Ensure these video files are in your `public/videos/` directory
+const personVideoPath = "/videos/IA.mp4";         // First video
+const coderAiVideoPath = "/videos/tutor_ia.mp4";  // Second video
 
 const ProfessionalGoalsSection = () => {
-  const [isCoderAiVideoPlaying, setIsCoderAiVideoPlaying] = useState(false);
+  const [isPersonVideoPlaying, setIsPersonVideoPlaying] = useState(false); // State for the first video
+  const [isCoderAiVideoPlaying, setIsCoderAiVideoPlaying] = useState(false); // State for the second video
 
-  const handleVideoHoverPlay = () => {
-    setIsCoderAiVideoPlaying(true);
+  // Handlers for the first video
+  const handlePersonVideoHoverPlay = () => {
+    setIsPersonVideoPlaying(true);
+  };
+  const handlePersonVideoHoverPause = () => {
+    setIsPersonVideoPlaying(false);
   };
 
-  const handleVideoHoverPause = () => {
+  // Handlers for the second video
+  const handleCoderAiVideoHoverPlay = () => {
+    setIsCoderAiVideoPlaying(true);
+  };
+  const handleCoderAiVideoHoverPause = () => {
     setIsCoderAiVideoPlaying(false);
   };
 
@@ -33,11 +41,25 @@ const ProfessionalGoalsSection = () => {
       </div>
 
       <div className={styles.contentWrapper}>
+        {/* Column 1 - Now a Video Player */}
         <div className={styles.column}>
-          <div className={styles.imageContainer}>
-            <div className={styles.imagePlaceholder}>
-              {/* Ensure personImage path is correct */}
-              <img src={personImage} alt="Persona sonriendo" className={styles.image} />
+          <div
+            className={styles.imageContainer} // This container will trigger hover for the first video
+            onMouseEnter={handlePersonVideoHoverPlay}
+            onMouseLeave={handlePersonVideoHoverPause}
+          >
+            <div className={styles.videoWrapper}> {/* Use a consistent class or ensure .imagePlaceholder is styled for video */}
+              <ReactPlayer
+                className={styles.reactPlayer}
+                url={personVideoPath}
+                playing={isPersonVideoPlaying}
+                loop
+                muted
+                playsinline
+                width="100%"
+                height="100%"
+                controls={false}
+              />
             </div>
             <span className={`${styles.imageLabel} ${styles.modalidadesLabel}`}>
               MODALIDADES
@@ -45,29 +67,24 @@ const ProfessionalGoalsSection = () => {
           </div>
         </div>
 
+        {/* Column 2 - Coder AI Video Player */}
         <div className={styles.column}>
-          {/* Apply hover events to the direct parent of ReactPlayer or imageContainer */}
           <div
-            className={styles.imageContainer} // Or styles.videoWrapper if you have that as direct parent
-            onMouseEnter={handleVideoHoverPlay}
-            onMouseLeave={handleVideoHoverPause}
+            className={styles.imageContainer} // This container will trigger hover for the second video
+            onMouseEnter={handleCoderAiVideoHoverPlay}
+            onMouseLeave={handleCoderAiVideoHoverPause}
           >
-            <div className={styles.videoWrapper}> {/* Ensures ReactPlayer fills this */}
+            <div className={styles.videoWrapper}>
               <ReactPlayer
                 className={styles.reactPlayer}
-                url={coderAiVideoPath} // ACTION: Ensure this path is correct!
-                playing={isCoderAiVideoPlaying} // Controlled by state
+                url={coderAiVideoPath}
+                playing={isCoderAiVideoPlaying}
                 loop
-                muted // Important for autoplay-like behavior on hover
+                muted
                 playsinline
                 width="100%"
                 height="100%"
-                controls={false} // Typically no controls for hover-to-play background video
-                // Optional: Show a preview image when not playing (if video doesn't show first frame)
-                // light="/path/to/your/video-thumbnail.jpg" 
-                // If using 'light', playing prop might behave differently,
-                // ReactPlayer typically plays on click when 'light' is true.
-                // For hover, direct control of 'playing' is usually better.
+                controls={false}
               />
             </div>
             <span className={`${styles.imageLabel} ${styles.coderAiLabel}`}>
