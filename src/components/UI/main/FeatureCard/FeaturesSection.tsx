@@ -1,6 +1,6 @@
 // components/FeaturesSection/FeaturesSection.tsx
 import React from 'react';
-import Image from 'next/image'; // Import the Next.js Image component
+import Image, { StaticImageData } from 'next/image'; // Import StaticImageData for completeness if you were to import images
 import FeatureCard from '../FeatureCard/FeatureCard';
 import styles from './FeaturesSection.module.css';
 import featureStyles from './FeatureSpecificMockups.module.css';
@@ -13,10 +13,26 @@ const LeaveIcon = () => <span className={featureStyles.icon}>📞</span>;
 const ParticipantsIcon = () => <span className={featureStyles.icon}>👥</span>;
 const GiftIcon = () => <span className={featureStyles.icon}>🎁</span>;
 
+// Define precise types for participants
+interface ImageParticipant {
+  id: number;
+  name: string;
+  imgSrc: string; // Required for this type
+  isInitial?: false; // Optional, but helps discriminate
+}
+
+interface InitialParticipant {
+  id: number;
+  name: string; // This will be the initial letter(s)
+  imgSrc?: undefined; // Explicitly undefined or not present
+  isInitial: true; // Required for this type
+}
+
+type Participant = ImageParticipant | InitialParticipant;
+
 
 const OnlineClassesMockup = () => {
-  const participants = [
-    // CORRECTED PATHS: Relative to the 'public' directory root
+  const participants: Participant[] = [ // Use the Participant union type
     { id: 1, name: 'User 1', imgSrc: '/images/1.jpg' },
     { id: 2, name: 'User 2', imgSrc: '/images/2.jpg' },
     { id: 3, name: 'User 3', imgSrc: '/images/3.jpg' },
@@ -33,17 +49,14 @@ const OnlineClassesMockup = () => {
             {p.isInitial ? (
               <span className={featureStyles.initials}>{p.name}</span>
             ) : (
-              // Use Next.js Image component
+              // TypeScript now knows if !p.isInitial, then p is ImageParticipant
+              // and p.imgSrc is a string.
               <Image
-                src={p.imgSrc}
+                src={p.imgSrc} // This should no longer cause an error
                 alt={p.name}
-                width={80} // Define appropriate width for participant tiles
-                height={80} // Define appropriate height
-                className={featureStyles.participantImage} // For object-fit if needed
-                // layout="responsive" or "fill" can also be used if parent has defined dimensions
-                // For layout="fill", parent must have position: relative
-                // For layout="responsive", parent influences aspect ratio.
-                // Given the class .participantImage likely has object-fit, fixed width/height is fine.
+                width={80}
+                height={80}
+                className={featureStyles.participantImage}
               />
             )}
             {!p.isInitial && <span className={featureStyles.micMuted}>🔇</span>}
@@ -63,21 +76,18 @@ const OnlineClassesMockup = () => {
 };
 
 const GamificationMockup = () => {
-  // CORRECTED PATH (assuming it's also in public/images/)
   const videoUserImage = '/images/Gamification.png';
 
   return (
     <div className={featureStyles.videoPlayerContainer}>
-      {/* Use Next.js Image component here as well */}
       <Image
         src={videoUserImage}
         alt="Student learning"
-        layout="fill" // Fill the parent container
-        objectFit="cover" // Cover the area, may crop
-        className={featureStyles.videoBgImage} // Use if you have specific styles beyond layout
-        priority // Optional: If this image is above the fold and critical for LCP
+        layout="fill"
+        objectFit="cover"
+        className={featureStyles.videoBgImage}
+        priority
       />
-      {/* The rest of the overlays remain the same */}
       <div className={featureStyles.videoOverlayTop}>
         <span>Top 10%</span>
       </div>
