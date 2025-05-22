@@ -1,6 +1,6 @@
 // components/FeaturesSection/FeaturesSection.tsx
 import React from 'react';
-import Image, { StaticImageData } from 'next/image'; // Import StaticImageData for completeness if you were to import images
+//import Image, { StaticImageData } from 'next/image'; // Import StaticImageData for completeness if you were to import images
 import FeatureCard from '../FeatureCard/FeatureCard';
 import styles from './FeaturesSection.module.css';
 import featureStyles from './FeatureSpecificMockups.module.css';
