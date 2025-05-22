@@ -1,6 +1,6 @@
 import { Box, Center, Stack } from '@chakra-ui/react';
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { PageSubheading } from '../UI';
 
@@ -11,6 +11,7 @@ import { PageText } from './text';
 
 interface Props {
   title: string;
+  children: ReactNode;
 }
 
 export const AcademicGrantsHero: FC<Props> = ({ title, children }) => {

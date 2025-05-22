@@ -4,7 +4,6 @@ import {
   Stack,
   useBreakpointValue
 } from "@chakra-ui/react";
-import { chunk } from "@chakra-ui/utils";
 import { getUniqueID } from "../../utils";
 import HeadingBox from "../common/HeadingBox";
 import SectionLayout from "../common/SectionLayout";
@@ -12,6 +11,14 @@ import TweetCard from "./TweetCard";
 import FaceCard from "./TweetCard";
 import tweets from "./tweets";
 import useIsMobile from "../../hooks/uselsMobile";
+
+const chunkArray = <T,>(array: T[], size: number): T[][] => {
+  const chunks: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    chunks.push(array.slice(i, i + size));
+  }
+  return chunks;
+};
 
 const Testimonials = () => {
   const ROWS = useBreakpointValue({ base: 1, md: 2, lg: 3 }) || 1;
@@ -40,7 +47,7 @@ const Testimonials = () => {
         }}
         gridColumnGap={{ md: "4" }}
       >
-        {chunk(tweets, CHUNK_SIZE).map((tweetList, index) => (
+        {chunkArray(tweets, CHUNK_SIZE).map((tweetList, index) => (
           <Stack
             key={getUniqueID()}
             aria-label={`Tweet-Row-${index}`}
@@ -48,7 +55,7 @@ const Testimonials = () => {
           >
             {tweetList.map((tweet) => (
               <TweetCard key={tweet.handle} {...tweet} />
-              ))}
+            ))}
           </Stack>
         ))}
       </SimpleGrid>

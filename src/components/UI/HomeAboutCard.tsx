@@ -1,6 +1,6 @@
 import { Box, Flex, Stack } from '@chakra-ui/react';
-import { FC } from 'react';
-import Image from 'next/image';
+import { FC, ReactNode } from 'react';
+import Image, { StaticImageData } from 'next/image';
 
 import { PageSection, PageText } from '../../components/UI';
 import { ButtonLink } from '../../components';
@@ -15,6 +15,7 @@ interface Props {
   };
   title: string;
   link: string;
+  children: ReactNode;
 }
 
 export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, children }) => {
@@ -39,8 +40,7 @@ export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, childre
               alt={alt}
               width={width}
               height={height}
-              layout='responsive'
-              objectFit='cover'
+              style={{ objectFit: 'cover' }}
               placeholder='blur'
               quality={85}
             />
@@ -81,8 +81,7 @@ export const HomeAboutCard2: FC<Props> = ({ bgGradient, img, title, link, childr
                   alt={alt}
                   width={width}
                   height={height}
-                  layout='responsive'
-                  objectFit='cover'
+                  style={{ objectFit: 'cover' }}
                   placeholder='blur'
                   quality={85}
               />
@@ -123,8 +122,7 @@ export const HomeAboutCard3: FC<Props> = ({ bgGradient, img, title, link, childr
                   alt={alt}
                   width={width}
                   height={height}
-                  layout='responsive'
-                  objectFit='cover'
+                  style={{ objectFit: 'cover' }}
                   placeholder='blur'
                   quality={85}
               />

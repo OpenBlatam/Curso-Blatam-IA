@@ -72,8 +72,14 @@ const GraduatePlacement: React.FC = () => {
               For SVGs, you might import them as components.
             */}
             <div className={styles.logoPlaceholder}>
-              {/* This is a placeholder. Replace with Image component or SVG */}
-              <img src={company.logoUrl} alt={company.altText} className={styles.companyLogoImage} />
+              <Image
+                src={company.logoUrl}
+                alt={company.altText}
+                width={150}
+                height={50}
+                style={{ objectFit: 'contain' }}
+                className={styles.companyLogoImage}
+              />
             </div>
             <p className={styles.graduatesCount}>{company.graduates}</p>
           </div>

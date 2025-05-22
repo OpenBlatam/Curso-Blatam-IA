@@ -73,7 +73,7 @@ export const ProjectGrantsForm: FC = () => {
   } = methods;
 
   const onDrop = useCallback(
-    files => {
+    (files: File[]) => {
       const file = files[0];
 
       setSelectedFile(file);

@@ -1,9 +1,13 @@
 import { Stack } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { AcademicGrantsHero } from '../UI';
 
-export const AcademicGrantsLayout: FC = ({ children }) => {
+interface AcademicGrantsLayoutProps {
+  children: ReactNode;
+}
+
+export const AcademicGrantsLayout: FC<AcademicGrantsLayoutProps> = ({ children }) => {
   return (
     <Stack>
       <AcademicGrantsHero title='Academic Grants Round'>

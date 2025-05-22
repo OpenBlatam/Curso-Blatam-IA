@@ -46,11 +46,7 @@
   
   /* This class is applied to the <Image> component */
   .participantImage {
-    /* next/image with fixed width/height will create an img tag.
-       If the image's natural aspect ratio differs from width/height props,
-       object-fit can control how it's displayed. */
-    object-fit: cover; /* or 'contain', 'scale-down', etc. */
-    border-radius: 4px; /* If you want rounded images inside the tile */
+    border-radius: 4px;
   }
   
   /* For GamificationMockup and layout="fill" */
@@ -59,7 +55,7 @@
     height: 100%;
     background-color: #000;
     border-radius: 6px;
-    position: relative; /* REQUIRED for layout="fill" on next/image */
+    position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -69,16 +65,11 @@
   
   /* This class is applied to the <Image> component with layout="fill" */
   .videoBgImage {
-    /* When using layout="fill", the Image component itself does not take additional styles like opacity directly.
-       It creates an img tag that fills the parent. If you need to style the img tag itself,
-       you might need to wrap the Image component or use global styles if className doesn't work as expected.
-       However, objectFit is a prop on the Image component itself.
-       The opacity: 0.8 was on the img tag before, you might need to apply it to a wrapper or reconsider.
-       For simplicity, if opacity is crucial, wrap the Image in a div with that opacity or apply it to .videoPlayerContainer
-       and adjust child elements' opacity if needed.
-    */
-     /* opacity: 0.8; */ /* This might not apply directly to the Image component's wrapper. */
-                      /* Consider applying opacity to the parent or a pseudo-element if needed. */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
   
   /* ... rest of your styles ... */
@@ -619,3 +610,24 @@
   /* ... (rest of your styles for .videoOverlayNotification children and other classes) ... */ 
   
   /* ... (rest of your styles for .videoPlayerContainer, .videoBgImage, etc.) ... */
+
+.iconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.iconWrapper:hover {
+  color: #ffffff;
+}
+
+.callControls .icon {
+  color: #b0b0b0;
+  font-size: 1.1rem;
+}
+
+.callControls .icon:hover {
+  color: #ffffff;
+}

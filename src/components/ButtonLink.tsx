@@ -9,8 +9,8 @@ import { useShadowAnimation } from '../hooks';
 
 import planeVectorSVG from '../../public/images/plane-vector.svg';
 
-const MotionBox = motion<BoxProps>(Box);
-const MotionFlex = motion<FlexProps>(Flex);
+const MotionBox = motion.create(Box);
+const MotionFlex = motion.create(Flex);
 
 interface Props {
   label: string;
@@ -51,7 +51,7 @@ export const ButtonLink: FC<Props> = ({ label, link, width, isApplyButton }) => 
 
           {isApplyButton && (
             <Flex position='absolute' left={36}>
-              <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />
+              <Image src={planeVectorSVG} alt='paper plane vector' height={29} width={32} />
             </Flex>
           )}
         </MotionFlex>

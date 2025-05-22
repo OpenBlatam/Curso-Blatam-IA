@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Box, BoxProps, Button, ButtonProps, Flex, Spinner } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import Image from 'next/image';
 import { ImportantText } from './UI/headings';
 
@@ -18,8 +18,8 @@ interface Props {
   text: string;
 }
 
-const MotionBox = motion<BoxProps>(Box);
-const MotionButton = motion<ButtonProps>(Button);
+const MotionBox = motion(Box);
+const MotionButton = motion(Button);
 
 export const SubmitButton: FC<Props> = ({
   id = 'submit-application',
@@ -62,7 +62,7 @@ export const SubmitButton: FC<Props> = ({
 
         <Flex pl={5}>
           {!isSubmitting && !isNewsletter && (
-            <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />
+            <Image src={planeVectorSVG} alt='paper plane vector' height={29} width={32} />
           )}
           {isSubmitting && <Spinner color='white' />}
         </Flex>

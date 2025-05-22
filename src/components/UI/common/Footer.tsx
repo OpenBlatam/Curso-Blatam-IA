@@ -6,7 +6,7 @@ import { ImportantText } from '../headings';
 import { PageText } from '../text';
 
 import IconArrowUpward from '../../assets/icons/arrow_upward.svg';
-import efLogoSVG from '../../../../public/images/blatam.svg';
+import efLogoSVG from '../../../../public/images/blatam.png';
 import githubLogoSVG from '../../../../public/images/github-logo.svg';
 import twitterLogoSVG from '../../../../public/images/twitter-logo.svg';
 import IconTwitter from '../../../components/assets/icons/twitter.svg';

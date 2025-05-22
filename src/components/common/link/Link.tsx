@@ -77,8 +77,8 @@ const Link = React.forwardRef(
     }
 
     return (
-      <NextLink href={to} locale={locale}>
-        <a {...linkAttributes}>{children}</a>
+      <NextLink href={to} locale={locale} {...linkAttributes}>
+        {children}
       </NextLink>
     )
   }

@@ -26,7 +26,7 @@ import { CloseIcon, HamburgerIcon, NavLinkIcon } from './UI/icons';
 
 import { selectedLink } from '../utils';
 
-import logoSVG from '../../public/images/blatam.svg';
+import logoSVG from '../../public/images/blatam.png';
 
 import { ESP_BLOG_URL, ETHEREUM_ORG_URL, HOME_URL, NAV_LINKS } from '../constants';
 
@@ -106,7 +106,7 @@ export const Nav: FC = () => {
             {NAV_LINKS.map((nav, idx) => (
               <ListItem key={nav.text} display='inline'>
                 {idx > 0 && <ListIcon as={NavLinkIcon} display='inline-block' pb={1} />}
-                <NextLink href={nav.href}>
+                <NextLink href={nav.href} passHref legacyBehavior={false}>
                   <Link
                     href={nav.href}
                     target={nav.href === ESP_BLOG_URL ? '_blank' : '_self'}

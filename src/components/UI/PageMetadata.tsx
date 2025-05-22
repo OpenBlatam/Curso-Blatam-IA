@@ -11,9 +11,7 @@ interface Props {
 export const PageMetadata: FC<Props> = ({ title, description }) => {
   return (
     <Head>
-      <title>
-        {title} | {HEAD_TITLE}
-      </title>
+      <title>{`${title} | ${HEAD_TITLE}`}</title>
       <meta name='title' content={`${title} | ${HEAD_TITLE}`} />
       <meta name='description' content={description} />
       <meta name='application-name' content='Blatam Academy' />
@@ -46,7 +44,7 @@ export const PageMetadata: FC<Props> = ({ title, description }) => {
       <meta property='twitter:url' content='https://esp.ethereum.foundation/' />
       <meta name='twitter:creator' content='@EF_ESP' />
       <meta name='twitter:site' content='@EF_ESP' />
-      <meta name='twitter:title' content='EF Ecosystem Support Program' />
+      <meta name='twitter:title' content={`${title} | ${HEAD_TITLE}`} />
       <meta name='twitter:description' content={description} />
       <meta
         name='twitter:image'

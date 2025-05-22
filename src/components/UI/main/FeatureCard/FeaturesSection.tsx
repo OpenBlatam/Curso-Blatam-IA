@@ -5,13 +5,13 @@ import FeatureCard from '../FeatureCard/FeatureCard';
 import styles from './FeaturesSection.module.css';
 import featureStyles from './FeatureSpecificMockups.module.css';
 
-// Placeholder for icons - consider using an icon library like react-icons
-const MicIcon = () => <span className={featureStyles.icon}>🎤</span>;
-const CameraIcon = () => <span className={featureStyles.icon}>📷</span>;
-const ScreenShareIcon = () => <span className={featureStyles.icon}>💻</span>;
-const LeaveIcon = () => <span className={featureStyles.icon}>📞</span>;
-const ParticipantsIcon = () => <span className={featureStyles.icon}>👥</span>;
-const GiftIcon = () => <span className={featureStyles.icon}>🎁</span>;
+// Simple JSX elements for icons
+const MicIcon = <span className={featureStyles.icon}>🎤</span>;
+const CameraIcon = <span className={featureStyles.icon}>📷</span>;
+const ScreenShareIcon = <span className={featureStyles.icon}>💻</span>;
+const LeaveIcon = <span className={featureStyles.icon}>📞</span>;
+const ParticipantsIcon = <span className={featureStyles.icon}>👥</span>;
+const GiftIcon = <span className={featureStyles.icon}>🎁</span>;
 
 // Define precise types for participants
 interface ImageParticipant {
@@ -57,7 +57,7 @@ const OnlineClassesMockup = () => {
                 width={80}
                 height={80}
                 className={featureStyles.participantImage}
-                layout="fixed"
+                style={{ objectFit: 'cover' }}
               />
             )}
             {!p.isInitial && <span className={featureStyles.micMuted}>🔇</span>}
@@ -65,12 +65,12 @@ const OnlineClassesMockup = () => {
         ))}
       </div>
       <div className={featureStyles.callControls}>
-        <MicIcon />
-        <CameraIcon />
-        <ScreenShareIcon />
+        <div className={featureStyles.iconWrapper}>{MicIcon}</div>
+        <div className={featureStyles.iconWrapper}>{CameraIcon}</div>
+        <div className={featureStyles.iconWrapper}>{ScreenShareIcon}</div>
         <span className={featureStyles.spacer}></span>
-        <LeaveIcon />
-        <ParticipantsIcon />
+        <div className={featureStyles.iconWrapper}>{LeaveIcon}</div>
+        <div className={featureStyles.iconWrapper}>{ParticipantsIcon}</div>
       </div>
     </div>
   );
@@ -84,15 +84,16 @@ const GamificationMockup = () => {
       <Image
         src={videoUserImage}
         alt="Student learning"
-        layout="fill"
+        fill
         className={featureStyles.videoBgImage}
         priority
+        style={{ objectFit: 'cover' }}
       />
       <div className={featureStyles.videoOverlayTop}>
         <span>Top 10%</span>
       </div>
       <div className={featureStyles.videoOverlayNotification}>
-        <GiftIcon />
+        {GiftIcon}
         <div>
           <strong>¡Felicitaciones!</strong>
           <p>sumaste 80 puntos</p>

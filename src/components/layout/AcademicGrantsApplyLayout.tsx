@@ -1,11 +1,15 @@
 import { Stack } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { Description } from '../UI';
 
 import applicantsHero from '../../../public/images/applicants-hero.png';
 
-export const AcademicGrantsApplyLayout: FC = ({ children }) => {
+interface AcademicGrantsApplyLayoutProps {
+  children: ReactNode;
+}
+
+export const AcademicGrantsApplyLayout: FC<AcademicGrantsApplyLayoutProps> = ({ children }) => {
   return (
     <>
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>

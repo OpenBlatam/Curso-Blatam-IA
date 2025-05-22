@@ -17,8 +17,7 @@ import BlatamBannerMain from '../layout/BlatamBannerMain';
 export const HomepageHero: FC = () => {
   const { t } = useTranslation();
   return (
-    
-    <Stack mb={6}>
+    <Stack spacing={6}>
       <Stack
         px={{ base: 5, md: 9 }}
         py={{ base: 3, md: 12 }}
@@ -37,7 +36,6 @@ export const HomepageHero: FC = () => {
           mb={{ base: 9, md: 10 }}
         >
           Aprende todo sobre IA-Inteligencia Artificial. <strong> Online en vivo  </strong>
-
         </PageSubheading>
 
         <Flex justifyContent={{ base: 'center', md: 'flex-start' }}>
@@ -49,21 +47,20 @@ export const HomepageHero: FC = () => {
           <Image
             src={homepageHeroMobile2}
             alt='People gathered around the Ethereum tree'
-            layout='responsive'
-            objectFit='cover'
             width={450}
             height={427}
+            style={{ objectFit: 'cover' }}
             placeholder='blur'
           />
         </Box>
 
         <Box display={{ base: 'none', md: 'block' }} mt={6}>
-          <Box>
+          <Box position="relative" width="100%" height="100%">
             <Image
               src={homepageHero2}
               alt='People gathered around the Ethereum tree'
-              layout='fill'
-              objectFit='cover'
+              fill
+              style={{ objectFit: 'cover' }}
               placeholder='blur'
             />
           </Box>

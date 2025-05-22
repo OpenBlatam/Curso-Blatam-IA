@@ -1,5 +1,6 @@
 // components/FeaturesSection/AdditionalFeaturesSection.tsx
 import React from 'react';
+import Image from 'next/image';
 import FeatureCard from '../FeatureCard/FeatureCard'; // Assuming FeatureCard is in this path
 import styles from './FeaturesSection.module.css'; // Reusing parent section styles for consistency
 import featureStyles from './FeatureSpecificMockups.module.css'; // Reusing/extending this for new mockups
@@ -30,7 +31,13 @@ const EmployabilityProgramMockup = () => {
   return (
     <div className={featureStyles.employabilityMockupContainer}>
       <div className={featureStyles.mockupHeader}>
-        <img src={userAvatar} alt="User Avatar" className={featureStyles.userAvatar} />
+        <Image
+          src={userAvatar}
+          alt="User Avatar"
+          width={32}
+          height={32}
+          className={featureStyles.userAvatar}
+        />
         <span className={featureStyles.mockupMenuDots}>•••</span>
       </div>
       <div className={featureStyles.mockupBody}>

@@ -2,9 +2,10 @@ import { GoogleSpreadsheet, ServiceAccountCredentials } from 'google-spreadsheet
 
 let credentials: ServiceAccountCredentials;
 try {
-  credentials = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS || '');
+  credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS || '{}');
 } catch (error) {
-  console.log(error);
+  console.error('Error parsing Google credentials:', error);
+  throw error;
 }
 
 interface ISpreadsheetConfig {
@@ -26,5 +27,8 @@ export default async function addRowToSpreadsheet(spreadsheet: ISpreadsheetConfi
 
   await doc.loadInfo();
   const sheet = doc.sheetsByTitle[spreadsheet.sheetName];
+  if (!sheet) {
+    throw new Error(`Sheet "${spreadsheet.sheetName}" not found`);
+  }
   await sheet.addRow(row);
 }

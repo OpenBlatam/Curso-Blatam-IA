@@ -1,5 +1,4 @@
 import React from 'react'
-// @ts-ignore
 import { createPortal } from 'react-dom'
 import css from './modal.module.scss'
 import IconClose from '../../assets/icons/cross.svg'
@@ -147,7 +146,7 @@ ModalSlide.displayName = 'ModalSlide'
 
 export { ModalSlide }
 
-export const Modal = (props: ModalProps) => {
+export const Modal = (props: ModalProps): JSX.Element | null => {
   if (!props.open) return null
 
   let className = css['modal']

@@ -1,11 +1,11 @@
 import { Box, Flex } from '@chakra-ui/react';
-import { FC } from 'react';
-import Image from 'next/image';
+import { FC, ReactNode } from 'react';
+import Image, { StaticImageData } from 'next/image';
 
 import { PageHeading } from '../headings';
 import { PageText } from '../text';
 
-interface Props {
+type Props = {
   title: string;
   img: {
     src: string | StaticImageData;
@@ -13,7 +13,8 @@ interface Props {
     width: number;
     height: number;
   };
-}
+  children: ReactNode;
+};
 
 export const Description: FC<Props> = ({ title, img, children }) => {
   const { src, alt, width, height } = img;
@@ -34,7 +35,7 @@ export const Description: FC<Props> = ({ title, img, children }) => {
           alt={alt}
           width={width}
           height={height}
-          objectFit='cover'
+          style={{ objectFit: 'cover' }}
           placeholder='blur'
           priority
         />

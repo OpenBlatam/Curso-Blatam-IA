@@ -6,15 +6,25 @@ import type { File } from 'formidable';
 import { multipartyParse, verifyCaptcha } from '../../middlewares';
 import { MAX_PROPOSAL_FILE_SIZE } from '../../constants';
 
+type Fields = {
+  [key: string]: string | string[] | undefined;
+};
+
+type RequestFields = {
+  [key: string]: string | string[];
+};
+
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { fields = {}, files = {} } = req;
 
-  const fieldsSanitized = Object.keys(fields).reduce<typeof fields>((prev, key) => {
-    let value = fields[key];
+  const fieldsSanitized = Object.keys(fields).reduce<Fields>((prev, key) => {
+    const value = (fields as RequestFields)[key];
     if (typeof value === 'string') {
-      value = value.trim();
+      return {
+        ...prev,
+        [key]: value.trim()
+      };
     }
-
     return {
       ...prev,
       [key]: value
@@ -30,38 +40,38 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   });
 
   const application = {
-    FirstName: fieldsSanitized.firstName,
-    LastName: fieldsSanitized.lastName,
-    Email: fieldsSanitized.email,
-    Company: fieldsSanitized.company,
-    Team_Profile__c: fieldsSanitized.teamProfile,
-    Twitter__c: fieldsSanitized.twitter,
-    Website: fieldsSanitized.website,
-    Project_Name__c: fieldsSanitized.projectName,
-    Github_Link__c: fieldsSanitized.projectRepo,
-    Category__c: fieldsSanitized.projectCategory,
-    Project_Description__c: fieldsSanitized.projectDescription,
-    Progress__c: fieldsSanitized.progress,
-    Problem_Being_Solved__c: fieldsSanitized.problemBeingSolved,
-    Proposed_Timeline__c: fieldsSanitized.proposedTimeline,
-    Requested_Amount__c: fieldsSanitized.requestedAmount,
-    Impact__c: fieldsSanitized.whyIsProjectImportant,
-    How_is_it_different__c: fieldsSanitized.howDoesYourProjectDiffer,
-    Is_it_a_Public_Good__c: fieldsSanitized.isYourProjectPublicGood,
-    Is_it_Open_Source__c: fieldsSanitized.isOpenSource,
-    Why_Ethereum__c: fieldsSanitized.whyEthereum,
-    Challenges__c: fieldsSanitized.challenges,
-    Sustainability_Plan__c: fieldsSanitized.sustainabilityPlan,
-    Other_Projects__c: fieldsSanitized.otherProjects,
-    Repeat_Applicant__c: fieldsSanitized.repeatApplicant,
-    Other_Funding__c: fieldsSanitized.otherFunding,
-    Additional_Information__c: fieldsSanitized.additionalInfo,
-    npsp__CompanyCity__c: fieldsSanitized.city,
-    npsp__CompanyCountry__c: fieldsSanitized.country,
-    Time_Zone__c: fieldsSanitized.timezone,
-    Referral_Source__c: fieldsSanitized.howDidYouHearAboutESP,
-    Referral_Source_if_Other__c: fieldsSanitized.referralSourceIfOther,
-    Referrals__c: fieldsSanitized.referrals,
+    FirstName: fieldsSanitized.firstName as string,
+    LastName: fieldsSanitized.lastName as string,
+    Email: fieldsSanitized.email as string,
+    Company: fieldsSanitized.company as string,
+    Team_Profile__c: fieldsSanitized.teamProfile as string,
+    Twitter__c: fieldsSanitized.twitter as string,
+    Website: fieldsSanitized.website as string,
+    Project_Name__c: fieldsSanitized.projectName as string,
+    Github_Link__c: fieldsSanitized.projectRepo as string,
+    Category__c: fieldsSanitized.projectCategory as string,
+    Project_Description__c: fieldsSanitized.projectDescription as string,
+    Progress__c: fieldsSanitized.progress as string,
+    Problem_Being_Solved__c: fieldsSanitized.problemBeingSolved as string,
+    Proposed_Timeline__c: fieldsSanitized.proposedTimeline as string,
+    Requested_Amount__c: fieldsSanitized.requestedAmount as string,
+    Impact__c: fieldsSanitized.whyIsProjectImportant as string,
+    How_is_it_different__c: fieldsSanitized.howDoesYourProjectDiffer as string,
+    Is_it_a_Public_Good__c: fieldsSanitized.isYourProjectPublicGood as string,
+    Is_it_Open_Source__c: fieldsSanitized.isOpenSource as string,
+    Why_Ethereum__c: fieldsSanitized.whyEthereum as string,
+    Challenges__c: fieldsSanitized.challenges as string,
+    Sustainability_Plan__c: fieldsSanitized.sustainabilityPlan as string,
+    Other_Projects__c: fieldsSanitized.otherProjects as string,
+    Repeat_Applicant__c: fieldsSanitized.repeatApplicant as string,
+    Other_Funding__c: fieldsSanitized.otherFunding as string,
+    Additional_Information__c: fieldsSanitized.additionalInfo as string,
+    npsp__CompanyCity__c: fieldsSanitized.city as string,
+    npsp__CompanyCountry__c: fieldsSanitized.country as string,
+    Time_Zone__c: fieldsSanitized.timezone as string,
+    Referral_Source__c: fieldsSanitized.howDidYouHearAboutESP as string,
+    Referral_Source_if_Other__c: fieldsSanitized.referralSourceIfOther as string,
+    Referrals__c: fieldsSanitized.referrals as string,
     RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS
   };
 
@@ -83,7 +93,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         createdLeadID = ret.id;
         console.log({ createdLeadID });
 
-        const uploadProposal = files.uploadProposal as File;
+        const uploadProposal = Array.isArray(files.uploadProposal) 
+          ? files.uploadProposal[0] 
+          : files.uploadProposal;
         console.log({ uploadProposal });
 
         if (!uploadProposal) {
