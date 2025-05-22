@@ -28,16 +28,16 @@ const Header: React.FC = () => {
     <header className={`${styles.headerContainer} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.headerContent}>
         <div className={styles.logoContainer}>
-          <Link href="/applicants" legacyBehavior>
-            <a className={styles.logo}>Blatam</a>
+          <Link href="/applicants">
+            <span className={styles.logo}>Blatam</span>
           </Link>
         </div>
 
         <nav className={styles.navigation}>
           <ul>
             <li>
-              <Link href="/applicants" legacyBehavior>
-                <a className={styles.promoLink}>
+              <Link href="/applicants">
+                <span className={styles.promoLink}>
                   <span>Aprovecha hasta <strong>70% OFF</strong> y hasta <strong>12 meses sin intereses</strong> en CURSOS</span>
                   <span className={styles.promoSeparator}>|</span>
                   <span className={styles.promoHighlight}>
@@ -45,7 +45,7 @@ const Header: React.FC = () => {
                     Hasta el 21 de Agosto
                     <span className={styles.fireEmoji}>🔥</span>
                   </span>
-                </a>
+                </span>
               </Link>
             </li>
           </ul>
@@ -53,13 +53,12 @@ const Header: React.FC = () => {
         
         {showBuyNowButton && (
           <div className={styles.actionsContainer}>
-            <Link href="https://astrixial.gumroad.com/l/ia" legacyBehavior>
-              {/* Ensure this 'a' tag is the ONLY direct child of Link */}
-              <a className={styles.buyNowButton}>
+            <Link href="https://astrixial.gumroad.com/l/ia">
+              <span className={styles.buyNowButton}>
                 <FireIcon />
                 Comprar ahora
                 <ArrowIcon />
-              </a>
+              </span>
             </Link>
           </div>
         )}

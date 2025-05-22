@@ -1,6 +1,6 @@
 // components/FeaturesSection/FeaturesSection.tsx
 import React from 'react';
-//import Image, { StaticImageData } from 'next/image'; // Import StaticImageData for completeness if you were to import images
+import Image from 'next/image';
 import FeatureCard from '../FeatureCard/FeatureCard';
 import styles from './FeaturesSection.module.css';
 import featureStyles from './FeatureSpecificMockups.module.css';
@@ -52,11 +52,12 @@ const OnlineClassesMockup = () => {
               // TypeScript now knows if !p.isInitial, then p is ImageParticipant
               // and p.imgSrc is a string.
               <Image
-                src={p.imgSrc} // This should no longer cause an error
+                src={p.imgSrc}
                 alt={p.name}
                 width={80}
                 height={80}
                 className={featureStyles.participantImage}
+                layout="fixed"
               />
             )}
             {!p.isInitial && <span className={featureStyles.micMuted}>🔇</span>}
@@ -84,7 +85,6 @@ const GamificationMockup = () => {
         src={videoUserImage}
         alt="Student learning"
         layout="fill"
-        objectFit="cover"
         className={featureStyles.videoBgImage}
         priority
       />
