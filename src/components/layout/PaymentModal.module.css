@@ -1,68 +1,121 @@
+/* components/PaymentModal.module.css */
 .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.modalContent {
+  background-color: #ffffff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeInModal 0.3s ease-out;
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
   }
-  
-  .modalContent {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 400px;
-    text-align: center;
-    position: relative;
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
-  
-  .modalContent h2 {
-    margin: 0 0 10px;
-    font-size: 1.2em;
-  }
-  
-  .modalContent p {
-    margin: 5px 0;
-    color: #333;
-  }
-  
-  .modalContent hr {
-    border: 0;
-    border-top: 1px solid #ddd;
-    margin: 10px 0;
-  }
-  
-  .cardLogos {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px 0;
-  }
-  
-  .cardLogo {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .offerText {
-    color: #28a745;
-    font-size: 0.9em;
-    margin: 10px 0;
-  }
-  
-  .closeButton {
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-  }
+}
+
+.modalContent h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.introText {
+  font-size: 0.95rem;
+  color: #4a5568;
+  margin-bottom: 20px;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 20px 0;
+}
+
+.modalContent h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2d3748;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.cardLogos {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align logos to the left */
+  gap: 25px; /* MODIFIED: Increased space between logos (was 15px) */
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.cardLogo {
+  height: 30px; /* MODIFIED: Slightly increased default height, adjust as needed */
+  width: auto;
+  object-fit: contain;
+  /* REMOVED: filter: grayscale(1); */
+  /* REMOVED: opacity: 0.8; */
+  transition: transform 0.2s ease; /* Keep transition for other potential hover effects */
+}
+
+.cardLogo:hover {
+  /* REMOVED: filter: grayscale(0); */
+  /* REMOVED: opacity: 1; */
+  transform: scale(1.05); /* Optional: Add a slight scale on hover */
+}
+
+.offerText {
+  font-size: 0.85rem;
+  color: #4a5568;
+  line-height: 1.5;
+  margin-bottom: 25px;
+  text-align: left;
+  background-color: #f7fafc;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.closeButton {
+  background-color: #4a5568;
+  color: #ffffff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.closeButton:hover {
+  background-color: #2d3748;
+}

@@ -47,6 +47,7 @@ const PromoBanner: React.FC<PromoBannerProps> = ({
       </div>
       {isModalOpen && <PaymentModal onClose={handleCloseModal} />}
     </div>
+  
   );
 };
 

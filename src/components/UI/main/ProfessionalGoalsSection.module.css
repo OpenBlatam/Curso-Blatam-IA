@@ -190,118 +190,89 @@
   }
 
   /* components/ProfessionalGoalsSection/ProfessionalGoalsSection.module.css */
+/* components/ProfessionalGoalsSection.module.css */
+/* ... (keep your existing styles for .container, .header, .videoWrapper, .reactPlayer, .imageLabel, etc.) ... */
 
-/* Ensure this container has dimensions and handles overflow */
-.imageContainer {
-    position: relative;
-    width: 100%;
-    border-radius: 8px; /* Ensure this is applied */
-    overflow: hidden;   /* This is crucial */
-    aspect-ratio: 4 / 3; /* Or your desired aspect ratio */
-    background-color: #000; /* Fallback background, good for debugging */
-    display: flex; /* If you want to use flex for alignment of .videoWrapper */
-    align-items: center;
-    justify-content: center;
+.imageContainer { /* This is the clickable area */
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer; /* Indicate it's clickable */
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  /* Using aspect ratio for responsive video - choose one method */
+  /* Option A: CSS aspect-ratio property */
+  aspect-ratio: 16 / 9;
+  /* Option B: Padding trick (if aspect-ratio not supported or preferred) */
+  /* padding-bottom: 56.25%; /* 16:9 */
+  /* height: 0; */ /* Required for padding-bottom trick */
+
+  /* Or Fixed height (less responsive for video aspect ratio) */
+  /* height: 250px; */
+  background-color: #000000; /* Black background while video loads or if no poster */
+  border-radius: 8px;
+}
+
+.reactPlayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 8px; /* Ensure player itself respects border radius */
+}
+
+.reactPlayer > video {
+  border-radius: 8px !important;
+  object-fit: cover !important;
+}
+
+/* Play/Pause Overlay Styles */
+.playPauseOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+  z-index: 1; /* Above the video player but below labels if any overlap */
+  pointer-events: none; /* So it doesn't block the click on .imageContainer */
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+  border-radius: 8px; /* Match video wrapper */
+}
+
+.imageContainer:hover .playPauseOverlay { /* Optional: slightly fade overlay on hover */
+  /* background-color: rgba(0, 0, 0, 0.4); */
+}
+
+.playPauseIcon {
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
+  color: white;
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5)); /* Add a slight shadow to the icon */
+}
+
+
+/* ... (rest of your styles for .imageLabel, .column, .contentWrapper, etc.) ... */
+
+@media (max-width: 768px) {
+  .contentWrapper {
+    flex-direction: column;
   }
-  
-  /* This div will directly contain ReactPlayer */
   .videoWrapper {
-    width: 100%;
-    height: 100%;
-    position: relative; /* If .reactPlayer is positioned absolutely */
+    /* Adjust height or aspect ratio for mobile if needed */
+    /* height: 200px; */
+    /* aspect-ratio: 16 / 9; */ /* Or keep as is */
   }
-  
-  /* Styles for the ReactPlayer's wrapper div (applied via className prop) */
-  .reactPlayer {
-    /* ReactPlayer props width="100%" and height="100%" should make it fill .videoWrapper.
-       If .videoWrapper has position: relative, you can use absolute positioning here
-       if needed, but it's often not necessary. */
+  .playPauseIcon {
+    width: 40px;
+    height: 40px;
   }
-  
-  /* You might need to target the actual <video> tag rendered by ReactPlayer
-     if object-fit is not working as expected via props or default behavior. */
-  .reactPlayer video {
-    object-fit: cover !important; /* or 'contain' */
-    width: 100% !important;
-    height: 100% !important;
-    border-radius: inherit; /* Inherit border-radius from imageContainer if desired */
-  }
-  
-  .imageLabel {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    border-radius: 4px;
-    font-weight: bold;
-    z-index: 10; /* Ensure label is above the video */
-  }
- /* components/ProfessionalGoalsSection/ProfessionalGoalsSection.module.css */
-/* ... (ensure these styles are robust from previous suggestions) ... */
-
-.imageContainer {
-    position: relative;
-    width: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    aspect-ratio: 4 / 3; /* Or your desired aspect ratio */
-    background-color: #000; /* This is why you see black boxes - good for debug */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer; /* Optional: Indicate interactivity for the hover area */
-  }
-  
-  .imagePlaceholder { /* For the static image column */
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  
-  .videoWrapper { /* Direct parent of ReactPlayer */
-    width: 100%;
-    height: 100%;
-    position: relative; /* If .reactPlayer itself is absolutely positioned */
-  }
-  
-  .reactPlayer {
-    /* If .videoWrapper is relative, .reactPlayer can be absolute to fill it */
-    /* position: absolute;
-    top: 0;
-    left: 0; */
-  }
-  
-  /* Ensure the video tag inside ReactPlayer fills and covers */
-  .reactPlayer video {
-    object-fit: cover !important; /* Or 'contain' */
-    width: 100% !important;
-    height: 100% !important;
-    border-radius: inherit; /* If you want to inherit imageContainer's radius */
-  }
-  
-  .imageLabel {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    border-radius: 4px;
-    font-weight: bold;
-    z-index: 10;
-  }
-  
-  /* ... rest of your CSS ... */ 
-  /* ... rest of your styles ... */
+}
+/* Ensure this container has dimensions and handles overflow */
