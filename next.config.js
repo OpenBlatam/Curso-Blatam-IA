@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  target: 'serverless',
+  //target: 'serverless',
   i18n: {
     locales: ['default', 'en', 'es'],
     defaultLocale: 'default',
