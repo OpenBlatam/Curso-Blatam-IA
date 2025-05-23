@@ -7,12 +7,16 @@ import { DEVCON_URL } from '../../constants';
 
 interface DevconGrantsLayoutProps {
   children: ReactNode;
+  windowSize: {
+    width: number;
+    height: number;
+  };
 }
 
-export const DevconGrantsLayout: FC<DevconGrantsLayoutProps> = ({ children }) => {
+export const DevconGrantsLayout: FC<DevconGrantsLayoutProps> = ({ children, windowSize }) => {
   return (
     <Stack>
-      <AcademicGrantsHero title='Devcon Grants Round'>
+      <AcademicGrantsHero title='Devcon Grants Round' windowSize={windowSize}>
         In an effort to promote education around the Ethereum in Colombia and Latin America in
         advance of{' '}
         <Link

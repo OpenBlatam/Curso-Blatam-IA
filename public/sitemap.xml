@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap><loc>https://esp.ethereum.foundation/sitemap-0.xml</loc></sitemap>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://blatam.org</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/about</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/about/how-we-support</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/about/who-we-support</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/academic-grants</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/academic-grants/apply</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/academic-grants/thank-you</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants/grantee-finance</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants/grantee-finance/thank-you</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants/office-hours</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants/office-hours/apply</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants/office-hours/thank-you</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants/project-grants</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants/project-grants/apply</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants/project-grants/thank-you</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants/small-grants</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants/small-grants/apply</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/applicants/small-grants/thank-you</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/devcon-grants</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/devcon-grants/apply</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://blatam.org/devcon-grants/thank-you</loc><lastmod>2025-05-23T00:26:18.395Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>

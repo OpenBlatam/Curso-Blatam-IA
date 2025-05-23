@@ -19,15 +19,24 @@
     background-color: #000;
     color: #fff;
     border: none;
-    padding: 8px 20px;
     border-radius: 5px;
-    font-size: 1em;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
     width: 100%;
+    /* Default styles for larger screens */
+    padding: 8px 20px;
+    font-size: 1em;
+    gap: 5px;
+  }
+  
+  @media (max-width: 768px) { /* Adjust breakpoint as needed */
+    .buyButton {
+      padding: 6px 15px; /* Reduced padding for mobile */
+      font-size: 0.9em; /* Reduced font size for mobile */
+      gap: 4px; /* Reduced gap for mobile */
+    }
   }
   
   .offer {

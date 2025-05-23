@@ -18,6 +18,13 @@ interface Testimonial {
   quote: string;
 }
 
+interface TestimonialsProps {
+  windowSize: {
+    width: number;
+    height: number;
+  };
+}
+
 const testimonialsData: Testimonial[] = [
   {
     id: 1,
@@ -122,7 +129,7 @@ const TestimonialCard: React.FC<Testimonial> = ({
   );
 };
 
-const Testimonials: React.FC = () => {
+const Testimonials: React.FC<TestimonialsProps> = ({ windowSize }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 3; // Or adjust based on how many you want visible / partially visible
 

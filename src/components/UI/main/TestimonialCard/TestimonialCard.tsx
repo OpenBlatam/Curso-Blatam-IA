@@ -45,7 +45,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   linkedinUrl,
 }) => {
   return (
-    <div className={styles.card}>
+    <div className={styles.card} style={{ backgroundImage: 'linear(to-br, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)' }}>
       <div className={styles.header}>
         <div className={styles.avatarContainer}>
           <Image src={avatarSrc} alt={name} width={48} height={48} className={styles.avatar} />

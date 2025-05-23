@@ -4,6 +4,7 @@ import Image from 'next/image';
 import FeatureCard from '../FeatureCard/FeatureCard'; // Assuming FeatureCard is in this path
 import styles from './FeaturesSection.module.css'; // Reusing parent section styles for consistency
 import featureStyles from './FeatureSpecificMockups.module.css'; // Reusing/extending this for new mockups
+import BlatamLogoText from '../../BlatamLogoText'; // Corrected Import path
 
 // Placeholder for Coder Camp Logo
 const CoderCampLogo = () => (
@@ -14,7 +15,7 @@ const CoderCampLogo = () => (
 
 // Placeholder for Coderhouse Logo (simple text version)
 const CoderhouseLogoSmall = () => (
-  <div className={featureStyles.coderhouseLogoSmall}>BLATAM</div>
+  <BlatamLogoText className={featureStyles.coderhouseLogoSmall} />
 );
 
 const EmployabilityProgramMockup = () => {

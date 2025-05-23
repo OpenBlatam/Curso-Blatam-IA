@@ -11,8 +11,13 @@ interface Props {
 
 export const BannerClickeable: FC<Props> = ({ children, to, ...props }) => {
   return (
-    <NextLink href={to} passHref legacyBehavior={false}>
-      <Banner {...props}>{children}</Banner>
-    </NextLink>
+    <Link
+      as={NextLink}
+      href={to}
+      _hover={{ textDecoration: 'none' }}
+      {...props}
+    >
+      <Banner>{children}</Banner>
+    </Link>
   );
 };

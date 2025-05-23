@@ -70,3 +70,21 @@
   font-size: 0.75em;
   font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  .promoBanner {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .leftSection,
+  .rightSection {
+    align-items: center;
+  }
+
+  .discountContainer {
+    justify-content: center;
+  }
+}

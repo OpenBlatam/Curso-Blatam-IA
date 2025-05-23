@@ -7,9 +7,13 @@ import applicantsHero from '../../../public/images/applicants-hero.png';
 
 interface AcademicGrantsApplyLayoutProps {
   children: ReactNode;
+  windowSize: {
+    width: number;
+    height: number;
+  };
 }
 
-export const AcademicGrantsApplyLayout: FC<AcademicGrantsApplyLayoutProps> = ({ children }) => {
+export const AcademicGrantsApplyLayout: FC<AcademicGrantsApplyLayoutProps> = ({ children, windowSize }) => {
   return (
     <>
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
@@ -22,8 +26,9 @@ export const AcademicGrantsApplyLayout: FC<AcademicGrantsApplyLayoutProps> = ({ 
               width: 450,
               height: 248
             }}
+            windowSize={windowSize}
           >
-              Aprende desde cero todos los conceptos fundamentales de blockchain.
+            Aprende desde cero todos los conceptos fundamentales de blockchain.
           </Description>
         </section>
 

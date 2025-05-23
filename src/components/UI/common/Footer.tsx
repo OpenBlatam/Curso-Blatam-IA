@@ -1,14 +1,11 @@
-import { Box, Center, Divider, Flex, Link, Stack } from '@chakra-ui/react';
+import { Box, Center, Divider, Flex, Link, Stack, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
 
 import { ImportantText } from '../headings';
 import { PageText } from '../text';
+import { WhatsAppButton } from './WhatsAppButton';
 
-import IconArrowUpward from '../../assets/icons/arrow_upward.svg';
-import efLogoSVG from '../../../../public/images/blatam.png';
-import githubLogoSVG from '../../../../public/images/github-logo.svg';
-import twitterLogoSVG from '../../../../public/images/twitter-logo.svg';
 import IconTwitter from '../../../components/assets/icons/twitter.svg';
 import IconGithub from '../../../components/assets/icons/github.svg';
 import IconFace from '../../../components/assets/icons/facebook.svg';
@@ -16,9 +13,8 @@ import IconInstagram from '../../../components/assets/icons/instagram.svg';
 import IconYoutube from '../../../components/assets/icons/youtube.svg';
 import IconTelegram from '../../../components/assets/icons/telegram.svg';
 import IconDiscord from '../../../components/assets/icons/discord.svg';
-// pages/index.tsx
-import WhatsappButton from '../../../components/UI/icons/whats-app';
-import { FloatingWhatsApp } from 'react-floating-whatsapp';
+
+import blatamLogoSVG from '../../../../public/images/blatam.png';
 
 import {
   ABOUT_URL,
@@ -37,135 +33,94 @@ import {
 } from '../../../constants';
 
 export const Footer: FC = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <Box
       id='footer'
       bgGradient='linear(to-br, brand.footer.bgGradient.start 10%, brand.footer.bgGradient.end 100%)'
+      color="white"
+      py={{ base: 10, md: 12 }}
+      px={{ base: 4, md: 8, lg: 12 }}
     >
       <Flex
-        direction={{ base: 'column', lg: 'row' }}
-        justifyContent={{ lg: 'space-around' }}
-        alignItems={{ lg: 'flex-start' }}
+        direction={{ base: 'column', md: 'row' }}
+        justifyContent={{ md: 'space-between' }}
+        alignItems={{ base: 'center', md: 'flex-start' }}
+        maxW="container.xl"
+        mx="auto"
+        mb={10}
       >
-        <Center px={5} py={8}>
-          <Image src={efLogoSVG} alt='Ethereum Foundation logo' height={94} width={100} />
-        </Center>
+        <Box mb={{ base: 8, md: 0 }}>
+          <Image src={blatamLogoSVG} alt='Blatam logo' height={94} width={100} />
+        </Box>
 
-        <Center px={{ base: 5, lg: 12 }} display={{ base: 'block', lg: 'none' }}>
-          <Divider borderColor='brand.divider.100' opacity={1} />
-        </Center>
-
-        <Flex
-          px={5}
-          py={6}
-          direction={{ base: 'column', lg: 'row' }}
-          alignItems='center'
-          mt={{ lg: 5 }}
-        >
-          <Stack mb={{ base: 2, lg: 0 }} mr={{ lg: 32 }}>
-            <Link href={HOME_URL} _hover={{ textDecoration: 'none' }}>
-              <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Inicio
-              </ImportantText>
+        <Flex direction={{ base: 'column', md: 'row' }} gap={{ base: 6, md: 20 }}>
+          <Stack spacing={3} mb={{ base: 6, md: 0 }} mr={{ md: 20 }}>
+            <Link href={HOME_URL} _hover={{ textDecoration: 'underline' }} textAlign={{ base: 'center', md: 'left' }}>
+              <Text>Inicio</Text>
             </Link>
-            <Link href={APPLICANTS_URL} _hover={{ textDecoration: 'none' }}>
-              <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Cursos
-              </ImportantText>
+            <Link href={APPLICANTS_URL} _hover={{ textDecoration: 'underline' }} textAlign={{ base: 'center', md: 'left' }}>
+              <Text>Cursos</Text>
             </Link>
-            <Link href={ABOUT_URL} _hover={{ textDecoration: 'none' }}>
-              <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Becas
-              </ImportantText>
+            <Link href={ABOUT_URL} _hover={{ textDecoration: 'underline' }} textAlign={{ base: 'center', md: 'left' }}>
+              <Text>Becas</Text>
             </Link>
-           
           </Stack>
 
-          <Stack>
-            <Link href={ETHEREUM_PRIVACY_POLICY_URL} isExternal _hover={{ textDecoration: 'none' }}>
-              <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Privacy Policy
-              </ImportantText>
+          <Stack spacing={3} mb={{ base: 6, md: 0 }}>
+            <Link href={ETHEREUM_PRIVACY_POLICY_URL} isExternal _hover={{ textDecoration: 'underline' }} textAlign={{ base: 'center', md: 'left' }}>
+              <Text>Privacy Policy</Text>
             </Link>
-            <Link href={ETHEREUM_TERMS_OF_USE_URL} isExternal _hover={{ textDecoration: 'none' }}>
-              <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Terminos de Uso
-              </ImportantText>
+            <Link href={ETHEREUM_TERMS_OF_USE_URL} isExternal _hover={{ textDecoration: 'underline' }} textAlign={{ base: 'center', md: 'left' }}>
+              <Text>Terminos de Uso</Text>
             </Link>
-            <Link href={ETHEREUM_COOKIE_POLICY_URL} isExternal _hover={{ textDecoration: 'none' }}>
-              <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Cookie Policy
-              </ImportantText>
+            <Link href={ETHEREUM_COOKIE_POLICY_URL} isExternal _hover={{ textDecoration: 'underline' }} textAlign={{ base: 'center', md: 'left' }}>
+              <Text>Cookie Policy</Text>
             </Link>
-            <Link href={ETHEREUM_ORG_URL} isExternal _hover={{ textDecoration: 'none' }}>
-              <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                Blatam.org
-              </ImportantText>
+            <Link href={ETHEREUM_ORG_URL} isExternal _hover={{ textDecoration: 'underline' }} textAlign={{ base: 'center', md: 'left' }}>
+              <Text>Blatam.org</Text>
             </Link>
           </Stack>
         </Flex>
 
-        <Flex justifyContent='center' alignItems='center' pt={3} pb={6} mt={{ lg: 7 }}>
-          <Box mr={2.5}>
-            <Link href={ESP_FACE_URL} isExternal>
-              <Image src={IconFace} alt='Twitter logo' height={51} width={50} />
-            </Link>
-          </Box>
-          <Box mr={2.5}>
-            <Link href={ESP_INSTAGRAM_URL} isExternal>
-              <Image src={IconInstagram} alt='Twitter logo' height={51} width={50} />
-            </Link>
-          </Box>
-          <Box mr={2.5}>
-            <Link href={ESP_TWITTER_URL} isExternal>
-              <Image src={IconTwitter} alt='Twitter logo' height={51} width={50} />
-            </Link>
-          </Box>
-
-          <Box mr={2.5}>
-            <Link href={ETHEREUM_GITHUB_URL} isExternal>
-              <Image src={IconGithub} alt='GitHub logo' height={51} width={50} />
-            </Link>
-          </Box>
-          <Box mr={2.5}>
-            <Link href={DISCORD_GITHUB_URL} isExternal>
-              <Image src={IconDiscord} alt='GitHub logo' height={51} width={50} />
-            </Link>
-          </Box>
-          <Box mr={2.5}>
-            <Link href={YOUTUBE_GITHUB_URL} isExternal>
-              <Image src={IconYoutube} alt='GitHub logo' height={51} width={50} />
-            </Link>
-          </Box>
-          <Box>
-            <Link href={TELEGRAM_GITHUB_URL} isExternal>
-              <Image src={IconTelegram} alt='GitHub logo' height={51} width={50} />
-            </Link>
-          </Box>
+        <Flex justifyContent='center' alignItems='center' pt={{ base: 4, md: 0 }}>
+          <Link href={ESP_FACE_URL} isExternal mx={2}>
+            <Image src={IconFace} alt='Facebook logo' height={24} width={24} />
+          </Link>
+          <Link href={ESP_INSTAGRAM_URL} isExternal mx={2}>
+            <Image src={IconInstagram} alt='Instagram logo' height={24} width={24} />
+          </Link>
+          <Link href={ESP_TWITTER_URL} isExternal mx={2}>
+            <Image src={IconTwitter} alt='Twitter logo' height={24} width={24} />
+          </Link>
+          <Link href={ETHEREUM_GITHUB_URL} isExternal mx={2}>
+            <Image src={IconGithub} alt='GitHub logo' height={24} width={24} />
+          </Link>
+          <Link href={DISCORD_GITHUB_URL} isExternal mx={2}>
+            <Image src={IconDiscord} alt='Discord logo' height={24} width={24} />
+          </Link>
+          <Link href={YOUTUBE_GITHUB_URL} isExternal mx={2}>
+            <Image src={IconYoutube} alt='YouTube logo' height={24} width={24} />
+          </Link>
+          <Link href={TELEGRAM_GITHUB_URL} isExternal mx={2}>
+            <Image src={IconTelegram} alt='Telegram logo' height={24} width={24} />
+          </Link>
         </Flex>
       </Flex>
-      <main className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Bienvenido</h1>
-      <WhatsappButton phoneNumber="15557666703" message="Hola, me interesa tu servicio" />
-    </main>
-    <FloatingWhatsApp
-    phoneNumber="+15557666703"
-    accountName="Soporte (Maria)"
-    statusMessage="¡Hola! ¿En qué puedo ayudarte?"
-    chatMessage="¡Hola! ¿En qué puedo ayudarte?"
-    placeholder="Escribe tu mensaje..."
-  />
-      <Stack>
-        <Center px={{ base: 5, lg: 12 }} mt={{ lg: 13 }}>
 
-          <Divider borderColor='brand.divider.100' opacity={1} />
-        </Center>
-        <Stack px={5} pt={{ base: 3, lg: 6 }} pb={{ base: 5, lg: 10 }}>
-          <PageText color='white' textAlign='center'>
-            {`© ${new Date().getFullYear()} Blatam All rights reserved.`}
-          </PageText>
-        </Stack>
-      </Stack>
+      <Divider borderColor='brand.divider.100' opacity={0.5} my={6} maxW="container.xl" mx="auto" />
+
+      <Center>
+        <PageText color='white' textAlign='center' fontSize="sm">
+          {`© ${currentYear} Blatam All rights reserved.`}
+        </PageText>
+      </Center>
+
+      <WhatsAppButton 
+        phoneNumber="15557666703" // Replace with your actual WhatsApp number
+        message="¡Hola! ¿En qué podemos ayudarte?"
+      />
     </Box>
   );
 };

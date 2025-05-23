@@ -12,9 +12,13 @@ import { PageText } from './text';
 interface Props {
   title: string;
   children: ReactNode;
+  windowSize: {
+    width: number;
+    height: number;
+  };
 }
 
-export const AcademicGrantsHero: FC<Props> = ({ title, children }) => {
+export const AcademicGrantsHero: FC<Props> = ({ title, children, windowSize }) => {
   return (
     <Stack mb={{ base: -2, md: -60, xl: -72 }}>
       <Center h={{ md: '445px' }} alignItems={{ md: 'center' }}>
@@ -46,21 +50,20 @@ export const AcademicGrantsHero: FC<Props> = ({ title, children }) => {
           <Image
             src={academicGrantsHeroMobile}
             alt='Academics doing research about Ethereum'
-            layout='responsive'
-            objectFit='cover'
             width={450}
             height={276}
+            style={{ objectFit: 'cover' }}
             placeholder='blur'
           />
         </Box>
 
         <Box display={{ base: 'none', md: 'block' }}>
-          <Box>
+          <Box position="relative" width="100%" height="500px">
             <Image
               src={academicGrantsHero}
               alt='Academics doing research about Ethereum'
-              layout='fill'
-              objectFit='cover'
+              fill
+              style={{ objectFit: 'cover' }}
               placeholder='blur'
             />
           </Box>

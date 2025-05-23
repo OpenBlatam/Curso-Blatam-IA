@@ -14,15 +14,21 @@ import {
   MenuButton,
   Stack,
   UnorderedList,
-  useDisclosure
+  useDisclosure,
+  Text,
+  useColorMode,
+  Button,
+  useColorModeValue
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 import { ImportantText } from './UI/headings';
 import { CloseIcon, HamburgerIcon, NavLinkIcon } from './UI/icons';
+import BlatamLogoText from '@/components/UI/BlatamLogoText';
 
 import { selectedLink } from '../utils';
 
@@ -30,21 +36,70 @@ import logoSVG from '../../public/images/blatam.png';
 
 import { ESP_BLOG_URL, ETHEREUM_ORG_URL, HOME_URL, NAV_LINKS } from '../constants';
 
-export const Nav: FC = () => {
+interface Props {
+  windowSize: {
+    width: number;
+    height: number;
+  };
+}
+
+export const Nav: FC<Props> = ({ windowSize }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
+  const { colorMode, toggleColorMode } = useColorMode();
+  
+  const bgColor = useColorModeValue('background.primary.light', 'background.primary.dark');
+  const textColor = useColorModeValue('gray.700', 'gray.200');
+  const bannerBg = useColorModeValue('background.secondary.light', 'background.secondary.dark');
 
   return (
     <header>
-      <Flex justifyContent='space-between' mb={12}>
+      <Flex 
+        justifyContent='space-between' 
+        alignItems="center"
+        bg={bgColor}
+        py={4}
+        px={{ base: 4, md: 8 }}
+        boxShadow="sm"
+        position="sticky"
+        top={0}
+        zIndex={1000}
+        transition="background-color 0.3s ease-in-out"
+      >
         <Box
           onClick={isOpen ? undefined : () => router.push(HOME_URL)}
           cursor={isOpen ? 'default' : 'pointer'}
           sx={isOpen ? { transitionDelay: '0.15s', filter: 'brightness(10)' } : undefined}
           zIndex={9999}
         >
-          <Image src={logoSVG} alt='Ecosystem Support Program logo' height={85} width={100} />
+          <Image src={logoSVG} alt='Blatam logo' height={85} width={100} />
         </Box>
+
+        {/* Promotional Banner */}
+        <Flex 
+          display={{ base: 'none', md: 'flex' }} 
+          alignItems="center" 
+          flex={1}
+          mx={8}
+          justifyContent="center"
+        >
+          <Text 
+            fontSize="sm" 
+            fontWeight="medium"
+            bg={bannerBg}
+            px={4}
+            py={2}
+            borderRadius="full"
+            color={textColor}
+            transition="all 0.3s ease-in-out"
+          >
+            Aprovecha hasta <strong>70% OFF</strong> y hasta <strong>12 meses sin intereses</strong> en CURSOS
+            <Text as="span" mx={2} color="gray.400">|</Text>
+            <Text as="span" color="brand.pink">
+              🔥 Hasta el 22 de Mayo 🔥
+            </Text>
+          </Text>
+        </Flex>
 
         <Box display={{ base: 'block', md: 'none' }}>
           <Box mt={2}>
@@ -54,7 +109,7 @@ export const Nav: FC = () => {
                   as={IconButton}
                   aria-label='Menu'
                   variant='transparent'
-                  icon={<HamburgerIcon h='25px' w='32px' color='brand.accent' />}
+                  icon={<HamburgerIcon h='25px' w='32px' color='gray.200' />}
                   onClick={onOpen}
                 />
               )}
@@ -74,26 +129,48 @@ export const Nav: FC = () => {
 
           <Drawer onClose={onClose} isOpen={isOpen} size='full'>
             <DrawerContent>
-              <DrawerBody bgGradient='linear(to-br, brand.footer.bgGradient.start 10%, brand.footer.bgGradient.end 100%)'>
+              <DrawerBody bg="background.primary">
                 <Stack h='100%' justifyContent='center' alignItems='center'>
                   <Stack spacing={6}>
                     {NAV_LINKS.map(({ href, text }) => (
-                      <Link key={href} href={href} _hover={{ textDecoration: 'none' }}>
-                        <ImportantText color='white' textAlign='center' fontSize='h2'>
+                      <Link
+                        key={href}
+                        as={NextLink}
+                        href={href}
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        <ImportantText color='gray.200' textAlign='center' fontSize='h2'>
                           {text}
                         </ImportantText>
                       </Link>
                     ))}
 
                     <Center>
-                      <Divider borderColor='brand.divider.100' opacity={1} w={72} mt={1} mb={-2} />
+                      <Divider borderColor='gray.700' opacity={1} w={72} mt={1} mb={-2} />
                     </Center>
 
-                    <Link href={ETHEREUM_ORG_URL} isExternal _hover={{ textDecoration: 'none' }}>
-                      <ImportantText color='white' textAlign='center'>
-                        Blatam.org
+                    <Link
+                      as={NextLink}
+                      href={ETHEREUM_ORG_URL}
+                      isExternal
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      <ImportantText color='gray.200' textAlign='center'>
+                        <BlatamLogoText as="span" display="inline" color='gray.200'>Blatam</BlatamLogoText>.org
                       </ImportantText>
                     </Link>
+
+                    <IconButton
+                      aria-label="Toggle color mode"
+                      icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                      onClick={toggleColorMode}
+                      variant="ghost"
+                      size="lg"
+                      color={textColor}
+                      _hover={{
+                        bg: 'background.secondary.dark',
+                      }}
+                    />
                   </Stack>
                 </Stack>
               </DrawerBody>
@@ -101,43 +178,53 @@ export const Nav: FC = () => {
           </Drawer>
         </Box>
 
-        <Flex display={{ base: 'none', md: 'block' }} zIndex={1}>
-          <UnorderedList>
+        <Flex display={{ base: 'none', md: 'flex' }} zIndex={1} alignItems="center">
+          <UnorderedList display="flex" alignItems="center" m={0}>
             {NAV_LINKS.map((nav, idx) => (
-              <ListItem key={nav.text} display='inline'>
+              <ListItem 
+                key={nav.text} 
+                display='inline' 
+                mx={2}
+                sx={{
+                  ...(selectedLink(router.pathname, nav.href) && {
+                    borderLeft: '4px solid',
+                    borderLeftColor: 'brand.accent',
+                    paddingLeft: '8px',
+                  }),
+                }}
+              >
                 {idx > 0 && <ListIcon as={NavLinkIcon} display='inline-block' pb={1} />}
-                <NextLink href={nav.href} passHref legacyBehavior={false}>
-                  <Link
-                    href={nav.href}
-                    target={nav.href === ESP_BLOG_URL ? '_blank' : '_self'}
-                    rel='noopener noreferrer'
-                    _hover={{ textDecoration: 'none' }}
+                <Link
+                  as={NextLink}
+                  href={nav.href}
+                  target={nav.href === ESP_BLOG_URL ? '_blank' : '_self'}
+                  rel={nav.href === ESP_BLOG_URL ? 'noopener noreferrer' : undefined}
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  <ImportantText
+                    color={textColor}
+                    display='inline'
+                    transition="color 0.3s ease-in-out"
                   >
-                    <ImportantText
-                      color='brand.ready.text'
-                      display='inline'
-                      mr={nav.href === ESP_BLOG_URL ? 0 : 2}
-                      _hover={{
-                        borderBottom: '10px solid',
-                        borderBottomColor: 'brand.accent',
-                        transition: 'border-width 0.16s ease-in-out'
-                      }}
-                      sx={
-                        selectedLink(router.pathname, nav.href)
-                          ? {
-                              borderBottom: '10px solid',
-                              borderBottomColor: 'brand.accent'
-                            }
-                          : undefined
-                      }
-                    >
-                      {nav.text}
-                    </ImportantText>
-                  </Link>
-                </NextLink>
+                    {nav.text}
+                  </ImportantText>
+                </Link>
               </ListItem>
             ))}
           </UnorderedList>
+
+          <IconButton
+            aria-label="Toggle color mode"
+            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            onClick={toggleColorMode}
+            variant="ghost"
+            size="lg"
+            ml={4}
+            color={textColor}
+            _hover={{
+              bg: 'background.secondary.dark',
+            }}
+          />
         </Flex>
       </Flex>
     </header>

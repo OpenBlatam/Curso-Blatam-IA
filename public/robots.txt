@@ -1,5 +1,10 @@
+# *
 User-agent: *
-Disallow: /api/
+Allow: /
 
-Sitemap: https://esp.ethereum.foundation/sitemap.xml
-Sitemap: https://esp.ethereum.foundation/sitemap-0.xml
+# Host
+Host: https://blatam.org
+
+# Sitemaps
+Sitemap: https://blatam.org/sitemap.xml
+Sitemap: https://blatam.org/server-sitemap.xml

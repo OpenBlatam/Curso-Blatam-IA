@@ -11,11 +11,18 @@ import homepageHeroMobile from '../../../public/images/homepage-hero-mobile.png'
 import homepageHeroMobile2 from '../../components/assets/images/background-triangles.png';
 
 import { APPLICANTS_URL } from '../../constants';
-import {useTranslation} from "react-i18next";
-import BlatamBannerMain from '../layout/BlatamBannerMain';
+import { useTranslation } from "react-i18next";
 
-export const HomepageHero: FC = () => {
+interface Props {
+  windowSize: {
+    width: number;
+    height: number;
+  };
+}
+
+export const HomepageHero: FC<Props> = ({ windowSize }) => {
   const { t } = useTranslation();
+
   return (
     <Stack spacing={6}>
       <Stack
@@ -39,7 +46,7 @@ export const HomepageHero: FC = () => {
         </PageSubheading>
 
         <Flex justifyContent={{ base: 'center', md: 'flex-start' }}>
-          <ButtonLink label='Cursos' link={APPLICANTS_URL} width='177px' />
+          <ButtonLink label='Cursos ' link={APPLICANTS_URL} width='177px' />
         </Flex>
       </Stack>
       <Box>

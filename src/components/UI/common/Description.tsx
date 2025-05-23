@@ -14,9 +14,13 @@ type Props = {
     height: number;
   };
   children: ReactNode;
+  windowSize: {
+    width: number;
+    height: number;
+  };
 };
 
-export const Description: FC<Props> = ({ title, img, children }) => {
+export const Description: FC<Props> = ({ title, img, children, windowSize }) => {
   const { src, alt, width, height } = img;
 
   return (

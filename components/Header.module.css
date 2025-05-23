@@ -1,0 +1,232 @@
+.headerContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: linear-gradient(to bottom, #F6E6FC 0%, #E7BDF7 83.85%, rgba(231, 189, 247, 0) 100%);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(231, 189, 247, 0.2);
+}
+
+.scrolled {
+  box-shadow: 0 4px 30px rgba(231, 189, 247, 0.2);
+}
+
+.headerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.logoContainer {
+  flex: 0 0 auto;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #9B4DCA 0%, #E7BDF7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: -0.5px;
+}
+
+.navigation {
+  flex: 1;
+  text-align: center;
+  min-width: 200px;
+}
+
+.navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.promoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4A154B;
+  text-decoration: none;
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.promoSeparator {
+  margin: 0 0.5rem;
+  color: #9B4DCA;
+  opacity: 0.5;
+}
+
+.promoHighlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #9B4DCA;
+  font-weight: 600;
+  white-space: nowrap;
+  background: linear-gradient(135deg, #9B4DCA 0%, #E7BDF7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fireEmoji {
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #9B4DCA 0%, #E7BDF7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.actionsContainer {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buyNowButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.75rem;
+  background: linear-gradient(135deg, #9B4DCA 0%, #E7BDF7 100%);
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(155, 77, 202, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+.buyNowButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.buyNowButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(155, 77, 202, 0.3);
+  background: linear-gradient(135deg, #E7BDF7 0%, #9B4DCA 100%);
+}
+
+.buyNowButton:hover::before {
+  left: 100%;
+}
+
+.ctaIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.buyNowButton:hover .ctaIcon:last-child {
+  transform: translateX(4px);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .headerContent {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .logoContainer {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .navigation {
+    width: 100%;
+    margin: 0.5rem 0;
+    order: 2;
+  }
+
+  .promoLink {
+    font-size: 0.9rem;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.6;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(155, 77, 202, 0.1);
+    border: 1px solid rgba(155, 77, 202, 0.1);
+  }
+
+  .promoSeparator {
+    display: inline;
+    margin: 0 0.5rem;
+  }
+
+  .promoHighlight {
+    margin-top: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .actionsContainer {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+    order: 3;
+  }
+
+  .buyNowButton {
+    width: 100%;
+    justify-content: center;
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .promoLink {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+
+  .promoHighlight {
+    font-size: 0.85rem;
+  }
+
+  .buyNowButton {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+  }
+} 

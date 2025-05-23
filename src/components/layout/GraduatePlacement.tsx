@@ -45,7 +45,14 @@ const companyPlacementsData: CompanyPlacement[] = [
   },
 ];
 
-const GraduatePlacement: React.FC = () => {
+interface GraduatePlacementProps {
+  windowSize: {
+    width: number;
+    height: number;
+  };
+}
+
+const GraduatePlacement: React.FC<GraduatePlacementProps> = ({ windowSize }) => {
   return (
     <section className={styles.placementSection}>
       <div className={styles.textContainer}>

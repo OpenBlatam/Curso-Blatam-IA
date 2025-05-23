@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Box, BoxProps, Button, ButtonProps, Flex, Spinner } from '@chakra-ui/react';
-import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ImportantText } from './UI/headings';
 
@@ -18,8 +18,8 @@ interface Props {
   text: string;
 }
 
-const MotionBox = motion(Box);
-const MotionButton = motion(Button);
+const MotionBox = motion.create(Box);
+const MotionButton = motion.create(Button);
 
 export const SubmitButton: FC<Props> = ({
   id = 'submit-application',

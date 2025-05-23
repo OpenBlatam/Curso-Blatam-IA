@@ -1,6 +1,7 @@
 /* components/BlatamBanner.module.css */
 .bannerContainer {
-    background-color: #1a202c; /* Dark background */
+    /* background-color: #1a202c; */ /* Dark background */
+    background-image: linear-gradient(to bottom, #0A0A0A, #121212); /* Luxury black gradient */
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -18,8 +19,9 @@
   .bannerContainer::after {
     content: '- EXTENDIMOS -';
     position: absolute;
-    background-color: #ff4500; /* Orange/Red color */
-    color: #ffffff;
+    /* background-color: #ff4500; */ /* Orange/Red color */
+    background-color: #121212; /* Dark background */
+    color: rgba(255, 255, 255, 0.3); /* Subtle white text */
     padding: 8px 60px; /* Make them longer */
     font-size: 0.9rem; /* Slightly larger text */
     font-weight: bold;
@@ -70,9 +72,13 @@
   .hotLabel {
     font-size: 2.5rem; /* Adjusted size */
     font-weight: bold;
-    color: #ffffff;
+    /* color: #ffffff; */
+    color: rgba(255, 255, 255, 0.85); /* Slightly subtle white */
     /* Consider a specific "HOT" font or a text-shadow for impact */
     /* text-shadow: 0 0 5px #ff8c00, 0 0 10px #ff8c00; */
+    font-family: 'Playfair Display', serif; /* Using an elegant serif font */
+    letter-spacing: 0.1em; /* Increased letter spacing */
+    text-transform: uppercase; /* Ensure uppercase */
   }
   
   .saleText {
@@ -126,27 +132,30 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background-color: #ff4500; /* Matching "EXTENDIMOS" label color */
+    /* background-color: #ff4500; */ /* Matching "EXTENDIMOS" label color */
+    background-color: #1A1A1A; /* Dark component background */
     color: #ffffff;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
     padding: 12px 30px;
     border-radius: 8px;
     font-size: 1.1rem;
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05); /* Luxury shadow */
   }
   
   .ctaButton:hover {
-    background-color: #e03e00; /* Darker shade on hover */
+    background-color: #121212; /* Slightly darker on hover */
     transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2); /* Border brighter on hover */
   }
   
   .ctaButton .icon {
     font-size: 1.2em;
     line-height: 1;
+    color: #C2185B; /* Luxury pink for icons */
   }
   
   /* Feature Tags Styling and Positioning */
@@ -163,14 +172,15 @@
   
   .featureTag {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.15);
+    /* background-color: rgba(255, 255, 255, 0.15); */
+    background-color: rgba(18, 18, 18, 0.5); /* Darker translucent black */
     color: #f0f0f0;
     padding: 4px 10px;
     border-radius: 12px; /* Pill shape */
     font-size: 0.75rem;
     font-weight: 500;
     white-space: nowrap;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2); /* Slightly deeper shadow */
   }
   
   /*

@@ -1,5 +1,5 @@
 import { Flex, Tab, TabList, Tabs } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { ImportantText } from '../headings';
 
@@ -10,6 +10,54 @@ interface Props {
 }
 
 export const NavigationTabs: FC<Props> = ({ tabIndex, handleChange, tabsList }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <Flex
+        mt={-12}
+        mb={{ base: 10, md: 0 }}
+        mx={{ md: 12 }}
+        px={{ md: 10 }}
+        backgroundColor='white'
+        overflowX='auto'
+        borderBottom='1px solid'
+        borderBottomColor='brand.divider.100'
+      >
+        <Tabs
+          id='tabbed-navigation'
+          align='center'
+          index={0}
+          variant='unstyled'
+          isLazy
+        >
+          <TabList whiteSpace='nowrap' h='64px' role='tablist'>
+            {tabsList.map(tabElement => (
+              <Tab
+                key={tabElement}
+                px={0}
+                mx={6}
+                pb={0}
+                borderBottom='10px solid'
+                borderBottomColor='transparent'
+                role='tab'
+                aria-controls=''
+              >
+                <ImportantText as='h2' color='brand.ready.text'>
+                  {tabElement}
+                </ImportantText>
+              </Tab>
+            ))}
+          </TabList>
+        </Tabs>
+      </Flex>
+    );
+  }
+
   return (
     <Flex
       mt={-12}

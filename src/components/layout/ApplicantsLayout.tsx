@@ -44,7 +44,7 @@ const useParallax = (elementRef: React.RefObject<HTMLElement>) => { // Typed ele
     if (!element) return;
 
     let options = {
-      threshold: new Array(101).fill(0).map((v, i) => i * 0.01),
+      threshold: Array.from({ length: 101 }, (_, i) => i * 0.01),
     };
 
     const callback = (entries: IntersectionObserverEntry[]) => { // Typed entries
@@ -70,29 +70,32 @@ const parallax = (parallaxMultiplier: number, initial = -15, range = 15) => { //
   };
 };
 
-interface ApplicantsLayoutProps { // Define props for FC if children are expected
-    children: React.ReactNode;
+interface ApplicantsLayoutProps {
+  children: React.ReactNode;
+  windowSize: {
+    width: number;
+    height: number;
+  };
 }
 
-export const ApplicantsLayout: FC<ApplicantsLayoutProps> = ({ children }) => {
+export const ApplicantsLayout: FC<ApplicantsLayoutProps> = ({ children, windowSize }) => {
   const router = useRouter();
-  const heroEl = useRef<HTMLDivElement>(null); // Typed useRef
-  const parallaxMultiplier = useParallax(heroEl);
-  // const isScrolled = parallaxMultiplier > 0.15; // This variable wasn't used, can be removed if not needed
+  const [mounted, setMounted] = useState(false);
+  const [tabIndex, setTabIndex] = useState(0);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+  const parallaxMultiplier = useParallax(parallaxRef);
 
-  const [tabIndex, setTabIndex] = useState(APPLICANTS_TABS_MAP[router.pathname] || 0); // Added fallback for tabIndex
-
-  useEffect(() => { // Sync tabIndex if router.pathname changes externally
+  useEffect(() => {
+    setMounted(true);
     setTabIndex(APPLICANTS_TABS_MAP[router.pathname] || 0);
   }, [router.pathname]);
 
-
   const handleChange = (index: number) => {
     setTabIndex(index);
-    let pathToGo = APPLICANTS_URL; // Default path
+    let pathToGo = APPLICANTS_URL;
 
     switch (index) {
-      case APPLICANTS_TABS_MAP[APPLICANTS_URL]: // Use map for consistency
+      case APPLICANTS_TABS_MAP[APPLICANTS_URL]:
         pathToGo = APPLICANTS_URL;
         break;
       case APPLICANTS_TABS_MAP[OFFICE_HOURS_URL]:
@@ -105,7 +108,6 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = ({ children }) => {
         pathToGo = PROJECT_GRANTS_URL;
         break;
       default:
-        // Optional: handle default case or log an error if index is unexpected
         break;
     }
     router.push({ pathname: pathToGo }, undefined, { scroll: false });
@@ -117,40 +119,51 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = ({ children }) => {
   // If applicantsHero2 is an imported image (StaticImageData), it's used correctly by Next/Image in Description
   // For simplicity, assuming Description component handles 'img.src' as string or StaticImageData
 
+  if (!mounted) {
+    return null; // Return null on server-side and initial client render
+  }
+
   return (
-    <>
-      <Stack mb={5} px={{ base: 5, md: 12 }} py={3} display={!isGranteeFinance ? 'block' : 'none'}>
-        {/* The 'ref' for parallax was on heroEl but not applied to any actual element.
-            If parallax is intended for the <section>, apply it there.
-            For now, I'll remove the unused heroEl and parallaxMultiplier to avoid confusion
-            unless you specify where the parallax effect should be applied.
-        */}
-        <section id='hero'> {/* CORRECTED LINE: Removed the extra 'i' */}
+    <Stack spacing={10}>
+      <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
+        <section id='hero' ref={parallaxRef}>
           <BlatamBanner />
-          <Button> ✅<strong> Certificación </strong> </Button>
-          <Button> 🔴 En vivo </Button>
+          <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+            <Button>✅ <strong>Certificación</strong></Button>
+            <Button>🔴 En vivo</Button>
+          </div>
 
           <Description
             title='Curso de Inteligencia Artificial aplicada al Marketing Digital'
             img={{ src: applicantsHero2, alt: 'Kid watching plants grow', width: 450, height: 248 }}
+            windowSize={windowSize}
           >
             Aprende desde cero todos los conceptos fundamentales de IA y descubre cómo integrar inteligencia artificial en tus estrategias de marketing.
             <strong> Duración 4 semanas</strong>
           </Description>
-          <Button> 🌟5 / 5 estrellas </Button>
-          <PromoBanner
-            discount="65% OFF"
-            originalPrice="$4,290 MXN"
-            newPrice="$1,502 MXN"
-            additionalInfo="Hasta 12 meses sin interés de $125 MXN"
-            duration="" /* This prop was empty, ensure PromoBanner handles it or remove */
-            paymentLinkText="Ver medios de pago"
-          />
-          <CourseBuyButton
-            itemType="curso"
-            gumroadLink="https://astrixial.gumroad.com/l/ia"
-            tooltipText="Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, te devolvemos la totalidad del dinero invertido. Solo aplica para tu primer curso en Blatam."
-          />
+
+          <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+            <Button>🌟 5/5 estrellas</Button>
+          </div>
+
+          {mounted && (
+            <Stack align="center" spacing={4}>
+              <PromoBanner
+                discount="65% OFF"
+                originalPrice="$4,290 MXN"
+                newPrice="$1,502 MXN"
+                additionalInfo="Hasta 12 meses sin interés de $125 MXN"
+                duration=""
+                paymentLinkText="Ver medios de pago"
+              />
+              <CourseBuyButton
+                itemType="curso"
+                gumroadLink="https://astrixial.gumroad.com/l/ia"
+                tooltipText="Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, te devolvemos la totalidad del dinero invertido. Solo aplica para tu primer curso en Blatam."
+              />
+            </Stack>
+          )}
+
           <CourseInfoBar />
           <CourseModality />
           <LearningPathPromo />
@@ -160,10 +173,10 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = ({ children }) => {
       <NavigationTabs tabIndex={tabIndex} handleChange={handleChange} tabsList={APPLICANTS_TABS} />
       <Stack px={{ base: !isGranteeFinance ? 5 : 0, md: !isGranteeFinance ? 12 : 0 }} py={!isGranteeFinance ? 0 : 8}> {/* Adjusted padding for grantee finance page */}
         <Stack mb={8}>{children}</Stack>
-        <GraduatePlacement />
-        <Testimonials />
-        <PricingSection />
+        <GraduatePlacement windowSize={windowSize} />
+        <Testimonials windowSize={windowSize} />
+        <PricingSection windowSize={windowSize} />
       </Stack>
-    </>
+    </Stack>
   );
 };

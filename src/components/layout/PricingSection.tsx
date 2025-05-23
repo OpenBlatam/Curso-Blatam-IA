@@ -22,7 +22,14 @@ const featuresData: FeatureItem[] = [
   { text: 'Certificado de aprobación' },
 ];
 
-const PricingSection: React.FC = () => {
+interface PricingSectionProps {
+  windowSize: {
+    width: number;
+    height: number;
+  };
+}
+
+const PricingSection: React.FC<PricingSectionProps> = ({ windowSize }) => {
   return (
     <section className={styles.pricingSectionContainer}>
       <p className={styles.preHeading}>PRECIO</p>

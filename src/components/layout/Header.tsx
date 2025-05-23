@@ -10,9 +10,11 @@ const ArrowIcon = () => <span className={styles.ctaIcon}>→</span>;
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 21.9);
     };
@@ -23,6 +25,10 @@ const Header: React.FC = () => {
   }, []);
 
   const showBuyNowButton = router.pathname === '/applicants';
+
+  if (!mounted) {
+    return null; // Return null on server-side and initial client render
+  }
 
   return (
     <header className={`${styles.headerContainer} ${isScrolled ? styles.scrolled : ''}`}>

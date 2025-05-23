@@ -1,6 +1,7 @@
 // components/PaymentModal.tsx
 import React from 'react';
 import styles from './PaymentModal.module.css'; // We will create this file next
+import Image from 'next/image';
 
 interface PaymentModalProps {
   onClose: () => void;
@@ -31,13 +32,13 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onClose }) => {
         <h3>Tarjeta de crédito y débito</h3>
         <div className={styles.cardLogos}>
           {cardLogosData.map((logo) => (
-            <img
+            <Image
               key={logo.name}
               src={logo.src}
               alt={logo.alt}
-              className={styles.cardLogo}
-              // You might set a height here or control it via CSS
-              // height="30" // Example direct attribute
+              width={50}
+              height={30}
+              style={{ objectFit: 'cover' }}
             />
           ))}
         </div>

@@ -1,5 +1,5 @@
 // components/BlatamBanner.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link'; // If the CTA button is a link
 import styles from './BlatamBannerMain.module.css';
 
@@ -7,13 +7,30 @@ import styles from './BlatamBannerMain.module.css';
 const FireIcon = () => <span className={styles.icon}>🔥</span>;
 const ArrowIcon = () => <span className={styles.icon}>→</span>;
 
-const BlatamBannerMain: React.FC = () => {
+interface BlatamBannerMainProps {
+  windowSize: {
+    width: number;
+    height: number;
+  };
+}
+
+const BlatamBannerMain: React.FC<BlatamBannerMainProps> = ({ windowSize }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const featureTags = [
     'Clases en vivo',
     'Certificado oficial',
     'Mentorías',
     'Salida laboral',
   ];
+
+  if (!mounted) {
+    return null; // Don't render anything during SSR
+  }
 
   return (
     <div className={styles.bannerContainer}>

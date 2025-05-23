@@ -1,0 +1,23 @@
+.featuresSectionContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid */
+    gap: 24px; /* Space between cards */
+    padding: 40px 20px; /* Default padding */
+    background-color: #f4f5f7; /* Light background for the section */
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 767px) {
+    .featuresSectionContainer {
+      grid-template-columns: 1fr; /* Single column on mobile */
+      padding: 30px 15px; /* Adjusted padding for mobile */
+      /* You might want to adjust padding inside FeatureCard itself for content spacing */
+    }
+  }
+
+  @media (min-width: 768px) {
+    .featuresSectionContainer {
+      grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+    }
+  } 

@@ -2,6 +2,7 @@ import { Box, BoxProps, Flex, FlexProps, Link } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FC } from 'react';
+import { HiArrowRight } from 'react-icons/hi';
 
 import { ImportantText } from './UI/headings';
 
@@ -34,7 +35,7 @@ export const ButtonLink: FC<Props> = ({ label, link, width, isApplyButton }) => 
         />
 
         <MotionFlex
-          backgroundColor='brand.accent'
+          backgroundColor='rgba(227, 167, 196, 0.95)'
           w={width}
           py={4}
           justifyContent='center'
@@ -44,9 +45,12 @@ export const ButtonLink: FC<Props> = ({ label, link, width, isApplyButton }) => 
           whileHover={{ x: -1.5, y: -1.5 }}
           onMouseEnter={() => setButtonHovered(true)}
           onMouseLeave={() => setButtonHovered(false)}
+          backdropFilter="blur(8px)"
+          boxShadow="0 4px 15px rgba(227, 167, 196, 0.3)"
         >
-          <ImportantText color='white' as='h2'>
+          <ImportantText color='white' as='h2' display="flex" alignItems="center" gap={2}>
             {label}
+            <HiArrowRight size={20} />
           </ImportantText>
 
           {isApplyButton && (

@@ -1,13 +1,14 @@
 // components/BlatamBanner.tsx
 import React from 'react';
 import styles from './BlatamBanner.module.css';
+import BlatamLogoText from '../UI/BlatamLogoText';
 
 const BlatamBanner: React.FC = () => {
   return (
     <div className={styles.bannerContainer}>
       <div className={styles.extendedLabelLeft}>- EXTENDIMOS -</div>
       <div className={styles.content}>
-        <span className={styles.hotLabel}>BLATAM</span> {/* Changed from HOT SALE */}
+        <BlatamLogoText className={styles.hotLabel} /> {/* Changed from HOT SALE */}
         <span className={styles.saleText}>hasta</span>
         <div className={styles.discount}>
           <span className={styles.discountNumber}>70</span>

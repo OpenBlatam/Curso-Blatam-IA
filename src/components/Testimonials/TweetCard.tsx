@@ -17,6 +17,7 @@ import globalClassName from "../../utils/globalclassname";
 import css from './name.module.css';
 import VerifiedBadgeSvg from '../../../public/images/VerifiedBadge.svg';
 import Padlock from "./Padlock";
+import Image from 'next/image';
 
 type NameProps = {
   name: string;
@@ -37,9 +38,12 @@ const name = ({
     >
     <span>{ name }</span>
       {isVerified && (
-          <img
+          <Image
               src={VerifiedBadgeSvg}
               alt="verified twitter acount"
+              width={20}
+              height={20}
+              style={{ objectFit: 'cover' }}
               {...className(
                   globalClassName('verified-badge'),
                   css.verifiedBadge,

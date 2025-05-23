@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { FC, ReactNode, useState } from 'react';
 import { StaticImageData } from 'next/image';
 
-import {Description, List, NavigationTabs} from '../UI';
+import {Description, List, NavigationTabs, AboutHero} from '../UI';
 
 import {
   ABOUT_URL,
@@ -17,9 +17,13 @@ import aboutHero from '../../../public/images/about-hero.png';
 
 interface AboutLayoutProps {
   children: ReactNode;
+  windowSize: {
+    width: number;
+    height: number;
+  };
 }
 
-export const AboutLayout: FC<AboutLayoutProps> = ({ children }) => {
+export const AboutLayout: FC<AboutLayoutProps> = ({ children, windowSize }) => {
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(ABOUT_TABS_MAP[router.pathname]);
 
@@ -63,37 +67,41 @@ export const AboutLayout: FC<AboutLayoutProps> = ({ children }) => {
   };
 
   return (
-    <>
-      <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
-        <section id='hero'>
-          <Description
-            title='¿Por qué elegir Blatam?'
-            img={{ src: aboutHero, alt: 'People reading about the ESP', width: 498, height: 296 }}
-          >
-            <List>
-              <ListItem>
-                <strong>  1.Clases en vivo y actualizadas</strong>. Impartidas por instructores referentes en el ecosistema blockchain.
-              </ListItem>
-              <ListItem>
-               <strong> 2.Eventos
-                 exclusivos. </strong>
-                Podrás unirte a webinars, entrevistas y eventos exclusivos.
-              </ListItem>
-              <ListItem>
-               <strong> 3.Acceso a nuestra
-                 comunidad: </strong> Formarás parte de la comunidad más activa del ecosistema.
-              </ListItem>
-            </List>
+    <Stack>
+      <AboutHero windowSize={windowSize} />
+      <Stack>
+        <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
+          <section id='hero'>
+            <Description
+              title='¿Por qué elegir Blatam?'
+              img={{ src: aboutHero, alt: 'People reading about the ESP', width: 498, height: 296 }}
+              windowSize={windowSize}
+            >
+              <List>
+                <ListItem>
+                  <strong>  1.Clases en vivo y actualizadas</strong>. Impartidas por instructores referentes en el ecosistema blockchain.
+                </ListItem>
+                <ListItem>
+                 <strong> 2.Eventos
+                   exclusivos. </strong>
+                  Podrás unirte a webinars, entrevistas y eventos exclusivos.
+                </ListItem>
+                <ListItem>
+                 <strong> 3.Acceso a nuestra
+                   comunidad: </strong> Formarás parte de la comunidad más activa del ecosistema.
+                </ListItem>
+              </List>
 
-          </Description>
-        </section>
+            </Description>
+          </section>
+        </Stack>
+
+        <NavigationTabs tabIndex={tabIndex} handleChange={handleChange} tabsList={ABOUT_TABS} />
+
+        <Stack px={{ base: 5, md: 12 }}>
+          <Stack mb={8}>{children}</Stack>
+        </Stack>
       </Stack>
-
-      <NavigationTabs tabIndex={tabIndex} handleChange={handleChange} tabsList={ABOUT_TABS} />
-
-      <Stack px={{ base: 5, md: 12 }}>
-        <Stack mb={8}>{children}</Stack>
-      </Stack>
-    </>
+    </Stack>
   );
 };
