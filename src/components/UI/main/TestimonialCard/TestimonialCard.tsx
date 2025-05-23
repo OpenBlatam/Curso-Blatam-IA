@@ -20,6 +20,8 @@ const FlagIcon = ({ countryCode }: { countryCode?: string }) => {
     case 'cl': flagEmoji = '🇨🇱'; break;
     case 'co': flagEmoji = '🇨🇴'; break;
     case 'pe': flagEmoji = '🇵🇪'; break;
+    case 'ar': flagEmoji = '🇦🇷'; break;
+    case 'uy': flagEmoji = '🇺🇾'; break;
     // Add more cases
     default: return <span className={styles.flagPlaceholder}>{countryCode.toUpperCase()}</span>;
   }
@@ -58,7 +60,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         </div>
       </div>
       <div className={styles.quoteBody}>
-        <span className={styles.quoteMark}>“</span>
+        <span className={styles.quoteMark}>" </span>
         <p className={styles.quoteText}>{quote}</p>
       </div>
       {linkedinUrl && (
