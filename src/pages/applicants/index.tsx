@@ -1,8 +1,9 @@
-import {Box, Button, Center, Flex, Stack} from '@chakra-ui/react';
+import {Box, Button, Center, Flex, Stack, IconButton, Link as ChakraLink} from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 import {
   ApplicantsSidebar,
@@ -29,6 +30,8 @@ import {
   SMALL_GRANTS_URL
 } from '../../constants';
 
+const WHATSAPP_NUMBER = '15557666703'; // Cambia este número por el real
+const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const Applicants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
@@ -40,6 +43,30 @@ const Applicants: NextPage = () => {
     '1 clase en vivo semanal de 2 horas',
     'Más de 10 horas de contenidos audiovisuales on-demand, disponibles en nuestra plataforma para acceder en cualquier momento (videos, infografías, actividades gamificadas y desafíos)',
   ];
+  const [notify, setNotify] = useState(false);
+
+  useEffect(() => {
+    let blinkCount = 0;
+    let blinkInterval: NodeJS.Timeout;
+    const startNotification = () => {
+      setNotify(true);
+      blinkInterval = setInterval(() => {
+        setNotify((prev) => !prev);
+        blinkCount++;
+        if (blinkCount >= 6) { // 3 parpadeos (on/off)
+          clearInterval(blinkInterval);
+          setNotify(false);
+        }
+      }, 300); // cada 300ms
+    };
+    const mainInterval = setInterval(startNotification, 15000); // cada 15 segundos
+    // Lanza la notificación al cargar
+    startNotification();
+    return () => {
+      clearInterval(mainInterval);
+      clearInterval(blinkInterval);
+    };
+  }, []);
 
   return (
     <>
@@ -356,6 +383,23 @@ una entrega final de carácter integrador.
         >
           Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, te devolvemos la totalidad del dinero invertido. Solo aplica para tu primer curso en Blatam.
         </Box>
+      </Box>
+      <Box position="fixed" bottom={6} right={6} zIndex={1000}>
+        <ChakraLink href={WHATSAPP_LINK} isExternal>
+          <IconButton
+            aria-label="WhatsApp"
+            icon={<FaWhatsapp size={32} />}
+            colorScheme="whatsapp"
+            borderRadius="full"
+            boxShadow="lg"
+            size="lg"
+            _hover={{ bg: 'green.500' }}
+            style={{
+              opacity: notify ? 0.4 : 1,
+              transition: 'opacity 0.5s',
+            }}
+          />
+        </ChakraLink>
       </Box>
     </>
   );

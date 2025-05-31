@@ -34,17 +34,25 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
         <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
           <DrawerOverlay />
           <DrawerContent>
-            <DrawerHeader p={4} borderBottomWidth="1px">
-              <Flex align="center" justify="space-between">
-                <Box fontWeight="bold" fontSize="lg">Menú</Box>
-                <IconButton
-                  aria-label="Cerrar menú"
-                  icon={<><CloseIcon boxSize={3} mr={2} />Cerrar</>}
-                  onClick={onClose}
-                  variant="ghost"
-                  size="sm"
-                />
-              </Flex>
+            <DrawerHeader p={4} borderBottomWidth="1px" position="relative">
+              <Box fontWeight="bold" fontSize="lg">Menú</Box>
+              <IconButton
+                aria-label="Cerrar menú"
+                icon={
+                  <Flex align="center">
+                    <CloseIcon boxSize={6} />
+                    <Box as="span" ml={2} fontSize="lg" fontWeight="bold">Cerrar</Box>
+                  </Flex>
+                }
+                onClick={onClose}
+                variant="ghost"
+                size="lg"
+                position="absolute"
+                top={2}
+                right={2}
+                color="gray.700"
+                _hover={{ bg: 'gray.100' }}
+              />
             </DrawerHeader>
             <DrawerBody>
               <Stack spacing={4} mt={4}>

@@ -1,73 +1,107 @@
 /* components/BlatamBanner.module.css */
 .bannerContainer {
-    background-color: #1a202c; /* Dark background, adjust as needed */
-    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    border-radius: 2rem;
+    padding: 2.5rem 1.5rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    background: linear-gradient(120deg, #ff003c 0%, #ff8c00 100%);
+    z-index: 1;
+}
+
+.bannerContainer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, #ff003c 0%, #ff8c00 100%);
+    opacity: 0.85;
+    filter: blur(24px) brightness(1.2) contrast(1.2);
+    z-index: 0;
+    animation: blaPulse 2s infinite alternate;
+}
+
+@keyframes blaPulse {
+    0% { filter: blur(16px) brightness(1.2) contrast(1.2); }
+    100% { filter: blur(24px) brightness(1.4) contrast(1.4); }
+}
+
+.content {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 15px 20px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    position: relative; /* For absolute positioning of extended labels if needed */
-    overflow: hidden; /* To contain any potential overflow */
-  }
-  
-  .content {
-    display: flex;
-    align-items: baseline; /* Align text baselines */
-    gap: 15px;
-    text-align: center; /* Center the content block */
-    flex-grow: 1; /* Allow content to take up space */
-    justify-content: center; /* Center content items horizontally */
-  }
-  
-  .hotLabel {
-    font-size: 2rem; /* Adjust size for BLATAM */
+    gap: 1.5rem;
+    justify-content: center;
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.hotLabel {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    background: linear-gradient(90deg, #ff003c 60%, #ff8c00 100%);
+    padding: 0.1em 0.3em;
+    border-radius: 0.3em;
+    margin-right: 0.1em;
+    box-shadow: 0 2px 8px #ff003c88;
+    letter-spacing: 0.1em;
+    text-shadow: 0 2px 16px #0008;
+    animation: firePulse 1s infinite alternate;
+}
+
+@keyframes firePulse {
+    0% { filter: drop-shadow(0 0 8px #ff0); }
+    100% { filter: drop-shadow(0 0 16px #ff0); }
+}
+
+.discountNumber {
+    font-size: 3rem;
     font-weight: bold;
-    color: #ffffff; /* White text */
-    /* Add styling to mimic the "HOT" look - maybe a background or specific font */
-  }
-  
-  .saleText {
+    color: #fff200;
+    line-height: 1;
+    text-shadow: 0 2px 8px #fff20088;
+}
+
+.discountPercent {
+    font-size: 1.5rem;
+    color: #fff200;
+    line-height: 1;
+    margin-left: 5px;
+    text-shadow: 0 2px 8px #fff20088;
+}
+
+.discountOff {
     font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    margin-left: 5px;
+}
+
+.installment {
+    font-size: 1.2rem;
+    color: #fff;
+    opacity: 0.85;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.saleText {
+    font-size: 1.2rem;
     font-style: italic;
     color: #f0f0f0;
-  }
-  
-  .discount {
+    margin: 0 0.5em;
+}
+
+.discount {
     display: flex;
     align-items: baseline;
-  }
-  
-  .discountNumber {
-    font-size: 3rem; /* Large discount number */
-    font-weight: bold;
-    color: #ffffff;
-    line-height: 1;
-  }
-  
-  .discountPercent {
-    font-size: 1.5rem;
-    color: #ffffff;
-    line-height: 1;
-    margin-left: 5px;
-  }
-  
-  .discountOff {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #ffffff;
-    margin-left: 5px;
-  }
-  
-  .installment {
-    font-size: 0.85rem;
-    color: #e0e0e0;
-    margin-top: 5px;
-  }
-  
-  .extendedLabelLeft,
-  .extendedLabelRight {
+}
+
+.extendedLabelLeft,
+.extendedLabelRight {
     background-color: #ff4500; /* Orange/Red color for the label */
     color: #ffffff;
     padding: 5px 15px;
@@ -78,19 +112,19 @@
     z-index: 10; /* Ensure it's on top of other elements */
     /* Positioning to mimic the angled look can be tricky with pure CSS */
     /* One approach is to use pseudo-elements and transforms */
-  }
-  
-  .extendedLabelLeft {
+}
+
+.extendedLabelLeft {
     /* Position on the left */
-  }
-  
-  .extendedLabelRight {
+}
+
+.extendedLabelRight {
     /* Position on the right */
-  }
-  
-  /* More advanced styling for angled extended labels using pseudo-elements and transforms */
-  .bannerContainer::before,
-  .bannerContainer::after {
+}
+
+/* More advanced styling for angled extended labels using pseudo-elements and transforms */
+.bannerContainer::before,
+.bannerContainer::after {
     content: '- EXTENDIMOS -';
     position: absolute;
     top: 10px; /* Adjust vertical position */
@@ -103,18 +137,99 @@
     letter-spacing: 0.05em;
     z-index: 10;
     transform: rotate(-15deg); /* Adjust angle */
-  }
-  
-  .bannerContainer::before {
+}
+
+.bannerContainer::before {
     left: -40px; /* Adjust horizontal position */
-  }
-  
-  .bannerContainer::after {
+}
+
+.bannerContainer::after {
     right: -40px; /* Adjust horizontal position */
     transform: rotate(15deg); /* Opposite angle */
-  }
-  
-  .content {
+}
+
+.content {
     /* Adjust padding or margins to ensure content doesn't overlap labels */
     padding: 10px 0; /* Example */
-  }
+}
+
+.blaContentBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  z-index: 2;
+  position: relative;
+}
+
+.blaTitleBox {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  color: #111;
+  font-size: 2rem;
+  font-weight: 900;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px #0002;
+  gap: 0.5em;
+  text-transform: uppercase;
+}
+
+.fire {
+  font-size: 2rem;
+  margin: 0 0.2em;
+}
+
+.blaTitle {
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.blaSubtitleBox {
+  background: #fff;
+  color: #222;
+  font-size: 1.15rem;
+  padding: 0.7em 1em;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px #0002;
+  font-weight: 500;
+  text-align: left;
+}
+
+.blaButtonsBox {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5em;
+}
+
+.blaBtn {
+  background: #fff;
+  color: #111;
+  font-size: 1.25rem;
+  font-weight: 900;
+  padding: 0.7em 2em;
+  border-radius: 4px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px #0002;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.blaBtn:hover {
+  background: #111;
+  color: #fff;
+  box-shadow: 0 4px 16px #0004;
+}
+
+.arrow {
+  font-size: 1.3em;
+  margin-left: 0.3em;
+}

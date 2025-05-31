@@ -96,7 +96,7 @@ export const Nav: FC<Props> = ({ windowSize }) => {
             Aprovecha hasta <strong>70% OFF</strong> y hasta <strong>12 meses sin intereses</strong> en CURSOS
             <Text as="span" mx={2} color="gray.400">|</Text>
             <Text as="span" color="brand.pink">
-              🔥 Hasta el 22 de Mayo 🔥
+              🔥 Hasta el 21 de Agosto 🔥
             </Text>
           </Text>
         </Flex>
