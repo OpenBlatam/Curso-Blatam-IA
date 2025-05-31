@@ -1,6 +1,7 @@
-import { Box, Link, Stack } from '@chakra-ui/react';
+import { Box, Link, Stack, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, IconButton, useDisclosure, Flex } from '@chakra-ui/react';
 import { FC } from 'react';
 import NextLink from 'next/link';
+import { CloseIcon } from '@chakra-ui/icons';
 
 import { PageText } from '..';
 
@@ -12,35 +13,133 @@ interface Props {
 }
 
 export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-    <Box
-      position='sticky'
-      top={24}
-      display={{ base: 'none', lg: 'block' }}
-      w='240px'
-      h='fit-content'
-      mr={12}
-    >
-      <Stack spacing={4}>
-        {sidebarLinks.map(({ href, text }, idx) => (
-          <Link
-            key={href}
-            as={NextLink}
-            href={href}
-            _hover={{ textDecoration: 'none' }}
-            color={sectionsInView[idx] ? 'brand.accent' : 'brand.ready.text'}
-            passHref
-          >
-            <PageText
-              fontSize='input'
-              fontWeight={sectionsInView[idx] ? 700 : 400}
-              _hover={{ color: 'brand.accent' }}
-            >
-              {text}
-            </PageText>
-          </Link>
-        ))}
-      </Stack>
-    </Box>
+    <>
+      {/* Mobile Drawer */}
+      <Box display={{ base: 'block', lg: 'none' }}>
+        <IconButton
+          aria-label="Abrir menú"
+          icon={<span style={{ fontWeight: 700, fontSize: '1.2em' }}>☰</span>}
+          onClick={onOpen}
+          position="fixed"
+          top={4}
+          left={4}
+          zIndex={120}
+          bg="white"
+          boxShadow="md"
+          borderRadius="md"
+        />
+        <Drawer placement="left" onClose={onClose} isOpen={isOpen} size="xs">
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerHeader p={4} borderBottomWidth="1px">
+              <Flex align="center" justify="space-between">
+                <Box fontWeight="bold" fontSize="lg">Menú</Box>
+                <IconButton
+                  aria-label="Cerrar menú"
+                  icon={<><CloseIcon boxSize={3} mr={2} />Cerrar</>}
+                  onClick={onClose}
+                  variant="ghost"
+                  size="sm"
+                />
+              </Flex>
+            </DrawerHeader>
+            <DrawerBody>
+              <Stack spacing={4} mt={4}>
+                {sidebarLinks.map(({ href, text }, idx) => (
+                  ['Inicio', 'Cursos', 'Becas'].includes(text) ? (
+                    <a
+                      key={href}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: 'none', color: sectionsInView[idx] ? 'var(--chakra-colors-brand-accent)' : 'var(--chakra-colors-brand-ready-text)' }}
+                      onClick={onClose}
+                    >
+                      <PageText
+                        fontSize='input'
+                        fontWeight={sectionsInView[idx] ? 700 : 400}
+                        _hover={{ color: 'brand.accent' }}
+                      >
+                        {text}
+                      </PageText>
+                    </a>
+                  ) : (
+                    <Link
+                      key={href}
+                      as={NextLink}
+                      href={href}
+                      _hover={{ textDecoration: 'none' }}
+                      color={sectionsInView[idx] ? 'brand.accent' : 'brand.ready.text'}
+                      passHref
+                      onClick={onClose}
+                    >
+                      <PageText
+                        fontSize='input'
+                        fontWeight={sectionsInView[idx] ? 700 : 400}
+                        _hover={{ color: 'brand.accent' }}
+                      >
+                        {text}
+                      </PageText>
+                    </Link>
+                  )
+                ))}
+              </Stack>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
+      </Box>
+
+      {/* Desktop Sidebar */}
+      <Box
+        position='sticky'
+        top={24}
+        display={{ base: 'none', lg: 'block' }}
+        w='240px'
+        h='fit-content'
+        mr={12}
+      >
+        <Stack spacing={4}>
+          {sidebarLinks.map(({ href, text }, idx) => (
+            ['Inicio', 'Cursos', 'Becas'].includes(text) ? (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none', color: sectionsInView[idx] ? 'var(--chakra-colors-brand-accent)' : 'var(--chakra-colors-brand-ready-text)' }}
+              >
+                <PageText
+                  fontSize='input'
+                  fontWeight={sectionsInView[idx] ? 700 : 400}
+                  _hover={{ color: 'brand.accent' }}
+                >
+                  {text}
+                </PageText>
+              </a>
+            ) : (
+              <Link
+                key={href}
+                as={NextLink}
+                href={href}
+                _hover={{ textDecoration: 'none' }}
+                color={sectionsInView[idx] ? 'brand.accent' : 'brand.ready.text'}
+                passHref
+              >
+                <PageText
+                  fontSize='input'
+                  fontWeight={sectionsInView[idx] ? 700 : 400}
+                  _hover={{ color: 'brand.accent' }}
+                >
+                  {text}
+                </PageText>
+              </Link>
+            )
+          ))}
+        </Stack>
+      </Box>
+    </>
   );
 };

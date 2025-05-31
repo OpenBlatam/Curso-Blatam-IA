@@ -2,6 +2,7 @@ import {Box, Button, Center, Flex, Stack} from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import { useEffect } from 'react';
 
 import {
   ApplicantsSidebar,
@@ -286,6 +287,75 @@ una entrega final de carácter integrador.
             </Stack>
           </Box>
         </Flex>
+      </Box>
+
+      {/* Floating buy button and free trial message for mobile only */}
+      <Box
+        display={{ base: 'flex', md: 'none' }}
+        flexDirection="column"
+        alignItems="center"
+        position="fixed"
+        bottom="0"
+        left="0"
+        width="100%"
+        zIndex={100}
+        pb={2}
+        bg="rgba(255,255,255,0.97)"
+        boxShadow="0 -2px 16px rgba(0,0,0,0.08)"
+      >
+        <a
+          href="https://astrixial.gumroad.com/l/ia"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ width: '92%', display: 'flex', justifyContent: 'center', textDecoration: 'none' }}
+        >
+          <Button
+            colorScheme="orange"
+            size="md"
+            width="100%"
+            borderRadius="full"
+            fontWeight="bold"
+            fontSize="md"
+            leftIcon={<span style={{ fontSize: '1.1em' }}>🔥</span>}
+            rightIcon={<span style={{ fontSize: '1.1em' }}>&rarr;</span>}
+            px={4}
+            py={2}
+            boxShadow="0 2px 8px rgba(255, 140, 0, 0.10)"
+            _hover={{ bgGradient: "linear(to-r, orange.400, orange.500)" }}
+            transition="all 0.2s"
+          >
+            Comprar curso
+          </Button>
+        </a>
+        <Box
+          as="span"
+          mt={1}
+          px={3}
+          py={1}
+          borderRadius="full"
+          bg="orange.50"
+          color="orange.500"
+          fontWeight="bold"
+          fontSize="0.85em"
+          boxShadow="sm"
+          textAlign="center"
+          display="inline-block"
+        >
+          <span role="img" aria-label="fuego">🔥</span> ¡PRUEBA 2 CLASES GRATIS!
+        </Box>
+        <Box
+          mt={2}
+          px={3}
+          py={2}
+          bg="gray.50"
+          borderRadius="md"
+          fontSize="xs"
+          color="gray.700"
+          textAlign="center"
+          maxW="95%"
+        >
+          Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, te devolvemos la totalidad del dinero invertido. Solo aplica para tu primer curso en Blatam.
+        </Box>
       </Box>
     </>
   );

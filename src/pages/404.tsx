@@ -7,7 +7,7 @@ const PageNotFound: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Page Not Found | Blatam Academy </title>
+        <title>Página no encontrada | Blatam Academy </title>
         <meta name='description' content='Page Not Found' />
       </Head>
 
@@ -18,7 +18,7 @@ const PageNotFound: NextPage = () => {
           </Heading>
 
           <Heading as='h4' color='brand.heading' fontSize='h4' fontWeight={700} lineHeight='24px'>
-            Page not found.
+            Página no encontrada.
           </Heading>
 
           <Text
@@ -31,10 +31,10 @@ const PageNotFound: NextPage = () => {
             Please go back to{' '}
             <NextLink href='/' passHref>
               <Link fontWeight={700} color='brand.orange.100' _hover={{ textDecoration: 'none' }}>
-                our home
+                nuestra página principal
               </Link>
             </NextLink>{' '}
-            to get started.
+            para empezar.
           </Text>
         </Box>
       </Center>

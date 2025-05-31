@@ -22,9 +22,9 @@ export const PROJECT_GRANTS_URL = '/applicants/project-grants';
 export const ACADEMIC_GRANTS_URL = '/academic-grants';
 export const DEVCON_GRANTS_URL = '/devcon-grants';
 export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
-  { text: 'Misión y Objetivo', href: `${APPLICANTS_URL}/#mission-and-scope` },
-  { text: 'Cuando', href: `${APPLICANTS_URL}/#how-we-support` },
-  { text: 'Temario', href: `${APPLICANTS_URL}/#application-types` }
+  { text: 'Inicio', href: '/' },
+  { text: 'Cursos', href: '/applicants' },
+  { text: 'Becas', href: '/about' },
 ];
 export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'Resumen', href: `${OFFICE_HOURS_URL}/#description` },
@@ -82,7 +82,7 @@ export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 
 // ethereum ecosystem
-export const ETHEREUM_ORG_URL = 'https://blatam.org/';
+export const ETHEREUM_ORG_URL = 'https://ia-curso.netlify.app/';
 export const ETHEREUM_COOKIE_POLICY_URL = 'https://ethereum.org/en/cookie-policy/';
 export const ETHEREUM_PRIVACY_POLICY_URL = 'https://ethereum.org/en/privacy-policy/';
 export const ETHEREUM_TERMS_OF_USE_URL = 'https://ethereum.org/en/terms-of-use/';

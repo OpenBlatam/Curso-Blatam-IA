@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://blatam.org',
+  siteUrl: process.env.SITE_URL || 'https://ia-curso.netlify.app/',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   changefreq: 'daily',
@@ -9,7 +9,7 @@ module.exports = {
   exclude: ['/server-sitemap.xml'],
   robotsTxtOptions: {
     additionalSitemaps: [
-      'https://blatam.org/server-sitemap.xml',
+      'https://ia-curso.netlify.app/',
     ],
     policies: [
       {

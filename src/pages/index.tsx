@@ -1,8 +1,10 @@
 import {Accordion, Box, Flex, Grid, GridItem, Stack, SimpleGrid} from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import { Text } from '@chakra-ui/react';
+import { Text, Button } from '@chakra-ui/react';
 import { FiArrowRight } from 'react-icons/fi';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import {
     FAQItem,
@@ -17,6 +19,8 @@ import  bbva  from '../../public/images/bbva.svg';
 import accenture from '../../public/logos/Accenture.svg'; 
 import mercadolibre from '../../public/logos/mercadolibre.svg'; 
 import gloabant from '../../public/logos/Globant_Logo.svg'; 
+import galicia from '../../public/logos/Logo_Banco_Galicia.svg';
+import naranjax from '../../public/logos/naranja-x-1.svg';
 
 import ethglobal from '../../public/images/ethglobal-logo-vector.png';
 import smallSucculentSVG from '../../public/images/small-succulent.svg';
@@ -60,18 +64,46 @@ const tweets = [
   }
 ];
 
+interface AnimatedCounterProps {
+  target: number;
+  duration?: number;
+}
+
+const AnimatedCounter = ({ target, duration = 2000 }: AnimatedCounterProps) => {
+  const [count, setCount] = useState(0);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      let startTime: number | null = null;
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const currentCount = Math.floor(progress * target);
+        setCount(currentCount);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+      requestAnimationFrame(animate);
+    }
+  }, [inView, target, duration]);
+
+  return (
+    <Text ref={ref} fontSize="xl" fontWeight="bold">
+      +{count} graduados
+    </Text>
+  );
+};
+
 const Home: NextPage = () => {
   return (
     <>
     <BlatamBanner />
-              <PromoBanner
-        discount="65% OFF"
-        originalPrice="$4,290 MXN"
-        newPrice="$1,502 MXN"
-        additionalInfo="Hasta 12 meses sin interés de $125 MXN"
-        duration=""
-        paymentLinkText="Ver medios de pago"
-      />
 
       <PageMetadata
         title='Incio'
@@ -102,6 +134,107 @@ const Home: NextPage = () => {
             </Stack>
           </Flex>
           <ProfessionalGoalsSection />
+          
+          {/* Graduate Employment Statistics Section */}
+          <section>
+            <PageSection mb={6}>SALIDA LABORAL</PageSection>
+            <PageText fontSize='stats' fontWeight={100} lineHeight='32px' mb={8}>
+              La plataforma con más graduados en empresas líderes
+            </PageText>
+            <PageText mb={8}>
+              En Blatam, nuestro principal objetivo es ayudarte a conseguir empleo o avanzar en tu carrera profesional. Por eso, nos enorgullece ser la plataforma educativa con la mayor cantidad de graduados en empresas de prestigio.
+            </PageText>
+
+            <Grid
+              templateColumns={{
+                base: 'repeat(1, 1fr)',
+                md: 'repeat(2, 1fr)',
+                lg: 'repeat(3, 1fr)'
+              }}
+              gap={8}
+              mb={8}
+            >
+              <GridItem>
+                <Stack align="center" spacing={4}>
+                  <Box>
+                    <Image
+                      src={mercadolibre}
+                      alt="Mercado Libre logo"
+                      width={150}
+                      height={60}
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </Box>
+                  <AnimatedCounter target={8} />
+                </Stack>
+              </GridItem>
+
+              <GridItem>
+                <Stack align="center" spacing={4}>
+                  <Box>
+                    <Image
+                      src={accenture}
+                      alt="Accenture logo"
+                      width={150}
+                      height={60}
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </Box>
+                  <AnimatedCounter target={80} />
+                </Stack>
+              </GridItem>
+
+              <GridItem>
+                <Stack align="center" spacing={4}>
+                  <Box>
+                    <Image
+                      src={gloabant}
+                      alt="Globant logo"
+                      width={150}
+                      height={60}
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </Box>
+                  <AnimatedCounter target={688} />
+                </Stack>
+              </GridItem>
+
+              <GridItem>
+                <Stack align="center" spacing={4}>
+                  <Box>
+                    <Image
+                      src={galicia}
+                      alt="Galicia logo"
+                      width={150}
+                      height={60}
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </Box>
+                  <AnimatedCounter target={883} />
+                </Stack>
+              </GridItem>
+
+              <GridItem>
+                <Stack align="center" spacing={4}>
+                  <Box>
+                    <Image
+                      src={naranjax}
+                      alt="NaranjaX logo"
+                      width={150}
+                      height={60}
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </Box>
+                  <AnimatedCounter target={584} />
+                </Stack>
+              </GridItem>
+            </Grid>
+
+            <PageText fontSize="sm" color="gray.600" textAlign="center">
+              Las cifras de graduados en empresas líderes se basan en información pública disponible en LinkedIn.
+            </PageText>
+          </section>
+
           <FeaturesSection />
           <AdditionalFeaturesSection />
           <TestimonialsSection />
@@ -302,6 +435,53 @@ const Home: NextPage = () => {
             </HomeAboutCard3>
           </section>
         </Stack>
+      </Box>
+
+      {/* Mobile Promo Bar */}
+      <Box
+        display={{ base: 'flex', md: 'none' }}
+        position="fixed"
+        bottom="0"
+        left="0"
+        width="100%"
+        zIndex={200}
+        bg="orange.500"
+        color="white"
+        py={2}
+        px={3}
+        alignItems="center"
+        justifyContent="space-between"
+        flexDirection="column"
+        textAlign="center"
+        boxShadow="0 -2px 16px rgba(0,0,0,0.12)"
+      >
+        <Text fontSize="sm" fontWeight="bold" mb={2} lineHeight="1.3">
+          Aprovecha hasta <b>70% OFF</b> y hasta 12 meses sin intereses en <b>CURSOS</b> <span role="img" aria-label="fuego">🔥</span>
+          <br />
+          <span style={{ fontWeight: 400 }}>Hasta el 21 de Agosto</span> <span role="img" aria-label="fuego">🔥</span>
+        </Text>
+        <a
+          href="/applicants"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ width: '100%', textDecoration: 'none' }}
+        >
+          <Button
+            colorScheme="blackAlpha"
+            bg="black"
+            color="white"
+            width="100%"
+            borderRadius="full"
+            fontWeight="bold"
+            fontSize="md"
+            leftIcon={<span style={{ fontSize: '1.1em' }}>🔥</span>}
+            rightIcon={<span style={{ fontSize: '1.1em' }}>&rarr;</span>}
+            py={5}
+            _hover={{ bg: 'gray.800' }}
+          >
+            Comprar ahora
+          </Button>
+        </a>
       </Box>
     </>
   );
