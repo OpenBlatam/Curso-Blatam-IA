@@ -18,8 +18,8 @@ interface Props {
   text: string;
 }
 
-const MotionBox = motion.create(Box);
-const MotionButton = motion.create(Button);
+const MotionBox = motion(Box);
+const MotionButton = motion(Button);
 
 export const SubmitButton: FC<Props> = ({
   id = 'submit-application',

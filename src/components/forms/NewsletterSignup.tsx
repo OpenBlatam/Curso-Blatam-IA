@@ -23,8 +23,8 @@ import { NewsletterFormData } from '../../types';
 
 import { TOAST_OPTIONS } from '../../constants';
 
-const MotionBox = motion.create(Box);
-const MotionButton = motion.create(Button);
+const MotionBox = motion(Box);
+const MotionButton = motion(Button);
 
 export const NewsletterSignup: FC = () => {
   const {

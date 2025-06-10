@@ -1,5 +1,5 @@
 import {Box, Container, ContainerProps, Text, useColorModeValue, Link} from '@chakra-ui/react';
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
@@ -52,8 +52,8 @@ interface LayoutProps extends ContainerProps {
   windowSize: WindowSize;
 }
 
-// Client-side only home page content
-const HomePageContent: FC<{ children: ReactNode; windowSize: WindowSize }> = ({ children, windowSize }) => {
+// Memoized HomePageContent component
+const HomePageContent = React.memo<{ children: ReactNode; windowSize: WindowSize }>(({ children, windowSize }) => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
 
@@ -76,9 +76,12 @@ const HomePageContent: FC<{ children: ReactNode; windowSize: WindowSize }> = ({ 
       <Footer/>
     </Box>
   );
-};
+});
 
-export const Layout: FC<LayoutProps> = ({ children, windowSize, ...props }) => {
+HomePageContent.displayName = 'HomePageContent';
+
+// Memoized Layout component
+export const Layout = React.memo<LayoutProps>(({ children, windowSize, ...props }) => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const bgColor = useColorModeValue('background.primary.light', 'background.primary.dark');
@@ -91,53 +94,40 @@ export const Layout: FC<LayoutProps> = ({ children, windowSize, ...props }) => {
     setMounted(true);
   }, []);
 
-  const renderContent = (): ReactNode => {
+  const renderContent = useMemo(() => {
     if (!mounted || !router.isReady) {
       return <Box minH="400px" />;
     }
 
-    if (router.pathname === HOME_URL) {
+    const path = router.pathname;
+
+    if (path === HOME_URL) {
       return <HomePageContent windowSize={windowSize}>{children}</HomePageContent>;
     }
 
-    if (router.pathname.startsWith(APPLICANTS_URL)) {
+    const layoutMap = {
+      [APPLICANTS_URL]: ApplicantsLayout,
+      [ABOUT_URL]: AboutLayout,
+      [DEVCON_GRANTS_URL]: DevconGrantsLayout,
+      [ACADEMIC_GRANTS_URL]: AcademicGrantsLayout,
+    };
+
+    const LayoutComponent = Object.entries(layoutMap).find(([key]) => path.startsWith(key))?.[1];
+
+    if (LayoutComponent) {
       return (
         <Box as="main" minH="100vh">
-          <ApplicantsLayout windowSize={windowSize}>{children}</ApplicantsLayout>
+          <LayoutComponent windowSize={windowSize}>{children}</LayoutComponent>
         </Box>
       );
     }
 
-    if (router.pathname.startsWith(ABOUT_URL)) {
-      return (
-        <Box as="main" minH="100vh">
-          <AboutLayout windowSize={windowSize}>{children}</AboutLayout>
-        </Box>
-      );
-    }
-
-    if (router.pathname === DEVCON_GRANTS_URL) {
-      return (
-        <Box as="main" minH="100vh">
-          <DevconGrantsLayout windowSize={windowSize}>{children}</DevconGrantsLayout>
-        </Box>
-      );
-    }
-
-    if (router.pathname === ACADEMIC_GRANTS_URL) {
-      return (
-        <Box as="main" minH="100vh">
-          <AcademicGrantsLayout windowSize={windowSize}>{children}</AcademicGrantsLayout>
-        </Box>
-      );
-    }
-
-    if (
-      router.pathname === ACADEMIC_GRANTS_APPLY_URL ||
-      router.pathname === ACADEMIC_GRANTS_THANK_YOU_PAGE_URL ||
-      router.pathname === DEVCON_GRANTS_APPLY_URL ||
-      router.pathname === DEVCON_GRANTS_THANK_YOU_PAGE_URL
-    ) {
+    if ([
+      ACADEMIC_GRANTS_APPLY_URL,
+      ACADEMIC_GRANTS_THANK_YOU_PAGE_URL,
+      DEVCON_GRANTS_APPLY_URL,
+      DEVCON_GRANTS_THANK_YOU_PAGE_URL
+    ].includes(path)) {
       return (
         <Box as="main" minH="100vh">
           <AcademicGrantsApplyLayout windowSize={windowSize}>{children}</AcademicGrantsApplyLayout>
@@ -146,7 +136,7 @@ export const Layout: FC<LayoutProps> = ({ children, windowSize, ...props }) => {
     }
 
     return children;
-  };
+  }, [mounted, router.isReady, router.pathname, windowSize, children]);
 
   return (
     <Box 
@@ -169,10 +159,9 @@ export const Layout: FC<LayoutProps> = ({ children, windowSize, ...props }) => {
           py={12}
           {...props}
         >
-          {renderContent()}
+          {renderContent}
         </Container>
         
-        {/* Newsletter Signup */}
         {mounted && router.isReady && (
           <ClientOnly>
             <Box 
@@ -263,4 +252,6 @@ export const Layout: FC<LayoutProps> = ({ children, windowSize, ...props }) => {
   
     </Box>
   );
-};
+});
+
+Layout.displayName = 'Layout';

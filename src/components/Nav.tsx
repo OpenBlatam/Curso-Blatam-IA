@@ -93,12 +93,12 @@ export const Nav: FC<Props> = ({ windowSize }) => {
             color={textColor}
             transition="all 0.3s ease-in-out"
           >
-            Aprovecha hasta <strong>70% OFF</strong> y hasta <strong>12 meses sin intereses</strong> en CURSOS
+            <strong>70% OFF</strong> en cursos
             <Text as="span" mx={2} color="gray.400">|</Text>
             <Text as="span" color="brand.pink">
-              🔥 Hasta el 21 de Agosto 🔥
+              🔥 Hasta el 21/08 🔥
             </Text>
-          </Text>
+            </Text>
         </Flex>
 
         <Box display={{ base: 'block', md: 'none' }}>

@@ -30,7 +30,7 @@ import {
   SMALL_GRANTS_URL
 } from '../../constants';
 
-const WHATSAPP_NUMBER = '15557666703'; // Cambia este número por el real
+const WHATSAPP_NUMBER = '525530326229'; // Cambia este número por el real
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const Applicants: NextPage = () => {

@@ -44,12 +44,10 @@ const Header: React.FC = () => {
             <li>
               <Link href="/applicants">
                 <span className={styles.promoLink}>
-                  <span>Aprovecha hasta <strong>70% OFF</strong> y hasta <strong>12 meses sin intereses</strong> en CURSOS</span>
+                  <strong>Hasta 12 meses sin interés</strong>
                   <span className={styles.promoSeparator}>|</span>
                   <span className={styles.promoHighlight}>
-                    <span className={styles.fireEmoji}>🔥</span>
-                    Hasta el 21 de Agosto
-                    <span className={styles.fireEmoji}>🔥</span>
+                    🔥 en pagos de $125 🔥
                   </span>
                 </span>
               </Link>
