@@ -102,7 +102,10 @@ const Applicants: NextPage = () => {
               <PageSubheading mb={6}>¿Qué lograrás con esta certificación?</PageSubheading>
               
               <Flex gap={4} mb={6}>
-                <MagicButton>
+                <MagicButton
+                  width={{ base: '100%', sm: 'auto' }}
+                  size={{ base: 'md', md: 'lg' }}
+                >
                   Aprende con IA
                 </MagicButton>
                 <Button
@@ -111,6 +114,8 @@ const Applicants: NextPage = () => {
                   borderWidth="2px"
                   borderColor="purple.300"
                   _hover={{ shadow: 'sm' }}
+                  width={{ base: '100%', sm: 'auto' }}
+                  size={{ base: 'md', md: 'lg' }}
                 >
                   En línea y en vivo
                 </Button>
@@ -119,110 +124,193 @@ const Applicants: NextPage = () => {
               <section id='mission-and-scope' ref={ref}>
                 <PageSection mb={6}>Misión y Objetivo</PageSection>
 
-                <PageText mb={6}>
+                <PageText mb={6} fontSize={{ base: 'md', md: 'lg' }} lineHeight="tall">
                   La experiencia de aprender combinando encuentros prácticos y en vivo con material teórico y práctico offline, pensado para que puedas
                   adaptar el proceso de aprendizaje a tu vida.
                 </PageText>
 
-                <Box bg="gray.50" p={4} borderRadius="md" mb={6}>
-                  <Text fontSize="xl" fontWeight="semibold" mb={3}>✅ ¿Qué incluye?</Text>
-                  <Stack spacing={2}>
+                <Box 
+                  bg="gray.50" 
+                  p={{ base: 4, md: 6 }} 
+                  borderRadius="md" 
+                  mb={6}
+                  boxShadow="sm"
+                >
+                  <Text 
+                    fontSize={{ base: 'lg', md: 'xl' }} 
+                    fontWeight="semibold" 
+                    mb={4}
+                    color="purple.600"
+                  >
+                    ✅ ¿Qué incluye?
+                  </Text>
+                  <Stack spacing={3}>
                     {items.map((item, index) => (
-                      <Flex key={index} alignItems="start">
+                      <Flex 
+                        key={index} 
+                        alignItems="start"
+                        bg="white"
+                        p={3}
+                        borderRadius="md"
+                        boxShadow="xs"
+                      >
                         <Text color="green.600" fontWeight="bold" mr={2}>✓</Text>
-                        <Text>{item}</Text>
+                        <Text fontSize={{ base: 'sm', md: 'md' }}>{item}</Text>
                       </Flex>
                     ))}
                   </Stack>
                 </Box>
 
-                <PageText mb={8}>
+                <PageText 
+                  mb={8} 
+                  fontSize={{ base: 'lg', md: 'xl' }}
+                  fontWeight="semibold"
+                  color="purple.600"
+                >
                   Nuestros egresados están posicionados como referentes en empresas líderes
                 </PageText>
 
-                <Center mb={12}>
-                  <Flex direction={{ base: 'column', md: 'row' }}>
-                    <Stack mr={{ base: 0, md: 10 }} mb={{ base: 2, md: 0 }}>
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image
-                            src={softwareDevelopersSVG}
-                            alt='Software and protocol developers vector'
-                            height={37}
-                            width={40}
-                          />
-                        </Box>
-                        <Flex h='37px' alignItems='center'>
-                          <PageText fontWeight={600}>Comenzar tu carrera en Inteligencia Artificial </PageText>
-                        </Flex>
-                      </Flex>
+                <Stack 
+                  spacing={{ base: 6, md: 8 }}
+                  direction={{ base: 'column', md: 'row' }}
+                  mb={12}
+                >
+                  <Stack spacing={4} flex={1}>
+                    <Flex 
+                      bg="white" 
+                      p={4} 
+                      borderRadius="lg" 
+                      boxShadow="md"
+                      alignItems="center"
+                      transition="all 0.3s ease"
+                      _hover={{ transform: 'translateY(-2px)', shadow: 'lg' }}
+                    >
+                      <Box mr={4} flexShrink={0}>
+                        <Image
+                          src={softwareDevelopersSVG}
+                          alt='Software and protocol developers vector'
+                          height={37}
+                          width={40}
+                        />
+                      </Box>
+                      <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
+                        Comenzar tu carrera en Inteligencia Artificial
+                      </Text>
+                    </Flex>
 
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image
-                            src={researchersSVG}
-                            alt='Researchers vector'
-                            height={40}
-                            width={40}
-                          />
-                        </Box>
-                        <Flex h='40px' alignItems='center'>
-                          <PageText fontWeight={600}>Research</PageText>
-                        </Flex>
-                      </Flex>
+                    <Flex 
+                      bg="white" 
+                      p={4} 
+                      borderRadius="lg" 
+                      boxShadow="md"
+                      alignItems="center"
+                      transition="all 0.3s ease"
+                      _hover={{ transform: 'translateY(-2px)', shadow: 'lg' }}
+                    >
+                      <Box mr={4} flexShrink={0}>
+                        <Image
+                          src={researchersSVG}
+                          alt='Researchers vector'
+                          height={40}
+                          width={40}
+                        />
+                      </Box>
+                      <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
+                        Research
+                      </Text>
+                    </Flex>
 
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image src={academicsSVG} alt='Academics vector' height={36} width={40} />
-                        </Box>
-                        <Flex h='36px' alignItems='center'>
-                          <PageText fontWeight={600}>Academia</PageText>
-                        </Flex>
-                      </Flex>
-                    </Stack>
+                    <Flex 
+                      bg="white" 
+                      p={4} 
+                      borderRadius="lg" 
+                      boxShadow="md"
+                      alignItems="center"
+                      transition="all 0.3s ease"
+                      _hover={{ transform: 'translateY(-2px)', shadow: 'lg' }}
+                    >
+                      <Box mr={4} flexShrink={0}>
+                        <Image 
+                          src={academicsSVG} 
+                          alt='Academics vector' 
+                          height={36} 
+                          width={40} 
+                        />
+                      </Box>
+                      <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
+                        Academia
+                      </Text>
+                    </Flex>
+                  </Stack>
 
-                    <Stack>
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image
-                            src={communityOrganizersSVG}
-                            alt='Community organizers vector'
-                            height={36}
-                            width={40}
-                          />
-                        </Box>
-                        <Flex h='36px' alignItems='center'>
-                          <PageText fontWeight={600}>Convertirte en creador de contenido de calidad</PageText>
-                        </Flex>
-                      </Flex>
+                  <Stack spacing={4} flex={1}>
+                    <Flex 
+                      bg="white" 
+                      p={4} 
+                      borderRadius="lg" 
+                      boxShadow="md"
+                      alignItems="center"
+                      transition="all 0.3s ease"
+                      _hover={{ transform: 'translateY(-2px)', shadow: 'lg' }}
+                    >
+                      <Box mr={4} flexShrink={0}>
+                        <Image
+                          src={communityOrganizersSVG}
+                          alt='Community organizers vector'
+                          height={36}
+                          width={40}
+                        />
+                      </Box>
+                      <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
+                        Convertirte en creador de contenido de calidad
+                      </Text>
+                    </Flex>
 
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image src={designersSVG} alt='Designers vector' height={38} width={40} />
-                        </Box>
-                        <Flex h='38px' alignItems='center'>
-                          <PageText fontWeight={600}>Diseño</PageText>
-                        </Flex>
-                      </Flex>
+                    <Flex 
+                      bg="white" 
+                      p={4} 
+                      borderRadius="lg" 
+                      boxShadow="md"
+                      alignItems="center"
+                      transition="all 0.3s ease"
+                      _hover={{ transform: 'translateY(-2px)', shadow: 'lg' }}
+                    >
+                      <Box mr={4} flexShrink={0}>
+                        <Image 
+                          src={designersSVG} 
+                          alt='Designers vector' 
+                          height={38} 
+                          width={40} 
+                        />
+                      </Box>
+                      <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
+                        Diseño
+                      </Text>
+                    </Flex>
 
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image
-                            src={otherGrantsProgramsSVG}
-                            alt='Other grant programs and public goods funding platforms vector'
-                            height={40}
-                            width={40}
-                          />
-                        </Box>
-                        <Flex h='40px' alignItems='center' maxW={{ base: '235px', md: '275px' }}>
-                          <PageText fontWeight={600}>
-                            Incrementar tus ingresos asesorando proyectos
-                          </PageText>
-                        </Flex>
-                      </Flex>
-                    </Stack>
-                  </Flex>
-                </Center>
+                    <Flex 
+                      bg="white" 
+                      p={4} 
+                      borderRadius="lg" 
+                      boxShadow="md"
+                      alignItems="center"
+                      transition="all 0.3s ease"
+                      _hover={{ transform: 'translateY(-2px)', shadow: 'lg' }}
+                    >
+                      <Box mr={4} flexShrink={0}>
+                        <Image
+                          src={otherGrantsProgramsSVG}
+                          alt='Other grant programs vector'
+                          height={36}
+                          width={40}
+                        />
+                      </Box>
+                      <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
+                        Incrementar tus ingresos asesorando proyectos
+                      </Text>
+                    </Flex>
+                  </Stack>
+                </Stack>
 
                 <PageText mb={6}>
 
