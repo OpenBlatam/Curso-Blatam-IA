@@ -236,7 +236,6 @@ export const Layout: FC<LayoutProps> = ({ children, windowSize, ...props }) => {
                 borderColor: { base: 'transparent', _dark: 'rgba(255, 255, 255, 0.1)' },
               }}
             >
-              <NewsletterSignup />
             </Box>
           </ClientOnly>
         )}
