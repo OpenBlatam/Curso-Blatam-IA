@@ -92,21 +92,21 @@ const Applicants: NextPage = () => {
         description="Information about the Ecosystem Support Program's mission, scope and types of support we offer for potential grant applicants."
       />
 
-      <Box bg='white' position='relative' py={{ md: 12 }}>
-        <Flex>
+      <Box bg='white' position='relative' py={{ base: 4, md: 12 }}>
+        <Flex direction={{ base: 'column', lg: 'row' }}>
           <ApplicantsSidebar
             sidebarLinks={SIDEBAR_APPLICANTS_LINKS}
             sectionsInView={[inView, inView2, inView3]}
           />
 
-          <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
-            <Stack mb={8}>
+          <Box w={{ base: '100%', lg: '70%' }} px={{ base: 4, md: 20 }} pr={{ lg: 12 }}>
+            <Stack mb={8} spacing={{ base: 6, md: 8 }}>
               {/* Newsletter Section */}
               <Box 
                 bg="purple.50" 
-                p={{ base: 6, md: 8 }} 
+                p={{ base: 4, md: 8 }} 
                 borderRadius="xl" 
-                mb={8}
+                mb={{ base: 4, md: 8 }}
                 position="relative"
                 overflow="hidden"
                 boxShadow="md"
@@ -140,17 +140,20 @@ const Applicants: NextPage = () => {
                   />
                 </Box>
                 
-                <Stack spacing={4} position="relative" zIndex={1}>
+                <Stack spacing={{ base: 3, md: 4 }} position="relative" zIndex={1}>
                   <NewsletterSignup />
-                  
-
-              
                 </Stack>
               </Box>
 
-              <PageSubheading mb={6}>¿Qué lograrás con esta certificación?</PageSubheading>
+              <PageSubheading mb={{ base: 4, md: 6 }} fontSize={{ base: 'xl', md: '2xl' }}>
+                ¿Qué lograrás con esta certificación?
+              </PageSubheading>
               
-              <Flex gap={4} mb={6}>
+              <Flex 
+                gap={{ base: 3, md: 4 }} 
+                mb={{ base: 4, md: 6 }}
+                direction={{ base: 'column', sm: 'row' }}
+              >
                 <MagicButton
                   width={{ base: '100%', sm: 'auto' }}
                   size={{ base: 'md', md: 'lg' }}
@@ -171,35 +174,39 @@ const Applicants: NextPage = () => {
               </Flex>
 
               <section id='mission-and-scope' ref={ref}>
-                <PageSection mb={6}>Misión y Objetivo</PageSection>
+                <PageSection mb={{ base: 4, md: 6 }}>Misión y Objetivo</PageSection>
 
-                <PageText mb={6} fontSize={{ base: 'md', md: 'lg' }} lineHeight="tall">
+                <PageText 
+                  mb={{ base: 4, md: 6 }} 
+                  fontSize={{ base: 'md', md: 'lg' }} 
+                  lineHeight="tall"
+                >
                   La experiencia de aprender combinando encuentros prácticos y en vivo con material teórico y práctico offline, pensado para que puedas
                   adaptar el proceso de aprendizaje a tu vida.
                 </PageText>
 
                 <Box 
                   bg="gray.50" 
-                  p={{ base: 4, md: 6 }} 
+                  p={{ base: 3, md: 6 }} 
                   borderRadius="md" 
-                  mb={6}
+                  mb={{ base: 4, md: 6 }}
                   boxShadow="sm"
                 >
                   <Text 
-                    fontSize={{ base: 'lg', md: 'xl' }} 
+                    fontSize={{ base: 'md', md: 'xl' }} 
                     fontWeight="semibold" 
-                    mb={4}
+                    mb={{ base: 3, md: 4 }}
                     color="purple.600"
                   >
                     ✅ ¿Qué incluye?
                   </Text>
-                  <Stack spacing={3}>
+                  <Stack spacing={{ base: 2, md: 3 }}>
                     {items.map((item, index) => (
                       <Flex 
                         key={index} 
                         alignItems="start"
                         bg="white"
-                        p={3}
+                        p={{ base: 2, md: 3 }}
                         borderRadius="md"
                         boxShadow="xs"
                       >
