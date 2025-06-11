@@ -49,7 +49,8 @@ const NewsletterSignup = dynamic(
 const FloatingWhatsApp = dynamic(
   () => import('react-floating-whatsapp').then(mod => mod.FloatingWhatsApp),
   { 
-    ssr: false
+    ssr: false,
+    loading: () => null
   }
 );
 
@@ -117,6 +118,20 @@ const HomePageContent: FC<{ children: ReactNode; windowSize: WindowSize }> = ({ 
         </ClientOnly>
       )}
       <Footer/>
+      {mounted && (
+        <ClientOnly>
+          <FloatingWhatsApp
+            phoneNumber="525530326229"
+            accountName="Blatam"
+            allowEsc
+            allowClickAway
+            notification
+            notificationSound
+            chatMessage="¡Hola! ¿Cómo podemos ayudarte?"
+            statusMessage="En línea"
+          />
+        </ClientOnly>
+      )}
     </Box>
   );
 };
@@ -281,7 +296,6 @@ export const Layout: FC<LayoutProps> = ({ children, windowSize, ...props }) => {
           </Link>
         </Box>
       </Box>
-
 
     </Box>
   );
