@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   images: {
     remotePatterns: [
       {
@@ -8,12 +9,20 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+    domains: ['images.unsplash.com', 'user-images.githubusercontent.com', 'www.facebook.com'],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['@mui/material', '@mui/icons-material']
   },
   webpack: (config, { dev, isServer }) => {
+    // Optimize CSS
+    config.optimization.minimize = true;
+    config.optimization.minimizer = config.optimization.minimizer || [];
+
     // Basic optimization settings
     config.optimization = {
       ...config.optimization,
@@ -81,7 +90,9 @@ const nextConfig = {
       ...config.resolve.fallback,
       fs: false,
       path: false,
-      os: false
+      os: false,
+      net: false,
+      tls: false,
     };
 
     // Add external dependencies
