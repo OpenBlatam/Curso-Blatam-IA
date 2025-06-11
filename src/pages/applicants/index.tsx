@@ -48,6 +48,21 @@ const sparkleAnimation = keyframes`
   100% { transform: scale(1); opacity: 1; }
 `;
 
+const Sparkle = ({ size, color, style }) => (
+  <Box
+    position="absolute"
+    animation={`${sparkleAnimation} 1.5s ease-in-out infinite`}
+    style={style}
+  >
+    <svg width={size} height={size} viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M80 0L88.2843 55.7157L144 64L88.2843 72.2843L80 128L71.7157 72.2843L16 64L71.7157 55.7157L80 0Z"
+        fill={color}
+      />
+    </svg>
+  </Box>
+);
+
 const Applicants: NextPage = () => {
   const [ref, inView] = useInView({ threshold: 0.3 });
   const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
@@ -93,6 +108,43 @@ const Applicants: NextPage = () => {
       />
 
       <Box bg='white' position='relative' py={{ base: 4, md: 12 }}>
+        <Sparkle
+          size="20px"
+          color="purple.300"
+          style={{
+            top: '10%',
+            left: '5%',
+            opacity: 0.6
+          }}
+        />
+        <Sparkle
+          size="15px"
+          color="purple.400"
+          style={{
+            top: '20%',
+            right: '10%',
+            opacity: 0.4
+          }}
+        />
+        <Sparkle
+          size="25px"
+          color="purple.200"
+          style={{
+            bottom: '15%',
+            left: '15%',
+            opacity: 0.5
+          }}
+        />
+        <Sparkle
+          size="18px"
+          color="purple.300"
+          style={{
+            bottom: '25%',
+            right: '5%',
+            opacity: 0.7
+          }}
+        />
+        
         <Flex direction={{ base: 'column', lg: 'row' }}>
           <ApplicantsSidebar
             sidebarLinks={SIDEBAR_APPLICANTS_LINKS}
@@ -119,10 +171,11 @@ const Applicants: NextPage = () => {
                   zIndex={0}
                 >
                   <Image
-                    src="/_next/static/media/background-circles.b7e41e0c.png"
+                    src="/images/background-circles.png"
                     alt="Background circles"
                     width={200}
                     height={200}
+                    priority
                   />
                 </Box>
                 <Box 
@@ -133,10 +186,11 @@ const Applicants: NextPage = () => {
                   zIndex={0}
                 >
                   <Image
-                    src="/_next/static/media/background-circles.b7e41e0c.png"
+                    src="/images/background-circles.png"
                     alt="Background circles"
                     width={150}
                     height={150}
+                    priority
                   />
                 </Box>
                 
@@ -247,6 +301,7 @@ const Applicants: NextPage = () => {
                           alt='Software and protocol developers vector'
                           height={37}
                           width={40}
+                          priority
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
@@ -269,6 +324,7 @@ const Applicants: NextPage = () => {
                           alt='Researchers vector'
                           height={40}
                           width={40}
+                          priority
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
@@ -291,6 +347,7 @@ const Applicants: NextPage = () => {
                           alt='Academics vector' 
                           height={36} 
                           width={40} 
+                          priority
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
@@ -315,6 +372,7 @@ const Applicants: NextPage = () => {
                           alt='Community organizers vector'
                           height={36}
                           width={40}
+                          priority
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
@@ -337,6 +395,7 @@ const Applicants: NextPage = () => {
                           alt='Designers vector' 
                           height={38} 
                           width={40} 
+                          priority
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
@@ -359,6 +418,7 @@ const Applicants: NextPage = () => {
                           alt='Other grant programs vector'
                           height={36}
                           width={40}
+                          priority
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
