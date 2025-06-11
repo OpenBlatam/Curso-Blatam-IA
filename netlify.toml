@@ -1,5 +1,5 @@
 [build]
-  command = "yarn build --no-typescript"
+  command = "yarn build"
   publish = ".next"
 
 [build.environment]
