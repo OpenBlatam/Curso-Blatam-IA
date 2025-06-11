@@ -3,7 +3,7 @@ import { Stack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React, { FC, useState, useRef, useEffect, useCallback } from 'react'; // Added useRef and useEffect
 import {Button} from "@chakra-ui/react";
-import { Description, NavigationTabs } from '../UI'; // Assuming '../UI' is correct path
+import { Description, NavigationTabs, MagicButton } from '../UI'; // Assuming '../UI' is correct path
 import AddToCalendar from "../domain/index/add-to-calendar"; // Assuming correct path
 import { Box, Center, Flex, IconButton, Link as ChakraLink, Text, keyframes } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
@@ -143,15 +143,16 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ childre
 
   return (
     <Stack 
-      spacing={{ base: 6, md: 10 }}
+      spacing={{ base: 4, md: 10 }}
       overflow="hidden"
       position="relative"
       width="100%"
+      maxW="100vw"
     >
       <Stack 
-        mb={5} 
+        mb={{ base: 2, md: 5 }} 
         px={{ base: 4, md: 12 }} 
-        py={3}
+        py={{ base: 2, md: 3 }}
         position="relative"
         zIndex={1}
       >
@@ -170,18 +171,24 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ childre
             spacing={3}
             mb={4}
             flexWrap="wrap"
+            width="100%"
           >
-            <Button 
-              size={{ base: 'md', md: 'lg' }}
+            <MagicButton
               width={{ base: '100%', sm: 'auto' }}
-            >
-              ✅ <strong>Certificación</strong>
-            </Button>
-            <Button 
               size={{ base: 'md', md: 'lg' }}
-              width={{ base: '100%', sm: 'auto' }}
             >
-              🔴 En vivo
+              Aprende con IA
+            </MagicButton>
+            <Button
+              leftIcon={<Sparkles />}
+              variant="outline"
+              borderWidth="2px"
+              borderColor="purple.300"
+              _hover={{ shadow: 'sm' }}
+              width={{ base: '100%', sm: 'auto' }}
+              size={{ base: 'md', md: 'lg' }}
+            >
+              En línea y en vivo
             </Button>
           </Stack>
 
@@ -199,10 +206,11 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ childre
             spacing={3}
             mb={4}
             flexWrap="wrap"
+            width="100%"
           >
-            <Button 
-              size={{ base: 'md', md: 'lg' }}
+            <Button
               width={{ base: '100%', sm: 'auto' }}
+              size={{ base: 'md', md: 'lg' }}
             >
               🌟 5/5 estrellas
             </Button>
@@ -215,6 +223,7 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ childre
               width="100%"
               maxW="100%"
               overflow="hidden"
+              px={{ base: 2, md: 0 }}
             >
               <PromoBanner
                 discount="65% OFF"
@@ -248,12 +257,12 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ childre
       <Stack 
         px={{ base: !isGranteeFinance ? 4 : 0, md: !isGranteeFinance ? 12 : 0 }} 
         py={!isGranteeFinance ? 0 : 8}
-        spacing={8}
+        spacing={{ base: 6, md: 8 }}
         width="100%"
         maxW="100%"
         overflow="hidden"
       >
-        <Stack mb={8}>{children}</Stack>
+        <Stack mb={{ base: 4, md: 8 }}>{children}</Stack>
         <GraduatePlacement windowSize={windowSize} />
         <Testimonials windowSize={windowSize} />
         <PricingSection windowSize={windowSize} />
