@@ -1,11 +1,10 @@
-import { Box, Link, Stack, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, IconButton, useDisclosure, Flex } from '@chakra-ui/react';
+import { Box, Link, Stack, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, IconButton, useDisclosure, Flex, useColorModeValue } from '@chakra-ui/react';
 import { FC } from 'react';
 import NextLink from 'next/link';
 import { CloseIcon } from '@chakra-ui/icons';
 
 import { PageText } from '..';
-
-import { SidebarLink } from '../../../types';
+import { SidebarLink } from '../../../../types';
 
 interface Props {
   sidebarLinks: SidebarLink[];
@@ -14,6 +13,49 @@ interface Props {
 
 export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const activeColor = useColorModeValue('brand.accent', 'brand.accent');
+  const inactiveColor = useColorModeValue('brand.ready.text', 'brand.ready.text');
+
+  const renderLink = (link: SidebarLink, idx: number, onClick?: () => void) => {
+    const isExternal = ['Inicio', 'Cursos', 'Becas'].includes(link.text);
+    const isActive = sectionsInView[idx];
+    const color = isActive ? activeColor : inactiveColor;
+
+    const linkProps = {
+      key: link.href,
+      color,
+      fontSize: 'input',
+      fontWeight: isActive ? 700 : 400,
+      _hover: { color: 'brand.accent' },
+      onClick,
+    };
+
+    if (isExternal) {
+      return (
+        <a
+          key={link.href}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: 'none' }}
+        >
+          <PageText {...linkProps}>{link.text}</PageText>
+        </a>
+      );
+    }
+
+    return (
+      <Link
+        key={link.href}
+        as={NextLink}
+        href={link.href}
+        _hover={{ textDecoration: 'none' }}
+        passHref
+      >
+        <PageText {...linkProps}>{link.text}</PageText>
+      </Link>
+    );
+  };
 
   return (
     <>
@@ -21,7 +63,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
       <Box display={{ base: 'block', lg: 'none' }}>
         <IconButton
           aria-label="Abrir menú"
-          icon={<span style={{ fontWeight: 700, fontSize: '1.2em' }}>☰</span>}
+          icon={<Box fontWeight={700} fontSize="1.2em">☰</Box>}
           onClick={onOpen}
           position="fixed"
           top={4}
@@ -56,44 +98,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
             </DrawerHeader>
             <DrawerBody>
               <Stack spacing={4} mt={4}>
-                {sidebarLinks.map(({ href, text }, idx) => (
-                  ['Inicio', 'Cursos', 'Becas'].includes(text) ? (
-                    <a
-                      key={href}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ textDecoration: 'none', color: sectionsInView[idx] ? 'var(--chakra-colors-brand-accent)' : 'var(--chakra-colors-brand-ready-text)' }}
-                      onClick={onClose}
-                    >
-                      <PageText
-                        fontSize='input'
-                        fontWeight={sectionsInView[idx] ? 700 : 400}
-                        _hover={{ color: 'brand.accent' }}
-                      >
-                        {text}
-                      </PageText>
-                    </a>
-                  ) : (
-                    <Link
-                      key={href}
-                      as={NextLink}
-                      href={href}
-                      _hover={{ textDecoration: 'none' }}
-                      color={sectionsInView[idx] ? 'brand.accent' : 'brand.ready.text'}
-                      passHref
-                      onClick={onClose}
-                    >
-                      <PageText
-                        fontSize='input'
-                        fontWeight={sectionsInView[idx] ? 700 : 400}
-                        _hover={{ color: 'brand.accent' }}
-                      >
-                        {text}
-                      </PageText>
-                    </Link>
-                  )
-                ))}
+                {sidebarLinks.map((link, idx) => renderLink(link, idx, onClose))}
               </Stack>
             </DrawerBody>
           </DrawerContent>
@@ -102,50 +107,15 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
 
       {/* Desktop Sidebar */}
       <Box
-        position='sticky'
+        position="sticky"
         top={24}
         display={{ base: 'none', lg: 'block' }}
-        w='240px'
-        h='fit-content'
+        w="240px"
+        h="fit-content"
         mr={12}
       >
         <Stack spacing={4}>
-          {sidebarLinks.map(({ href, text }, idx) => (
-            ['Inicio', 'Cursos', 'Becas'].includes(text) ? (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: 'none', color: sectionsInView[idx] ? 'var(--chakra-colors-brand-accent)' : 'var(--chakra-colors-brand-ready-text)' }}
-              >
-                <PageText
-                  fontSize='input'
-                  fontWeight={sectionsInView[idx] ? 700 : 400}
-                  _hover={{ color: 'brand.accent' }}
-                >
-                  {text}
-                </PageText>
-              </a>
-            ) : (
-              <Link
-                key={href}
-                as={NextLink}
-                href={href}
-                _hover={{ textDecoration: 'none' }}
-                color={sectionsInView[idx] ? 'brand.accent' : 'brand.ready.text'}
-                passHref
-              >
-                <PageText
-                  fontSize='input'
-                  fontWeight={sectionsInView[idx] ? 700 : 400}
-                  _hover={{ color: 'brand.accent' }}
-                >
-                  {text}
-                </PageText>
-              </Link>
-            )
-          ))}
+          {sidebarLinks.map((link, idx) => renderLink(link, idx))}
         </Stack>
       </Box>
     </>

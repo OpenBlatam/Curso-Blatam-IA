@@ -1,7 +1,7 @@
 // components/ApplicantsLayout/ApplicantsLayout.tsx (Assuming this is the path)
 import { Stack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React, { FC, useState, useRef, useEffect } from 'react'; // Added useRef and useEffect
+import React, { FC, useState, useRef, useEffect, useCallback } from 'react'; // Added useRef and useEffect
 import {Button} from "@chakra-ui/react";
 import { Description, NavigationTabs } from '../UI'; // Assuming '../UI' is correct path
 import AddToCalendar from "../domain/index/add-to-calendar"; // Assuming correct path
@@ -35,30 +35,29 @@ import CourseModality from './CourseModality';
 import LearningPathPromo from './LearningPathPromo';
 import BlatamBanner from './BlatamBanner';
 
-const useParallax = (elementRef: React.RefObject<HTMLElement>) => { // Typed elementRef
-  const [parallaxMultiplier, setParallaxMultiplier] = useState(0); // Explicitly typed useState
+const useParallax = (elementRef: React.RefObject<HTMLElement>) => {
+  const [parallaxMultiplier, setParallaxMultiplier] = useState(0);
 
-  useEffect(() => { // Changed React.useEffect to useEffect
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    const { intersectionRatio } = entries[0];
+    setParallaxMultiplier(1 - intersectionRatio);
+  }, []);
+
+  useEffect(() => {
     const element = elementRef.current;
-
     if (!element) return;
 
-    let options = {
+    const options = {
       threshold: Array.from({ length: 101 }, (_, i) => i * 0.01),
     };
 
-    const callback = (entries: IntersectionObserverEntry[]) => { // Typed entries
-      const { intersectionRatio } = entries[0];
-      setParallaxMultiplier(1 - intersectionRatio);
-    };
-
-    const observer = new IntersectionObserver(callback, options);
+    const observer = new IntersectionObserver(handleIntersection, options);
     observer.observe(element);
 
     return () => {
-      observer.unobserve(element);
+      observer.disconnect();
     };
-  }, [elementRef]);
+  }, [elementRef, handleIntersection]);
 
   return parallaxMultiplier;
 };
@@ -78,7 +77,7 @@ interface ApplicantsLayoutProps {
   };
 }
 
-export const ApplicantsLayout: FC<ApplicantsLayoutProps> = ({ children, windowSize }) => {
+export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ children, windowSize }) => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [tabIndex, setTabIndex] = useState(0);
@@ -88,9 +87,10 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = ({ children, windowSi
   useEffect(() => {
     setMounted(true);
     setTabIndex(APPLICANTS_TABS_MAP[router.pathname] || 0);
+    return () => setMounted(false);
   }, [router.pathname]);
 
-  const handleChange = (index: number) => {
+  const handleChange = useCallback((index: number) => {
     setTabIndex(index);
     let pathToGo = APPLICANTS_URL;
 
@@ -111,7 +111,7 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = ({ children, windowSi
         break;
     }
     router.push({ pathname: pathToGo }, undefined, { scroll: false });
-  };
+  }, [router]);
 
   const isGranteeFinance = router.pathname === GRANTEE_FINANCE_URL;
 
@@ -179,4 +179,6 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = ({ children, windowSi
       </Stack>
     </Stack>
   );
-};
+});
+
+ApplicantsLayout.displayName = 'ApplicantsLayout';

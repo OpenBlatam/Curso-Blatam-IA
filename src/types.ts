@@ -156,40 +156,50 @@ export interface OfficeHoursFormData extends CaptchaForm {
   timezone: Timezone; // SF API: Time_Zone__c
 }
 
-export interface AcademicGrantsFormData extends CaptchaForm {
-  firstName: string; // SF API: FirstName
-  lastName: string; // SF API: LastName
-  email: string; // SF API: Email
-  POCisAuthorisedSignatory: string; // SF API: POC_is_authorised_signatory__c
-  authorisedSignatoryInformation: string; // SF API: Authorised_Signatory_Information__c
-  applyingAs: ApplyingAs; // SF API: Applying_as_a__c
-  applyingAsOther: string; // SF API: Applying_as_Other__c
-  company: string; // SF API: Company
-  country: Country; // SF API: npsp__CompanyCountry__c
-  countriesOfTeam: string; // SF API: Countries_of_Team__c
-  timezone: Timezone; // SF API: Time_Zone__c
-  projectName: string; // SF API: Project_Name__c
-  projectDescription: string; // SF API: Project_Description__c
-  projectCategory: AcademicGrantsProjectCategory; // SF API: Category__c
-  teamProfile: string; // SF API: Team_Profile__c
-  projectPreviousWork: string; // SF API: Previous_Work__c
-  grantScope: string; // SF API: Grant_Scope__c
-  projectGoals: string; // SF API: Impact__c
-  problemBeingSolved: string; // SF API: Problem_Being_Solved__c
-  isYourProjectPublicGood: string; // SF API: Is_it_a_Public_Good__c
-  requestedAmount: string; // SF API: Requested_Amount__c
-  proposedTimeline: string; // SF API: Proposed_Timeline__c
-  challenges: string; // SF API: Challenges__c
-  additionalSupportRequests: string; // SF API: Additional_support_requests__c
-  howDidYouHearAboutGrantsWave: GrantsReferralSource; // SF API: Referral_Source__c
-  referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
-  wouldYouShareYourResearch: WouldYouShareYourResearch; // SF API: Would_you_share_your_research__c
-  linkedinProfile: string; // SF API: LinkedIn_Profile__c
-  twitter: string; // SF API: Twitter__c
-  telegram: string; // SF API: Alternative_Contact__c
-  repeatApplicant: string; // SF API: Repeat_Applicant__c
-  canTheEFReachOut: string; // SF API: Can_the_EF_reach_out__c
-  additionalInfo: string; // SF API: Additional_Information__c
+export interface SelectOption {
+  value: string;
+  label: string;
+}
+
+export interface BaseFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export type Href = typeof HOME_URL | typeof APPLICANTS_URL | typeof ABOUT_URL | typeof ESP_BLOG_URL;
+
+export interface AcademicGrantsFormData extends BaseFormData, CaptchaForm {
+  POCisAuthorisedSignatory: string;
+  authorisedSignatoryInformation: string;
+  applyingAs: SelectOption;
+  applyingAsOther: string;
+  company: string;
+  country: SelectOption;
+  countriesOfTeam: string;
+  timezone: SelectOption;
+  projectName: string;
+  projectDescription: string;
+  projectCategory: SelectOption;
+  teamProfile: string;
+  projectPreviousWork: string;
+  grantScope: string;
+  projectGoals: string;
+  problemBeingSolved: string;
+  isYourProjectPublicGood: string;
+  requestedAmount: string;
+  proposedTimeline: string;
+  challenges: string;
+  additionalSupportRequests: string;
+  howDidYouHearAboutGrantsWave: SelectOption;
+  referralSourceIfOther: string;
+  wouldYouShareYourResearch: SelectOption;
+  linkedinProfile: string;
+  twitter: string;
+  telegram: string;
+  repeatApplicant: string;
+  canTheEFReachOut: string;
+  additionalInfo: string;
 }
 
 export interface DevconGrantsFormData extends CaptchaForm {
@@ -251,10 +261,6 @@ export type ReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number];
 export type GrantsReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE[number];
 
 export type Timezone = typeof TIMEZONE_OPTIONS[number];
-
-export type ApplyingAs = typeof APPLYING_AS_OPTIONS[number];
-
-export type Href = typeof HOME_URL | typeof APPLICANTS_URL | typeof ABOUT_URL | typeof ESP_BLOG_URL;
 
 export interface NavLink {
   href: Href;

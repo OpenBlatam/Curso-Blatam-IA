@@ -1,5 +1,5 @@
 // components/Header.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router'; // Import useRouter
 import styles from './Header.module.css';
@@ -21,8 +21,15 @@ const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      setMounted(false);
     };
   }, []);
+
+  // Memoize the header class to prevent unnecessary recalculations
+  const headerClass = useMemo(() => 
+    `${styles.headerContainer} ${isScrolled ? styles.scrolled : ''}`,
+    [isScrolled]
+  );
 
   const showBuyNowButton = router.pathname === '/applicants';
 
@@ -31,7 +38,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <header className={`${styles.headerContainer} ${isScrolled ? styles.scrolled : ''}`}>
+    <header className={headerClass}>
       <div className={styles.headerContent}>
         <div className={styles.logoContainer}>
           <Link href="/applicants">

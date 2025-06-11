@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { FaTwitter } from "react-icons/fa";
 import { ImQuotesLeft } from "react-icons/im";
+import Image from 'next/image';
 import VerifiedBadgeSvg from '../../../../../public/images/VerifiedBadge.svg';
 
 export interface TweetCardProps {
@@ -75,11 +76,11 @@ const TweetCard: React.FC<TweetCardProps> = ({
               </Text>
               {isVerified && (
                 <Box as="span" display="inline-block" ml={1}>
-                  <img
+                  <Image
                     src={VerifiedBadgeSvg.src}
                     alt="verified twitter account"
-                    width="20"
-                    height="20"
+                    width={20}
+                    height={20}
                     style={{ objectFit: 'contain' }}
                   />
                 </Box>

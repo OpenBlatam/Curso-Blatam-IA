@@ -1,60 +1,79 @@
-import { Box, Stack } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import { useRouter } from 'next/router';
+import { Box } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 
-import {
-  AcademicGrantsForm,
-  GranteeFinanceForm,
-  OfficeHoursForm,
-  ProjectGrantsForm,
-  SmallGrantsForm,
-  DevconGrantsForm
-} from './';
+const FormWrapper: FC<{ children: React.ReactNode }> = ({ children }) => (
+  <Box
+    as='section'
+    id='grants-form'
+    bg='white'
+    position='relative'
+    py={{ base: 12, lg: 16 }}
+    px={{ base: 5, lg: 12 }}
+    mt={{ base: 8, lg: 0 }}
+  >
+    <Suspense fallback={<div>Loading...</div>}>
+      {children}
+    </Suspense>
+  </Box>
+);
 
-import {
-  ACADEMIC_GRANTS_APPLY_URL,
-  DEVCON_GRANTS_APPLY_URL,
-  GRANTEE_FINANCE_URL,
-  OFFICE_HOURS_APPLY_URL,
-  PROJECT_GRANTS_APPLY_URL,
-  SMALL_GRANTS_APPLY_URL
-} from '../../constants';
+// Dynamic imports with named exports
+const ProjectGrantsForm = dynamic(
+  () => import('./ProjectGrantsForm').then((mod) => mod.ProjectGrantsForm),
+  { ssr: false, loading: () => <div>Loading Project Grants Form...</div> }
+);
 
-export const Forms: FC = () => {
+const OfficeHoursForm = dynamic(
+  () => import('./OfficeHoursForm').then((mod) => mod.OfficeHoursForm),
+  { ssr: false, loading: () => <div>Loading Office Hours Form...</div> }
+);
+
+const SmallGrantsForm = dynamic(
+  () => import('./SmallGrantsForm').then((mod) => mod.SmallGrantsForm),
+  { ssr: false, loading: () => <div>Loading Small Grants Form...</div> }
+);
+
+const GranteeFinanceForm = dynamic(
+  () => import('./GranteeFinanceForm').then((mod) => mod.GranteeFinanceForm),
+  { ssr: false, loading: () => <div>Loading Grantee Finance Form...</div> }
+);
+
+const AcademicGrantsForm = dynamic(
+  () => import('./AcademicGrantsForm').then((mod) => mod.AcademicGrantsForm),
+  { ssr: false, loading: () => <div>Loading Academic Grants Form...</div> }
+);
+
+const DevconGrantsForm = dynamic(
+  () => import('./DevconGrantsForm').then((mod) => mod.DevconGrantsForm),
+  { ssr: false, loading: () => <div>Loading Devcon Grants Form...</div> }
+);
+
+const Forms: FC = () => {
   const router = useRouter();
+  const { pathname } = router;
 
-  return (
-    <Stack id='forms'>
-      {router.pathname === PROJECT_GRANTS_APPLY_URL && (
-        <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <ProjectGrantsForm />
-        </Box>
-      )}
-      {router.pathname === OFFICE_HOURS_APPLY_URL && (
-        <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <OfficeHoursForm />
-        </Box>
-      )}
-      {router.pathname === SMALL_GRANTS_APPLY_URL && (
-        <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <SmallGrantsForm />
-        </Box>
-      )}
-      {router.pathname === GRANTEE_FINANCE_URL && (
-        <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <GranteeFinanceForm />
-        </Box>
-      )}
-      {router.pathname === ACADEMIC_GRANTS_APPLY_URL && (
-        <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <AcademicGrantsForm />
-        </Box>
-      )}
-      {router.pathname === DEVCON_GRANTS_APPLY_URL && (
-        <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <DevconGrantsForm />
-        </Box>
-      )}
-    </Stack>
-  );
+  const renderForm = () => {
+    switch (pathname) {
+      case '/applicants/project-grants':
+        return <ProjectGrantsForm />;
+      case '/applicants/office-hours':
+        return <OfficeHoursForm />;
+      case '/applicants/small-grants':
+        return <SmallGrantsForm />;
+      case '/applicants/grantee-finance':
+        return <GranteeFinanceForm />;
+      case '/applicants/academic-grants':
+        return <AcademicGrantsForm />;
+      case '/applicants/devcon-grants':
+        return <DevconGrantsForm />;
+      default:
+        return null;
+    }
+  };
+
+  return <FormWrapper>{renderForm()}</FormWrapper>;
 };
+
+export default Forms;

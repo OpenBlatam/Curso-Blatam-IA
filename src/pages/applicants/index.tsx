@@ -1,4 +1,4 @@
-import {Box, Button, Center, Flex, Stack, IconButton, Link as ChakraLink} from '@chakra-ui/react';
+import {Box, Button, Center, Flex, Stack, IconButton, Link as ChakraLink, Text} from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 import Image from 'next/image';
@@ -30,38 +30,40 @@ import {
   SMALL_GRANTS_URL
 } from '../../constants';
 
-const WHATSAPP_NUMBER = '525530326229'; // Cambia este número por el real
+const WHATSAPP_NUMBER = '525530326229';
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const Applicants: NextPage = () => {
-  // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
-  // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
   const [ref, inView] = useInView({ threshold: 0.3 });
   const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
   const [ref3, inView3] = useInView({ threshold: 0, initialInView: false });
+  const [notify, setNotify] = useState(false);
+
   const items = [
     '1 clase en vivo semanal de 2 horas',
     'Más de 10 horas de contenidos audiovisuales on-demand, disponibles en nuestra plataforma para acceder en cualquier momento (videos, infografías, actividades gamificadas y desafíos)',
   ];
-  const [notify, setNotify] = useState(false);
 
   useEffect(() => {
     let blinkCount = 0;
     let blinkInterval: NodeJS.Timeout;
+    let mainInterval: NodeJS.Timeout;
+
     const startNotification = () => {
       setNotify(true);
       blinkInterval = setInterval(() => {
         setNotify((prev) => !prev);
         blinkCount++;
-        if (blinkCount >= 6) { // 3 parpadeos (on/off)
+        if (blinkCount >= 6) {
           clearInterval(blinkInterval);
           setNotify(false);
         }
-      }, 300); // cada 300ms
+      }, 300);
     };
-    const mainInterval = setInterval(startNotification, 15000); // cada 15 segundos
-    // Lanza la notificación al cargar
+
+    mainInterval = setInterval(startNotification, 15000);
     startNotification();
+
     return () => {
       clearInterval(mainInterval);
       clearInterval(blinkInterval);
@@ -85,68 +87,49 @@ const Applicants: NextPage = () => {
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
               <PageSubheading mb={6}>¿Qué lograrás con esta certificación?</PageSubheading>
-                  <button
-      className="flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium text-black
-        bg-white transition hover:shadow-sm"
-      style={{
-        borderImage: 'linear-gradient(to right, #c084fc, #d1d5db, #86efac) 1',
-        borderStyle: 'solid',
-        borderWidth: '1.8px',
-      }}
-    >
-      <Sparkles className="w-4 h-4 text-black" />
-      Aprende con IA
-    </button>
-        <button
-      className="flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium text-black
-        bg-white transition hover:shadow-sm"
-      style={{
-        borderImage: 'linear-gradient(to right, #c084fc, #d1d5db, #86efac) 1',
-        borderStyle: 'solid',
-        borderWidth: '1.8px',
-      }}
-    >
-      <Sparkles className="w-4 h-4 text-black" />
-      En línea y en vivo
-      </button>
+              
+              <Flex gap={4} mb={6}>
+                <Button
+                  leftIcon={<Sparkles />}
+                  variant="outline"
+                  borderWidth="2px"
+                  borderColor="purple.300"
+                  _hover={{ shadow: 'sm' }}
+                >
+                  Aprende con IA
+                </Button>
+                <Button
+                  leftIcon={<Sparkles />}
+                  variant="outline"
+                  borderWidth="2px"
+                  borderColor="purple.300"
+                  _hover={{ shadow: 'sm' }}
+                >
+                  En línea y en vivo
+                </Button>
+              </Flex>
+
               <section id='mission-and-scope' ref={ref}>
-              <PageSection mb={6}>Misión y Objetivo </PageSection>
+                <PageSection mb={6}>Misión y Objetivo</PageSection>
 
                 <PageText mb={6}>
-                La experiencia de aprender combinando encuentros prácticos y en vivo con material teórico y práctico offline, pensado para que puedas
-adaptar el proceso de aprendizaje a tu vida.
+                  La experiencia de aprender combinando encuentros prácticos y en vivo con material teórico y práctico offline, pensado para que puedas
+                  adaptar el proceso de aprendizaje a tu vida.
+                </PageText>
 
-Contenido pre-grabado
-Este material, compuesto por videos, podcast, desafíos
-y actividades interactivas, se encuentra disponible de
-manera asincrónica (puedes acceder a cualquier hora y
-las veces que quieras). Te sugerimos visualizarlo y
-realizar las actividades cada semana antes de la clase
-en vivo.
-
-Proyecto final
-Durante tu recorrido aprenderás a partir de la elaboración
-progresiva de un proyecto mediante entregas parciales y
-una entrega final de carácter integrador.
-
-    <main className="min-h-screen bg-gray-50 flex items-center justify-center">
-
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-3">✅ ¿Qué incluye?</h2>
-      <ul className="space-y-2">
-        {items.map((item, index) => (
-          <li key={index} className="flex items-start">
-            <span className="text-green-600 font-bold mr-2">✓</span>
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-    </main>
-    </PageText>
+                <Box bg="gray.50" p={4} borderRadius="md" mb={6}>
+                  <Text fontSize="xl" fontWeight="semibold" mb={3}>✅ ¿Qué incluye?</Text>
+                  <Stack spacing={2}>
+                    {items.map((item, index) => (
+                      <Flex key={index} alignItems="start">
+                        <Text color="green.600" fontWeight="bold" mr={2}>✓</Text>
+                        <Text>{item}</Text>
+                      </Flex>
+                    ))}
+                  </Stack>
+                </Box>
 
                 <PageText mb={8}>
-
                   Nuestros egresados están posicionados como referentes en empresas líderes
                 </PageText>
 
@@ -385,21 +368,7 @@ una entrega final de carácter integrador.
         </Box>
       </Box>
       <Box position="fixed" bottom={6} right={6} zIndex={1000}>
-        <ChakraLink href={WHATSAPP_LINK} isExternal>
-          <IconButton
-            aria-label="WhatsApp"
-            icon={<FaWhatsapp size={32} />}
-            colorScheme="whatsapp"
-            borderRadius="full"
-            boxShadow="lg"
-            size="lg"
-            _hover={{ bg: 'green.500' }}
-            style={{
-              opacity: notify ? 0.4 : 1,
-              transition: 'opacity 0.5s',
-            }}
-          />
-        </ChakraLink>
+
       </Box>
     </>
   );

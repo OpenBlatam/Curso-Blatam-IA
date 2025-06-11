@@ -12,7 +12,7 @@ const WhatsAppLoadingFallback = () => null;
 
 // Dynamically import client-side only components
 const TweetEmbed = dynamic(
-  () => import('react-tweet-embed').then((mod) => mod.default),
+  () => import('react-tweet-embed').then(mod => mod.default),
   { 
     ssr: false,
     loading: TweetLoadingFallback
@@ -20,7 +20,7 @@ const TweetEmbed = dynamic(
 );
 
 const FloatingWhatsApp = dynamic(
-  () => import('react-floating-whatsapp').then((mod) => mod.default),
+  () => import('react-floating-whatsapp'),
   { 
     ssr: false,
     loading: WhatsAppLoadingFallback
@@ -42,13 +42,15 @@ export const ClientOnly: FC<{ children: React.ReactNode }> = ({ children }) => {
 
   React.useEffect(() => {
     setMounted(true);
+    return () => setMounted(false);
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
-
-  return <Suspense fallback={null}>{children}</Suspense>;
+  // Use a stable key to prevent unnecessary remounts
+  return mounted ? (
+    <Suspense fallback={null} key="client-only">
+      {children}
+    </Suspense>
+  ) : null;
 };
 
 // Tweets section
@@ -71,14 +73,7 @@ export const TweetsSection: FC = () => (
 export const WhatsAppButton: FC = () => (
   <ClientOnly>
     <Suspense fallback={<WhatsAppLoadingFallback />}>
-      <FloatingWhatsApp
-        phoneNumber="+1234567890"
-        accountName="Blatam Support"
-        allowEsc
-        allowClickAway
-        notification
-        notificationSound
-      />
+
     </Suspense>
   </ClientOnly>
 ); 

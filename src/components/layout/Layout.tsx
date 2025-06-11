@@ -1,11 +1,11 @@
 import {Box, Container, ContainerProps, Text, useColorModeValue, Link} from '@chakra-ui/react';
-import React, { FC, ReactNode, useEffect, useState, useMemo } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
+import type { ComponentType } from 'react';
 import NextLink from 'next/link';
 
 import { Footer, FooterBackgroundImage, HomepageHero } from '../UI';
-import { Forms, NewsletterSignup } from '../forms';
 import { ImportantText } from '../UI/headings';
 import BlatamLogoText from '../UI/BlatamLogoText';
 
@@ -30,16 +30,27 @@ import {
   ETHEREUM_ORG_URL
 } from '../../constants';
 import { DevconGrantsLayout } from './DevconGrantsLayout';
-import Testimonials from "../Testimonials";
-import TweetEmbed from 'react-tweet-embed'
-import {left, right} from "@popperjs/core";
-import BlatamBannerMain from './BlatamBannerMain';
 import { ClientOnly, TweetsSection } from '../client/ClientComponents';
+import BlatamBannerMain from './BlatamBannerMain';
 
-// Import FloatingWhatsApp dynamically with ssr: false
+// Dynamically import components
+const Forms = dynamic(() => import('../forms/Forms'), { 
+  ssr: false,
+  loading: () => <div>Loading...</div>
+});
+
+const NewsletterSignup = dynamic(
+  () => import('../forms/NewsletterSignup').then(mod => mod.NewsletterSignup),
+  { 
+    ssr: false,
+    loading: () => <div>Loading newsletter...</div> }
+);
+
 const FloatingWhatsApp = dynamic(
-  () => import('react-floating-whatsapp').then(mod => mod.default),
-  { ssr: false }
+  () => import('react-floating-whatsapp').then(mod => mod.FloatingWhatsApp),
+  { 
+    ssr: false
+  }
 );
 
 interface WindowSize {
@@ -47,15 +58,26 @@ interface WindowSize {
   height: number;
 }
 
-interface LayoutProps extends ContainerProps {
+type ContainerStyleProps = {
+  maxW?: string;
+  px?: Record<string, number>;
+  mx?: string;
+  bg?: string;
+  py?: number;
+};
+
+interface LayoutProps extends Omit<ContainerProps, 'children'> {
   children: ReactNode;
   windowSize: WindowSize;
 }
 
-// Memoized HomePageContent component
-const HomePageContent = React.memo<{ children: ReactNode; windowSize: WindowSize }>(({ children, windowSize }) => {
+// HomePageContent component
+const HomePageContent: FC<{ children: ReactNode; windowSize: WindowSize }> = ({ children, windowSize }) => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
+  const componentBgColor = useColorModeValue('background.secondary.light', 'background.secondary.dark');
+  const shadow = useColorModeValue('md', 'dark.luxury');
+  const borderColor = useColorModeValue('transparent', 'rgba(255, 255, 255, 0.05)');
 
   useEffect(() => {
     setMounted(true);
@@ -73,15 +95,34 @@ const HomePageContent = React.memo<{ children: ReactNode; windowSize: WindowSize
       <HomepageHero windowSize={windowSize} />
       {children}
       <TweetsSection />
+      {mounted && router.isReady && (
+        <ClientOnly>
+          <Box 
+            maxW='1900px'
+            mx="auto"
+            bg={componentBgColor}
+            boxShadow={shadow}
+            borderRadius="lg"
+            border="1px solid"
+            borderColor={borderColor}
+            transition="all 0.3s ease-in-out"
+            _hover={{
+              transform: 'translateY(-2px)',
+              boxShadow: { base: 'lg', _dark: 'dark.xl' },
+              borderColor: { base: 'transparent', _dark: 'rgba(255, 255, 255, 0.1)' },
+            }}
+          >
+            <NewsletterSignup />
+          </Box>
+        </ClientOnly>
+      )}
       <Footer/>
     </Box>
   );
-});
+};
 
-HomePageContent.displayName = 'HomePageContent';
-
-// Memoized Layout component
-export const Layout = React.memo<LayoutProps>(({ children, windowSize, ...props }) => {
+// Layout component
+export const Layout: FC<LayoutProps> = ({ children, windowSize, ...props }) => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const bgColor = useColorModeValue('background.primary.light', 'background.primary.dark');
@@ -89,31 +130,32 @@ export const Layout = React.memo<LayoutProps>(({ children, windowSize, ...props 
   const textColor = useColorModeValue('gray.800', 'white');
   const shadow = useColorModeValue('md', 'dark.luxury');
   const borderColor = useColorModeValue('transparent', 'rgba(255, 255, 255, 0.05)');
+  const backgroundGradient = useColorModeValue('none', 'linear-gradient(to bottom, #0A0A0A, #121212)');
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const renderContent = useMemo(() => {
-    if (!mounted || !router.isReady) {
-      return <Box minH="400px" />;
-    }
+  if (!mounted || !router.isReady) {
+    return <Box minH="400px" />;
+  }
 
-    const path = router.pathname;
+  const path = router.pathname;
 
-    if (path === HOME_URL) {
-      return <HomePageContent windowSize={windowSize}>{children}</HomePageContent>;
-    }
+  if (path === HOME_URL) {
+    return <HomePageContent windowSize={windowSize}>{children}</HomePageContent>;
+  }
 
-    const layoutMap = {
-      [APPLICANTS_URL]: ApplicantsLayout,
-      [ABOUT_URL]: AboutLayout,
-      [DEVCON_GRANTS_URL]: DevconGrantsLayout,
-      [ACADEMIC_GRANTS_URL]: AcademicGrantsLayout,
-    };
+  const layoutMap = {
+    [APPLICANTS_URL]: ApplicantsLayout,
+    [ABOUT_URL]: AboutLayout,
+    [DEVCON_GRANTS_URL]: DevconGrantsLayout,
+    [ACADEMIC_GRANTS_URL]: AcademicGrantsLayout,
+  };
 
-    const LayoutComponent = Object.entries(layoutMap).find(([key]) => path.startsWith(key))?.[1];
+  const LayoutComponent = Object.entries(layoutMap).find(([key]) => path.startsWith(key))?.[1];
 
+  const renderContent = () => {
     if (LayoutComponent) {
       return (
         <Box as="main" minH="100vh">
@@ -136,7 +178,7 @@ export const Layout = React.memo<LayoutProps>(({ children, windowSize, ...props 
     }
 
     return children;
-  }, [mounted, router.isReady, router.pathname, windowSize, children]);
+  };
 
   return (
     <Box 
@@ -146,7 +188,7 @@ export const Layout = React.memo<LayoutProps>(({ children, windowSize, ...props 
       display="flex" 
       flexDirection="column"
       transition="all 0.3s ease-in-out"
-      backgroundImage={useColorModeValue('none', 'linear-gradient(to bottom, #0A0A0A, #121212)')}
+      backgroundImage={backgroundGradient}
     >
       <Nav windowSize={windowSize} />
       
@@ -157,9 +199,9 @@ export const Layout = React.memo<LayoutProps>(({ children, windowSize, ...props 
           mx="auto"
           bg={bgColor}
           py={12}
-          {...props}
+          {...(props as ContainerStyleProps)}
         >
-          {renderContent}
+          {renderContent()}
         </Container>
         
         {mounted && router.isReady && (
@@ -215,7 +257,7 @@ export const Layout = React.memo<LayoutProps>(({ children, windowSize, ...props 
           borderColor: { base: 'transparent', _dark: 'rgba(255, 255, 255, 0.15)' },
         }}
       >
-  
+        <Footer />
       </Box>
 
       {/* Blatam.org link at the very bottom */}
@@ -240,18 +282,7 @@ export const Layout = React.memo<LayoutProps>(({ children, windowSize, ...props 
         </Box>
       </Box>
 
-      {/* Floating WhatsApp Button - fixed position */}
-      
-        <FloatingWhatsApp
-          phoneNumber="+15557666703"
-          accountName="Soporte (Maria)"
-          statusMessage="¡Hola! ¿En qué puedo ayudarte?"
-          chatMessage="¡Hola! ¿En qué puedo ayudarte?"
-          placeholder="Escribe tu mensaje..."
-        />
-  
+
     </Box>
   );
-});
-
-Layout.displayName = 'Layout';
+};

@@ -1,10 +1,11 @@
-export * from './Forms';
-export * from './AcademicGrantsForm';
-export * from './GranteeFinanceForm';
-export * from './LatestGranteesList';
-export * from './NewsletterSignup';
-export * from './OfficeHoursForm';
-export * from './ProjectGrantsForm';
-export * from './SmallGrantsForm';
-export * from './DevconGrantsForm';
+// Export individual components
+export { AcademicGrantsForm } from './AcademicGrantsForm';
+export { GranteeFinanceForm } from './GranteeFinanceForm';
+export { LatestGranteesList } from './LatestGranteesList';
+export { NewsletterSignup } from './NewsletterSignup';
+export { OfficeHoursForm } from './OfficeHoursForm';
+export { ProjectGrantsForm } from './ProjectGrantsForm';
+export { SmallGrantsForm } from './SmallGrantsForm';
+export { DevconGrantsForm } from './DevconGrantsForm';
+export { default as Forms } from './Forms';
 export * from './fields';

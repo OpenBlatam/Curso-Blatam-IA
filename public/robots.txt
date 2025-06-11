@@ -3,8 +3,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://blatam.org
+Host: https://ia-curso.netlify.app/
 
 # Sitemaps
-Sitemap: https://blatam.org/sitemap.xml
-Sitemap: https://blatam.org/server-sitemap.xml
+Sitemap: https://ia-curso.netlify.app/sitemap.xml
+Sitemap: https://ia-curso.netlify.app/

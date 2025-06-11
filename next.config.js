@@ -1,52 +1,94 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  reactStrictMode: false,
+const nextConfig = {
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
+        hostname: '**',
       },
     ],
   },
-  webpack: (config, { dev, isServer }) => {
-    // Optimize Fast Refresh
-    if (dev && !isServer) {
-      config.optimization.moduleIds = 'named';
-      // Add cache busting for development
-      config.cache = {
-        type: 'filesystem',
-        buildDependencies: {
-          config: [__filename],
-        },
-      };
-    }
-    return config;
-  },
-  // Add experimental features for better development experience
   experimental: {
     optimizeCss: true,
-    scrollRestoration: true,
-    // Add optimizations for development
-    optimizePackageImports: ['@chakra-ui/react', '@emotion/react', '@emotion/styled'],
+    optimizePackageImports: ['@mui/material', '@mui/icons-material']
   },
-  redirects: async () => {
-    return [
-      {
-        source: '/academic-grants',
-        destination: '/applicants',
-        permanent: true
-      },
-      {
-        source: '/academic-grants/apply',
-        destination: '/applicants',
-        permanent: true
-      },
-      {
-        source: '/academic-grants/thank-you',
-        destination: '/applicants',
-        permanent: true
+  webpack: (config, { dev, isServer }) => {
+    // Basic optimization settings
+    config.optimization = {
+      ...config.optimization,
+      moduleIds: 'deterministic',
+      chunkIds: 'deterministic',
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          default: false,
+          vendors: false,
+          framework: {
+            name: 'framework',
+            chunks: 'all',
+            test: /[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
+            priority: 40,
+            enforce: true
+          },
+          lib: {
+            test: /[\\/]node_modules[\\/]/,
+            name(module) {
+              const match = module.context?.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
+              return match ? `npm.${match[1].replace('@', '')}` : 'npm.unknown';
+            },
+            priority: 30
+          },
+          commons: {
+            name: 'commons',
+            minChunks: 2,
+            priority: 20
+          },
+          shared: {
+            name(module, chunks) {
+              return `shared.${chunks.map(c => c.name).join('~')}`;
+            },
+            priority: 10,
+            minChunks: 2,
+            reuseExistingChunk: true
+          }
+        }
       }
-    ];
-  }
+    };
+
+    // Handle TypeScript files
+    config.module.rules.push({
+      test: /\.tsx?$/,
+      use: [
+        {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true
+          },
+        },
+      ],
+    });
+
+    // Configure chunk filenames
+    if (!isServer) {
+      config.output.chunkFilename = dev
+        ? 'static/chunks/[name].[contenthash].js'
+        : 'static/chunks/[name].[contenthash].js';
+    }
+
+    // Add resolve fallbacks for dynamic imports
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      path: false,
+      os: false
+    };
+
+    return config;
+  },
+  typescript: {
+    ignoreBuildErrors: true
+  },
 };
+
+module.exports = nextConfig;

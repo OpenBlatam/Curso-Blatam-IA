@@ -58,7 +58,7 @@
   
   .aiTagButton:hover {
     transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
   }
   
   .aiTagButton .icon {
@@ -78,28 +78,19 @@
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
-    box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.07),
-    0 2px 4px rgba(0, 0, 0, 0.07),
-    0 4px 8px rgba(0, 0, 0, 0.07); /* Multiple subtle layers */
-
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) 0 2px 4px rgba(0, 0, 0, 0.07) 0 4px 8px rgba(0, 0, 0, 0.07); /* Multiple subtle layers */
   }
   
   .downloadButton:hover {
     background-color: #f7fafc; /* Slightly off-white on hover */
     border-color: #cbd5e0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
   }
   
   .downloadButton .icon {
     margin-right: 8px;
     font-size: 1em; /* Match text size or adjust */
   }
-
-    box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.07),
-    0 2px 4px rgba(0, 0, 0, 0.07),
-    0 4px 8px rgba(0, 0, 0, 0.07); /* Multiple subtle layers */
 
   
   /* Responsive adjustments if needed, though this layout is quite simple */

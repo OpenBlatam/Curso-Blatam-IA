@@ -118,7 +118,6 @@ export const api = {
           ...data,
           POCisAuthorisedSignatory: data.POCisAuthorisedSignatory === 'Yes',
           applyingAs: data.applyingAs.value,
-          // Company is a required field in SF, we're using the Name as default value if no company provided
           company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
           country: data.country.value,
           timezone: data.timezone.value,
@@ -134,16 +133,16 @@ export const api = {
     }
   },
   devconGrants: {
-    submit: (data: DevconGrantsFormData) => {
+    submit: (data: DevconGrantsFormData | FormData) => {
       const devconGrantsRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
+        method: 'POST',
+        body: data instanceof FormData ? data : JSON.stringify({
           ...data,
           // Company is a required field in SF, we're using the Name as default value if no company provided
           company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
-          eventType: data.eventType.value,
-          eventFormat: data.eventFormat.value,
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
+          eventType: data.eventType?.value,
+          eventFormat: data.eventFormat?.value,
+          howDidYouHearAboutESP: data.howDidYouHearAboutESP?.value
         })
       };
 

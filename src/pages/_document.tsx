@@ -1,29 +1,28 @@
-import Document, { Head, Html, Main, NextScript } from 'next/document';
+import { Html, Head, Main, NextScript } from 'next/document';
+import Script from 'next/script';
+import type { DocumentContext } from 'next/document';
 
-class MyDocument extends Document {
-  render() {
-    return (
-      <Html lang='en'>
-        <Head>
-          {/* Google tag (gtag.js) */}
-          <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-BSNQ053V7B"
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-BSNQ053V7B');
-              `,
-            }}
-          />
-          {/* TikTok Pixel Code Start */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
+export default function Document() {
+  return (
+    <Html lang="en">
+      <Head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BSNQ053V7B"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BSNQ053V7B');
+          `}
+        </Script>
+        {/* TikTok Pixel Code Start */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
 !function (w, d, t) {
   w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))} };for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
 var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
@@ -31,15 +30,15 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   ttq.load('D0TMT6RC77UC6ES2KRFG');
   ttq.page();
 }(window, document, 'ttq');
-              `,
-            }}
-          />
-          {/* TikTok Pixel Code End */}
+            `,
+          }}
+        />
+        {/* TikTok Pixel Code End */}
 
-          {/* Meta Pixel Code Start */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
+        {/* Meta Pixel Code Start */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -50,22 +49,30 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '755811443466019');
 fbq('track', 'PageView');
-              `,
-            }}
+            `,
+          }}
+        />
+        {/* End Meta Pixel Code */}
+      </Head>
+      <body>
+        {/* Meta Pixel NoScript */}
+        <noscript>
+          <img 
+            height="1" 
+            width="1" 
+            style={{display:'none'}} 
+            src="https://www.facebook.com/tr?id=755811443466019&ev=PageView&noscript=1" 
+            alt="Meta Pixel"
           />
-          {/* End Meta Pixel Code */}
-        </Head>
-        <body>
-          {/* Meta Pixel NoScript */}
-          <noscript>
-            <img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=755811443466019&ev=PageView&noscript=1" />
-          </noscript>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
+        </noscript>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
 }
 
-export default MyDocument;
+Document.getInitialProps = async (ctx: DocumentContext) => {
+  const initialProps = await ctx.defaultGetInitialProps(ctx);
+  return { ...initialProps };
+};

@@ -13,7 +13,7 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { FC, useState } from 'react';
+import { FC, useState, useCallback, useMemo } from 'react';
 import { useForm, Controller, FormProvider } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
@@ -59,25 +59,126 @@ export const OfficeHoursForm: FC = () => {
     reset
   } = methods;
 
-  const onSubmit = async (data: OfficeHoursFormData) => {
-    return api.officeHours
-      .submit(data)
-      .then(res => {
-        if (res.ok) {
-          reset();
-          router.push(OFFICE_HOURS_THANK_YOU_PAGE_URL);
-        } else {
-          toast({
-            ...TOAST_OPTIONS,
-            title: 'Algo salió mal durante el envío, inténtalo de nuevo.',
-            status: 'error'
-          });
+  const onSubmit = useCallback(async (data: OfficeHoursFormData) => {
+    try {
+      const res = await api.officeHours.submit(data);
+      if (res.ok) {
+        reset();
+        router.push(OFFICE_HOURS_THANK_YOU_PAGE_URL);
+      } else {
+        toast({
+          ...TOAST_OPTIONS,
+          title: 'Algo salió mal durante el envío, inténtalo de nuevo.',
+          status: 'error'
+        });
+        throw new Error('Network response was not OK');
+      }
+    } catch (err) {
+      console.error('There has been a problem with your operation: ', err);
+    }
+  }, [reset, router, toast]);
 
-          throw new Error('Network response was not OK');
-        }
-      })
-      .catch(err => console.error('There has been a problem with your operation: ', err.message));
-  };
+  // Memoize form sections to prevent unnecessary re-renders
+  const PersonalInfoSection = useMemo(() => (
+    <Flex direction={{ base: 'column', md: 'row' }}>
+      <FormControl id='first-name-control' isRequired mb={8} mr={{ md: 12 }}>
+        <FormLabel htmlFor='firstName'>
+          <PageText display='inline' fontSize='input'>
+            First name
+          </PageText>
+        </FormLabel>
+        <Input
+          id='firstName'
+          type='text'
+          bg='white'
+          borderRadius={0}
+          borderColor='brand.border'
+          h='56px'
+          color='brand.paragraph'
+          fontSize='input'
+          {...register('firstName', { required: true, maxLength: 40 })}
+        />
+
+        {errors?.firstName?.type === 'required' && (
+          <Box mt={1}>
+            <PageText as='small' fontSize='helpText' color='red.500'>
+              First name is required.
+            </PageText>
+          </Box>
+        )}
+        {errors?.firstName?.type === 'maxLength' && (
+          <Box mt={1}>
+            <PageText as='small' fontSize='helpText' color='red.500'>
+              First name cannot exceed 40 characters.
+            </PageText>
+          </Box>
+        )}
+      </FormControl>
+
+      <FormControl id='last-name-control' isRequired mb={8}>
+        <FormLabel htmlFor='lastName'>
+          <PageText display='inline' fontSize='input'>
+            Last name
+          </PageText>
+        </FormLabel>
+        <Input
+          id='lastName'
+          type='text'
+          bg='white'
+          borderRadius={0}
+          borderColor='brand.border'
+          h='56px'
+          color='brand.paragraph'
+          fontSize='input'
+          {...register('lastName', { required: true, maxLength: 80 })}
+        />
+
+        {errors?.lastName?.type === 'required' && (
+          <Box mt={1}>
+            <PageText as='small' fontSize='helpText' color='red.500'>
+              Last name is required.
+            </PageText>
+          </Box>
+        )}
+        {errors?.lastName?.type === 'maxLength' && (
+          <Box mt={1}>
+            <PageText as='small' fontSize='helpText' color='red.500'>
+              Last name cannot exceed 80 characters.
+            </PageText>
+          </Box>
+        )}
+      </FormControl>
+    </Flex>
+  ), [register, errors]);
+
+  const EmailSection = useMemo(() => (
+    <FormControl id='email-control' isRequired mb={8}>
+      <FormLabel htmlFor='email'>
+        <PageText display='inline' fontSize='input'>
+          Email
+        </PageText>
+      </FormLabel>
+      <Input
+        id='email'
+        type='email'
+        bg='white'
+        borderRadius={0}
+        borderColor='brand.border'
+        h='56px'
+        color='brand.paragraph'
+        fontSize='input'
+        {...register('email', { required: true })}
+      />
+
+      {errors?.email?.type === 'required' && (
+        <Box mt={1}>
+          <PageText as='small' fontSize='helpText' color='red.500'>
+            Email is required.
+          </PageText>
+        </Box>
+      )}
+    </FormControl>
+  ), [register, errors]);
 
   return (
     <Stack
@@ -90,102 +191,8 @@ export const OfficeHoursForm: FC = () => {
     >
       <FormProvider {...methods}>
         <form id='office-hours-form' onSubmit={handleSubmit(onSubmit)}>
-          <Flex direction={{ base: 'column', md: 'row' }}>
-            <FormControl id='first-name-control' isRequired mb={8} mr={{ md: 12 }}>
-              <FormLabel htmlFor='firstName'>
-                <PageText display='inline' fontSize='input'>
-                  First name
-                </PageText>
-              </FormLabel>
-              <Input
-                id='firstName'
-                type='text'
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                h='56px'
-                color='brand.paragraph'
-                fontSize='input'
-                {...register('firstName', { required: true, maxLength: 40 })}
-              />
-
-              {errors?.firstName?.type === 'required' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    First name is required.
-                  </PageText>
-                </Box>
-              )}
-              {errors?.firstName?.type === 'maxLength' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    First name cannot exceed 40 characters.
-                  </PageText>
-                </Box>
-              )}
-            </FormControl>
-
-            <FormControl id='last-name-control' isRequired mb={8}>
-              <FormLabel htmlFor='lastName'>
-                <PageText display='inline' fontSize='input'>
-                  Last name
-                </PageText>
-              </FormLabel>
-              <Input
-                id='lastName'
-                type='text'
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                h='56px'
-                color='brand.paragraph'
-                fontSize='input'
-                {...register('lastName', { required: true, maxLength: 80 })}
-              />
-
-              {errors?.lastName?.type === 'required' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    Last name is required.
-                  </PageText>
-                </Box>
-              )}
-              {errors?.lastName?.type === 'maxLength' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    Last name cannot exceed 80 characters.
-                  </PageText>
-                </Box>
-              )}
-            </FormControl>
-          </Flex>
-
-          <FormControl id='email-control' isRequired mb={8}>
-            <FormLabel htmlFor='email'>
-              <PageText display='inline' fontSize='input'>
-                Email
-              </PageText>
-            </FormLabel>
-            <Input
-              id='email'
-              type='email'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              color='brand.paragraph'
-              fontSize='input'
-              {...register('email', { required: true })}
-            />
-
-            {errors?.email?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Email is required.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          {PersonalInfoSection}
+          {EmailSection}
 
           {/* If the component doesn't expose input's ref, we should use the Controller component, */}
           {/* which will take care of the registration process (https://react-hook-form.com/get-started#IntegratingwithUIlibraries) */}
@@ -656,3 +663,6 @@ export const OfficeHoursForm: FC = () => {
     </Stack>
   );
 };
+
+// Add display name for better debugging
+OfficeHoursForm.displayName = 'OfficeHoursForm';

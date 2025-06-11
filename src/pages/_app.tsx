@@ -10,7 +10,7 @@ import { Banners } from '../components';
 import { TikTokPixel } from '../components/analytics/TikTokPixel';
 import { useWindowSize } from '../hooks/useWindowSize';
 
-import { getBg, getBgGradient, getLayoutHeight } from '../utils';
+import { getLayoutHeight } from '../utils';
 
 import theme from '../theme';
 
@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const windowSize = useWindowSize();
-  const headerHeight = '80px';
+  const isApplicantsPage = router.pathname === '/applicants';
 
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_MATOMO_URL && process.env.NEXT_PUBLIC_MATOMO_SITE_ID) {
@@ -43,10 +43,27 @@ function MyApp({ Component, pageProps }: AppProps) {
     setMounted(true);
   }, []);
 
+  const layoutProps = {
+    position: 'relative' as const,
+    bg: isApplicantsPage ? {
+      base: 'brand.homepageHero',
+      lg: 'brand.homepageHero'
+    } : undefined,
+    bgGradient: isApplicantsPage
+      ? 'linear(to-b, #F6E6FC 0%, #E7BDF7 83.85%, rgba(231, 189, 247, 0) 100%)'
+      : undefined,
+    h: { base: '600px', lg: getLayoutHeight(router.pathname) },
+    windowSize
+  };
+
+  // Prevent hydration issues by not rendering until mounted
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <WhatsAppButton/>
       <Head>
         <title>Blatam</title>
         <meta name="description" content="Blatam website" />
@@ -61,21 +78,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <Header />
 
-      {mounted ? (
-        <Layout
-          position='relative'
-          bg={{
-            base: router.pathname === '/applicants' ? 'brand.homepageHero' : undefined,
-            lg: router.pathname === '/applicants' ? 'brand.homepageHero' : undefined,
-          }}
-          bgGradient={
-            router.pathname === '/applicants'
-              ? 'linear(to-b, #F6E6FC 0%, #E7BDF7 83.85%, rgba(231, 189, 247, 0) 100%)'
-              : undefined
-          }
-          h={{ base: '600px', lg: getLayoutHeight(router.pathname) }}
-          windowSize={windowSize}
-        >
+      {router.isReady ? (
+        <Layout {...layoutProps}>
           <Banners />
           <Component {...pageProps} />
         </Layout>
