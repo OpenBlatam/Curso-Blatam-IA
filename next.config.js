@@ -28,6 +28,11 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['@chakra-ui/react', '@emotion/react', '@emotion/styled', 'framer-motion'],
+    webpackBuildWorker: true,
+    turbotrace: {
+      logLevel: 'error',
+      contextDirectory: __dirname,
+    },
   },
   webpack: (config, { dev, isServer }) => {
     // Optimize CSS

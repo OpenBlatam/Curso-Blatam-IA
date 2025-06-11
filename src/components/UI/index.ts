@@ -9,3 +9,4 @@ export * from './Step';
 export * from './text';
 export * from './PageMetadata';
 export * from './AboutHero';
+export { MagicButton } from './common/MagicButton';

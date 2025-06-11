@@ -5,6 +5,12 @@ import React, { FC, useState, useRef, useEffect, useCallback } from 'react'; // 
 import {Button} from "@chakra-ui/react";
 import { Description, NavigationTabs } from '../UI'; // Assuming '../UI' is correct path
 import AddToCalendar from "../domain/index/add-to-calendar"; // Assuming correct path
+import { Box, Center, Flex, IconButton, Link as ChakraLink, Text, keyframes } from '@chakra-ui/react';
+import { useInView } from 'react-intersection-observer';
+import type { NextPage } from 'next';
+import Image from 'next/image';
+import { FaWhatsapp } from 'react-icons/fa';
+import { Sparkles } from 'lucide-react';
 
 // Corrected image import if applicantsHero is in public/images/
 // For use in Next.js <Image/> component, you'd typically pass the string path "/images/applicants-hero.png"
@@ -77,6 +83,18 @@ interface ApplicantsLayoutProps {
   };
 }
 
+const rainbowAnimation = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
+const sparkleAnimation = keyframes`
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+`;
+
 export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ children, windowSize }) => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
@@ -124,14 +142,48 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ childre
   }
 
   return (
-    <Stack spacing={10}>
-      <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
-        <section id='hero' ref={parallaxRef}>
+    <Stack 
+      spacing={{ base: 6, md: 10 }}
+      overflow="hidden"
+      position="relative"
+      width="100%"
+    >
+      <Stack 
+        mb={5} 
+        px={{ base: 4, md: 12 }} 
+        py={3}
+        position="relative"
+        zIndex={1}
+      >
+        <section 
+          id='hero' 
+          ref={parallaxRef}
+          style={{
+            position: 'relative',
+            overflow: 'hidden',
+            willChange: 'transform'
+          }}
+        >
           <BlatamBanner />
-          <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-            <Button>✅ <strong>Certificación</strong></Button>
-            <Button>🔴 En vivo</Button>
-          </div>
+          <Stack 
+            direction={{ base: 'column', sm: 'row' }}
+            spacing={3}
+            mb={4}
+            flexWrap="wrap"
+          >
+            <Button 
+              size={{ base: 'md', md: 'lg' }}
+              width={{ base: '100%', sm: 'auto' }}
+            >
+              ✅ <strong>Certificación</strong>
+            </Button>
+            <Button 
+              size={{ base: 'md', md: 'lg' }}
+              width={{ base: '100%', sm: 'auto' }}
+            >
+              🔴 En vivo
+            </Button>
+          </Stack>
 
           <Description
             title='Curso de Inteligencia Artificial aplicada al Marketing Digital'
@@ -142,12 +194,28 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ childre
             <strong> Duración 4 semanas</strong>
           </Description>
 
-          <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-            <Button>🌟 5/5 estrellas</Button>
-          </div>
+          <Stack 
+            direction={{ base: 'column', sm: 'row' }}
+            spacing={3}
+            mb={4}
+            flexWrap="wrap"
+          >
+            <Button 
+              size={{ base: 'md', md: 'lg' }}
+              width={{ base: '100%', sm: 'auto' }}
+            >
+              🌟 5/5 estrellas
+            </Button>
+          </Stack>
 
           {mounted && (
-            <Stack align="center" spacing={4}>
+            <Stack 
+              align="center" 
+              spacing={4}
+              width="100%"
+              maxW="100%"
+              overflow="hidden"
+            >
               <PromoBanner
                 discount="65% OFF"
                 originalPrice="$4,290 MXN"
@@ -170,8 +238,21 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ childre
         </section>
       </Stack>
 
-      <NavigationTabs tabIndex={tabIndex} handleChange={handleChange} tabsList={APPLICANTS_TABS} />
-      <Stack px={{ base: !isGranteeFinance ? 5 : 0, md: !isGranteeFinance ? 12 : 0 }} py={!isGranteeFinance ? 0 : 8}> {/* Adjusted padding for grantee finance page */}
+      <NavigationTabs 
+        tabIndex={tabIndex} 
+        handleChange={handleChange} 
+        tabsList={APPLICANTS_TABS}
+        isSticky={true}
+      />
+      
+      <Stack 
+        px={{ base: !isGranteeFinance ? 4 : 0, md: !isGranteeFinance ? 12 : 0 }} 
+        py={!isGranteeFinance ? 0 : 8}
+        spacing={8}
+        width="100%"
+        maxW="100%"
+        overflow="hidden"
+      >
         <Stack mb={8}>{children}</Stack>
         <GraduatePlacement windowSize={windowSize} />
         <Testimonials windowSize={windowSize} />

@@ -1,4 +1,4 @@
-import {Box, Button, Center, Flex, Stack, IconButton, Link as ChakraLink, Text} from '@chakra-ui/react';
+import {Box, Button, Center, Flex, Stack, IconButton, Link as ChakraLink, Text, keyframes} from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 import Image from 'next/image';
@@ -12,7 +12,8 @@ import {
   PageMetadata,
   PageSection,
   PageSubheading,
-  PageText
+  PageText,
+  MagicButton
 } from '../../components/UI';
 
 import softwareDevelopersSVG from '../../../public/images/software-developers-vector.svg';
@@ -32,6 +33,18 @@ import {
 
 const WHATSAPP_NUMBER = '525530326229';
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
+
+const rainbowAnimation = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
+const sparkleAnimation = keyframes`
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+`;
 
 const Applicants: NextPage = () => {
   const [ref, inView] = useInView({ threshold: 0.3 });
@@ -89,15 +102,9 @@ const Applicants: NextPage = () => {
               <PageSubheading mb={6}>¿Qué lograrás con esta certificación?</PageSubheading>
               
               <Flex gap={4} mb={6}>
-                <Button
-                  leftIcon={<Sparkles />}
-                  variant="outline"
-                  borderWidth="2px"
-                  borderColor="purple.300"
-                  _hover={{ shadow: 'sm' }}
-                >
+                <MagicButton>
                   Aprende con IA
-                </Button>
+                </MagicButton>
                 <Button
                   leftIcon={<Sparkles />}
                   variant="outline"
