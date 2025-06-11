@@ -85,11 +85,12 @@ const nextConfig = {
     };
 
     // Add external dependencies
-    config.externals = {
-      ...config.externals,
-      'react-floating-whatsapp': 'react-floating-whatsapp',
-      'react-whatsapp-widget': 'react-whatsapp-widget'
-    };
+    if (!isServer) {
+      config.externals = {
+        'react-floating-whatsapp': 'ReactFloatingWhatsapp',
+        'react-whatsapp-widget': 'ReactWhatsappWidget'
+      };
+    }
 
     return config;
   },
