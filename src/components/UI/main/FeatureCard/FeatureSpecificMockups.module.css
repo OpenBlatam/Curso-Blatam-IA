@@ -45,8 +45,19 @@
   }
   
   /* This class is applied to the <Image> component */
+  .participantImageContainer {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
   .participantImage {
-    border-radius: 4px;
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
   }
   
   /* For GamificationMockup and layout="fill" */
@@ -607,7 +618,7 @@
     */
   }
   
-  /* ... (rest of your styles for .videoOverlayNotification children and other classes) ... */ 
+  /* ... (rest of your styles for .videoOverlayNotification children and other classes) ... */
   
   /* ... (rest of your styles for .videoPlayerContainer, .videoBgImage, etc.) ... */
 

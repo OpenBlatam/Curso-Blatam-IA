@@ -3,68 +3,37 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
+    domains: ['images.unsplash.com', 'user-images.githubusercontent.com', 'www.facebook.com'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'user-images.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.facebook.com',
       },
     ],
-    domains: ['images.unsplash.com', 'user-images.githubusercontent.com', 'www.facebook.com'],
+    unoptimized: false,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   eslint: {
     ignoreDuringBuilds: true,
   },
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ['@mui/material', '@mui/icons-material']
+    optimizePackageImports: ['@chakra-ui/react', '@emotion/react', '@emotion/styled', 'framer-motion'],
   },
   webpack: (config, { dev, isServer }) => {
     // Optimize CSS
     config.optimization.minimize = true;
     config.optimization.minimizer = config.optimization.minimizer || [];
-
-    // Basic optimization settings
-    config.optimization = {
-      ...config.optimization,
-      moduleIds: 'deterministic',
-      chunkIds: 'deterministic',
-      splitChunks: {
-        chunks: 'all',
-        cacheGroups: {
-          default: false,
-          vendors: false,
-          framework: {
-            name: 'framework',
-            chunks: 'all',
-            test: /[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
-            priority: 40,
-            enforce: true
-          },
-          lib: {
-            test: /[\\/]node_modules[\\/]/,
-            name(module) {
-              const match = module.context?.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
-              return match ? `npm.${match[1].replace('@', '')}` : 'npm.unknown';
-            },
-            priority: 30
-          },
-          commons: {
-            name: 'commons',
-            minChunks: 2,
-            priority: 20
-          },
-          shared: {
-            name(module, chunks) {
-              return `shared.${chunks.map(c => c.name).join('~')}`;
-            },
-            priority: 10,
-            minChunks: 2,
-            reuseExistingChunk: true
-          }
-        }
-      }
-    };
-
+    
     // Handle TypeScript files
     config.module.rules.push({
       test: /\.tsx?$/,
@@ -72,28 +41,53 @@ const nextConfig = {
         {
           loader: 'ts-loader',
           options: {
-            transpileOnly: true
+            transpileOnly: true,
           },
         },
       ],
     });
 
     // Configure chunk filenames
-    if (!isServer) {
-      config.output.chunkFilename = dev
-        ? 'static/chunks/[name].[contenthash].js'
-        : 'static/chunks/[name].[contenthash].js';
-    }
+    config.output.chunkFilename = isServer
+      ? 'static/chunks/[name].[chunkhash].js'
+      : 'static/chunks/[name].[chunkhash].js';
+
+    // Configure module IDs
+    config.optimization.moduleIds = 'deterministic';
 
     // Add resolve fallbacks for dynamic imports
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
-      path: false,
-      os: false,
       net: false,
       tls: false,
+      path: false,
+      os: false,
     };
+
+    // Optimize bundle size
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        minSize: 20000,
+        maxSize: 244000,
+        minChunks: 1,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
+        cacheGroups: {
+          defaultVendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10,
+            reuseExistingChunk: true,
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+        },
+      };
+    }
 
     // Add external dependencies
     if (!isServer) {

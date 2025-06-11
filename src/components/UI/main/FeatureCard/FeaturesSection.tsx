@@ -30,7 +30,6 @@ interface InitialParticipant {
 
 type Participant = ImageParticipant | InitialParticipant;
 
-
 const OnlineClassesMockup = () => {
   const participants: Participant[] = [ // Use the Participant union type
     { id: 1, name: 'User 1', imgSrc: '/images/1.jpg' },
@@ -49,16 +48,18 @@ const OnlineClassesMockup = () => {
             {p.isInitial ? (
               <span className={featureStyles.initials}>{p.name}</span>
             ) : (
-              // TypeScript now knows if !p.isInitial, then p is ImageParticipant
-              // and p.imgSrc is a string.
-              <Image
-                src={p.imgSrc}
-                alt={p.name}
-                width={80}
-                height={80}
-                className={featureStyles.participantImage}
-                style={{ objectFit: 'cover' }}
-              />
+              <div className={featureStyles.participantImageContainer}>
+                <Image
+                  src={p.imgSrc}
+                  alt={p.name}
+                  width={80}
+                  height={80}
+                  className={featureStyles.participantImage}
+                  style={{ objectFit: 'cover' }}
+                  priority={p.id <= 2}
+                  quality={75}
+                />
+              </div>
             )}
             {!p.isInitial && <span className={featureStyles.micMuted}>🔇</span>}
           </div>
@@ -87,6 +88,7 @@ const GamificationMockup = () => {
         fill
         className={featureStyles.videoBgImage}
         priority
+        quality={75}
         style={{ objectFit: 'cover' }}
       />
       <div className={featureStyles.videoOverlayTop}>
@@ -110,7 +112,6 @@ const GamificationMockup = () => {
     </div>
   );
 };
-
 
 const FeaturesSection = () => {
   return (
