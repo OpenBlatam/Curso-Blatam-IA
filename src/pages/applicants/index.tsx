@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { EmailIcon } from '@chakra-ui/icons'
+import dynamic from 'next/dynamic';
 
 import {
   ApplicantsSidebar,
@@ -63,6 +64,38 @@ const Sparkle = ({ size, color, style }) => (
   </Box>
 );
 
+// Dynamic imports for heavy components
+const NewsletterSignupDynamic = dynamic(() => import('../../components/NewsletterSignup'), {
+  loading: () => <Box>Loading...</Box>,
+  ssr: false
+});
+
+// Optimize image imports
+const backgroundCircles = '/images/background-circles.png';
+
+// Lazy load third-party scripts
+const loadThirdPartyScripts = () => {
+  // Load analytics scripts after page load
+  useEffect(() => {
+    const loadScript = (src: string) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+    };
+
+    // Load scripts after page is interactive
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      window.requestIdleCallback(() => {
+        // Load analytics scripts
+        loadScript('https://www.googletagmanager.com/gtag/js?id=G-BSNQ053V7B');
+        loadScript('https://connect.facebook.net/en_US/fbevents.js');
+      });
+    }
+  }, []);
+};
+
 const Applicants: NextPage = () => {
   const [ref, inView] = useInView({ threshold: 0.3 });
   const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
@@ -73,6 +106,9 @@ const Applicants: NextPage = () => {
     '1 clase en vivo semanal de 2 horas',
     'Más de 10 horas de contenidos audiovisuales on-demand, disponibles en nuestra plataforma para acceder en cualquier momento (videos, infografías, actividades gamificadas y desafíos)',
   ];
+
+  // Initialize third-party scripts
+  loadThirdPartyScripts();
 
   useEffect(() => {
     let blinkCount = 0;
@@ -108,6 +144,28 @@ const Applicants: NextPage = () => {
       />
 
       <Box bg='white' position='relative' py={{ base: 4, md: 12 }}>
+        {/* Optimized background image loading */}
+        <Box
+          position="absolute"
+          top="0"
+          left="0"
+          w="100%"
+          h="100%"
+          opacity={0.1}
+          zIndex={0}
+        >
+          <Image
+            src={backgroundCircles}
+            alt="Background circles"
+            layout="fill"
+            objectFit="cover"
+            loading="lazy"
+            priority={false}
+            sizes="100vw"
+            quality={75}
+          />
+        </Box>
+
         <Sparkle
           size="20px"
           color="purple.300"
@@ -151,7 +209,7 @@ const Applicants: NextPage = () => {
             sectionsInView={[inView, inView2, inView3]}
           />
 
-          <Box w={{ base: '100%', lg: '70%' }} px={{ base: 4, md: 20 }} pr={{ lg: 12 }}>
+          <Box w={{ base: '100%', lg: '70%' }} px={{ base: 4, md: 20 }} pr={{ lg: 12 }} position="relative" zIndex={1}>
             <Stack mb={8} spacing={{ base: 6, md: 8 }}>
               {/* Newsletter Section */}
               <Box 
@@ -195,7 +253,7 @@ const Applicants: NextPage = () => {
                 </Box>
                 
                 <Stack spacing={{ base: 3, md: 4 }} position="relative" zIndex={1}>
-                  <NewsletterSignup />
+                  <NewsletterSignupDynamic />
                 </Stack>
               </Box>
 
