@@ -1,9 +1,9 @@
 [build]
   command = "yarn build"
   publish = ".next"
-  environment = { NODE_VERSION = "18" }
 
 [build.environment]
+  NODE_VERSION = "18"
   SECRETS_SCAN_SMART_DETECTION_OMIT_VALUES = "AIza*"
 
 [[plugins]]
