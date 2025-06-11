@@ -1,14 +1,16 @@
-import {Box, Button, Center, Flex, Stack, IconButton, Link as ChakraLink, Text, keyframes} from '@chakra-ui/react';
+import {Box, Button, Center, Flex, Stack, IconButton, Link as ChakraLink, Text, keyframes, Heading, Input} from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { EmailIcon } from '@chakra-ui/icons'
 
 import {
   ApplicantsSidebar,
   ApplicationTypeCard,
-  ApplicationTypeCard2, FAQItem,
+  ApplicationTypeCard2,
+  FAQItem,
   PageMetadata,
   PageSection,
   PageSubheading,
@@ -23,7 +25,7 @@ import communityOrganizersSVG from '../../../public/images/community-organizers-
 import designersSVG from '../../../public/images/designers-vector.svg';
 import otherGrantsProgramsSVG from '../../../public/images/other-grant-programs-vector.svg';
 import { Sparkles } from 'lucide-react';
-
+import { NewsletterSignup } from '../../components/forms/NewsletterSignup';
 import {
   OFFICE_HOURS_URL,
   PROJECT_GRANTS_URL,
@@ -99,6 +101,53 @@ const Applicants: NextPage = () => {
 
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
+              {/* Newsletter Section */}
+              <Box 
+                bg="purple.50" 
+                p={{ base: 6, md: 8 }} 
+                borderRadius="xl" 
+                mb={8}
+                position="relative"
+                overflow="hidden"
+                boxShadow="md"
+              >
+                <Box 
+                  position="absolute" 
+                  top="-30%" 
+                  right="-15%" 
+                  opacity="0.05"
+                  zIndex={0}
+                >
+                  <Image
+                    src="/_next/static/media/background-circles.b7e41e0c.png"
+                    alt="Background circles"
+                    width={200}
+                    height={200}
+                  />
+                </Box>
+                <Box 
+                  position="absolute" 
+                  bottom="-20%" 
+                  left="-10%" 
+                  opacity="0.05"
+                  zIndex={0}
+                >
+                  <Image
+                    src="/_next/static/media/background-circles.b7e41e0c.png"
+                    alt="Background circles"
+                    width={150}
+                    height={150}
+                  />
+                </Box>
+                
+                <Stack spacing={4} position="relative" zIndex={1}>
+                  <NewsletterSignup />
+                  
+
+              
+                </Stack>
+              </Box>
+
               <PageSubheading mb={6}>¿Qué lograrás con esta certificación?</PageSubheading>
               
               <Flex gap={4} mb={6}>
