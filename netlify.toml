@@ -30,10 +30,12 @@
   from = "/en"
   to = "/"
   force = true
+
 [[redirects]]
   from = "/es"
   to = "/"
   force = true
+
 [[redirects]]
   from = "/zh"
   to = "/"
@@ -45,86 +47,107 @@
   from = "/*/support/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/*/wishlist/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/*/projects/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/*/projects/circom/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/*/projects/ethereum-on-arm/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/*/projects/ethers-js/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/*/projects/nethermind/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/*/projects/turbo-geth/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/*/projects/uniswap/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/*/faq/"
   to = "/"
   force = true
+
 [[redirects]]
   from = "/*/grants/"
   to = "/"
   force = true
+
 [[redirects]]
   from = "/*/guide/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/*/guide/evaluation/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/*/guide/funding/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/*/guide/inquiry/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/*/guide/onboarding/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/*/guide/proposal/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/*/guide/support/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/*/inquire/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/*/rollup-grants/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/*/local-grants/honduras/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/*/local-grants/colombia/"
   to = "/applicants/"
@@ -139,10 +162,12 @@
   from = "/en/about/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/en/grantee-finance-form"
   to = "/applicants/grantee-finance"
   force = true
+
 [[redirects]]
   from = "/en/devcon-grants/"
   to = "/devcon-grants"
@@ -154,98 +179,122 @@
   from = "/support/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/wishlist/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/projects/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/projects/circom/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/projects/ethereum-on-arm/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/projects/ethers-js/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/projects/nethermind/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/projects/turbo-geth/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/projects/uniswap/"
   to = "/about/"
   force = true
+
 [[redirects]]
   from = "/faq/"
   to = "/"
   force = true
+
 [[redirects]]
   from = "/grants/"
   to = "/"
   force = true
+
 [[redirects]]
   from = "/guide/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/guide/evaluation/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/guide/funding/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/guide/inquiry/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/guide/onboarding/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/guide/proposal/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/guide/support/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/inquire/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/rollup-grants/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/local-grants/honduras/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/local-grants/colombia/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/academic-grants/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/academic-grants/apply/"
   to = "/applicants/"
   force = true
+
 [[redirects]]
   from = "/academic-grants/thank-you/"
   to = "/applicants/"
