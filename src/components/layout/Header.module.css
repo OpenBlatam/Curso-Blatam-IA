@@ -382,28 +382,73 @@
   /* ... (rest of the CSS including .mobileMenuToggle if re-added, and @media (prefers-reduced-motion)) ... */
 
 .loginButton {
-  background-color: #2d3748;
+  background: linear-gradient(145deg, #2d3748, #1a202c);
   color: #ffffff;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
-  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   text-decoration: none;
   margin-right: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.loginButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .loginButton:hover {
-  background-color: #1a202c;
   transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: linear-gradient(145deg, #1a202c, #2d3748);
+}
+
+.loginButton:hover::before {
+  opacity: 1;
+}
+
+.loginButton::after {
+  content: '→';
+  font-size: 1.1em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.loginButton:hover::after {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+.loginButton span {
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {
   .loginButton {
-    padding: 6px 12px;
-    font-size: 0.8rem;
+    padding: 8px 18px;
+    font-size: 0.9rem;
     margin-right: 8px;
   }
 }
