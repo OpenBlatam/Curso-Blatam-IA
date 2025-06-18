@@ -62,8 +62,13 @@ const Header: React.FC = () => {
           </ul>
         </nav>
         
-        {showBuyNowButton && (
-          <div className={styles.actionsContainer}>
+        <div className={styles.actionsContainer}>
+          <Link href="https://blatam.org/en/login" target="_blank" rel="noopener noreferrer">
+            <span className={styles.loginButton}>
+              Acceder
+            </span>
+          </Link>
+          {showBuyNowButton && (
             <Link href="https://astrixial.gumroad.com/l/ia">
               <span className={styles.buyNowButton}>
                 <FireIcon />
@@ -71,8 +76,8 @@ const Header: React.FC = () => {
                 <ArrowIcon />
               </span>
             </Link>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </header>
   );

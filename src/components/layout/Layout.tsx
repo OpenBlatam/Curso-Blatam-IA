@@ -120,16 +120,7 @@ const HomePageContent: FC<{ children: ReactNode; windowSize: WindowSize }> = ({ 
       <Footer/>
       {mounted && (
         <ClientOnly>
-          <FloatingWhatsApp
-            phoneNumber="525530326229"
-            accountName="Blatam"
-            allowEsc
-            allowClickAway
-            notification
-            notificationSound
-            chatMessage="¡Hola! ¿Cómo podemos ayudarte?"
-            statusMessage="En línea"
-          />
+         
         </ClientOnly>
       )}
     </Box>

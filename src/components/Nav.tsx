@@ -98,85 +98,70 @@ export const Nav: FC<Props> = ({ windowSize }) => {
             <Text as="span" color="brand.pink">
               🔥 Hasta el 21/08 🔥
             </Text>
-            </Text>
+          </Text>
         </Flex>
 
         <Box display={{ base: 'block', md: 'none' }}>
-          <Box mt={2}>
-            <Menu id='menu-button'>
-              {!isOpen && (
-                <MenuButton
-                  as={IconButton}
-                  aria-label='Menu'
-                  variant='transparent'
-                  icon={<HamburgerIcon h='25px' w='32px' color='gray.200' />}
-                  onClick={onOpen}
-                />
-              )}
+          <Button
+            variant="ghost"
+            onClick={onOpen}
+            p={2}
+            _hover={{ bg: 'transparent' }}
+            _active={{ bg: 'transparent' }}
+          >
+            <HamburgerIcon w={6} h={6} />
+          </Button>
+        </Box>
 
-              {isOpen && (
-                <MenuButton
-                  as={IconButton}
-                  aria-label='Close menu'
-                  variant='transparent'
-                  icon={<CloseIcon h='28px' w='28px' color='white' />}
-                  onClick={onClose}
-                  zIndex={9999}
-                />
-              )}
-            </Menu>
-          </Box>
-
-          <Drawer onClose={onClose} isOpen={isOpen} size='full'>
-            <DrawerContent>
-              <DrawerBody bg="background.primary">
-                <Stack h='100%' justifyContent='center' alignItems='center'>
-                  <Stack spacing={6}>
-                    {NAV_LINKS.map(({ href, text }) => (
-                      <Link
-                        key={href}
-                        as={NextLink}
-                        href={href}
-                        _hover={{ textDecoration: 'none' }}
-                      >
-                        <ImportantText color='gray.200' textAlign='center' fontSize='h2'>
-                          {text}
-                        </ImportantText>
-                      </Link>
-                    ))}
-
-                    <Center>
-                      <Divider borderColor='gray.700' opacity={1} w={72} mt={1} mb={-2} />
-                    </Center>
-
+        <Drawer onClose={onClose} isOpen={isOpen} size='full'>
+          <DrawerContent>
+            <DrawerBody bg="background.primary">
+              <Stack h='100%' justifyContent='center' alignItems='center'>
+                <Stack spacing={6}>
+                  {NAV_LINKS.map(({ href, text }) => (
                     <Link
+                      key={href}
                       as={NextLink}
-                      href={ETHEREUM_ORG_URL}
-                      isExternal
+                      href={href}
                       _hover={{ textDecoration: 'none' }}
                     >
-                      <ImportantText color='gray.200' textAlign='center'>
-                        <BlatamLogoText as="span" display="inline" color='gray.200'>Blatam</BlatamLogoText>.org
+                      <ImportantText color='gray.200' textAlign='center' fontSize='h2'>
+                        {text}
                       </ImportantText>
                     </Link>
+                  ))}
 
-                    <IconButton
-                      aria-label="Toggle color mode"
-                      icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-                      onClick={toggleColorMode}
-                      variant="ghost"
-                      size="lg"
-                      color={textColor}
-                      _hover={{
-                        bg: 'background.secondary.dark',
-                      }}
-                    />
-                  </Stack>
+                  <Center>
+                    <Divider borderColor='gray.700' opacity={1} w={72} mt={1} mb={-2} />
+                  </Center>
+
+                  <Link
+                    as={NextLink}
+                    href={ETHEREUM_ORG_URL}
+                    isExternal
+                    _hover={{ textDecoration: 'none' }}
+                  >
+                    <ImportantText color='gray.200' textAlign='center'>
+                      <BlatamLogoText as="span" display="inline" color='gray.200'>Blatam</BlatamLogoText>.org
+                    </ImportantText>
+                  </Link>
+
+                  <IconButton
+                    aria-label="Toggle color mode"
+                    icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                    onClick={toggleColorMode}
+                    variant="ghost"
+                    size="lg"
+                    color={textColor}
+                    _hover={{
+                      bg: 'background.secondary.dark',
+                    }}
+                  />
                 </Stack>
-              </DrawerBody>
-            </DrawerContent>
-          </Drawer>
-        </Box>
+              </Stack>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
 
         <Flex display={{ base: 'none', md: 'flex' }} zIndex={1} alignItems="center">
           <UnorderedList display="flex" alignItems="center" m={0}>

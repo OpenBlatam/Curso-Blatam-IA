@@ -380,3 +380,30 @@
   }
   
   /* ... (rest of the CSS including .mobileMenuToggle if re-added, and @media (prefers-reduced-motion)) ... */
+
+.loginButton {
+  background-color: #2d3748;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+  margin-right: 12px;
+}
+
+.loginButton:hover {
+  background-color: #1a202c;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .loginButton {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    margin-right: 8px;
+  }
+}
