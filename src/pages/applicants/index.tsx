@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { EmailIcon } from '@chakra-ui/icons'
+import React from 'react';
 
 import {
   ApplicantsSidebar,
@@ -48,7 +49,13 @@ const sparkleAnimation = keyframes`
   100% { transform: scale(1); opacity: 1; }
 `;
 
-const Sparkle = ({ size, color, style }) => (
+interface SparkleProps {
+  size: string;
+  color: string;
+  style: React.CSSProperties;
+}
+
+const Sparkle: React.FC<SparkleProps> = ({ size, color, style }) => (
   <Box
     position="absolute"
     animation={`${sparkleAnimation} 1.5s ease-in-out infinite`}
@@ -63,6 +70,13 @@ const Sparkle = ({ size, color, style }) => (
   </Box>
 );
 
+// Google Analytics gtag type declaration
+declare global {
+  interface Window {
+    gtag: (command: string, action: string, params: any) => void;
+  }
+}
+
 const Applicants: NextPage = () => {
   const [ref, inView] = useInView({ threshold: 0.3 });
   const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
@@ -73,6 +87,15 @@ const Applicants: NextPage = () => {
     '1 clase en vivo semanal de 2 horas',
     'Más de 10 horas de contenidos audiovisuales on-demand, disponibles en nuestra plataforma para acceder en cualquier momento (videos, infografías, actividades gamificadas y desafíos)',
   ];
+
+  // Google Analytics conversion tracking
+  const handlePurchaseClick = () => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-17051100560/JFaJCJb0xcEaEJDLzMI_'
+      });
+    }
+  };
 
   useEffect(() => {
     let blinkCount = 0;
@@ -529,6 +552,7 @@ const Applicants: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
           style={{ width: '92%', display: 'flex', justifyContent: 'center', textDecoration: 'none' }}
+          onClick={handlePurchaseClick}
         >
           <Button
             colorScheme="orange"
@@ -545,11 +569,6 @@ const Applicants: NextPage = () => {
             _hover={{ bgGradient: "linear(to-r, orange.400, orange.500)" }}
             transition="all 0.2s"
           >
-            <!-- Event snippet for Inicio de confirmación de compra conversion page -->
-<script>
-  gtag('event', 'conversion', {'send_to': 'AW-17051100560/JFaJCJb0xcEaEJDLzMI_'});
-</script>
-
             Comprar curso
           </Button>
         </a>
