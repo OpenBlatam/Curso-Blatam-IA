@@ -1,6 +1,7 @@
 // components/PricingSection.tsx
 import React from 'react';
 import styles from './PricingSection.module.css';
+import { useCountryPricing } from '../../hooks/useCountryPricing';
 
 // Placeholder icons - replace with actual SVGs or an icon library
 const CheckIcon = () => <span className={styles.icon}>✓</span>;
@@ -30,6 +31,20 @@ interface PricingSectionProps {
 }
 
 const PricingSection: React.FC<PricingSectionProps> = ({ windowSize }) => {
+  const { pricing, loading, formatPrice, getMonthlyPaymentText } = useCountryPricing();
+
+  if (loading) {
+    return (
+      <section className={styles.pricingSectionContainer}>
+        <p className={styles.preHeading}>PRECIO</p>
+        <h2 className={styles.mainHeading}>Precios claros y accesibles</h2>
+        <div className={styles.contentCard}>
+          <p>Cargando precios...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className={styles.pricingSectionContainer}>
       <p className={styles.preHeading}>PRECIO</p>
@@ -55,11 +70,15 @@ const PricingSection: React.FC<PricingSectionProps> = ({ windowSize }) => {
           </div>
           <div className={styles.priceOffer}>
             <span className={styles.discountBadge}>65% OFF</span>
-            <span className={styles.originalPrice}>$4.290 MXN</span>
+            <span className={styles.originalPrice}>
+              {formatPrice(pricing.originalPrice, pricing.currency, pricing.currencySymbol)} {pricing.currency}
+            </span>
           </div>
-          <p className={styles.currentPrice}>$1.502 MXN</p>
+          <p className={styles.currentPrice}>
+            {formatPrice(pricing.newPrice, pricing.currency, pricing.currencySymbol)} {pricing.currency}
+          </p>
           <p className={styles.financingInfo}>
-            Hasta 12 meses sin interés de $125 MXN
+            {getMonthlyPaymentText()}
           </p>
           <a href="#" className={styles.paymentMethodsLink}>
             Ver medios de pago

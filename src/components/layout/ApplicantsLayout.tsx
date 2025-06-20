@@ -227,10 +227,6 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ childre
             >
               <PromoBanner
                 discount="65% OFF"
-                originalPrice="$4,290 MXN"
-                newPrice="$1,502 MXN"
-                additionalInfo="Hasta 12 meses sin interés de $125 MXN"
-                duration=""
                 paymentLinkText="Ver medios de pago"
               />
               <CourseBuyButton

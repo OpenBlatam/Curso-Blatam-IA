@@ -7,6 +7,7 @@ import { Box, Button, Flex, Link as ChakraLink, useColorModeValue, useBreakpoint
 import { FiArrowRight } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useCountryPricing } from '../../hooks/useCountryPricing';
 
 // Icons for the "Comprar ahora" button - ensure these return a single element like <span>
 const FireIcon = () => <span className={styles.ctaIcon}>🔥</span>;
@@ -16,21 +17,15 @@ const MotionButton = motion(Button);
 
 // Animación sutil tipo Vogue
 const subtleShine = keyframes`
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 `;
 
 const Header: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { pricing, loading, formatPrice, getMonthlyPaymentText } = useCountryPricing();
   const bgColor = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
   const buttonBg = useColorModeValue('blue.500', 'blue.400');
@@ -40,51 +35,17 @@ const Header: React.FC = () => {
   const buttonSize = useBreakpointValue({ base: 'sm', md: 'md' });
   const buttonPadding = useBreakpointValue({ base: '4', md: '8' });
   const fontSize = useBreakpointValue({ base: 'sm', md: 'md' });
-  const [priceText, setPriceText] = useState('');
 
   useEffect(() => {
     setMounted(true);
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 21.9);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
       setMounted(false);
     };
-  }, []);
-
-  useEffect(() => {
-    // Detectar el país del visitante
-    const detectCountry = async () => {
-      try {
-        const response = await fetch('https://ipapi.co/json/');
-        const data = await response.json();
-        const country = data.country_code;
-        
-        // Mapeo de países y sus monedas
-        const priceMap: { [key: string]: { currency: string, amount: number } } = {
-          'AR': { currency: 'ARS', amount: 150000 }, // Argentina
-          'BR': { currency: 'BRL', amount: 1500 },   // Brasil
-          'CL': { currency: 'CLP', amount: 150000 }, // Chile
-          'CO': { currency: 'COP', amount: 1500000 }, // Colombia
-          'MX': { currency: 'MXN', amount: 1500 },   // México
-          'PE': { currency: 'PEN', amount: 600 },    // Perú
-          'UY': { currency: 'UYU', amount: 6000 },   // Uruguay
-          'VE': { currency: 'USD', amount: 150 },    // Venezuela
-        };
-
-        const defaultPrice = { currency: 'MXN', amount: 1500 };
-        const { currency, amount } = priceMap[country] || defaultPrice;
-
-        setPriceText(`12 pagos mensuales de ${currency} ${(amount/12).toFixed(2)}`);
-      } catch (error) {
-        // En caso de error, mostrar precio en MXN
-        setPriceText('12 pagos mensuales de MXN 125.00');
-      }
-    };
-
-    detectCountry();
   }, []);
 
   // Memoize the header class to prevent unnecessary recalculations
@@ -94,6 +55,11 @@ const Header: React.FC = () => {
   );
 
   const showBuyNowButton = router.pathname === '/applicants';
+
+  // Generate price text based on country
+  const priceText = loading 
+    ? 'Cargando...' 
+    : getMonthlyPaymentText();
 
   if (!mounted) {
     return null; // Return null on server-side and initial client render
