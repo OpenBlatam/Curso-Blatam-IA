@@ -545,6 +545,11 @@ const Applicants: NextPage = () => {
             _hover={{ bgGradient: "linear(to-r, orange.400, orange.500)" }}
             transition="all 0.2s"
           >
+            <!-- Event snippet for Inicio de confirmación de compra conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-17051100560/JFaJCJb0xcEaEJDLzMI_'});
+</script>
+
             Comprar curso
           </Button>
         </a>
