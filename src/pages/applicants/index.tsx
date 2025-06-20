@@ -548,7 +548,7 @@ const Applicants: NextPage = () => {
         boxShadow="0 -2px 16px rgba(0,0,0,0.08)"
       >
         <a
-          href="https://astrixial.gumroad.com/l/ia"
+          href="https://blatam.gumroad.com/l/ia"
           target="_blank"
           rel="noopener noreferrer"
           style={{ width: '92%', display: 'flex', justifyContent: 'center', textDecoration: 'none' }}

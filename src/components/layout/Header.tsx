@@ -230,7 +230,7 @@ const Header: React.FC = () => {
               </MotionButton>
             </Link>
             {showBuyNowButton && (
-              <Link href="https://astrixial.gumroad.com/l/ia">
+              <Link href="https://blatam.gumroad.com/l/ia">
                 <span className={styles.buyNowButton}>
                   <FireIcon />
                   Comprar ahora

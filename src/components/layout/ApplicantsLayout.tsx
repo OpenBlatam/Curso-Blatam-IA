@@ -235,7 +235,7 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ childre
               />
               <CourseBuyButton
                 itemType="curso"
-                gumroadLink="https://astrixial.gumroad.com/l/ia"
+                gumroadLink="https://blatam.gumroad.com/l/ia"
                 tooltipText="Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, te devolvemos la totalidad del dinero invertido. Solo aplica para tu primer curso en Blatam."
               />
             </Stack>

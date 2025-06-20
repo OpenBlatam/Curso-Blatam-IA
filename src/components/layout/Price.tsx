@@ -8,7 +8,7 @@ const PricingBanner: React.FC = () => {
     <div className="w-full p-4 bg-white rounded-b-xl shadow-md relative">
       {/* Botón de compra */}
       <a
-        href="https://astrixial.gumroad.com/l/ia"
+        href="https://blatam.gumroad.com/l/ia"
         target="_blank"
         rel="noopener noreferrer"
         className="block"
