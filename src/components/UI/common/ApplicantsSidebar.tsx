@@ -4,7 +4,7 @@ import NextLink from 'next/link';
 import { CloseIcon } from '@chakra-ui/icons';
 
 import { PageText } from '..';
-import { SidebarLink } from '../../../../types';
+import { SidebarLink } from '../../../types';
 
 interface Props {
   sidebarLinks: SidebarLink[];
@@ -18,6 +18,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
 
   const renderLink = (link: SidebarLink, idx: number, onClick?: () => void) => {
     const isExternal = ['Inicio', 'Cursos', 'Becas'].includes(link.text);
+    const isInternalSection = link.href.includes('#');
     const isActive = sectionsInView[idx];
     const color = isActive ? activeColor : inactiveColor;
 
@@ -41,6 +42,20 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
         >
           <PageText {...linkProps}>{link.text}</PageText>
         </a>
+      );
+    }
+
+    if (isInternalSection) {
+      return (
+        <Link
+          key={link.href}
+          as={NextLink}
+          href={link.href}
+          _hover={{ textDecoration: 'none' }}
+          passHref
+        >
+          <PageText {...linkProps}>{link.text}</PageText>
+        </Link>
       );
     }
 
@@ -77,23 +92,29 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
           <DrawerOverlay />
           <DrawerContent>
             <DrawerHeader p={4} borderBottomWidth="1px" position="relative">
-              <Box fontWeight="bold" fontSize="lg">Menú</Box>
+              <Box fontWeight="bold" fontSize="lg">Menú de Navegación</Box>
               <IconButton
                 aria-label="Cerrar menú"
-                icon={
-                  <Flex align="center">
-                    <CloseIcon boxSize={6} />
-                    <Box as="span" ml={2} fontSize="lg" fontWeight="bold">Cerrar</Box>
-                  </Flex>
-                }
+                icon={<CloseIcon />}
                 onClick={onClose}
-                variant="ghost"
-                size="lg"
+                size="md"
                 position="absolute"
-                top={2}
-                right={2}
-                color="gray.700"
-                _hover={{ bg: 'gray.100' }}
+                top={3}
+                right={3}
+                variant="ghost"
+                color="gray.600"
+                _hover={{ 
+                  bg: 'red.50', 
+                  color: 'red.500',
+                  transform: 'scale(1.1)'
+                }}
+                _active={{ 
+                  bg: 'red.100',
+                  transform: 'scale(0.95)'
+                }}
+                transition="all 0.2s"
+                borderRadius="full"
+                bg="gray.50"
               />
             </DrawerHeader>
             <DrawerBody>

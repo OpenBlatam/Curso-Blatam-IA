@@ -1,10 +1,7 @@
-import { FC } from 'react';
-import { Box, BoxProps, Button, ButtonProps, Flex, Spinner } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import { FC, useState } from 'react';
+import { Box, Button, Flex, Spinner } from '@chakra-ui/react';
 import Image from 'next/image';
 import { ImportantText } from './UI/headings';
-
-import { useShadowAnimation } from '../hooks';
 
 import planeVectorSVG from '../../public/images/plane-vector.svg';
 
@@ -18,9 +15,6 @@ interface Props {
   text: string;
 }
 
-const MotionBox = motion(Box);
-const MotionButton = motion(Button);
-
 export const SubmitButton: FC<Props> = ({
   id = 'submit-application',
   isValid,
@@ -30,31 +24,35 @@ export const SubmitButton: FC<Props> = ({
   width,
   text
 }) => {
-  const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <Box id={id} position='relative'>
-      <MotionBox
+      <Box
         backgroundColor='brand.button.shadow'
         h={height}
         w={width}
         position='absolute'
-        animate={shadowBoxControl}
+        transform={isHovered ? 'translate(3px, 3px)' : 'translate(6px, 6px)'}
+        transition="transform 0.2s ease"
         opacity={!isValid ? 0 : 1}
       />
 
-      <MotionButton
+      <Button
         backgroundColor='brand.accent'
         w={width}
         py={7}
         borderRadius={0}
         type='submit'
         isDisabled={!isValid || isSubmitting}
-        _hover={{ bg: 'brand.hover' }}
-        whileHover={{ x: -1.5, y: -1.5 }}
-        onMouseEnter={() => setButtonHovered(true)}
-        onMouseLeave={() => setButtonHovered(false)}
+        _hover={{ 
+          bg: 'brand.hover',
+          transform: 'translate(-1.5px, -1.5px)'
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         pointerEvents={!isValid ? 'none' : 'auto'}
+        transition="all 0.2s ease"
       >
         <ImportantText as='h3' color='white'>
           {isSubmitting ? 'Submitting' : text}
@@ -66,7 +64,7 @@ export const SubmitButton: FC<Props> = ({
           )}
           {isSubmitting && <Spinner color='white' />}
         </Flex>
-      </MotionButton>
+      </Button>
     </Box>
   );
 };

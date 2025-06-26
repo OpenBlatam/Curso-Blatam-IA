@@ -43,6 +43,8 @@ export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, childre
               style={{ objectFit: 'cover' }}
               placeholder='blur'
               quality={85}
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
             />
           </Box>
         </Stack>
@@ -84,6 +86,8 @@ export const HomeAboutCard2: FC<Props> = ({ bgGradient, img, title, link, childr
                   style={{ objectFit: 'cover' }}
                   placeholder='blur'
                   quality={85}
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
               />
             </Box>
           </Stack>
@@ -125,6 +129,8 @@ export const HomeAboutCard3: FC<Props> = ({ bgGradient, img, title, link, childr
                   style={{ objectFit: 'cover' }}
                   placeholder='blur'
                   quality={85}
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
               />
             </Box>
           </Stack>

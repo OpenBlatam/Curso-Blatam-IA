@@ -1,17 +1,12 @@
 // components/Header.tsx
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router'; // Import useRouter
+import { useRouter } from 'next/router';
 import styles from './Header.module.css';
-import { Box, Button, Flex, Link as ChakraLink, useColorModeValue, useBreakpointValue, keyframes, Tooltip, Container, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, keyframes, Container, Text } from '@chakra-ui/react';
 import { FiArrowRight } from 'react-icons/fi';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useCountryPricing } from '../../hooks/useCountryPricing';
-
-
-
-const MotionButton = motion(Button);
 
 // Animación sutil tipo Vogue
 const subtleShine = keyframes`
@@ -24,15 +19,6 @@ const Header: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { pricing, loading, formatPrice, getMonthlyPaymentText } = useCountryPricing();
-  const bgColor = useColorModeValue('white', 'gray.800');
-  const borderColor = useColorModeValue('gray.200', 'gray.700');
-  const buttonBg = useColorModeValue('blue.500', 'blue.400');
-  const buttonHoverBg = useColorModeValue('blue.600', 'blue.500');
-  
-  // Responsive values
-  const buttonSize = useBreakpointValue({ base: 'sm', md: 'md' });
-  const buttonPadding = useBreakpointValue({ base: '4', md: '8' });
-  const fontSize = useBreakpointValue({ base: 'sm', md: 'md' });
 
   useEffect(() => {
     setMounted(true);
@@ -81,20 +67,33 @@ const Header: React.FC = () => {
         <Flex justify="space-between" align="center" py={2} w="100%">
           <Link href="/" passHref>
             <Box as="a" display="block">
-              <Text
-                fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
-                fontWeight="extrabold"
-                bgGradient="linear(to-r, pink.500, pink.300, purple.400)"
-                bgClip="text"
-                color="transparent"
-                letterSpacing="tight"
-                textShadow="0 2px 8px rgba(236,72,153,0.10)"
-                _hover={{ filter: 'brightness(1.2)' }}
-                transition="all 0.3s"
-                fontFamily="'Montserrat', 'Inter', sans-serif"
-              >
-                Blatam
-              </Text>
+              <Flex align="center" gap={3}>
+                <Image
+                  src="/images/blatam.png"
+                  alt="Blatam Logo"
+                  width={40}
+                  height={40}
+                  style={{ 
+                    objectFit: 'contain',
+                    filter: 'drop-shadow(0 2px 8px rgba(236,72,153,0.15))'
+                  }}
+                />
+                <Text
+                  fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
+                  fontWeight="extrabold"
+                  bgGradient="linear(to-r, pink.500, pink.300, purple.400)"
+                  bgClip="text"
+                  color="transparent"
+                  letterSpacing="tight"
+                  textShadow="0 2px 8px rgba(236,72,153,0.10)"
+                  _hover={{ filter: 'brightness(1.2)' }}
+                  transition="all 0.3s"
+                  fontFamily="'Montserrat', 'Inter', sans-serif"
+                  display={{ base: 'none', sm: 'block' }}
+                >
+                  blatam
+                </Text>
+              </Flex>
             </Box>
           </Link>
 
@@ -119,7 +118,7 @@ const Header: React.FC = () => {
               </Text>
             )}
             <Link href="https://blatam.org/en/login" passHref>
-              <MotionButton
+              <Button
                 as="a"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -134,13 +133,12 @@ const Header: React.FC = () => {
                 letterSpacing="0.05em"
                 textTransform="none"
                 rightIcon={<FiArrowRight size="1em" />}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
                 boxShadow="0 4px 20px rgba(233, 30, 99, 0.3)"
                 _hover={{
                   bgGradient: 'linear(to-r, #c2185b, #ad1457, #880e4f)',
                   color: 'white',
                   boxShadow: "0 6px 30px rgba(233, 30, 99, 0.4)",
+                  transform: 'scale(1.02)',
                   _before: {
                     transform: 'scaleX(1)',
                     opacity: 1,
@@ -191,7 +189,7 @@ const Header: React.FC = () => {
                 }}
               >
                 Acceder
-              </MotionButton>
+              </Button>
             </Link>
           </Flex>
         </Flex>

@@ -27,7 +27,7 @@ interface MagicButtonProps extends ButtonProps {
 export const MagicButton: FC<MagicButtonProps> = ({ children, ...props }) => {
   return (
     <Button
-      leftIcon={<Sparkles />}
+      leftIcon={<Sparkles size="1.1em" />}
       variant="outline"
       borderWidth="2px"
       borderColor="purple.400"
@@ -37,6 +37,8 @@ export const MagicButton: FC<MagicButtonProps> = ({ children, ...props }) => {
       backdropFilter="blur(8px)"
       transform="translateY(-2px)"
       shadow="lg"
+      fontWeight="bold"
+      
       _hover={{ 
         transform: 'translateY(-4px)',
         shadow: 'xl',
@@ -49,6 +51,10 @@ export const MagicButton: FC<MagicButtonProps> = ({ children, ...props }) => {
         _after: {
           opacity: 1
         }
+      }}
+      _active={{
+        transform: 'translateY(0px)',
+        shadow: 'md'
       }}
       _before={{
         content: '""',
@@ -87,7 +93,8 @@ export const MagicButton: FC<MagicButtonProps> = ({ children, ...props }) => {
           position: 'relative',
           zIndex: 2,
           fontWeight: 'bold',
-          textShadow: '0 0 10px rgba(255,255,255,0.5)'
+          textShadow: '0 0 10px rgba(255,255,255,0.5)',
+          whiteSpace: 'nowrap'
         }
       }}
       {...props}

@@ -2,12 +2,20 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { ShieldCheck } from 'lucide-react';
 
 interface GuaranteeBoxProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   showTitle?: boolean;
 }
 
 const GuaranteeBox = ({ size = 'md', showTitle = true }: GuaranteeBoxProps) => {
   const sizeConfig = {
+    xs: {
+      fontSize: { base: '3xs', sm: '2xs' },
+      titleSize: { base: '2xs', sm: 'xs' },
+      padding: { base: 1.5, sm: 2 },
+      iconSize: 12,
+      iconPadding: { base: 0.5, sm: 1 },
+      spacing: 0.5
+    },
     sm: {
       fontSize: { base: '2xs', sm: 'xs' },
       titleSize: { base: 'xs', sm: 'sm' },
@@ -40,12 +48,12 @@ const GuaranteeBox = ({ size = 'md', showTitle = true }: GuaranteeBoxProps) => {
     <Box
       p={config.padding}
       bg="linear-gradient(135deg, #E8F5E8 0%, #F0F8F0 100%)"
-      borderRadius={{ base: 'lg', sm: 'xl' }}
-      border="2px solid"
+      borderRadius={{ base: 'md', sm: 'lg' }}
+      border="1px solid"
       borderColor="green.200"
       fontSize={config.fontSize}
       textAlign="center"
-      boxShadow="0 4px 12px rgba(0, 0, 0, 0.05)"
+      boxShadow="0 2px 8px rgba(0, 0, 0, 0.05)"
       position="relative"
       overflow="hidden"
       maxW="100%"
@@ -55,7 +63,7 @@ const GuaranteeBox = ({ size = 'md', showTitle = true }: GuaranteeBoxProps) => {
         top: 0,
         left: 0,
         right: 0,
-        height: '3px',
+        height: size === 'xs' ? '2px' : '3px',
         bg: 'linear-gradient(90deg, green.400, green.500, green.400)',
       }}
     >
@@ -65,7 +73,7 @@ const GuaranteeBox = ({ size = 'md', showTitle = true }: GuaranteeBoxProps) => {
           justify="center" 
           mb={config.spacing}
           flexWrap="wrap"
-          gap={2}
+          gap={size === 'xs' ? 1 : 2}
         >
           <Box
             bg="green.500"
@@ -86,8 +94,8 @@ const GuaranteeBox = ({ size = 'md', showTitle = true }: GuaranteeBoxProps) => {
             fontWeight="bold"
             color="green.700"
             textTransform="uppercase"
-            letterSpacing="wide"
-            lineHeight="1.2"
+            letterSpacing={size === 'xs' ? 'normal' : 'wide'}
+            lineHeight="1.1"
           >
             Garantía de Satisfacción
           </Text>
@@ -96,25 +104,29 @@ const GuaranteeBox = ({ size = 'md', showTitle = true }: GuaranteeBoxProps) => {
       
       <Text 
         color="green.800" 
-        lineHeight={{ base: "1.3", sm: "1.4" }} 
+        lineHeight={{ base: "1.2", sm: "1.3" }} 
         fontWeight="medium"
-        px={{ base: 1, sm: 0 }}
+        px={{ base: size === 'xs' ? 0.5 : 1, sm: 0 }}
       >
         <Text as="span" fontWeight="bold" color="green.700">
           100% de tu dinero de vuelta
         </Text>
         <br />
-        Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, 
-        te devolvemos la totalidad del dinero invertido.
+        {size === 'xs' ? (
+          <>Si en las primeras 2 clases no alcanzamos tus expectativas, te devolvemos todo.</>
+        ) : (
+          <>Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, 
+          te devolvemos la totalidad del dinero invertido.</>
+        )}
       </Text>
       
       <Text
         mt={config.spacing}
-        fontSize={{ base: "3xs", sm: "2xs" }}
+        fontSize={{ base: "4xs", sm: "3xs" }}
         color="green.600"
         fontStyle="italic"
-        px={{ base: 1, sm: 0 }}
-        lineHeight="1.2"
+        px={{ base: size === 'xs' ? 0.5 : 1, sm: 0 }}
+        lineHeight="1.1"
       >
         * Solo aplica para tu primer curso en Blatam
       </Text>

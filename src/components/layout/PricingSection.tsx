@@ -1,7 +1,8 @@
 // components/PricingSection.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './PricingSection.module.css';
 import { useCountryPricing } from '../../hooks/useCountryPricing';
+import PaymentModal from './PaymentModal';
 
 // Placeholder icons - replace with actual SVGs or an icon library
 const CheckIcon = () => <span className={styles.icon}>✓</span>;
@@ -32,6 +33,16 @@ interface PricingSectionProps {
 
 const PricingSection: React.FC<PricingSectionProps> = ({ windowSize }) => {
   const { pricing, loading, formatPrice, getMonthlyPaymentText } = useCountryPricing();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handlePaymentClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   if (loading) {
     return (
@@ -80,11 +91,13 @@ const PricingSection: React.FC<PricingSectionProps> = ({ windowSize }) => {
           <p className={styles.financingInfo}>
             {getMonthlyPaymentText()}
           </p>
-          <a href="#" className={styles.paymentMethodsLink}>
+          <a href="#" className={styles.paymentMethodsLink} onClick={handlePaymentClick}>
             Ver medios de pago
           </a>
         </div>
       </div>
+
+      {isModalOpen && <PaymentModal onClose={handleCloseModal} />}
     </section>
   );
 };

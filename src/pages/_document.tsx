@@ -110,10 +110,12 @@ export default function Document() {
         />
         <Script id="google-analytics" strategy="lazyOnload">
           {`
-            // Only initialize after significant user interaction
+            // Only initialize after significant user interaction and page is loaded
             let gaInitialized = false;
+            let pageFullyLoaded = false;
+            
             function initGA() {
-              if (gaInitialized) return;
+              if (gaInitialized || !pageFullyLoaded) return;
               gaInitialized = true;
               
               window.dataLayer = window.dataLayer || [];
@@ -122,20 +124,32 @@ export default function Document() {
               gtag('config', 'G-BSNQ053V7B', {
                 page_title: document.title,
                 page_location: window.location.href,
-                send_page_view: false
+                send_page_view: false,
+                debug_mode: false,
+                minimal: true
               });
               
-              // Send page view after initialization
-              setTimeout(() => gtag('event', 'page_view'), 100);
+              // Send page view after initialization with delay
+              setTimeout(() => gtag('event', 'page_view'), 500);
             }
             
-            // Initialize GA only after page is fully loaded and user interacts
+            // Mark page as fully loaded
             window.addEventListener('load', () => {
               setTimeout(() => {
-                ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'].forEach(event => {
-                  window.addEventListener(event, initGA, { once: true, passive: true });
-                });
-              }, 3000); // Wait 3 seconds after page load
+                pageFullyLoaded = true;
+              }, 2000); // Wait 2 seconds after page load
+            });
+            
+            // Initialize GA only after page is fully loaded AND user interacts
+            const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+            events.forEach(event => {
+              window.addEventListener(event, () => {
+                if (pageFullyLoaded) {
+                  initGA();
+                  // Remove listeners after first initialization
+                  events.forEach(e => window.removeEventListener(e, initGA));
+                }
+              }, { once: true, passive: true });
             });
           `}
         </Script>

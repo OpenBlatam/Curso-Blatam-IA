@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,20 +16,23 @@
 }
 
 .modalContent {
-  background-color: #ffffff;
-  padding: 25px 30px;
-  border-radius: 10px;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  padding: 30px;
+  border-radius: 16px;
   width: 100%;
-  max-width: 500px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  max-width: 580px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1);
   text-align: center;
-  animation: fadeInModal 0.3s ease-out;
+  animation: fadeInModal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
 }
 
 @keyframes fadeInModal {
   from {
     opacity: 0;
-    transform: translateY(-20px) scale(0.95);
+    transform: translateY(-30px) scale(0.9);
   }
   to {
     opacity: 1;
@@ -37,85 +40,255 @@
   }
 }
 
-.modalContent h2 {
-  font-size: 1.6rem;
+.closeButtonTop {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.closeButtonTop:hover {
+  background: rgba(0, 0, 0, 0.15);
+  color: #1e293b;
+  transform: scale(1.1);
+}
+
+.modalTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 12px 0;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.titleIcon {
+  color: #6366f1;
+  flex-shrink: 0;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
   font-weight: 600;
-  color: #2d3748;
-  margin-top: 0;
-  margin-bottom: 8px;
+  color: #1e293b;
+  margin-bottom: 16px;
+}
+
+.sectionIcon {
+  color: #6366f1;
+  flex-shrink: 0;
+}
+
+.sparkleIcon {
+  color: #10b981;
+  margin-right: 6px;
+  flex-shrink: 0;
 }
 
 .introText {
-  font-size: 0.95rem;
-  color: #4a5568;
-  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #64748b;
+  margin-bottom: 24px;
+  line-height: 1.5;
 }
 
 .divider {
   border: 0;
-  height: 1px;
-  background-color: #e2e8f0;
-  margin: 20px 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+  margin: 24px 0;
 }
 
-.modalContent h3 {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #2d3748;
-  margin-bottom: 15px;
+.paymentSection {
+  margin-bottom: 28px;
   text-align: left;
 }
 
 .cardLogos {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align logos to the left */
-  gap: 25px; /* MODIFIED: Increased space between logos (was 15px) */
-  margin-bottom: 20px;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
 }
 
-.cardLogo {
-  height: 30px; /* MODIFIED: Slightly increased default height, adjust as needed */
-  width: auto;
-  object-fit: contain;
-  /* REMOVED: filter: grayscale(1); */
-  /* REMOVED: opacity: 0.8; */
-  transition: transform 0.2s ease; /* Keep transition for other potential hover effects */
+.logoContainer {
+  background: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px solid #f1f5f9;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.cardLogo:hover {
-  /* REMOVED: filter: grayscale(0); */
-  /* REMOVED: opacity: 1; */
-  transform: scale(1.05); /* Optional: Add a slight scale on hover */
+.logoContainer:hover {
+  border-color: #6366f1;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(99, 102, 241, 0.15);
+}
+
+.cardLogo {
+  object-fit: contain;
+  transition: transform 0.2s ease;
 }
 
 .offerText {
-  font-size: 0.85rem;
-  color: #4a5568;
-  line-height: 1.5;
-  margin-bottom: 25px;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  padding: 16px 20px;
+  border-radius: 12px;
+  border-left: 4px solid #10b981;
+  margin-bottom: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+}
+
+.additionalMethods {
+  margin-bottom: 24px;
   text-align: left;
-  background-color: #f7fafc;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
+}
+
+.additionalMethods h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.methodsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.methodItem {
+  background: white;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 2px solid #f1f5f9;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #475569;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.methodItem:hover {
+  border-color: #8b5cf6;
+  background: #faf5ff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+}
+
+.securityInfo {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #bbf7d0;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.securityInfo p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #166534;
+  font-weight: 500;
 }
 
 .closeButton {
-  background-color: #4a5568;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: #ffffff;
   border: none;
-  padding: 10px 25px;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 500;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
   display: block;
   margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
 .closeButton:hover {
-  background-color: #2d3748;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+  background: linear-gradient(135deg, #5b5af0, #7c3aed);
+}
+
+.closeButton:active {
+  transform: translateY(-1px);
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .modalContent {
+    padding: 24px 20px;
+    max-width: 95vw;
+    border-radius: 12px;
+  }
+  
+  .modalTitle {
+    font-size: 1.5rem;
+    gap: 8px;
+  }
+  
+  .titleIcon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .cardLogos {
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .logoContainer {
+    padding: 10px 12px;
+    min-height: 50px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.1rem;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .sectionIcon {
+    width: 18px;
+    height: 18px;
+  }
 }

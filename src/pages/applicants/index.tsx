@@ -284,8 +284,13 @@ const Applicants: NextPage = () => {
                 direction={{ base: 'column', sm: 'row' }}
               >
                 <MagicButton
-                  width={{ base: '100%', sm: 'auto' }}
-                  size={{ base: 'md', md: 'lg' }}
+                  w="full"
+                  size="lg"
+                  sx={{
+                    '@media (min-width: 30em)': {
+                      w: 'auto'
+                    }
+                  }}
                 >
                   Aprende con IA
                 </MagicButton>
@@ -295,8 +300,13 @@ const Applicants: NextPage = () => {
                   borderWidth="2px"
                   borderColor="purple.300"
                   _hover={{ shadow: 'sm' }}
-                  width={{ base: '100%', sm: 'auto' }}
-                  size={{ base: 'md', md: 'lg' }}
+                  w="full"
+                  size="lg"
+                  sx={{
+                    '@media (min-width: 30em)': {
+                      w: 'auto'
+                    }
+                  }}
                 >
                   En línea y en vivo
                 </Button>
@@ -632,7 +642,7 @@ const Applicants: NextPage = () => {
           <span role="img" aria-label="fuego">🔥</span> ¡PRUEBA 2 CLASES GRATIS!
         </Box>
         <Box mt={3} mx={3} maxW="95%">
-          <GuaranteeBox size="sm" />
+          <GuaranteeBox size="xs" />
         </Box>
       </Box>
       <Box position="fixed" bottom={6} right={6} zIndex={1000}>

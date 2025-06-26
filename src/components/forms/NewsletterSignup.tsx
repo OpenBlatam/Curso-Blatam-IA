@@ -17,21 +17,16 @@ import {
 } from '@chakra-ui/react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { motion } from 'framer-motion';
 import { EmailIcon } from '@chakra-ui/icons';
 
 import { ImportantText } from '../UI/headings';
 import { PageText } from '../UI/text';
 
 import { api } from './api';
-import { useShadowAnimation } from '../../hooks';
 import { NewsletterFormData } from '../../types';
 
 import { TOAST_OPTIONS } from '../../constants';
-import { SubmitButton } from '../';
-
-const MotionBox = motion(Box);
-const MotionButton = motion(Button);
+import { SubmitButton } from '../SubmitButton';
 
 export const NewsletterSignup: FC = () => {
   const {
@@ -43,7 +38,7 @@ export const NewsletterSignup: FC = () => {
     mode: 'onChange'
   });
   const toast = useToast();
-  const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
+  const [isHovered, setIsHovered] = useState(false);
 
   const onSubmit = async (data: NewsletterFormData) => {
     if (errors.email) {
@@ -149,16 +144,17 @@ export const NewsletterSignup: FC = () => {
 
             <Center>
               <Box position='relative'>
-                <MotionBox
+                <Box
                   backgroundColor='brand.button.shadow'
                   h='56px'
                   w='148px'
                   position='absolute'
-                  animate={shadowBoxControl}
+                  transform={isHovered ? 'translate(3px, 3px)' : 'translate(6px, 6px)'}
+                  transition="transform 0.2s ease"
                   opacity={!isValid ? 0 : 1}
                 />
 
-                <MotionButton
+                <Button
                   backgroundColor='brand.accent'
                   w='148px'
                   py={7}
@@ -167,14 +163,17 @@ export const NewsletterSignup: FC = () => {
                   alignItems='center'
                   type='submit'
                   isDisabled={!isValid}
-                  _hover={{ bg: 'brand.hover' }}
-                  whileHover={{ x: -1.5, y: -1.5 }}
-                  onMouseEnter={() => setButtonHovered(true)}
-                  onMouseLeave={() => setButtonHovered(false)}
+                  _hover={{ 
+                    bg: 'brand.hover',
+                    transform: 'translate(-1.5px, -1.5px)'
+                  }}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
                   pointerEvents={!isValid ? 'none' : 'auto'}
+                  transition="all 0.2s ease"
                 >
                   <ImportantText color='white'>SUSCRIBIRME</ImportantText>
-                </MotionButton>
+                </Button>
               </Box>
             </Center>
           </Flex>
