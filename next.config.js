@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
+const crypto = require('crypto');
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
-  trailingSlash: false,
   
   images: {
     domains: ['images.unsplash.com', 'user-images.githubusercontent.com', 'www.facebook.com'],
@@ -26,10 +27,8 @@ const nextConfig = {
     unoptimized: false,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 31536000, // 1 year
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    formats: ['image/webp'],
+    minimumCacheTTL: 60, // 1 minute default
   },
   
   eslint: {
@@ -38,14 +37,7 @@ const nextConfig = {
   
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ['@chakra-ui/react', '@emotion/react', '@emotion/styled', 'framer-motion', 'react-icons'],
-    webpackBuildWorker: true,
-    gzipSize: true,
-    turbotrace: {
-      logLevel: 'error',
-      contextDirectory: __dirname,
-    },
-    serverComponentsExternalPackages: ['sharp'],
+    optimizePackageImports: ['@chakra-ui/react', '@emotion/react', '@emotion/styled', 'framer-motion'],
   },
   
   // Headers for better caching and security
@@ -99,80 +91,40 @@ const nextConfig = {
   },
   
   webpack: (config, { dev, isServer }) => {
-    // Optimize CSS
-    config.optimization.minimize = true;
-    config.optimization.minimizer = config.optimization.minimizer || [];
-    
-    // Handle TypeScript files
-    config.module.rules.push({
-      test: /\.tsx?$/,
-      use: [
-        {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-          },
-        },
-      ],
-    });
-
-    // Configure chunk filenames
-    config.output.chunkFilename = isServer
-      ? 'static/chunks/[name].[chunkhash].js'
-      : 'static/chunks/[name].[chunkhash].js';
-
-    // Configure module IDs
-    config.optimization.moduleIds = 'deterministic';
-
-    // Add resolve fallbacks for dynamic imports
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      fs: false,
-      net: false,
-      tls: false,
-      path: false,
-      os: false,
-    };
-
-    // Optimize bundle size
+    // Optimize bundle splitting for production
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',
         minSize: 20000,
-        maxSize: 200000, // Reduced from 244000
-        minChunks: 1,
-        maxAsyncRequests: 30,
-        maxInitialRequests: 30,
+        maxSize: 244000,
         cacheGroups: {
-          // Framework chunks
+          default: false,
+          vendors: false,
           framework: {
-            test: /[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
             name: 'framework',
             chunks: 'all',
+            test: /[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
             priority: 40,
             enforce: true,
           },
-          // Common vendors
           lib: {
-            test: /[\\/]node_modules[\\/]/,
-            name(module) {
-              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)?.[1];
-              return `npm.${packageName?.replace('@', '')}`;
+            test(module) {
+              return module.size() > 160000 && /node_modules/.test(module.identifier());
             },
-            chunks: 'all',
+            name(module) {
+              const hash = crypto.createHash('sha1');
+              hash.update(module.identifier());
+              return hash.digest('hex').substring(0, 8);
+            },
             priority: 30,
             minChunks: 1,
             reuseExistingChunk: true,
           },
-          // Common chunks
           commons: {
             name: 'commons',
             minChunks: 2,
             priority: 20,
-            chunks: 'initial',
-            reuseExistingChunk: true,
           },
-          // Default
           default: {
             minChunks: 2,
             priority: 10,
@@ -181,17 +133,9 @@ const nextConfig = {
         },
       };
       
-      // Tree shaking optimization
+      // Minimize main thread work
       config.optimization.usedExports = true;
       config.optimization.sideEffects = false;
-    }
-
-    // Add external dependencies for smaller bundles
-    if (!isServer) {
-      config.externals = {
-        'react-floating-whatsapp': 'ReactFloatingWhatsapp',
-        'react-whatsapp-widget': 'ReactWhatsappWidget'
-      };
     }
 
     return config;

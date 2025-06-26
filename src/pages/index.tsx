@@ -5,6 +5,7 @@ import { Text, Button } from '@chakra-ui/react';
 import { FiArrowRight } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import dynamic from 'next/dynamic';
 
 import {
     FAQItem,
@@ -42,6 +43,17 @@ import FeaturesSection from '../components/UI/main/FeatureCard/FeaturesSection';
 import AdditionalFeaturesSection from '../components/UI/main/FeatureCard/AdditionalFeaturesSection';
 import TestimonialsSection from '../components/UI/main/TestimonialCard/TestimonialsSection';
 import TweetCard from '@/components/UI/main/TweetCard/TweetCard';
+import { HomepageHero } from '../components/UI';
+import { HomepageLayout } from '../components/layout';
+import { WhatsAppButton } from '../components/client/ClientComponents';
+import { useCountryPricing } from '../hooks/useCountryPricing';
+import { useRouter } from 'next/router';
+
+// Lazy load non-critical components
+const MotionBox = dynamic(
+  () => import('framer-motion').then(mod => ({ default: mod.motion.div })),
+  { ssr: false }
+);
 
 const tweets = [
   {

@@ -11,4 +11,3 @@ export * from './PageMetadata';
 export * from './AboutHero';
 export { MagicButton } from './common/MagicButton';
 export { default as GuaranteeBox } from './GuaranteeBox';
-export { default as OptimizedImage } from './OptimizedImage';

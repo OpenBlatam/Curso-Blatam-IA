@@ -1,18 +1,51 @@
 import { Box, Text, Flex } from '@chakra-ui/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const TopPromoBanner = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateScrollState = () => {
       const scrollY = window.scrollY;
-      setIsVisible(scrollY < 100); // Hide after scrolling 100px
+      
+      // Only update if there's a significant change
+      if (Math.abs(scrollY - lastScrollY.current) > 5) {
+        setIsVisible(scrollY < 100);
+        lastScrollY.current = scrollY;
+      }
+      
+      ticking.current = false;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      if (!ticking.current) {
+        window.requestAnimationFrame(updateScrollState);
+        ticking.current = true;
+      }
+    };
+
+    // Add passive listener for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Don't render anything if not visible to reduce DOM complexity
+  if (!isVisible) {
+    return (
+      <Box
+        position="fixed"
+        top={0}
+        left={0}
+        right={0}
+        height="0"
+        overflow="hidden"
+        zIndex={1001}
+      />
+    );
+  }
 
   return (
     <Box
@@ -25,9 +58,10 @@ const TopPromoBanner = () => {
       right={0}
       zIndex={1001}
       boxShadow="0 1px 4px rgba(0,0,0,0.1)"
-      transform={isVisible ? 'translateY(0)' : 'translateY(-100%)'}
+      transform="translateY(0)"
       transition="transform 0.3s ease"
       minH={{ base: "28px", sm: "32px", md: "36px" }}
+      will-change="transform"
     >
     <Flex
       direction={{ base: 'row', md: 'row' }}

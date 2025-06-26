@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { EmailIcon } from '@chakra-ui/icons'
 import React from 'react';
+import dynamic from 'next/dynamic';
+import { Sparkles } from 'lucide-react';
 
 import {
   ApplicantsSidebar,
@@ -31,7 +33,6 @@ import mercadolibre from '../../../public/logos/mercadolibre.svg';
 import globant from '../../../public/logos/Globant_Logo.svg'; 
 import galicia from '../../../public/logos/Logo_Banco_Galicia.svg';
 import naranjax from '../../../public/logos/naranja-x-1.svg';
-import { Sparkles } from 'lucide-react';
 import { NewsletterSignup } from '../../components/forms/NewsletterSignup';
 import {
   OFFICE_HOURS_URL,
@@ -39,6 +40,9 @@ import {
   SIDEBAR_APPLICANTS_LINKS,
   SMALL_GRANTS_URL
 } from '../../constants';
+
+// Dynamic imports for heavy components
+// Future optimization: Add dynamic imports for heavy components when needed
 
 const WHATSAPP_NUMBER = '525530326229';
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
@@ -246,7 +250,7 @@ const Applicants: NextPage = () => {
                     alt="Background circles"
                     width={200}
                     height={200}
-                    priority
+                    loading="lazy"
                   />
                 </Box>
                 <Box 
@@ -261,7 +265,7 @@ const Applicants: NextPage = () => {
                     alt="Background circles"
                     width={150}
                     height={150}
-                    priority
+                    loading="lazy"
                   />
                 </Box>
                 
@@ -342,8 +346,6 @@ const Applicants: NextPage = () => {
                   </Stack>
                 </Box>
 
-
-
                 <Stack 
                   spacing={{ base: 6, md: 8 }}
                   direction={{ base: 'column', md: 'row' }}
@@ -365,7 +367,7 @@ const Applicants: NextPage = () => {
                           alt='Software and protocol developers vector'
                           height={37}
                           width={40}
-                          priority
+                          loading="lazy"
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
@@ -388,7 +390,7 @@ const Applicants: NextPage = () => {
                           alt='Researchers vector'
                           height={40}
                           width={40}
-                          priority
+                          loading="lazy"
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
@@ -411,7 +413,7 @@ const Applicants: NextPage = () => {
                           alt='Academics vector' 
                           height={36} 
                           width={40} 
-                          priority
+                          loading="lazy"
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
@@ -436,7 +438,7 @@ const Applicants: NextPage = () => {
                           alt='Community organizers vector'
                           height={36}
                           width={40}
-                          priority
+                          loading="lazy"
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
@@ -459,7 +461,7 @@ const Applicants: NextPage = () => {
                           alt='Designers vector' 
                           height={38} 
                           width={40} 
-                          priority
+                          loading="lazy"
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
@@ -482,7 +484,7 @@ const Applicants: NextPage = () => {
                           alt='Other grant programs vector'
                           height={36}
                           width={40}
-                          priority
+                          loading="lazy"
                         />
                       </Box>
                       <Text fontSize={{ base: 'md', md: 'lg' }} fontWeight={600}>
