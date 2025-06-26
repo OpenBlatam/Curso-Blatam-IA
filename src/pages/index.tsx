@@ -44,10 +44,6 @@ import AdditionalFeaturesSection from '../components/UI/main/FeatureCard/Additio
 import TestimonialsSection from '../components/UI/main/TestimonialCard/TestimonialsSection';
 import TweetCard from '@/components/UI/main/TweetCard/TweetCard';
 import { HomepageHero } from '../components/UI';
-import { HomepageLayout } from '../components/layout';
-import { WhatsAppButton } from '../components/client/ClientComponents';
-import { useCountryPricing } from '../hooks/useCountryPricing';
-import { useRouter } from 'next/router';
 
 // Lazy load non-critical components
 const MotionBox = dynamic(
@@ -172,6 +168,9 @@ const Home: NextPage = () => {
                       alt="Mercado Libre logo"
                       width={150}
                       height={60}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z"
                       style={{ objectFit: 'contain' }}
                     />
                   </Box>
@@ -187,6 +186,9 @@ const Home: NextPage = () => {
                       alt="Accenture logo"
                       width={150}
                       height={60}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z"
                       style={{ objectFit: 'contain' }}
                     />
                   </Box>
@@ -202,6 +204,9 @@ const Home: NextPage = () => {
                       alt="Globant logo"
                       width={150}
                       height={60}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z"
                       style={{ objectFit: 'contain' }}
                     />
                   </Box>
@@ -217,6 +222,9 @@ const Home: NextPage = () => {
                       alt="Galicia logo"
                       width={150}
                       height={60}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z"
                       style={{ objectFit: 'contain' }}
                     />
                   </Box>
@@ -232,6 +240,9 @@ const Home: NextPage = () => {
                       alt="NaranjaX logo"
                       width={150}
                       height={60}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z"
                       style={{ objectFit: 'contain' }}
                     />
                   </Box>
@@ -293,6 +304,7 @@ const Home: NextPage = () => {
                       alt="BBVA logo"
                       width={100}
                       height={40}
+                      loading="lazy"
                       style={{ objectFit: 'contain' }}
                     />
                   </Box>
@@ -304,6 +316,7 @@ const Home: NextPage = () => {
                       alt="Accenture logo"
                       width={100}
                       height={40}
+                      loading="lazy"
                       style={{ objectFit: 'contain' }}
                     />
                   </Box>

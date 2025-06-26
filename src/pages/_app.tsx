@@ -30,14 +30,24 @@ function MyApp({ Component, pageProps }: AppProps) {
   const isApplicantsPage = router.pathname === '/applicants';
 
   useEffect(() => {
-    // Initialize analytics only if needed
-    if (process.env.NEXT_PUBLIC_MATOMO_URL && process.env.NEXT_PUBLIC_MATOMO_SITE_ID) {
-      init({
-        url: process.env.NEXT_PUBLIC_MATOMO_URL,
-        siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID
-      });
-    }
+    // Initialize analytics only if needed and after initial render
+    const initializeAnalytics = () => {
+      if (process.env.NEXT_PUBLIC_MATOMO_URL && process.env.NEXT_PUBLIC_MATOMO_SITE_ID) {
+        init({
+          url: process.env.NEXT_PUBLIC_MATOMO_URL,
+          siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID
+        });
+      }
+    };
+    
+    // Delay analytics initialization
+    const timer = setTimeout(() => {
+      initializeAnalytics();
+    }, 2000);
+    
     setMounted(true);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const layoutProps = {

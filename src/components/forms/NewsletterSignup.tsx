@@ -1,3 +1,4 @@
+import React, { useState, useCallback } from 'react';
 import {
   Box,
   BoxProps,
@@ -6,13 +7,18 @@ import {
   Center,
   Flex,
   FormControl,
+  FormLabel,
   Input,
+  InputGroup,
+  InputLeftElement,
   Stack,
+  Text,
   useToast
 } from '@chakra-ui/react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
+import { EmailIcon } from '@chakra-ui/icons';
 
 import { ImportantText } from '../UI/headings';
 import { PageText } from '../UI/text';
@@ -22,6 +28,7 @@ import { useShadowAnimation } from '../../hooks';
 import { NewsletterFormData } from '../../types';
 
 import { TOAST_OPTIONS } from '../../constants';
+import { SubmitButton } from '../';
 
 const MotionBox = motion(Box);
 const MotionButton = motion(Button);
@@ -115,23 +122,29 @@ export const NewsletterSignup: FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Flex direction={{ base: 'column', md: 'row' }}>
             <FormControl id='email-control' isRequired mb={{ base: 3, md: 0 }}>
-              <Input
-                id='newsletter-email'
-                type='email'
-                placeholder='Ingresa tu email'
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                h='56px'
-                maxW={{ base: '100%' }}
-                {...register('email', {
-                  required: true,
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Correo invalido'
-                  }
-                })}
-              />
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents='none'
+                  children={<EmailIcon color='gray.300' />}
+                />
+                <Input
+                  id='newsletter-email'
+                  type='email'
+                  placeholder='Ingresa tu email'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  h='56px'
+                  maxW={{ base: '100%' }}
+                  {...register('email', {
+                    required: true,
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'Correo invalido'
+                    }
+                  })}
+                />
+              </InputGroup>
             </FormControl>
 
             <Center>
