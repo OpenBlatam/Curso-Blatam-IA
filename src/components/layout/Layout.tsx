@@ -8,6 +8,7 @@ import NextLink from 'next/link';
 import { Footer, FooterBackgroundImage, HomepageHero } from '../UI';
 import { ImportantText } from '../UI/headings';
 import BlatamLogoText from '../UI/BlatamLogoText';
+import { NewsletterSignup } from '../forms/NewsletterSignup';
 
 import {
   AboutLayout,
@@ -38,13 +39,6 @@ const Forms = dynamic(() => import('../forms/Forms'), {
   ssr: false,
   loading: () => <div>Loading...</div>
 });
-
-const NewsletterSignup = dynamic(
-  () => import('../forms/NewsletterSignup').then(mod => mod.NewsletterSignup),
-  { 
-    ssr: false,
-    loading: () => <div>Loading newsletter...</div> }
-);
 
 const FloatingWhatsApp = dynamic(
   () => import('react-floating-whatsapp').then(mod => mod.FloatingWhatsApp),
@@ -118,11 +112,6 @@ const HomePageContent: FC<{ children: ReactNode; windowSize: WindowSize }> = ({ 
         </ClientOnly>
       )}
       <Footer/>
-      {mounted && (
-        <ClientOnly>
-         
-        </ClientOnly>
-      )}
     </Box>
   );
 };

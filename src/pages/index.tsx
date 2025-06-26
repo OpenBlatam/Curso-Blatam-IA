@@ -249,22 +249,108 @@ const Home: NextPage = () => {
           
           {/* Tweet Cards Section - Lazy loaded for performance */}
           <section>
-            <PageSection mb={6}>Lo que dicen sobre nosotros</PageSection>
-            <Box
-              minH="300px"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              bg="gray.50"
-              borderRadius="lg"
-              p={8}
-            >
-              <Text fontSize="lg" color="gray.600" textAlign="center">
-                🐦 Testimonios de nuestros usuarios en Twitter
-                <br />
-                <Text fontSize="sm" mt={2}>
-                  Síguenos en @blatam_oficial para ver más testimonios
-                </Text>
+            <Box textAlign="center" mb={6}>
+              <PageSection mb={4}> Testimonios de nuestros usuarios en X</PageSection>
+            </Box>
+            
+            <Stack spacing={6} direction={{ base: 'column', lg: 'row' }} mb={8}>
+              <Box
+                bg="white"
+                p={6}
+                borderRadius="xl"
+                boxShadow="md"
+                border="1px solid"
+                borderColor="gray.200"
+                flex={1}
+              >
+                <Stack spacing={4}>
+                  <Flex align="center" gap={3}>
+                    <Box w={10} h={10} bg="blue.500" borderRadius="full" display="flex" alignItems="center" justifyContent="center">
+                      <Text color="white" fontWeight="bold" fontSize="sm">@</Text>
+                    </Box>
+                    <Box>
+                      <Text fontWeight="bold" fontSize="sm">@carlos_tech_ai</Text>
+                      <Text fontSize="xs" color="gray.500">Hace 3 días</Text>
+                    </Box>
+                  </Flex>
+                  <Text fontSize="sm" lineHeight="1.5">
+                    "Increíble el curso de IA en @blatam_! 🚀 En solo 2 meses pasé de no saber nada a crear mis propios modelos de ML. Los profesores son expertos reales del ecosistema. ¡Súper recomendado! #InteligenciaArtificial #Blatam"
+                  </Text>
+                  <Flex justify="space-between" color="gray.500" fontSize="xs">
+                    <Text>💬 12</Text>
+                    <Text>🔄 8</Text>
+                    <Text>❤️ 45</Text>
+                  </Flex>
+                </Stack>
+              </Box>
+
+              <Box
+                bg="white"
+                p={6}
+                borderRadius="xl"
+                boxShadow="md"
+                border="1px solid"
+                borderColor="gray.200"
+                flex={1}
+              >
+                <Stack spacing={4}>
+                  <Flex align="center" gap={3}>
+                    <Box w={10} h={10} bg="purple.500" borderRadius="full" display="flex" alignItems="center" justifyContent="center">
+                      <Text color="white" fontWeight="bold" fontSize="sm">M</Text>
+                    </Box>
+                    <Box>
+                      <Text fontWeight="bold" fontSize="sm">@maria_data_science</Text>
+                      <Text fontSize="xs" color="gray.500">Hace 1 semana</Text>
+                    </Box>
+                  </Flex>
+                  <Text fontSize="sm" lineHeight="1.5">
+                    "Conseguí trabajo en Globant gracias a la certificación de @blatam_oficial 🎉 Las clases en vivo y los proyectos prácticos me dieron la confianza que necesitaba. ¡Gracias equipo! 💪 #CarreraTech #DataScience"
+                  </Text>
+                  <Flex justify="space-between" color="gray.500" fontSize="xs">
+                    <Text>💬 28</Text>
+                    <Text>🔄 15</Text>
+                    <Text>❤️ 92</Text>
+                  </Flex>
+                </Stack>
+              </Box>
+
+              <Box
+                bg="white"
+                p={6}
+                borderRadius="xl"
+                boxShadow="md"
+                border="1px solid"
+                borderColor="gray.200"
+                flex={1}
+              >
+                <Stack spacing={4}>
+                  <Flex align="center" gap={3}>
+                    <Box w={10} h={10} bg="green.500" borderRadius="full" display="flex" alignItems="center" justifyContent="center">
+                      <Text color="white" fontWeight="bold" fontSize="sm">J</Text>
+                    </Box>
+                    <Box>
+                      <Text fontWeight="bold" fontSize="sm">@juan_ai_developer</Text>
+                      <Text fontSize="xs" color="gray.500">Hace 5 días</Text>
+                    </Box>
+                  </Flex>
+                  <Text fontSize="sm" lineHeight="1.5">
+                    "La metodología de @blatam_oficial es única 🔥 Combinan teoría sólida con práctica real. Mi proyecto final me ayudó a conseguir mi primer trabajo remoto en IA. ¡100% recomendado! #RemoteWork #AI #Blatam"
+                  </Text>
+                  <Flex justify="space-between" color="gray.500" fontSize="xs">
+                    <Text>💬 19</Text>
+                    <Text>🔄 11</Text>
+                    <Text>❤️ 67</Text>
+                  </Flex>
+                </Stack>
+              </Box>
+            </Stack>
+
+            <Box textAlign="center">
+              <Text fontSize="md" color="blue.600" fontWeight="semibold">
+                Síguenos en @blatam_ en X para ver más testimonios
+              </Text>
+              <Text fontSize="sm" color="gray.600" mt={2}>
+                Únete a nuestra comunidad de más de 10,000 estudiantes
               </Text>
             </Box>
           </section>

@@ -67,7 +67,7 @@ const Header: React.FC = () => {
         <Flex justify="space-between" align="center" py={2} w="100%">
           <Link href="/" passHref>
             <Box as="a" display="block">
-              <Flex align="center" gap={3}>
+              <Flex direction="column" align="center" gap={1}>
                 <Image
                   src="/images/blatam.png"
                   alt="Blatam Logo"
@@ -79,8 +79,8 @@ const Header: React.FC = () => {
                   }}
                 />
                 <Text
-                  fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
-                  fontWeight="extrabold"
+                  fontSize="md"
+                  fontWeight="bold"
                   bgGradient="linear(to-r, pink.500, pink.300, purple.400)"
                   bgClip="text"
                   color="transparent"
@@ -89,7 +89,8 @@ const Header: React.FC = () => {
                   _hover={{ filter: 'brightness(1.2)' }}
                   transition="all 0.3s"
                   fontFamily="'Montserrat', 'Inter', sans-serif"
-                  display={{ base: 'none', sm: 'block' }}
+                  lineHeight="1"
+                  mt={-1}
                 >
                   blatam
                 </Text>

@@ -2,7 +2,7 @@ import {Box, Button, Center, Flex, Stack, IconButton, Link as ChakraLink, Text, 
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { EmailIcon } from '@chakra-ui/icons'
 import React from 'react';
@@ -94,13 +94,29 @@ interface AnimatedCounterProps {
 
 const AnimatedCounter = ({ target, duration = 2000 }: AnimatedCounterProps) => {
   const [count, setCount] = useState(0);
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (inView) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (isVisible) {
       let startTime: number | null = null;
       const animate = (currentTime: number) => {
         if (!startTime) startTime = currentTime;
@@ -114,30 +130,28 @@ const AnimatedCounter = ({ target, duration = 2000 }: AnimatedCounterProps) => {
       };
       requestAnimationFrame(animate);
     }
-  }, [inView, target, duration]);
+  }, [isVisible, target, duration]);
 
   return (
-    <Text 
-      ref={ref} 
-      fontSize="xl" 
-      fontWeight="bold"
-      color="gray.700"
-      textAlign="center"
-    >
+    <Text ref={ref} fontSize="xl" fontWeight="bold">
       +{count} graduados
     </Text>
   );
 };
 
 const Applicants: NextPage = () => {
-  const [ref, inView] = useInView({ threshold: 0.3 });
-  const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref3, inView3] = useInView({ threshold: 0, initialInView: false });
+  const { ref, inView } = useInView({ threshold: 0.1 });
+  const { ref: ref2, inView: inView2 } = useInView({ threshold: 0.1 });
+  const { ref: ref3, inView: inView3 } = useInView({ threshold: 0.1 });
   const [notify, setNotify] = useState(false);
 
   const items = [
-    '1 clase en vivo semanal de 2 horas',
-    'Más de 10 horas de contenidos audiovisuales on-demand, disponibles en nuestra plataforma para acceder en cualquier momento (videos, infografías, actividades gamificadas y desafíos)',
+    '14 módulos de MKT e IA',
+    'Clases en vivo y grabadas',
+    'Proyectos reales',
+    'Certificado verificado',
+    'Acceso a la comunidad',
+    'Mentorías personalizadas'
   ];
 
   // Google Analytics conversion tracking
