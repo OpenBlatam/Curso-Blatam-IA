@@ -1,12 +1,10 @@
-import {Accordion, Box, Flex, Grid, GridItem, Stack, SimpleGrid} from '@chakra-ui/react';
+import { Accordion, Box, Flex, Grid, GridItem, Stack, Text, Button } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import { Text, Button } from '@chakra-ui/react';
 import { FiArrowRight } from 'react-icons/fi';
-import { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-import dynamic from 'next/dynamic';
+import { useEffect, useState, useRef } from 'react';
 
+// UI Components
 import {
     FAQItem,
     HomeAboutCard,
@@ -16,61 +14,28 @@ import {
     PageSection,
     PageText
 } from '../components/UI';
+
+// Static assets
 import  bbva  from '../../public/images/bbva.svg';
 import accenture from '../../public/logos/Accenture.svg'; 
 import mercadolibre from '../../public/logos/mercadolibre.svg'; 
 import gloabant from '../../public/logos/Globant_Logo.svg'; 
 import galicia from '../../public/logos/Logo_Banco_Galicia.svg';
 import naranjax from '../../public/logos/naranja-x-1.svg';
-
 import ethglobal from '../../public/images/ethglobal-logo-vector.png';
-import smallSucculentSVG from '../../public/images/small-succulent.svg';
-import mediumSucculentSVG from '../../public/images/medium-succulent.svg';
-import bigSucculentSVG from '../../public/images/big-succulent.svg';
 import whatWeSupportTree from '../../public/images/what-we-support-tree.png';
 import whoWeSupportRoots from '../../public/images/who-we-support-roots.png';
 import howWeSupportRoots from '../../public/images/how-we-support-roots.png';
 import Instructor from '../../public/images/adan2.jpg';
 
+// Constants and components
 import {ABOUT_URL, APPLICANTS_URL, HOW_WE_SUPPORT_URL, LINKELIND_URL, WHO_WE_SUPPORT_URL} from '../constants';
 import {ButtonLink} from "../components";
-import HeaderPromo from '../components/UI/headings/Header-Promo';
-import PromoBanner from '../components/layout/PromoBanner';
-import BlatamBanner from '../components/layout/BlatamBanner';
-import BlatamBannerMain from '../components/layout/BlatamBannerMain';
 import ProfessionalGoalsSection from '../components/UI/main/ProfessionalGoalsSection';
 import FeaturesSection from '../components/UI/main/FeatureCard/FeaturesSection';
 import AdditionalFeaturesSection from '../components/UI/main/FeatureCard/AdditionalFeaturesSection';
 import TestimonialsSection from '../components/UI/main/TestimonialCard/TestimonialsSection';
-import TweetCard from '@/components/UI/main/TweetCard/TweetCard';
 import { HomepageHero } from '../components/UI';
-
-// Lazy load non-critical components
-const MotionBox = dynamic(
-  () => import('framer-motion').then(mod => ({ default: mod.motion.div })),
-  { ssr: false }
-);
-
-const tweets = [
-  {
-    name: "ETH GLOBAL",
-    handle: "@ethglobal",
-    date: "Agost 17, 2022",
-    image: "https://pbs.twimg.com/profile_images/1333830155287097349/rGY9wviF_400x400.jpg",
-    content: "Attention ETHMexico hackers: \nSwag Bag Sneak Peek 😉🇲🇽🥂",
-    url: "https://twitter.com/ETHGlobal/status/1559988448517292033",
-    isVerified: true
-  },
-  {
-    name: "Vitalik.eth",
-    handle: "@VitalikButerin",
-    date: "Mayo 9, 2020",
-    image: "https://pbs.twimg.com/profile_images/977496875887558661/L86xyLF4_400x400.jpg",
-    content: `@AdanPablo2\n\n@kevinsekniqi y 4 más. FLP impossibility is overrated in practice imo. Partial synchrony is fine dawg`,
-    url: "https://twitter.com/vitalikbuterin/status/1259204395767681030?lang=cs",
-    isVerified: true
-  }
-];
 
 interface AnimatedCounterProps {
   target: number;
@@ -79,13 +44,30 @@ interface AnimatedCounterProps {
 
 const AnimatedCounter = ({ target, duration = 2000 }: AnimatedCounterProps) => {
   const [count, setCount] = useState(0);
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (inView) {
+    // Simple intersection observer to avoid extra dependency
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (isVisible) {
       let startTime: number | null = null;
       const animate = (currentTime: number) => {
         if (!startTime) startTime = currentTime;
@@ -99,7 +81,7 @@ const AnimatedCounter = ({ target, duration = 2000 }: AnimatedCounterProps) => {
       };
       requestAnimationFrame(animate);
     }
-  }, [inView, target, duration]);
+  }, [isVisible, target, duration]);
 
   return (
     <Text ref={ref} fontSize="xl" fontWeight="bold">
@@ -162,16 +144,17 @@ const Home: NextPage = () => {
             >
               <GridItem>
                 <Stack align="center" spacing={4}>
-                  <Box>
+                  <Box minH="60px" display="flex" alignItems="center" justifyContent="center">
                     <Image
                       src={mercadolibre}
                       alt="Mercado Libre logo"
-                      width={150}
-                      height={60}
+                      width={120}
+                      height={48}
                       loading="lazy"
                       placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z"
-                      style={{ objectFit: 'contain' }}
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQ4IiB2aWV3Qm94PSIwIDAgMTIwIDQ4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iNDgiIGZpbGw9IiNmMGYwZjAiLz48L3N2Zz4="
+                      style={{ objectFit: 'contain', maxWidth: '100%', height: 'auto' }}
+                      sizes="(max-width: 768px) 100px, 120px"
                     />
                   </Box>
                   <AnimatedCounter target={8} />
@@ -180,16 +163,17 @@ const Home: NextPage = () => {
 
               <GridItem>
                 <Stack align="center" spacing={4}>
-                  <Box>
+                  <Box minH="60px" display="flex" alignItems="center" justifyContent="center">
                     <Image
                       src={accenture}
                       alt="Accenture logo"
-                      width={150}
-                      height={60}
+                      width={120}
+                      height={48}
                       loading="lazy"
                       placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z"
-                      style={{ objectFit: 'contain' }}
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQ4IiB2aWV3Qm94PSIwIDAgMTIwIDQ4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iNDgiIGZpbGw9IiNmMGYwZjAiLz48L3N2Zz4="
+                      style={{ objectFit: 'contain', maxWidth: '100%', height: 'auto' }}
+                      sizes="(max-width: 768px) 100px, 120px"
                     />
                   </Box>
                   <AnimatedCounter target={80} />
@@ -198,16 +182,17 @@ const Home: NextPage = () => {
 
               <GridItem>
                 <Stack align="center" spacing={4}>
-                  <Box>
+                  <Box minH="60px" display="flex" alignItems="center" justifyContent="center">
                     <Image
                       src={gloabant}
                       alt="Globant logo"
-                      width={150}
-                      height={60}
+                      width={120}
+                      height={48}
                       loading="lazy"
                       placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z"
-                      style={{ objectFit: 'contain' }}
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQ4IiB2aWV3Qm94PSIwIDAgMTIwIDQ4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iNDgiIGZpbGw9IiNmMGYwZjAiLz48L3N2Zz4="
+                      style={{ objectFit: 'contain', maxWidth: '100%', height: 'auto' }}
+                      sizes="(max-width: 768px) 100px, 120px"
                     />
                   </Box>
                   <AnimatedCounter target={688} />
@@ -216,16 +201,17 @@ const Home: NextPage = () => {
 
               <GridItem>
                 <Stack align="center" spacing={4}>
-                  <Box>
+                  <Box minH="60px" display="flex" alignItems="center" justifyContent="center">
                     <Image
                       src={galicia}
                       alt="Galicia logo"
-                      width={150}
-                      height={60}
+                      width={120}
+                      height={48}
                       loading="lazy"
                       placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z"
-                      style={{ objectFit: 'contain' }}
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQ4IiB2aWV3Qm94PSIwIDAgMTIwIDQ4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iNDgiIGZpbGw9IiNmMGYwZjAiLz48L3N2Zz4="
+                      style={{ objectFit: 'contain', maxWidth: '100%', height: 'auto' }}
+                      sizes="(max-width: 768px) 100px, 120px"
                     />
                   </Box>
                   <AnimatedCounter target={883} />
@@ -234,16 +220,17 @@ const Home: NextPage = () => {
 
               <GridItem>
                 <Stack align="center" spacing={4}>
-                  <Box>
+                  <Box minH="60px" display="flex" alignItems="center" justifyContent="center">
                     <Image
                       src={naranjax}
                       alt="NaranjaX logo"
-                      width={150}
-                      height={60}
+                      width={120}
+                      height={48}
                       loading="lazy"
                       placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAfEAACAQMFAQAAAAAAAAAAAAABAgMABAUGERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AiqiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z"
-                      style={{ objectFit: 'contain' }}
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQ4IiB2aWV3Qm94PSIwIDAgMTIwIDQ4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iNDgiIGZpbGw9IiNmMGYwZjAiLz48L3N2Zz4="
+                      style={{ objectFit: 'contain', maxWidth: '100%', height: 'auto' }}
+                      sizes="(max-width: 768px) 100px, 120px"
                     />
                   </Box>
                   <AnimatedCounter target={584} />

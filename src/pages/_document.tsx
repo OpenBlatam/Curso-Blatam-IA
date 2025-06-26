@@ -16,6 +16,25 @@ export default function Document() {
         <link rel="dns-prefetch" href="https://analytics.tiktok.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
+        {/* Preload critical resources */}
+        <link
+          rel="preload"
+          href="/fonts/MaisonNeueMono-Bold.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/_next/static/css/826c377d86ba0517.css"
+          as="style"
+        />
+        
+        {/* DNS prefetch for third-party domains */}
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="//analytics.tiktok.com" />
+        <link rel="dns-prefetch" href="//platform.twitter.com" />
+        
         {/* Critical CSS inline for immediate render */}
         <style dangerouslySetInnerHTML={{
           __html: `
@@ -26,6 +45,7 @@ export default function Document() {
               overflow-x: hidden; 
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
               line-height: 1.5;
+              font-display: swap;
             }
             .chakra-portal { z-index: 9999; }
             
@@ -60,10 +80,24 @@ export default function Document() {
               backface-visibility: hidden;
             }
             
+            /* Video containers */
+            .video-container {
+              position: relative;
+              width: 100%;
+              aspect-ratio: 16/9;
+              background-color: #f0f0f0;
+            }
+            
+            /* Fixed dimensions to prevent CLS */
+            .testimonial-container { min-height: 400px; }
+            .feature-card { min-height: 300px; }
+            .logo-container { min-height: 60px; min-width: 120px; }
+            
             /* Mobile optimizations */
             @media (max-width: 768px) {
               .css-ahthbn { min-height: 150px; }
               .banner-container { min-height: 50px; }
+              .testimonial-container { min-height: 300px; }
             }
           `
         }} />
