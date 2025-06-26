@@ -25,9 +25,8 @@ const EmployabilityProgramMockup = () => {
     { id: 3, name: 'EJERCICIO 3', progress: 50 },
     { id: 4, name: 'EJERCICIO 4', progress: 0 },
   ];
-  // Placeholder for user avatar and video thumbnail
+  // Placeholder for user avatar
   const userAvatar = '/images/Testimonio6.png';
-  const videoThumbnail = '/videos/tutor_ia.mp4';
 
   return (
     <div className={featureStyles.employabilityMockupContainer}>

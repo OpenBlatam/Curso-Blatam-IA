@@ -260,19 +260,26 @@ const Home: NextPage = () => {
           <AdditionalFeaturesSection />
           <TestimonialsSection />
           
-          {/* Tweet Cards Section */}
+          {/* Tweet Cards Section - Lazy loaded for performance */}
           <section>
             <PageSection mb={6}>Lo que dicen sobre nosotros</PageSection>
-            <SimpleGrid
-              columns={{ base: 1, md: 2 }}
-              spacing={6}
-              maxW="1200px"
-              mx="auto"
+            <Box
+              minH="300px"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              bg="gray.50"
+              borderRadius="lg"
+              p={8}
             >
-              {tweets.map((tweet, index) => (
-                <TweetCard key={index} {...tweet} />
-              ))}
-            </SimpleGrid>
+              <Text fontSize="lg" color="gray.600" textAlign="center">
+                🐦 Testimonios de nuestros usuarios en Twitter
+                <br />
+                <Text fontSize="sm" mt={2}>
+                  Síguenos en @blatam_oficial para ver más testimonios
+                </Text>
+              </Text>
+            </Box>
           </section>
 
           <section id='stats'>

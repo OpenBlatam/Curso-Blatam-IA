@@ -91,49 +91,50 @@ const nextConfig = {
   },
   
   webpack: (config, { dev, isServer }) => {
-    // Optimize bundle splitting for production
+    // Balanced optimization for production
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',
         minSize: 20000,
-        maxSize: 244000,
+        maxSize: 200000,
         cacheGroups: {
           default: false,
           vendors: false,
+          // Framework chunk
           framework: {
             name: 'framework',
             chunks: 'all',
-            test: /[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
+            test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
             priority: 40,
             enforce: true,
           },
-          lib: {
-            test(module) {
-              return module.size() > 160000 && /node_modules/.test(module.identifier());
-            },
-            name(module) {
-              const hash = crypto.createHash('sha1');
-              hash.update(module.identifier());
-              return hash.digest('hex').substring(0, 8);
-            },
-            priority: 30,
+          // Vendors chunk
+          vendors: {
+            name: 'vendors',
+            chunks: 'all',
+            test: /[\\/]node_modules[\\/]/,
+            priority: 20,
             minChunks: 1,
             reuseExistingChunk: true,
           },
+          // Common chunk
           commons: {
             name: 'commons',
             minChunks: 2,
-            priority: 20,
+            priority: 10,
+            chunks: 'initial',
+            reuseExistingChunk: true,
           },
+          // Default
           default: {
             minChunks: 2,
-            priority: 10,
+            priority: 5,
             reuseExistingChunk: true,
           },
         },
       };
       
-      // Minimize main thread work
+      // Basic tree shaking
       config.optimization.usedExports = true;
       config.optimization.sideEffects = false;
     }

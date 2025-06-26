@@ -1,7 +1,19 @@
 // components/ProfessionalGoalsSection/ProfessionalGoalsSection.tsx
-import React, { useState, useRef } from 'react'; // Added useRef
-import ReactPlayer from 'react-player/lazy';
+import React, { useState, useRef, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import styles from './ProfessionalGoalsSection.module.css';
+
+// Lazy load ReactPlayer only when absolutely needed
+const ReactPlayer = dynamic(() => import('react-player/lazy'), {
+  ssr: false,
+  loading: () => <div>Loading video...</div>
+});
+
+// Video thumbnails instead of autoloading videos
+const VIDEO_THUMBNAILS = {
+  person: "/images/video-thumbnail-ia.jpg", // Create lightweight thumbnails
+  coderAi: "/images/video-thumbnail-tutor.jpg"
+};
 
 // ACTION: Ensure these video files are in your `public/videos/` directory
 const personVideoPath = "/videos/IA.mp4";         // First video
@@ -23,23 +35,41 @@ const PauseIcon = () => (
 const ProfessionalGoalsSection = () => {
   const [isPersonVideoPlaying, setIsPersonVideoPlaying] = useState(false);
   const [isCoderAiVideoPlaying, setIsCoderAiVideoPlaying] = useState(false);
+  const [shouldLoadVideos, setShouldLoadVideos] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  // Refs to control ReactPlayer instances if needed, though not strictly for play/pause via prop
-  // const personPlayerRef = useRef<ReactPlayer>(null);
-  // const coderAiPlayerRef = useRef<ReactPlayer>(null);
+  useEffect(() => {
+    // Simple intersection observer to load videos when section is visible
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !shouldLoadVideos) {
+          // Delay video loading for better performance
+          setTimeout(() => setShouldLoadVideos(true), 1500);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-  // Click handler for the first video
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [shouldLoadVideos]);
+
   const handlePersonVideoTogglePlay = () => {
+    if (!shouldLoadVideos) setShouldLoadVideos(true);
     setIsPersonVideoPlaying(prev => !prev);
   };
 
-  // Click handler for the second video
   const handleCoderAiVideoTogglePlay = () => {
+    if (!shouldLoadVideos) setShouldLoadVideos(true);
     setIsCoderAiVideoPlaying(prev => !prev);
   };
 
   return (
-    <section className={styles.container}>
+    <section className={styles.container} ref={sectionRef}>
       <div className={styles.header}>
         <h1 className={styles.title}>
           Alcanza tus metas profesionales con nuestra metodología
@@ -55,23 +85,41 @@ const ProfessionalGoalsSection = () => {
         {/* Column 1 - Video Player */}
         <div className={styles.column}>
           <div
-            className={styles.imageContainer} // Renamed to videoContainer for clarity later if you wish
-            onClick={handlePersonVideoTogglePlay} // Changed to onClick
+            className={styles.imageContainer}
+            onClick={handlePersonVideoTogglePlay}
           >
             <div className={styles.videoWrapper}>
-              <ReactPlayer
-                // ref={personPlayerRef}
-                className={styles.reactPlayer}
-                url={personVideoPath}
-                playing={isPersonVideoPlaying}
-                loop
-                muted
-                playsinline
-                width="100%"
-                height="100%"
-                controls={false}
-              />
-              {!isPersonVideoPlaying && ( // Show Play icon when paused
+              {shouldLoadVideos ? (
+                <ReactPlayer
+                  className={styles.reactPlayer}
+                  url="/videos/IA.mp4"
+                  playing={isPersonVideoPlaying}
+                  loop
+                  muted
+                  playsinline
+                  width="100%"
+                  height="100%"
+                  controls={false}
+                  preload="none"
+                />
+              ) : (
+                <div className={styles.videoPlaceholder}>
+                  <div style={{
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    height: '100%',
+                    color: 'white',
+                    fontSize: '48px',
+                    cursor: 'pointer'
+                  }}>
+                    ▶
+                  </div>
+                </div>
+              )}
+              {!isPersonVideoPlaying && shouldLoadVideos && (
                 <div className={styles.playPauseOverlay}>
                   <PlayIcon />
                 </div>
@@ -86,23 +134,41 @@ const ProfessionalGoalsSection = () => {
         {/* Column 2 - Coder AI Video Player */}
         <div className={styles.column}>
           <div
-            className={styles.imageContainer} // Renamed to videoContainer for clarity later if you wish
-            onClick={handleCoderAiVideoTogglePlay} // Changed to onClick
+            className={styles.imageContainer}
+            onClick={handleCoderAiVideoTogglePlay}
           >
             <div className={styles.videoWrapper}>
-              <ReactPlayer
-                // ref={coderAiPlayerRef}
-                className={styles.reactPlayer}
-                url={coderAiVideoPath}
-                playing={isCoderAiVideoPlaying}
-                loop
-                muted
-                playsinline
-                width="100%"
-                height="100%"
-                controls={false}
-              />
-              {!isCoderAiVideoPlaying && ( // Show Play icon when paused
+              {shouldLoadVideos ? (
+                <ReactPlayer
+                  className={styles.reactPlayer}
+                  url="/videos/tutor_ia.mp4"
+                  playing={isCoderAiVideoPlaying}
+                  loop
+                  muted
+                  playsinline
+                  width="100%"
+                  height="100%"
+                  controls={false}
+                  preload="none"
+                />
+              ) : (
+                <div className={styles.videoPlaceholder}>
+                  <div style={{
+                    background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    height: '100%',
+                    color: 'white',
+                    fontSize: '48px',
+                    cursor: 'pointer'
+                  }}>
+                    ▶
+                  </div>
+                </div>
+              )}
+              {!isCoderAiVideoPlaying && shouldLoadVideos && (
                 <div className={styles.playPauseOverlay}>
                   <PlayIcon />
                 </div>

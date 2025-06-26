@@ -19,35 +19,89 @@ export default function Document() {
         {/* Critical CSS inline for immediate render */}
         <style dangerouslySetInnerHTML={{
           __html: `
-            * { box-sizing: border-box; }
-            body { margin: 0; padding: 0; overflow-x: hidden; }
+            * { box-sizing: border-box; margin: 0; padding: 0; }
+            body { 
+              margin: 0; 
+              padding: 0; 
+              overflow-x: hidden; 
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+              line-height: 1.5;
+            }
             .chakra-portal { z-index: 9999; }
-            .loading-skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
-            @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-            img { max-width: 100%; height: auto; }
+            
+            /* Prevent CLS for common elements */
+            .chakra-stack { min-height: fit-content; }
+            .css-ahthbn { min-height: 200px; }
+            .chakra-button { min-height: 40px; min-width: 80px; }
+            h1, h2, h3, h4, h5, h6 { min-height: 1.2em; }
+            
+            /* Loading skeleton */
+            .loading-skeleton { 
+              background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); 
+              background-size: 200% 100%; 
+              animation: loading 1.5s infinite; 
+            }
+            @keyframes loading { 
+              0% { background-position: 200% 0; } 
+              100% { background-position: -200% 0; } 
+            }
+            
+            /* Image optimization */
+            img { 
+              max-width: 100%; 
+              height: auto; 
+              display: block;
+            }
+            
+            /* Performance optimizations */
+            .animated-element {
+              will-change: transform;
+              transform: translateZ(0);
+              backface-visibility: hidden;
+            }
+            
+            /* Mobile optimizations */
+            @media (max-width: 768px) {
+              .css-ahthbn { min-height: 150px; }
+              .banner-container { min-height: 50px; }
+            }
           `
         }} />
 
-        {/* Optimized Google Analytics - load after interaction */}
+        {/* Optimized Google Analytics - load only after full page load */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-BSNQ053V7B"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           defer
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-BSNQ053V7B', {
-              page_title: document.title,
-              page_location: window.location.href,
-              send_page_view: false
-            });
+            // Only initialize after significant user interaction
+            let gaInitialized = false;
+            function initGA() {
+              if (gaInitialized) return;
+              gaInitialized = true;
+              
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BSNQ053V7B', {
+                page_title: document.title,
+                page_location: window.location.href,
+                send_page_view: false
+              });
+              
+              // Send page view after initialization
+              setTimeout(() => gtag('event', 'page_view'), 100);
+            }
             
-            // Send page view after page is loaded
+            // Initialize GA only after page is fully loaded and user interacts
             window.addEventListener('load', () => {
-              gtag('event', 'page_view');
+              setTimeout(() => {
+                ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'].forEach(event => {
+                  window.addEventListener(event, initGA, { once: true, passive: true });
+                });
+              }, 3000); // Wait 3 seconds after page load
             });
           `}
         </Script>
