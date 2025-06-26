@@ -9,9 +9,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useCountryPricing } from '../../hooks/useCountryPricing';
 
-// Icons for the "Comprar ahora" button - ensure these return a single element like <span>
-const FireIcon = () => <span className={styles.ctaIcon}>🔥</span>;
-const ArrowIcon = () => <span className={styles.ctaIcon}>→</span>;
+
 
 const MotionButton = motion(Button);
 
@@ -53,8 +51,6 @@ const Header: React.FC = () => {
     `${styles.headerContainer} ${isScrolled ? styles.scrolled : ''}`,
     [isScrolled]
   );
-
-  const showBuyNowButton = router.pathname === '/applicants';
 
   // Generate price text based on country
   const priceText = loading 
@@ -127,22 +123,24 @@ const Header: React.FC = () => {
                 as="a"
                 target="_blank"
                 rel="noopener noreferrer"
-                bgGradient="linear(to-r, pink.400, pink.500)"
+                bgGradient="linear(to-r, #e91e63, #c2185b, #ad1457)"
                 color="white"
                 size="md"
                 px={6}
                 py={3}
-                borderRadius="0"
-                fontWeight="400"
+                borderRadius="8px"
+                fontWeight="500"
                 fontSize="0.95rem"
-                letterSpacing="0.1em"
+                letterSpacing="0.05em"
                 textTransform="none"
                 rightIcon={<FiArrowRight size="1em" />}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                boxShadow="0 4px 20px rgba(233, 30, 99, 0.3)"
                 _hover={{
-                  bgGradient: 'linear(to-r, pink.500, pink.600)',
+                  bgGradient: 'linear(to-r, #c2185b, #ad1457, #880e4f)',
                   color: 'white',
+                  boxShadow: "0 6px 30px rgba(233, 30, 99, 0.4)",
                   _before: {
                     transform: 'scaleX(1)',
                     opacity: 1,
@@ -156,8 +154,8 @@ const Header: React.FC = () => {
                 aria-label="Acceder a la plataforma de Blatam"
                 position="relative"
                 overflow="hidden"
-                border="1px solid"
-                borderColor="pink.300"
+                border="2px solid"
+                borderColor="rgba(255, 255, 255, 0.2)"
                 _before={{
                   content: '""',
                   position: 'absolute',
@@ -195,15 +193,6 @@ const Header: React.FC = () => {
                 Acceder
               </MotionButton>
             </Link>
-            {showBuyNowButton && (
-              <Link href="https://blatam.gumroad.com/l/ia">
-                <span className={styles.buyNowButton}>
-                  <FireIcon />
-                  Comprar ahora
-                  <ArrowIcon />
-                </span>
-              </Link>
-            )}
           </Flex>
         </Flex>
       </Container>

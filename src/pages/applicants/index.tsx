@@ -1,4 +1,4 @@
-import {Box, Button, Center, Flex, Stack, IconButton, Link as ChakraLink, Text, keyframes, Heading, Input} from '@chakra-ui/react';
+import {Box, Button, Center, Flex, Stack, IconButton, Link as ChakraLink, Text, keyframes, Heading, Input, Grid, GridItem} from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 import Image from 'next/image';
@@ -16,7 +16,8 @@ import {
   PageSection,
   PageSubheading,
   PageText,
-  MagicButton
+  MagicButton,
+  GuaranteeBox
 } from '../../components/UI';
 
 import softwareDevelopersSVG from '../../../public/images/software-developers-vector.svg';
@@ -25,6 +26,11 @@ import academicsSVG from '../../../public/images/academics-vector.svg';
 import communityOrganizersSVG from '../../../public/images/community-organizers-vector.svg';
 import designersSVG from '../../../public/images/designers-vector.svg';
 import otherGrantsProgramsSVG from '../../../public/images/other-grant-programs-vector.svg';
+import accenture from '../../../public/logos/Accenture.svg'; 
+import mercadolibre from '../../../public/logos/mercadolibre.svg'; 
+import globant from '../../../public/logos/Globant_Logo.svg'; 
+import galicia from '../../../public/logos/Logo_Banco_Galicia.svg';
+import naranjax from '../../../public/logos/naranja-x-1.svg';
 import { Sparkles } from 'lucide-react';
 import { NewsletterSignup } from '../../components/forms/NewsletterSignup';
 import {
@@ -76,6 +82,48 @@ declare global {
     gtag: (command: string, action: string, params: any) => void;
   }
 }
+
+interface AnimatedCounterProps {
+  target: number;
+  duration?: number;
+}
+
+const AnimatedCounter = ({ target, duration = 2000 }: AnimatedCounterProps) => {
+  const [count, setCount] = useState(0);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      let startTime: number | null = null;
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const currentCount = Math.floor(progress * target);
+        setCount(currentCount);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+      requestAnimationFrame(animate);
+    }
+  }, [inView, target, duration]);
+
+  return (
+    <Text 
+      ref={ref} 
+      fontSize="xl" 
+      fontWeight="bold"
+      color="gray.700"
+      textAlign="center"
+    >
+      +{count} graduados
+    </Text>
+  );
+};
 
 const Applicants: NextPage = () => {
   const [ref, inView] = useInView({ threshold: 0.3 });
@@ -294,14 +342,7 @@ const Applicants: NextPage = () => {
                   </Stack>
                 </Box>
 
-                <PageText 
-                  mb={8} 
-                  fontSize={{ base: 'lg', md: 'xl' }}
-                  fontWeight="semibold"
-                  color="purple.600"
-                >
-                  Nuestros egresados están posicionados como referentes en empresas líderes
-                </PageText>
+
 
                 <Stack 
                   spacing={{ base: 6, md: 8 }}
@@ -588,18 +629,8 @@ const Applicants: NextPage = () => {
         >
           <span role="img" aria-label="fuego">🔥</span> ¡PRUEBA 2 CLASES GRATIS!
         </Box>
-        <Box
-          mt={2}
-          px={3}
-          py={2}
-          bg="gray.50"
-          borderRadius="md"
-          fontSize="xs"
-          color="gray.700"
-          textAlign="center"
-          maxW="95%"
-        >
-          Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, te devolvemos la totalidad del dinero invertido. Solo aplica para tu primer curso en Blatam.
+        <Box mt={3} mx={3} maxW="95%">
+          <GuaranteeBox size="sm" />
         </Box>
       </Box>
       <Box position="fixed" bottom={6} right={6} zIndex={1000}>

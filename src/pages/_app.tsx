@@ -25,6 +25,7 @@ import favicon from '../../public/images/favicon.ico';
 import favicon16 from '../../public/images/favicon-16x16.png';
 import favicon32 from '../../public/images/favicon-32x32.png';
 import Header from '../components/layout/Header';
+import TopPromoBanner from '../components/layout/TopPromoBanner';
 import { WhatsAppButton } from '../components/client/ClientComponents';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -76,6 +77,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <TikTokPixel />
 
+      <TopPromoBanner />
       <Header />
 
       {router.isReady ? (

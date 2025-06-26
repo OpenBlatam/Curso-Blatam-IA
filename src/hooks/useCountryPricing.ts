@@ -102,14 +102,30 @@ export const useCountryPricing = () => {
   useEffect(() => {
     const detectCountry = async () => {
       try {
-        const response = await fetch('https://ipapi.co/json/');
+        // Agregar timeout para evitar que la petición se cuelgue
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 segundos timeout
+        
+        const response = await fetch('https://ipapi.co/json/', {
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
         const country = data.country_code;
         
-        const countryPricingInfo = countryPricing[country] || defaultPricing;
-        setPricing(countryPricingInfo);
+        if (country && countryPricing[country]) {
+          setPricing(countryPricing[country]);
+        } else {
+          setPricing(defaultPricing);
+        }
       } catch (error) {
-        console.error('Error detecting country:', error);
+        console.warn('No se pudo detectar el país, usando precios por defecto:', error instanceof Error ? error.message : 'Unknown error');
         setPricing(defaultPricing);
       } finally {
         setLoading(false);

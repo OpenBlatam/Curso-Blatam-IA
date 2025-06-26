@@ -1,28 +1,29 @@
 /* components/Testimonials.module.css */
 .testimonialsSection {
-    padding: 50px 20px;
-    background-color: #f8f9fa; /* Light grey background */
+    padding: 80px 20px;
+    background-color: #f8f9fa;
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   
   .mainHeading {
-    font-size: 1.8rem; /* Adjust as needed */
-    font-weight: 600;
+    font-size: 2.5rem;
+    font-weight: 800;
     color: #1a202c;
-    margin-bottom: 40px;
-    max-width: 700px;
+    margin-bottom: 60px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.3;
+    line-height: 1.2;
   }
   
   .carouselContainer {
     position: relative;
-    max-width: 1000px; /* Adjust to fit approx 3 cards */
+    max-width: 1200px;
     margin: 0 auto;
-    overflow: hidden; /* This will hide parts of cards not fitting */
+    overflow: hidden;
+    z-index: 2;
   }
   
   .carouselTrackWrapper {
@@ -47,14 +48,23 @@
   
   .card {
     background-color: #ffffff;
-    border-radius: 12px;
-    padding: 25px 20px;
-    text-align: left;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    height: 100%; /* Make cards in a row same height if content varies */
+    border-radius: 20px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    height: 100%;
     display: flex;
     flex-direction: column;
-    position: relative; /* For flag positioning */
+    position: relative;
+    border: 1px solid #e2e8f0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    border-color: #cbd5e0;
   }
   
   .cardHeader {
@@ -66,24 +76,26 @@
   }
   
   .flagIcon {
-    font-size: 1.5rem; /* Adjust flag size */
+    font-size: 2rem;
     position: absolute;
-    top: -10px; /* Position above the card's padding */
-    left: -5px; /* Position slightly to the left */
-    z-index: 1;
-    /* background: white; */ /* Optional: if you need to ensure it's on a solid bg */
-    /* padding: 2px; */
-    /* border-radius: 3px; */
+    top: 15px;
+    right: 15px;
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
   }
   
   .authorImageWrapper {
-    margin-top: 10px; /* Space below potential flag */
-    width: 80px;
-    height: 80px;
+    margin: 20px auto;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 10px; /* Space between image and name */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 4px solid #ffffff;
   }
   
   .authorImage {
@@ -94,62 +106,73 @@
   }
   
   .authorName {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 700;
     color: #2d3748;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     text-align: center;
   }
   
   .authorRole {
-    font-size: 0.85rem;
-    color: #718096;
-    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 20px;
     text-align: center;
+    font-weight: 500;
+    opacity: 0.8;
   }
   
   .quoteSymbol {
-    font-size: 3rem;
-    color: #e2e8f0; /* Light grey for quote symbol */
-    line-height: 0.5;
-    margin-bottom: 5px;
+    font-size: 4rem;
+    color: #e2e8f0;
+    line-height: 0.4;
+    margin-bottom: 15px;
     font-family: Georgia, serif;
+    opacity: 0.6;
   }
   
   .quoteText {
-    font-size: 0.9rem;
-    color: #4a5568;
-    line-height: 1.6;
-    flex-grow: 1; /* Allows text to take available space pushing elements down */
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.7;
+    flex-grow: 1;
+    font-weight: 400;
+    font-style: italic;
+    position: relative;
+    padding: 0 10px;
   }
   
   .navButton {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #fff;
+    background-color: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 2;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 3;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     color: #4a5568;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .navButton:disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: 0.3;
+    transform: translateY(-50%) scale(0.9);
   }
   
   .navButton:hover:not(:disabled) {
     background-color: #f7fafc;
     border-color: #cbd5e0;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    transform: translateY(-50%) scale(1.1);
   }
   
   .prevButton {
@@ -169,19 +192,20 @@
     background-color: #ffffff;
     color: #2d3748;
     border: 1px solid #e2e8f0;
-    padding: 12px 30px;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
   }
   
   .viewMoreButton:hover {
     background-color: #f7fafc;
     border-color: #cbd5e0;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
   }
   
   /* Responsive adjustments */

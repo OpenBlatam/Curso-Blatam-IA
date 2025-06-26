@@ -1,67 +1,78 @@
 // components/BlatamBanner.tsx
 import { Box, Text, Stack, Flex } from '@chakra-ui/react';
 
-const backgroundUrl = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'; // Puedes cambiar esta URL por una imagen roja abstracta propia
-
 const BlatamBanner = () => (
   <Box
-    minH="180px"
-    display="flex"
-    alignItems="center"
-    justifyContent="center"
-    bgImage={`url(${backgroundUrl})`}
-    bgSize="cover"
-    bgPosition="center"
-    position="relative"
-    px={2}
+    bg="linear-gradient(135deg, #FFEB3B 0%, #C5E1A5 100%)"
     py={4}
-    _before={{
-      content: '""',
-      pos: 'absolute',
-      inset: 0,
-      bg: 'linear-gradient(120deg, rgba(255,0,60,0.7) 0%, rgba(255,140,0,0.7) 100%)',
-      zIndex: 0,
-      filter: 'blur(2px)',
-    }}
+    px={4}
+    position="relative"
+    overflow="hidden"
+    boxShadow="0 4px 12px rgba(0,0,0,0.1)"
   >
-    <Stack
-      spacing={2}
+    <Flex
+      direction={{ base: 'column', md: 'row' }}
       align="center"
-      zIndex={1}
-      maxW="lg"
-      w="full"
+      justify="space-between"
+      maxW="1200px"
+      mx="auto"
+      gap={4}
     >
+      {/* Badge izquierdo */}
       <Flex
         align="center"
-        bg="white"
-        color="black"
-        fontWeight="extrabold"
-        fontSize={{ base: "md", md: "lg" }}
-        px={3}
-        py={1}
-        borderRadius="md"
-        boxShadow="md"
-        textTransform="uppercase"
-        letterSpacing="wide"
+        bg="black"
+        color="white"
+        fontWeight="bold"
+        fontSize={{ base: "sm", md: "md" }}
+        px={4}
+        py={2}
+        borderRadius="full"
+        boxShadow="0 2px 8px rgba(0,0,0,0.2)"
+        minW="fit-content"
       >
-        <Text as="span" fontSize="lg" mr={2}>🔥</Text>
-        ¡SE PRENDIÓ ESTO!
+        <Text as="span" fontSize="lg" mr={2}>🚀</Text>
+        BLATAM WEEK
+      </Flex>
+
+      {/* Texto principal */}
+      <Stack 
+        spacing={1} 
+        align={{ base: 'center', md: 'flex-start' }}
+        flex={1}
+        textAlign={{ base: 'center', md: 'left' }}
+      >
+        <Text
+          color="black"
+          fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
+          fontWeight="bold"
+          lineHeight="1.2"
+        >
+          Aprovecha hasta <Text as="span" color="red.600">70% OFF</Text> y hasta{' '}
+          <Text as="span" color="red.600">12 meses sin intereses</Text> en{' '}
+          <Text as="span" textTransform="uppercase" fontWeight="extrabold">
+            CURSOS y CARRERAS
+          </Text>
+        </Text>
+      </Stack>
+
+      {/* Fecha límite */}
+      <Flex
+        align="center"
+        bg="rgba(0,0,0,0.1)"
+        color="black"
+        fontWeight="bold"
+        fontSize={{ base: "sm", md: "md" }}
+        px={4}
+        py={2}
+        borderRadius="full"
+        minW="fit-content"
+        backdropFilter="blur(10px)"
+      >
+        Hasta el 31/12
         <Text as="span" fontSize="lg" ml={2}>🔥</Text>
       </Flex>
-      <Text
-        bg="white"
-        color="gray.800"
-        px={3}
-        py={1}
-        borderRadius="md"
-        fontSize="sm"
-        fontWeight="medium"
-        boxShadow="md"
-        textAlign="center"
-      >
-        Acumula descuentos en el catálogo de Hot Sale. ¡Corre antes de que se apague!
-      </Text>
-    </Stack>
+    </Flex>
   </Box>
 );
 

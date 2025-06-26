@@ -205,6 +205,7 @@ export const Layout: FC<LayoutProps> = ({ children, windowSize, ...props }) => {
           mx="auto"
           bg={bgColor}
           py={12}
+          mt={{ base: "70px", sm: "85px", md: "100px" }}
           {...(props as ContainerStyleProps)}
         >
           {renderContent()}

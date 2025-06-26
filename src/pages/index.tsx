@@ -103,14 +103,12 @@ const AnimatedCounter = ({ target, duration = 2000 }: AnimatedCounterProps) => {
 const Home: NextPage = () => {
   return (
     <>
-    <BlatamBanner />
-
       <PageMetadata
         title='Incio'
         description='Hacemos que la IA  sea fácil para todos.'
       />
 
-      <Box mx={{ md: 12 }} bg='white' position='relative'>
+      <Box mx={{ md: 12 }} bg='white' position='relative' mt={{ base: "70px", sm: "85px", md: "100px" }}>
         <Stack spacing={10} mb={8} px={{ base: 5, md: 9 }} py={{ base: 3, md: 12 }}>
           <Flex direction={{ base: 'column', md: 'row' }}>
             <Stack mb={{ base: 10, md: 0 }} w={{ md: '100%' }} mr={{ base: 0, md: 12 }}>
@@ -474,9 +472,10 @@ const Home: NextPage = () => {
             borderRadius="full"
             fontWeight="bold"
             fontSize="md"
-            leftIcon={<span style={{ fontSize: '1.1em' }}>🔥</span>}
-            rightIcon={<span style={{ fontSize: '1.1em' }}>&rarr;</span>}
-            py={5}
+            leftIcon={<span style={{ fontSize: '1.15em' }}>🔥</span>}
+            rightIcon={<span style={{ fontSize: '1.15em' }}>&rarr;</span>}
+            py={6}
+            minH="50px"
             _hover={{ bg: 'gray.800' }}
           >
             Comprar ahora
