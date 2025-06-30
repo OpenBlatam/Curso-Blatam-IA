@@ -6,13 +6,16 @@ import { ImportantText } from '../headings';
 import { PageText } from '../text';
 import { WhatsAppButton } from './WhatsAppButton';
 
-import IconTwitter from '../../../components/assets/icons/twitter.svg';
-import IconGithub from '../../../components/assets/icons/github.svg';
-import IconFace from '../../../components/assets/icons/facebook.svg';
-import IconInstagram from '../../../components/assets/icons/instagram.svg';
-import IconYoutube from '../../../components/assets/icons/youtube.svg';
-import IconTelegram from '../../../components/assets/icons/telegram.svg';
-import IconDiscord from '../../../components/assets/icons/discord.svg';
+// Social media icon paths for Turbopack compatibility
+const SOCIAL_ICONS = {
+  twitter: '/images/twitter-logo.svg',
+  github: '/images/github-logo.svg',
+  facebook: '/images/facebook-logo.svg',
+  instagram: '/images/instagram-logo.svg',
+  youtube: '/images/youtube-logo.svg',
+  telegram: '/images/telegram-logo.svg',
+  discord: '/images/discord-logo.svg'
+};
 
 import blatamLogoSVG from '../../../../public/images/blatam.png';
 
@@ -86,25 +89,25 @@ export const Footer: FC = () => {
 
         <Flex justifyContent='center' alignItems='center' pt={{ base: 4, md: 0 }}>
           <Link href={ESP_FACE_URL} isExternal mx={2}>
-            <Image src={IconFace} alt='Facebook logo' height={24} width={24} />
+            <Image src={SOCIAL_ICONS.facebook} alt='Facebook logo' height={24} width={24} />
           </Link>
           <Link href={ESP_INSTAGRAM_URL} isExternal mx={2}>
-            <Image src={IconInstagram} alt='Instagram logo' height={24} width={24} />
+            <Image src={SOCIAL_ICONS.instagram} alt='Instagram logo' height={24} width={24} />
           </Link>
           <Link href={ESP_TWITTER_URL} isExternal mx={2}>
-            <Image src={IconTwitter} alt='Twitter logo' height={24} width={24} />
+            <Image src={SOCIAL_ICONS.twitter} alt='Twitter logo' height={24} width={24} />
           </Link>
           <Link href={ETHEREUM_GITHUB_URL} isExternal mx={2}>
-            <Image src={IconGithub} alt='GitHub logo' height={24} width={24} />
+            <Image src={SOCIAL_ICONS.github} alt='GitHub logo' height={24} width={24} />
           </Link>
           <Link href={DISCORD_GITHUB_URL} isExternal mx={2}>
-            <Image src={IconDiscord} alt='Discord logo' height={24} width={24} />
+            <Image src={SOCIAL_ICONS.discord} alt='Discord logo' height={24} width={24} />
           </Link>
           <Link href={YOUTUBE_GITHUB_URL} isExternal mx={2}>
-            <Image src={IconYoutube} alt='YouTube logo' height={24} width={24} />
+            <Image src={SOCIAL_ICONS.youtube} alt='YouTube logo' height={24} width={24} />
           </Link>
           <Link href={TELEGRAM_GITHUB_URL} isExternal mx={2}>
-            <Image src={IconTelegram} alt='Telegram logo' height={24} width={24} />
+            <Image src={SOCIAL_ICONS.telegram} alt='Telegram logo' height={24} width={24} />
           </Link>
         </Flex>
       </Flex>

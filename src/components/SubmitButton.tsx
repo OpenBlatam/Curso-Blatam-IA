@@ -3,7 +3,8 @@ import { Box, Button, Flex, Spinner } from '@chakra-ui/react';
 import Image from 'next/image';
 import { ImportantText } from './UI/headings';
 
-import planeVectorSVG from '../../public/images/plane-vector.svg';
+// SVG path for Turbopack compatibility
+const PLANE_VECTOR_SVG = '/images/plane-vector.svg';
 
 interface Props {
   id?: string;
@@ -60,7 +61,7 @@ export const SubmitButton: FC<Props> = ({
 
         <Flex pl={5}>
           {!isSubmitting && !isNewsletter && (
-            <Image src={planeVectorSVG} alt='paper plane vector' height={29} width={32} />
+            <Image src={PLANE_VECTOR_SVG} alt='paper plane vector' height={29} width={32} />
           )}
           {isSubmitting && <Spinner color='white' />}
         </Flex>

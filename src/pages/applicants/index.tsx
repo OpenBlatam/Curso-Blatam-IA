@@ -605,7 +605,7 @@ const Applicants: NextPage = () => {
         </Flex>
       </Box>
 
-      {/* Floating buy button and free trial message for mobile only */}
+      {/* Floating buttons for mobile only */}
       <Box
         display={{ base: 'flex', md: 'none' }}
         flexDirection="column"
@@ -619,6 +619,8 @@ const Applicants: NextPage = () => {
         bg="rgba(255,255,255,0.97)"
         boxShadow="0 -2px 16px rgba(0,0,0,0.08)"
       >
+
+
         <a
           href="https://blatam.gumroad.com/l/ia"
           target="_blank"
@@ -664,8 +666,34 @@ const Applicants: NextPage = () => {
           <GuaranteeBox size="xs" />
         </Box>
       </Box>
-      <Box position="fixed" bottom={6} right={6} zIndex={1000}>
 
+      {/* WhatsApp button - responsive positioning */}
+      <Box
+        position="fixed"
+        bottom={{ base: "140px", md: "30px" }}
+        right={{ base: "20px", md: "30px" }}
+        zIndex={999}
+      >
+        <IconButton
+          as="a"
+          href={`https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, '')}?text=${encodeURIComponent("¡Hola! Quiero más información sobre los cursos de IA y certificaciones de Blatam.")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+          icon={<FaWhatsapp size="2.5em" />}
+          bg="#006400"
+          color="white"
+          size="xl"
+          isRound
+          width="70px"
+          height="70px"
+          boxShadow="2xl"
+          _hover={{
+            transform: 'scale(1.05)',
+            transition: 'transform 0.2s',
+            bg: '#004d00'
+          }}
+        />
       </Box>
     </>
   );

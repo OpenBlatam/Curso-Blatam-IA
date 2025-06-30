@@ -7,7 +7,8 @@ import { HiArrowRight } from 'react-icons/hi';
 
 import { ImportantText } from './UI/headings';
 
-import planeVectorSVG from '../../public/images/plane-vector.svg';
+// SVG path for Turbopack compatibility
+const PLANE_VECTOR_SVG = '/images/plane-vector.svg';
 
 interface Props {
   label: string;
@@ -56,7 +57,7 @@ export const ButtonLink: FC<Props> = ({ label, link, width, isApplyButton }) => 
 
           {isApplyButton && (
             <Flex position='absolute' left={36}>
-              <Image src={planeVectorSVG} alt='paper plane vector' height={29} width={32} />
+              <Image src={PLANE_VECTOR_SVG} alt='paper plane vector' height={29} width={32} />
             </Flex>
           )}
         </Flex>

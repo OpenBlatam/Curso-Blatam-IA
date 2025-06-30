@@ -15,13 +15,15 @@ import {
     PageText
 } from '../components/UI';
 
-// Static assets
-import  bbva  from '../../public/images/bbva.svg';
-import accenture from '../../public/logos/Accenture.svg'; 
-import mercadolibre from '../../public/logos/mercadolibre.svg'; 
-import gloabant from '../../public/logos/Globant_Logo.svg'; 
-import galicia from '../../public/logos/Logo_Banco_Galicia.svg';
-import naranjax from '../../public/logos/naranja-x-1.svg';
+// Static assets - SVG paths for Turbopack compatibility
+const LOGO_PATHS = {
+  bbva: '/images/bbva.svg',
+  accenture: '/logos/Accenture.svg',
+  mercadolibre: '/logos/mercadolibre.svg',
+  globant: '/logos/Globant_Logo.svg',
+  galicia: '/logos/Logo_Banco_Galicia.svg',
+  naranjax: '/logos/naranja-x-1.svg'
+};
 import ethglobal from '../../public/images/ethglobal-logo-vector.png';
 import whatWeSupportTree from '../../public/images/what-we-support-tree.png';
 import whoWeSupportRoots from '../../public/images/who-we-support-roots.png';
@@ -146,7 +148,7 @@ const Home: NextPage = () => {
                 <Stack align="center" spacing={4}>
                   <Box minH="60px" display="flex" alignItems="center" justifyContent="center">
                     <Image
-                      src={mercadolibre}
+                      src={LOGO_PATHS.mercadolibre}
                       alt="Mercado Libre logo"
                       width={120}
                       height={48}
@@ -165,7 +167,7 @@ const Home: NextPage = () => {
                 <Stack align="center" spacing={4}>
                   <Box minH="60px" display="flex" alignItems="center" justifyContent="center">
                     <Image
-                      src={accenture}
+                      src={LOGO_PATHS.accenture}
                       alt="Accenture logo"
                       width={120}
                       height={48}
@@ -184,7 +186,7 @@ const Home: NextPage = () => {
                 <Stack align="center" spacing={4}>
                   <Box minH="60px" display="flex" alignItems="center" justifyContent="center">
                     <Image
-                      src={gloabant}
+                      src={LOGO_PATHS.globant}
                       alt="Globant logo"
                       width={120}
                       height={48}
@@ -203,7 +205,7 @@ const Home: NextPage = () => {
                 <Stack align="center" spacing={4}>
                   <Box minH="60px" display="flex" alignItems="center" justifyContent="center">
                     <Image
-                      src={galicia}
+                      src={LOGO_PATHS.galicia}
                       alt="Galicia logo"
                       width={120}
                       height={48}
@@ -222,7 +224,7 @@ const Home: NextPage = () => {
                 <Stack align="center" spacing={4}>
                   <Box minH="60px" display="flex" alignItems="center" justifyContent="center">
                     <Image
-                      src={naranjax}
+                      src={LOGO_PATHS.naranjax}
                       alt="NaranjaX logo"
                       width={120}
                       height={48}
@@ -380,7 +382,7 @@ const Home: NextPage = () => {
                 <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -20 }}>
                   <Box>
                     <Image
-                      src={bbva}
+                      src={LOGO_PATHS.bbva}
                       alt="BBVA logo"
                       width={100}
                       height={40}
@@ -392,7 +394,7 @@ const Home: NextPage = () => {
                 <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -20 }}>
                   <Box>
                     <Image
-                      src={accenture}
+                      src={LOGO_PATHS.accenture}
                       alt="Accenture logo"
                       width={100}
                       height={40}

@@ -4,7 +4,8 @@ import { FC } from 'react';
 
 import { PageText } from '../text';
 
-import attentionSVG from '../../../../public/images/attention.svg';
+// SVG path for Turbopack compatibility
+const ATTENTION_SVG = '/images/attention.svg';
 
 import { OFFICE_HOURS_URL } from '../../../constants';
 
@@ -20,7 +21,7 @@ export const ApplicationAttentionMsg: FC = () => {
       alignItems='center'
     >
       <Flex position='absolute' left={6}>
-        <Image src={attentionSVG} alt='attention icon vector' height={35} width={40} />
+        <Image src={ATTENTION_SVG} alt='attention icon vector' height={35} width={40} />
       </Flex>
 
       <PageText fontSize='input' ml={16}>
