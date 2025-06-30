@@ -22,17 +22,22 @@ import {
   GuaranteeBox
 } from '../../components/UI';
 
-import softwareDevelopersSVG from '../../../public/images/software-developers-vector.svg';
-import researchersSVG from '../../../public/images/researchers-vector.svg';
-import academicsSVG from '../../../public/images/academics-vector.svg';
-import communityOrganizersSVG from '../../../public/images/community-organizers-vector.svg';
-import designersSVG from '../../../public/images/designers-vector.svg';
-import otherGrantsProgramsSVG from '../../../public/images/other-grant-programs-vector.svg';
-import accenture from '../../../public/logos/Accenture.svg'; 
-import mercadolibre from '../../../public/logos/mercadolibre.svg'; 
-import globant from '../../../public/logos/Globant_Logo.svg'; 
-import galicia from '../../../public/logos/Logo_Banco_Galicia.svg';
-import naranjax from '../../../public/logos/naranja-x-1.svg';
+// SVG paths - using Next.js Image component for better Turbopack compatibility
+const SVG_PATHS = {
+  softwareDevelopers: '/images/software-developers-vector.svg',
+  researchers: '/images/researchers-vector.svg',
+  academics: '/images/academics-vector.svg',
+  communityOrganizers: '/images/community-organizers-vector.svg',
+  designers: '/images/designers-vector.svg',
+  otherGrantsPrograms: '/images/other-grant-programs-vector.svg',
+  logos: {
+    accenture: '/logos/Accenture.svg',
+    mercadolibre: '/logos/mercadolibre.svg',
+    globant: '/logos/Globant_Logo.svg',
+    galicia: '/logos/Logo_Banco_Galicia.svg',
+    naranjax: '/logos/naranja-x-1.svg',
+  }
+};
 import { NewsletterSignup } from '../../components/forms/NewsletterSignup';
 import {
   OFFICE_HOURS_URL,
@@ -44,7 +49,7 @@ import {
 // Dynamic imports for heavy components
 // Future optimization: Add dynamic imports for heavy components when needed
 
-const WHATSAPP_NUMBER = '525530326229';
+const WHATSAPP_NUMBER = '15557545181';
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const rainbowAnimation = keyframes`
@@ -387,7 +392,7 @@ const Applicants: NextPage = () => {
                     >
                       <Box mr={4} flexShrink={0}>
                         <Image
-                          src={softwareDevelopersSVG}
+                          src={SVG_PATHS.softwareDevelopers}
                           alt='Software and protocol developers vector'
                           height={37}
                           width={40}
@@ -410,7 +415,7 @@ const Applicants: NextPage = () => {
                     >
                       <Box mr={4} flexShrink={0}>
                         <Image
-                          src={researchersSVG}
+                          src={SVG_PATHS.researchers}
                           alt='Researchers vector'
                           height={40}
                           width={40}
@@ -433,7 +438,7 @@ const Applicants: NextPage = () => {
                     >
                       <Box mr={4} flexShrink={0}>
                         <Image 
-                          src={academicsSVG} 
+                          src={SVG_PATHS.academics} 
                           alt='Academics vector' 
                           height={36} 
                           width={40} 
@@ -458,7 +463,7 @@ const Applicants: NextPage = () => {
                     >
                       <Box mr={4} flexShrink={0}>
                         <Image
-                          src={communityOrganizersSVG}
+                          src={SVG_PATHS.communityOrganizers}
                           alt='Community organizers vector'
                           height={36}
                           width={40}
@@ -481,7 +486,7 @@ const Applicants: NextPage = () => {
                     >
                       <Box mr={4} flexShrink={0}>
                         <Image 
-                          src={designersSVG} 
+                          src={SVG_PATHS.designers} 
                           alt='Designers vector' 
                           height={38} 
                           width={40} 
@@ -504,7 +509,7 @@ const Applicants: NextPage = () => {
                     >
                       <Box mr={4} flexShrink={0}>
                         <Image
-                          src={otherGrantsProgramsSVG}
+                          src={SVG_PATHS.otherGrantsPrograms}
                           alt='Other grant programs vector'
                           height={36}
                           width={40}

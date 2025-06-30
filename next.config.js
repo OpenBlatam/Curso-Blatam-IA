@@ -3,13 +3,11 @@ const crypto = require('crypto');
 
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
   
   images: {
-    domains: ['images.unsplash.com', 'user-images.githubusercontent.com', 'www.facebook.com'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -91,50 +89,8 @@ const nextConfig = {
   },
   
   webpack: (config, { dev, isServer }) => {
-    // Balanced optimization for production
+    // Basic optimization for production only
     if (!dev && !isServer) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        minSize: 20000,
-        maxSize: 200000,
-        cacheGroups: {
-          default: false,
-          vendors: false,
-          // Framework chunk
-          framework: {
-            name: 'framework',
-            chunks: 'all',
-            test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
-            priority: 40,
-            enforce: true,
-          },
-          // Vendors chunk
-          vendors: {
-            name: 'vendors',
-            chunks: 'all',
-            test: /[\\/]node_modules[\\/]/,
-            priority: 20,
-            minChunks: 1,
-            reuseExistingChunk: true,
-          },
-          // Common chunk
-          commons: {
-            name: 'commons',
-            minChunks: 2,
-            priority: 10,
-            chunks: 'initial',
-            reuseExistingChunk: true,
-          },
-          // Default
-          default: {
-            minChunks: 2,
-            priority: 5,
-            reuseExistingChunk: true,
-          },
-        },
-      };
-      
-      // Basic tree shaking
       config.optimization.usedExports = true;
       config.optimization.sideEffects = false;
     }

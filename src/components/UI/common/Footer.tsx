@@ -118,7 +118,7 @@ export const Footer: FC = () => {
       </Center>
 
       <WhatsAppButton 
-        phoneNumber="525530326229" // Replace with your actual WhatsApp number
+        phoneNumber="15557545181" // Replace with your actual WhatsApp number
         message="¡Hola! Quiero mas información sobre los cursos de Blatam."
       />
     </Box>
