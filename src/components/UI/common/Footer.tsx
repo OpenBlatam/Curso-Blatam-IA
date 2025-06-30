@@ -4,7 +4,7 @@ import { FC } from 'react';
 
 import { ImportantText } from '../headings';
 import { PageText } from '../text';
-import { WhatsAppButton } from './WhatsAppButton';
+
 
 // Social media icon paths for Turbopack compatibility
 const SOCIAL_ICONS = {
@@ -120,10 +120,7 @@ export const Footer: FC = () => {
         </PageText>
       </Center>
 
-      <WhatsAppButton 
-        phoneNumber="15557545181" // Replace with your actual WhatsApp number
-        message="¡Hola! Quiero mas información sobre los cursos de Blatam."
-      />
+
     </Box>
   );
 };
