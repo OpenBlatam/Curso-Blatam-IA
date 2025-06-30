@@ -1,4 +1,5 @@
-import { Accordion, Box, Flex, Grid, GridItem, Stack, Text, Button } from '@chakra-ui/react';
+import { Accordion, Box, Flex, Grid, GridItem, Stack, Text, Button, IconButton } from '@chakra-ui/react';
+import { FaWhatsapp } from 'react-icons/fa';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { FiArrowRight } from 'react-icons/fi';
@@ -93,6 +94,9 @@ const AnimatedCounter = ({ target, duration = 2000 }: AnimatedCounterProps) => {
 };
 
 const Home: NextPage = () => {
+  // WhatsApp configuration
+  const WHATSAPP_NUMBER = '15557545181';
+
   return (
     <>
       <PageMetadata
@@ -585,12 +589,41 @@ const Home: NextPage = () => {
             minH="50px"
             _hover={{ bg: 'gray.800' }}
           >
-            Comprar ahora
-          </Button>
-        </a>
-      </Box>
-    </>
-  );
+                      Comprar ahora
+        </Button>
+      </a>
+    </Box>
+
+    {/* WhatsApp button - responsive positioning */}
+    <Box
+      position="fixed"
+      bottom={{ base: "100px", md: "30px" }}
+      right={{ base: "20px", md: "30px" }}
+      zIndex={999}
+    >
+      <IconButton
+        as="a"
+        href={`https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, '')}?text=${encodeURIComponent("¡Hola! Quiero más información sobre los cursos de IA y certificaciones de Blatam.")}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+        icon={<FaWhatsapp size="2.5em" />}
+        bg="#006400"
+        color="white"
+        size="xl"
+        isRound
+        width="70px"
+        height="70px"
+        boxShadow="2xl"
+        _hover={{
+          transform: 'scale(1.05)',
+          transition: 'transform 0.2s',
+          bg: '#004d00'
+        }}
+      />
+    </Box>
+  </>
+);
 };
 
 export default Home;
