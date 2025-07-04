@@ -19,14 +19,6 @@ const TweetEmbed = dynamic(
   }
 );
 
-const FloatingWhatsApp = dynamic(
-  () => import('react-floating-whatsapp'),
-  { 
-    ssr: false,
-    loading: WhatsAppLoadingFallback
-  }
-);
-
 // Individual tweet component with Suspense
 const Tweet: FC<{ tweetId: string }> = ({ tweetId }) => (
   <Suspense fallback={<TweetLoadingFallback />}>
@@ -70,10 +62,4 @@ export const TweetsSection: FC = () => (
 );
 
 // WhatsApp button
-export const WhatsAppButton: FC = () => (
-  <ClientOnly>
-    <Suspense fallback={<WhatsAppLoadingFallback />}>
-
-    </Suspense>
-  </ClientOnly>
-); 
+export const WhatsAppButton: FC = () => null; 

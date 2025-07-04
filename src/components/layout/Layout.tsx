@@ -40,14 +40,6 @@ const Forms = dynamic(() => import('../forms/Forms'), {
   loading: () => <div>Loading...</div>
 });
 
-const FloatingWhatsApp = dynamic(
-  () => import('react-floating-whatsapp').then(mod => mod.FloatingWhatsApp),
-  { 
-    ssr: false,
-    loading: () => null
-  }
-);
-
 interface WindowSize {
   width: number;
   height: number;
