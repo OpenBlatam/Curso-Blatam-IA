@@ -4,14 +4,15 @@ import Image from 'next/image';
 import FeatureCard from '../FeatureCard/FeatureCard';
 import styles from './FeaturesSection.module.css';
 import featureStyles from './FeatureSpecificMockups.module.css';
+import { Video, Monitor, Phone, Users, Gift, Play, Volume2, MessageCircle, Mic } from 'lucide-react';
 
-// Simple JSX elements for icons
-const MicIcon = <span className={featureStyles.icon}>🎤</span>;
-const CameraIcon = <span className={featureStyles.icon}>📷</span>;
-const ScreenShareIcon = <span className={featureStyles.icon}>💻</span>;
-const LeaveIcon = <span className={featureStyles.icon}>📞</span>;
-const ParticipantsIcon = <span className={featureStyles.icon}>👥</span>;
-const GiftIcon = <span className={featureStyles.icon}>🎁</span>;
+// Professional icons using Lucide React
+const MicIcon = <MessageCircle className={`${featureStyles.icon} w-5 h-5 text-white bg-gray-700 p-1 rounded-lg`} />;
+const CameraIcon = <Video className={`${featureStyles.icon} w-5 h-5 text-white bg-gray-700 p-1 rounded-lg`} />;
+const ScreenShareIcon = <Monitor className={`${featureStyles.icon} w-5 h-5 text-white bg-gray-700 p-1 rounded-lg`} />;
+const LeaveIcon = <Phone className={`${featureStyles.icon} w-5 h-5 text-white bg-red-600 p-1 rounded-lg`} />;
+const ParticipantsIcon = <Users className={`${featureStyles.icon} w-5 h-5 text-white bg-gray-700 p-1 rounded-lg`} />;
+const GiftIcon = <Gift className={`${featureStyles.icon} w-5 h-5 text-yellow-500 bg-yellow-100 p-1 rounded-lg`} />;
 
 // Define precise types for participants
 interface ImageParticipant {
@@ -61,7 +62,7 @@ const OnlineClassesMockup = () => {
                 />
               </div>
             )}
-            {!p.isInitial && <span className={featureStyles.micMuted}>🔇</span>}
+            {!p.isInitial && <Mic className={`${featureStyles.micMuted} w-4 h-4 text-red-500 bg-red-100 p-0.5 rounded-full`} />}
           </div>
         ))}
       </div>
@@ -106,8 +107,8 @@ const GamificationMockup = () => {
         <div className={featureStyles.videoProgressBar}></div>
       </div>
       <div className={featureStyles.videoPlayerControls}>
-        <span>▶</span>
-        <span className={featureStyles.volumeIcon}>🔊</span>
+        <Play className="w-6 h-6 text-white bg-black bg-opacity-50 p-1 rounded-lg" />
+        <Volume2 className={`${featureStyles.volumeIcon} w-5 h-5 text-white bg-black bg-opacity-50 p-1 rounded-lg`} />
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { Accordion, Box, Flex, Grid, GridItem, Stack, Text, Button, IconButton } from '@chakra-ui/react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { Flame, Zap, Star, Award } from 'lucide-react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { FiArrowRight } from 'react-icons/fi';
@@ -565,9 +566,9 @@ const Home: NextPage = () => {
         boxShadow="0 -2px 16px rgba(0,0,0,0.12)"
       >
         <Text fontSize="sm" fontWeight="bold" mb={2} lineHeight="1.3">
-          Aprovecha hasta <b>70% OFF</b> y hasta 12 meses sin intereses en <b>CURSOS</b> <span role="img" aria-label="fuego">🔥</span>
+          Aprovecha hasta <b>70% OFF</b> y hasta 12 meses sin intereses en <b>CURSOS</b> 🔥
           <br />
-          <span style={{ fontWeight: 400 }}>Hasta el 21 de Agosto</span> <span role="img" aria-label="fuego">🔥</span>
+                      <span style={{ fontWeight: 400 }}>Hasta el 21 de Agosto</span> 🔥
         </Text>
         <a
           href="/applicants"
@@ -583,7 +584,7 @@ const Home: NextPage = () => {
             borderRadius="full"
             fontWeight="bold"
             fontSize="md"
-            leftIcon={<span style={{ fontSize: '1.15em' }}>🔥</span>}
+            leftIcon={<span className="text-yellow-600 text-xl">🔥</span>}
             rightIcon={<span style={{ fontSize: '1.15em' }}>&rarr;</span>}
             py={6}
             minH="50px"

@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import styles from './ProfessionalGoalsSection.module.css';
+import { Play } from 'lucide-react';
 
 // Lazy load ReactPlayer only when absolutely needed
 const ReactPlayer = dynamic(() => import('react-player/lazy'), {
@@ -115,7 +116,7 @@ const ProfessionalGoalsSection = () => {
                     fontSize: '48px',
                     cursor: 'pointer'
                   }}>
-                    ▶
+                    <Play className="w-12 h-12 text-white" />
                   </div>
                 </div>
               )}
@@ -164,7 +165,7 @@ const ProfessionalGoalsSection = () => {
                     fontSize: '48px',
                     cursor: 'pointer'
                   }}>
-                    ▶
+                    <Play className="w-12 h-12 text-white" />
                   </div>
                 </div>
               )}

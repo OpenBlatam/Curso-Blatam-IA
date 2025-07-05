@@ -6,6 +6,9 @@ interface PricingInfo {
   newPrice: number;
   monthlyPayment: number;
   currencySymbol: string;
+  countryCode?: string;
+  countryFlag?: string;
+  countryName?: string;
 }
 
 interface CountryPricing {
@@ -19,7 +22,10 @@ const countryPricing: CountryPricing = {
     originalPrice: 76,
     newPrice: 76,
     monthlyPayment: 6.33,
-    currencySymbol: '$'
+    currencySymbol: '$',
+    countryCode: 'US',
+    countryFlag: '🇺🇸',
+    countryName: 'Estados Unidos'
   },
   // Argentina
   'AR': {
@@ -27,7 +33,10 @@ const countryPricing: CountryPricing = {
     originalPrice: 150000,
     newPrice: 150000,
     monthlyPayment: 12500,
-    currencySymbol: '$'
+    currencySymbol: '$',
+    countryCode: 'AR',
+    countryFlag: '🇦🇷',
+    countryName: 'Argentina'
   },
   // Brasil
   'BR': {
@@ -35,7 +44,10 @@ const countryPricing: CountryPricing = {
     originalPrice: 1500,
     newPrice: 1500,
     monthlyPayment: 125,
-    currencySymbol: 'R$'
+    currencySymbol: 'R$',
+    countryCode: 'BR',
+    countryFlag: '🇧🇷',
+    countryName: 'Brasil'
   },
   // Chile
   'CL': {
@@ -43,7 +55,10 @@ const countryPricing: CountryPricing = {
     originalPrice: 150000,
     newPrice: 150000,
     monthlyPayment: 12500,
-    currencySymbol: '$'
+    currencySymbol: '$',
+    countryCode: 'CL',
+    countryFlag: '🇨🇱',
+    countryName: 'Chile'
   },
   // Colombia
   'CO': {
@@ -51,7 +66,10 @@ const countryPricing: CountryPricing = {
     originalPrice: 1500000,
     newPrice: 1500000,
     monthlyPayment: 125000,
-    currencySymbol: '$'
+    currencySymbol: '$',
+    countryCode: 'CO',
+    countryFlag: '🇨🇴',
+    countryName: 'Colombia'
   },
   // México
   'MX': {
@@ -59,7 +77,10 @@ const countryPricing: CountryPricing = {
     originalPrice: 4290,
     newPrice: 1502,
     monthlyPayment: 125,
-    currencySymbol: '$'
+    currencySymbol: '$',
+    countryCode: 'MX',
+    countryFlag: '🇲🇽',
+    countryName: 'México'
   },
   // Perú
   'PE': {
@@ -67,7 +88,10 @@ const countryPricing: CountryPricing = {
     originalPrice: 600,
     newPrice: 600,
     monthlyPayment: 50,
-    currencySymbol: 'S/'
+    currencySymbol: 'S/',
+    countryCode: 'PE',
+    countryFlag: '🇵🇪',
+    countryName: 'Perú'
   },
   // Uruguay
   'UY': {
@@ -75,7 +99,10 @@ const countryPricing: CountryPricing = {
     originalPrice: 6000,
     newPrice: 6000,
     monthlyPayment: 500,
-    currencySymbol: '$'
+    currencySymbol: '$',
+    countryCode: 'UY',
+    countryFlag: '🇺🇾',
+    countryName: 'Uruguay'
   },
   // Venezuela
   'VE': {
@@ -83,7 +110,21 @@ const countryPricing: CountryPricing = {
     originalPrice: 76,
     newPrice: 76,
     monthlyPayment: 6.33,
-    currencySymbol: '$'
+    currencySymbol: '$',
+    countryCode: 'VE',
+    countryFlag: '🇻🇪',
+    countryName: 'Venezuela'
+  },
+  // Bolivia
+  'BO': {
+    currency: 'BOB',
+    originalPrice: 4290,
+    newPrice: 600,
+    monthlyPayment: 50,
+    currencySymbol: 'Bs',
+    countryCode: 'BO',
+    countryFlag: '🇧🇴',
+    countryName: 'Bolivia'
   }
 };
 
@@ -92,12 +133,16 @@ const defaultPricing: PricingInfo = {
   originalPrice: 4290,
   newPrice: 1502,
   monthlyPayment: 125,
-  currencySymbol: '$'
+  currencySymbol: '$',
+  countryCode: 'MX',
+  countryFlag: '🇲🇽',
+  countryName: 'México'
 };
 
 export const useCountryPricing = () => {
   const [pricing, setPricing] = useState<PricingInfo>(defaultPricing);
   const [loading, setLoading] = useState(true);
+  const [currentCountry, setCurrentCountry] = useState<string>('MX');
 
   useEffect(() => {
     const detectCountry = async () => {
@@ -121,12 +166,15 @@ export const useCountryPricing = () => {
         
         if (country && countryPricing[country]) {
           setPricing(countryPricing[country]);
+          setCurrentCountry(country);
         } else {
           setPricing(defaultPricing);
+          setCurrentCountry('MX');
         }
       } catch (error) {
         console.warn('No se pudo detectar el país, usando precios por defecto:', error instanceof Error ? error.message : 'Unknown error');
         setPricing(defaultPricing);
+        setCurrentCountry('MX');
       } finally {
         setLoading(false);
       }
@@ -144,6 +192,8 @@ export const useCountryPricing = () => {
       return `${symbol}${price.toLocaleString('es-ES')}`;
     } else if (currency === 'PEN') {
       return `${symbol}${price.toLocaleString('es-PE')}`;
+    } else if (currency === 'BOB') {
+      return `${symbol}${price.toLocaleString('es-BO')}`;
     }
     return `${symbol}${price.toLocaleString()}`;
   };
@@ -153,10 +203,17 @@ export const useCountryPricing = () => {
     return `12 pagos mensuales de ${formattedAmount} ${pricing.currency}`;
   };
 
+  const getMonthlyPaymentTextWithFlag = () => {
+    const formattedAmount = formatPrice(pricing.monthlyPayment, pricing.currency, pricing.currencySymbol);
+    return `${pricing.countryFlag} 12 pagos mensuales de ${formattedAmount} ${pricing.currency}`;
+  };
+
   return {
     pricing,
     loading,
     formatPrice,
-    getMonthlyPaymentText
+    getMonthlyPaymentText,
+    getMonthlyPaymentTextWithFlag,
+    currentCountry
   };
 }; 

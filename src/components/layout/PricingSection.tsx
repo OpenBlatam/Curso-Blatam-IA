@@ -3,10 +3,13 @@ import React, { useState } from 'react';
 import styles from './PricingSection.module.css';
 import { useCountryPricing } from '../../hooks/useCountryPricing';
 import PaymentModal from './PaymentModal';
+import { Info } from 'lucide-react';
 
 // Placeholder icons - replace with actual SVGs or an icon library
-const CheckIcon = () => <span className={styles.icon}>✓</span>;
-const InfoIcon = () => <span className={styles.iconInfo}>ⓘ</span>;
+import { Check } from 'lucide-react';
+
+const CheckIcon = () => <Check className={`${styles.icon} w-5 h-5 text-green-600`} />;
+const InfoIcon = () => <Info className={`${styles.iconInfo} w-4 h-4 text-gray-500 hover:text-blue-600 transition-colors cursor-help`} />;
 
 interface FeatureItem {
   text: string;
@@ -32,7 +35,7 @@ interface PricingSectionProps {
 }
 
 const PricingSection: React.FC<PricingSectionProps> = ({ windowSize }) => {
-  const { pricing, loading, formatPrice, getMonthlyPaymentText } = useCountryPricing();
+  const { pricing, loading, formatPrice, getMonthlyPaymentTextWithFlag } = useCountryPricing();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handlePaymentClick = (e: React.MouseEvent) => {
@@ -89,7 +92,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ windowSize }) => {
             {formatPrice(pricing.newPrice, pricing.currency, pricing.currencySymbol)} {pricing.currency}
           </p>
           <p className={styles.financingInfo}>
-            {getMonthlyPaymentText()}
+            {getMonthlyPaymentTextWithFlag()}
           </p>
           <a href="#" className={styles.paymentMethodsLink} onClick={handlePaymentClick}>
             Ver medios de pago

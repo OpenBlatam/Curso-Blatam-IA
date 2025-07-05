@@ -21,7 +21,7 @@ const PromoBanner: React.FC<PromoBannerProps> = ({
   paymentLinkText = "Ver medios de pago",
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { pricing, loading, formatPrice, getMonthlyPaymentText } = useCountryPricing();
+  const { pricing, loading, formatPrice, getMonthlyPaymentTextWithFlag } = useCountryPricing();
 
   const handlePaymentClick = () => {
     setIsModalOpen(true);
@@ -34,7 +34,7 @@ const PromoBanner: React.FC<PromoBannerProps> = ({
   // Use dynamic pricing if not provided as props
   const displayOriginalPrice = originalPrice || formatPrice(pricing.originalPrice, pricing.currency, pricing.currencySymbol);
   const displayNewPrice = newPrice || formatPrice(pricing.newPrice, pricing.currency, pricing.currencySymbol);
-  const displayAdditionalInfo = additionalInfo || getMonthlyPaymentText();
+  const displayAdditionalInfo = additionalInfo || getMonthlyPaymentTextWithFlag();
 
   if (loading) {
     return (

@@ -1,5 +1,5 @@
 // components/HeaderPromo.tsx
-import { FaClock } from 'react-icons/fa'; // Icono de reloj
+import { Clock } from 'lucide-react'; // Icono de reloj
 import React from 'react';
 
 const HeaderPromo: React.FC = () => {
@@ -16,8 +16,8 @@ const HeaderPromo: React.FC = () => {
 
         {/* Fecha de expiración con ícono */}
         <div className="flex items-center gap-3 text-lg font-medium">
-          <FaClock className="text-yellow-400 animate-pulse" size={24} />
-          <span>| Hasta el 7/05 ⏰</span>
+          <span className="text-yellow-400 animate-pulse text-xl">🔥</span>
+          <span>| Hasta el 21/08</span>
         </div>
       </div>
     </div>

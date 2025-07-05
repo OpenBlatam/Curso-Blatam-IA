@@ -18,7 +18,7 @@ const Header: React.FC = () => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { pricing, loading, formatPrice, getMonthlyPaymentText } = useCountryPricing();
+  const { pricing, loading, formatPrice, getMonthlyPaymentTextWithFlag } = useCountryPricing();
 
   useEffect(() => {
     setMounted(true);
@@ -41,7 +41,7 @@ const Header: React.FC = () => {
   // Generate price text based on country
   const priceText = loading 
     ? 'Cargando...' 
-    : getMonthlyPaymentText();
+    : getMonthlyPaymentTextWithFlag();
 
   if (!mounted) {
     return null; // Return null on server-side and initial client render

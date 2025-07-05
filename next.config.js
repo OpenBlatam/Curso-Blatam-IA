@@ -34,7 +34,7 @@ const nextConfig = {
   },
   
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false,
     optimizePackageImports: ['@chakra-ui/react', '@emotion/react', '@emotion/styled', 'framer-motion'],
   },
   

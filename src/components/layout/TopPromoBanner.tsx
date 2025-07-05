@@ -1,5 +1,6 @@
 import { Box, Text, Flex } from '@chakra-ui/react';
 import { useState, useEffect, useRef } from 'react';
+import { Rocket, Flame } from 'lucide-react';
 
 const TopPromoBanner = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -88,7 +89,7 @@ const TopPromoBanner = () => {
         minW="fit-content"
         flexShrink={0}
       >
-        <Text as="span" fontSize={{ base: "2xs", sm: "xs", md: "sm" }} mr={{ base: 0.5, sm: 1 }}>🚀</Text>
+        🚀
         <Text display={{ base: "none", sm: "inline" }}>BLATAM WEEK</Text>
         <Text display={{ base: "inline", sm: "none" }}>BLATAM</Text>
       </Flex>
@@ -135,9 +136,9 @@ const TopPromoBanner = () => {
         flexShrink={0}
       >
         <Text display={{ base: "none", sm: "inline" }}>Hasta el </Text>
-        <Text display={{ base: "inline", sm: "none" }}>31/12</Text>
-        <Text display={{ base: "none", sm: "inline" }}>31/12</Text>
-        <Text as="span" fontSize={{ base: "2xs", sm: "xs", md: "sm" }} ml={{ base: 0.5, sm: 1 }}>🔥</Text>
+        <Text display={{ base: "inline", sm: "none" }}>21/08</Text>
+        <Text display={{ base: "none", sm: "inline" }}>21/08</Text>
+        🔥
       </Flex>
           </Flex>
     </Box>

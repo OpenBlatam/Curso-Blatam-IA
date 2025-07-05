@@ -1,5 +1,6 @@
 // components/BlatamBanner.tsx
 import { Box, Text, Stack, Flex } from '@chakra-ui/react';
+import { Rocket, Flame } from 'lucide-react';
 
 const BlatamBanner = () => (
   <Box
@@ -31,7 +32,7 @@ const BlatamBanner = () => (
         boxShadow="0 2px 8px rgba(0,0,0,0.2)"
         minW="fit-content"
       >
-        <Text as="span" fontSize="lg" mr={2}>🚀</Text>
+        <Rocket className="w-5 h-5 mr-2" />
         BLATAM WEEK
       </Flex>
 
@@ -69,8 +70,8 @@ const BlatamBanner = () => (
         minW="fit-content"
         backdropFilter="blur(10px)"
       >
-        Hasta el 31/12
-        <Text as="span" fontSize="lg" ml={2}>🔥</Text>
+        Hasta el 21/08
+        <Flame className="w-5 h-5 ml-2" />
       </Flex>
     </Flex>
   </Box>

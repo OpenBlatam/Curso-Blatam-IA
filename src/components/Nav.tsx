@@ -25,6 +25,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Star } from 'lucide-react';
 
 import { ImportantText } from './UI/headings';
 import { CloseIcon, HamburgerIcon, NavLinkIcon } from './UI/icons';
@@ -95,7 +96,7 @@ export const Nav: FC<Props> = ({ windowSize }) => {
           >
             <strong>70% OFF</strong> en cursos
             <Text as="span" mx={2} color="gray.400">|</Text>
-            <Text as="span" color="brand.pink">
+            <Text as="span" color="brand.pink" display="flex" alignItems="center" gap={1}>
               🔥 Hasta el 21/08 🔥
             </Text>
           </Text>

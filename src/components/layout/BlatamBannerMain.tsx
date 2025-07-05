@@ -5,7 +5,9 @@ import styles from './BlatamBannerMain.module.css';
 import Image from 'next/image';
 
 // Placeholder icons - replace with actual SVGs or an icon library
-const FireIcon = () => <span className={styles.icon}>🔥</span>;
+import { Flame } from 'lucide-react';
+
+const FireIcon = () => <span className={`${styles.icon} text-orange-500 text-xl`}>🔥</span>;
 const ArrowIcon = () => <span className={styles.icon}>→</span>;
 
 interface BlatamBannerMainProps {

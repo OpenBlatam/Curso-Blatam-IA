@@ -7,7 +7,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { EmailIcon } from '@chakra-ui/icons'
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Flame } from 'lucide-react';
 
 import {
   ApplicantsSidebar,
@@ -635,7 +635,7 @@ const Applicants: NextPage = () => {
             borderRadius="full"
             fontWeight="bold"
             fontSize="md"
-            leftIcon={<span style={{ fontSize: '1.1em' }}>🔥</span>}
+            leftIcon={<Flame className="w-4 h-4" />}
             rightIcon={<span style={{ fontSize: '1.1em' }}>&rarr;</span>}
             px={4}
             py={2}
@@ -660,7 +660,7 @@ const Applicants: NextPage = () => {
           textAlign="center"
           display="inline-block"
         >
-          <span role="img" aria-label="fuego">🔥</span> ¡PRUEBA 2 CLASES GRATIS!
+          <Flame className="w-4 h-4" /> ¡PRUEBA 2 CLASES GRATIS!
         </Box>
         <Box mt={3} mx={3} maxW="95%">
           <GuaranteeBox size="xs" />

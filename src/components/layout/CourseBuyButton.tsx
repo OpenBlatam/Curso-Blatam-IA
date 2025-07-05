@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Info } from 'lucide-react';
+import { Info, Zap, Award } from 'lucide-react';
 import styles from './CourseBuyButton.module.css';
 
 interface CourseBuyButtonProps {
@@ -26,11 +26,11 @@ const CourseBuyButton: React.FC<CourseBuyButtonProps> = ({
         className={styles.buyButtonLink}
       >
         <button className={styles.buyButton}>
-          <span role="img" aria-label="fire">🔥</span> Comprar {itemType} <span>→</span>
+          🔥 Comprar {itemType} <span>→</span>
         </button>
       </a>
       <div className={styles.offer}>
-        <span role="img" aria-label="fire">🔥</span> {offerText}
+                  🔥 {offerText}
         <div
           className={styles.tooltipTrigger}
           onMouseEnter={() => setShowTooltip(true)}

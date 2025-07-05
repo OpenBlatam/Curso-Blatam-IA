@@ -2,11 +2,12 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './CourseModality.module.css';
+import { Shield, Users, Play, CheckCircle } from 'lucide-react';
 
-// Placeholder icons - replace with actual SVGs or an icon library
-const LiveClassIcon = () => <span className={styles.featureIcon} style={{ color: '#E53E3E' }}>●</span>; // Red circle
-const OnDemandIcon = () => <span className={styles.featureIcon}>❖</span>; // Placeholder for "play all" / content stack
-const CertificateIcon = () => <span className={styles.icon}>🛡️</span>; // Placeholder for shield/badge
+// Professional icons using Lucide React
+const LiveClassIcon = () => <Users className={`${styles.featureIcon} w-6 h-6 text-red-600 bg-red-50 p-1 rounded-lg`} />;
+const OnDemandIcon = () => <Play className={`${styles.featureIcon} w-6 h-6 text-blue-600 bg-blue-50 p-1 rounded-lg`} />;
+const CertificateIcon = () => <Shield className={`${styles.icon} w-6 h-6 text-blue-600 bg-blue-50 p-1 rounded-lg`} />;
 
 const CourseModality: React.FC = () => {
   return (
