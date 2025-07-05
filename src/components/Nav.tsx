@@ -23,9 +23,9 @@ import {
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { Star } from 'lucide-react';
+import { Star, X } from 'lucide-react';
 
 import { ImportantText } from './UI/headings';
 import { CloseIcon, HamburgerIcon, NavLinkIcon } from './UI/icons';
@@ -48,10 +48,88 @@ export const Nav: FC<Props> = ({ windowSize }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
   const { colorMode, toggleColorMode } = useColorMode();
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const startX = useRef<number>(0);
+  const currentX = useRef<number>(0);
   
   const bgColor = useColorModeValue('background.primary.light', 'background.primary.dark');
   const textColor = useColorModeValue('gray.700', 'gray.200');
   const bannerBg = useColorModeValue('background.secondary.light', 'background.secondary.dark');
+
+  // Swipe functionality for mobile menu
+  useEffect(() => {
+    const drawer = drawerRef.current;
+    if (!drawer || !isOpen) return;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      startX.current = e.touches[0].clientX;
+      currentX.current = 0;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!startX.current) return;
+      
+      currentX.current = e.touches[0].clientX - startX.current;
+      
+      // Only allow swipe to close if swiping left (negative value)
+      if (currentX.current < 0) {
+        e.preventDefault();
+        const translateX = Math.max(currentX.current, -300);
+        drawer.style.transform = `translateX(${translateX}px)`;
+        drawer.style.transition = 'none';
+      }
+    };
+
+    const handleTouchEnd = () => {
+      if (!startX.current) return;
+      
+      drawer.style.transition = 'transform 0.3s ease-out';
+      
+      // If swiped more than 100px to the left, close the drawer
+      if (currentX.current < -100) {
+        drawer.style.transform = 'translateX(-100%)';
+        setTimeout(() => {
+          onClose();
+          drawer.style.transform = '';
+        }, 300);
+      } else {
+        // Reset position
+        drawer.style.transform = '';
+      }
+      
+      startX.current = 0;
+      currentX.current = 0;
+    };
+
+    drawer.addEventListener('touchstart', handleTouchStart, { passive: false });
+    drawer.addEventListener('touchmove', handleTouchMove, { passive: false });
+    drawer.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      drawer.removeEventListener('touchstart', handleTouchStart);
+      drawer.removeEventListener('touchmove', handleTouchMove);
+      drawer.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isOpen, onClose]);
+
+  // Close drawer on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, onClose]);
 
   return (
     <header>
@@ -70,7 +148,6 @@ export const Nav: FC<Props> = ({ windowSize }) => {
         <Box
           onClick={isOpen ? undefined : () => router.push(HOME_URL)}
           cursor={isOpen ? 'default' : 'pointer'}
-          sx={isOpen ? { transitionDelay: '0.15s', filter: 'brightness(10)' } : undefined}
           zIndex={9999}
         >
           <Image src={logoSVG} alt='Blatam logo' height={85} width={100} />
@@ -115,25 +192,78 @@ export const Nav: FC<Props> = ({ windowSize }) => {
         </Box>
 
         <Drawer onClose={onClose} isOpen={isOpen} size='full'>
-          <DrawerContent>
-            <DrawerBody bg="background.primary">
-              <Stack h='100%' justifyContent='center' alignItems='center'>
-                <Stack spacing={6}>
+          <DrawerContent ref={drawerRef} bgGradient="linear(to-br, #667eea 0%, #764ba2 50%, #f093fb 100%)" position="relative">
+            {/* Close button */}
+            <IconButton
+              aria-label="Cerrar menú"
+              icon={<X size={24} />}
+              onClick={onClose}
+              position="absolute"
+              top={6}
+              right={6}
+              zIndex={10}
+              variant="ghost"
+              color="white"
+              bg="rgba(255, 255, 255, 0.2)"
+              backdropFilter="blur(10px)"
+              _hover={{ 
+                bg: 'rgba(255, 255, 255, 0.3)', 
+                color: 'white',
+                transform: 'scale(1.1)'
+              }}
+              _active={{ 
+                bg: 'rgba(255, 255, 255, 0.4)',
+                transform: 'scale(0.95)'
+              }}
+              transition="all 0.3s ease"
+              borderRadius="full"
+              w="48px"
+              h="48px"
+              boxShadow="lg"
+            />
+            
+            <DrawerBody bg="transparent">
+              <Stack h='100%' justifyContent='center' alignItems='center' pt={16}>
+                <Stack spacing={8}>
                   {NAV_LINKS.map(({ href, text }) => (
                     <Link
                       key={href}
                       as={NextLink}
                       href={href}
                       _hover={{ textDecoration: 'none' }}
+                      onClick={onClose}
                     >
-                      <ImportantText color='gray.200' textAlign='center' fontSize='h2'>
-                        {text}
-                      </ImportantText>
+                      <Box
+                        bg="rgba(255, 255, 255, 0.1)"
+                        p={4}
+                        borderRadius="xl"
+                        backdropFilter="blur(10px)"
+                        border="1px solid"
+                        borderColor="rgba(255, 255, 255, 0.2)"
+                        _hover={{
+                          bg: 'rgba(255, 255, 255, 0.2)',
+                          transform: 'scale(1.05)',
+                          boxShadow: '0 8px 25px rgba(0,0,0,0.2)'
+                        }}
+                        transition="all 0.3s ease"
+                      >
+                        <ImportantText 
+                          color='white' 
+                          textAlign='center' 
+                          fontSize='h2'
+                          textShadow="0 2px 4px rgba(0,0,0,0.3)"
+                          _hover={{
+                            color: 'white'
+                          }}
+                        >
+                          {text}
+                        </ImportantText>
+                      </Box>
                     </Link>
                   ))}
 
                   <Center>
-                    <Divider borderColor='gray.700' opacity={1} w={72} mt={1} mb={-2} />
+                    <Divider borderColor='rgba(255, 255, 255, 0.3)' opacity={1} w={72} mt={1} mb={-2} />
                   </Center>
 
                   <Link
@@ -142,9 +272,23 @@ export const Nav: FC<Props> = ({ windowSize }) => {
                     isExternal
                     _hover={{ textDecoration: 'none' }}
                   >
-                    <ImportantText color='gray.200' textAlign='center'>
-                      <BlatamLogoText as="span" display="inline" color='gray.200'>Blatam</BlatamLogoText>.org
-                    </ImportantText>
+                    <Box
+                      bg="rgba(255, 255, 255, 0.1)"
+                      p={3}
+                      borderRadius="lg"
+                      backdropFilter="blur(10px)"
+                      border="1px solid"
+                      borderColor="rgba(255, 255, 255, 0.2)"
+                      _hover={{
+                        bg: 'rgba(255, 255, 255, 0.2)',
+                        transform: 'scale(1.02)'
+                      }}
+                      transition="all 0.3s ease"
+                    >
+                      <ImportantText color='white' textAlign='center' textShadow="0 1px 2px rgba(0,0,0,0.3)">
+                        <BlatamLogoText as="span" display="inline" color='white'>Blatam</BlatamLogoText>.org
+                      </ImportantText>
+                    </Box>
                   </Link>
 
                   <IconButton
@@ -153,12 +297,37 @@ export const Nav: FC<Props> = ({ windowSize }) => {
                     onClick={toggleColorMode}
                     variant="ghost"
                     size="lg"
-                    color={textColor}
+                    color="white"
+                    bg="rgba(255, 255, 255, 0.1)"
+                    backdropFilter="blur(10px)"
                     _hover={{
-                      bg: 'background.secondary.dark',
+                      bg: 'rgba(255, 255, 255, 0.2)',
+                      transform: 'scale(1.1)'
                     }}
+                    transition="all 0.3s ease"
+                    borderRadius="full"
                   />
                 </Stack>
+                
+                {/* Swipe indicator */}
+                <Box 
+                  position="absolute" 
+                  bottom={8} 
+                  left="50%" 
+                  transform="translateX(-50%)"
+                  textAlign="center"
+                  color="rgba(255, 255, 255, 0.8)"
+                  fontSize="sm"
+                  bg="rgba(0, 0, 0, 0.3)"
+                  px={4}
+                  py={2}
+                  borderRadius="full"
+                  backdropFilter="blur(10px)"
+                  border="1px solid"
+                  borderColor="rgba(255, 255, 255, 0.2)"
+                >
+                  ← Desliza para cerrar
+                </Box>
               </Stack>
             </DrawerBody>
           </DrawerContent>
