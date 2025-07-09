@@ -17,8 +17,16 @@ export const Footer: FC = () => {
         justifyContent="space-between"
         alignItems="center"
         flexDir={{ base: "column", md: "row" }}
+        w="100%"
       >
-        {/* ... existing code ... */}
+        <Text fontSize="md" mb={{ base: 4, md: 0 }}>
+          © {currentYear} Blatam. Todos los derechos reservados.
+        </Text>
+        <Stack direction="row" spacing={4}>
+          <Link href="https://twitter.com" isExternal color="white">Twitter</Link>
+          <Link href="https://facebook.com" isExternal color="white">Facebook</Link>
+          <Link href="https://blatam.org" isExternal color="white">Sitio web</Link>
+        </Stack>
       </Flex>
     </Box>
   );

@@ -1,12 +1,15 @@
 // components/LearningPathPromo.tsx
-import React from 'react';
+import React, { useState } from 'react';
+import { Download } from 'lucide-react';
 import styles from './LearningPathPromo.module.css';
+import { Modal } from '../common/modal';
 
 // Placeholder icons - replace with actual SVGs or an icon library
 const AiSparkleIcon = () => <span className={styles.icon}>✨</span>; // Placeholder
-const DownloadIcon = () => <span className={styles.icon}>⬇️</span>; // Placeholder
+const DownloadIcon = () => <Download size={18} className={styles.icon} />;
 
 const LearningPathPromo: React.FC = () => {
+  const [open, setOpen] = useState(false);
   const downloadLink = "https://drive.google.com/file/d/1eqA6DNqmJphgCWuN26iAD6uGUX11NRxW/view?usp=sharing";
 
   return (
@@ -16,10 +19,10 @@ const LearningPathPromo: React.FC = () => {
       <hr className={styles.divider} />
 
       <div className={styles.actionsContainer}>
-        <button className={styles.aiTagButton}>
+        <span className={styles.aiTagButton} style={{cursor: 'default', pointerEvents: 'none', opacity: 1}}>
           <AiSparkleIcon />
           Aprende con IA
-        </button>
+        </span>
 
         {/* Changed to an <a> tag for the download link */}
         <a
@@ -34,6 +37,15 @@ const LearningPathPromo: React.FC = () => {
           Descargar programa
         </a>
       </div>
+
+      <Modal open={open} close={() => setOpen(false)}>
+        <div style={{ padding: '2rem', textAlign: 'center', maxWidth: 400 }}>
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>¿Qué es Aprende con IA?</h2>
+          <p style={{ fontSize: '1.1rem', color: '#333' }}>
+            Aprende con IA es una plataforma interactiva que utiliza inteligencia artificial para potenciar tu aprendizaje, personalizar tu experiencia y ayudarte a dominar nuevas habilidades de manera más eficiente y divertida.
+          </p>
+        </div>
+      </Modal>
     </section>
   );
 };

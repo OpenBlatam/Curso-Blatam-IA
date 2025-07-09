@@ -26,7 +26,7 @@ const CourseBuyButton: React.FC<CourseBuyButtonProps> = ({
         className={styles.buyButtonLink}
       >
         <button className={styles.buyButton}>
-          🔥 Comprar {itemType} <span>→</span>
+          <span role="img" aria-label="fuego">🔥</span> Comprar {itemType} <span>→</span>
         </button>
       </a>
       <div className={styles.offer}>

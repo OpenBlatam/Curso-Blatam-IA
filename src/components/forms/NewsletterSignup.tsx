@@ -174,11 +174,11 @@ export const NewsletterSignup: FC = memo(() => {
     >
       <Stack mt={2} mb={{ base: 6, lg: 0 }} mr={{ base: 0, lg: 12 }}>
         <ImportantText color="brand.ready.text" textAlign={{ base: 'center', lg: 'left' }} as="h3">
-          Suscríbete a nuestro newsletter
+          NEWSLETTER
         </ImportantText>
 
         <PageText textAlign={{ base: 'center', lg: 'left' }} fontSize="input">
-          Estas por unirte a la comunidad más grande de profesionales referentes en el ecosistema blockchain y IA de Latinoamérica
+          Suscríbete y mantente al día con las últimas noticias, ofertas exclusivas y recursos útiles directamente en tu correo.
         </PageText>
       </Stack>
 

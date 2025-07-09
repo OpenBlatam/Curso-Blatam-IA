@@ -33,6 +33,7 @@ import {
 import { DevconGrantsLayout } from './DevconGrantsLayout';
 import { ClientOnly, TweetsSection } from '../client/ClientComponents';
 import BlatamBannerMain from './BlatamBannerMain';
+import { FooterBlock } from './FooterBlock';
 
 // Dynamically import components
 const Forms = dynamic(() => import('../forms/Forms'), { 
@@ -103,7 +104,7 @@ const HomePageContent: FC<{ children: ReactNode; windowSize: WindowSize }> = ({ 
           </Box>
         </ClientOnly>
       )}
-      <Footer/>
+      <FooterBlock />
     </Box>
   );
 };
@@ -227,48 +228,6 @@ export const Layout: FC<LayoutProps> = ({ children, windowSize, ...props }) => {
           </Box>
         </Box>
       </Box>
-
-      {/* Footer section */}
-      <Box 
-        bg={componentBgColor}
-        boxShadow={shadow}
-        borderRadius="lg"
-        borderTop="1px solid"
-        borderColor={borderColor}
-        transition="all 0.3s ease-in-out"
-        pt={16}
-        mt="auto"
-        _hover={{
-          transform: 'translateY(-1px)',
-          boxShadow: { base: 'md', _dark: 'dark.lg' },
-          borderColor: { base: 'transparent', _dark: 'rgba(255, 255, 255, 0.15)' },
-        }}
-      >
-        <Footer />
-      </Box>
-
-      {/* Blatam.org link at the very bottom */}
-      <Box 
-        bg={componentBgColor}
-        py={4}
-        borderTop="1px solid"
-        borderColor={borderColor}
-      >
-        <Box maxW='1900px' mx="auto">
-          <Link
-            as={NextLink}
-            href={ETHEREUM_ORG_URL}
-            isExternal
-            _hover={{ textDecoration: 'none' }}
-            display="block"
-          >
-            <ImportantText color='gray.200' textAlign='center'>
-              <BlatamLogoText as="span" display="inline" color='gray.200'>Blatam</BlatamLogoText>.org
-            </ImportantText>
-          </Link>
-        </Box>
-      </Box>
-
     </Box>
   );
 };

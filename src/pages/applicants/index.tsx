@@ -267,8 +267,8 @@ const Applicants: NextPage = () => {
                   <Image
                     src="/images/background-circles.png"
                     alt="Background circles"
-                    width={200}
-                    height={200}
+                    width={80}
+                    height={80}
                     loading="lazy"
                   />
                 </Box>
@@ -282,8 +282,8 @@ const Applicants: NextPage = () => {
                   <Image
                     src="/images/background-circles.png"
                     alt="Background circles"
-                    width={150}
-                    height={150}
+                    width={60}
+                    height={60}
                     loading="lazy"
                   />
                 </Box>
@@ -302,17 +302,75 @@ const Applicants: NextPage = () => {
                 mb={{ base: 4, md: 6 }}
                 direction={{ base: 'column', sm: 'row' }}
               >
-                <MagicButton
+                <Box
                   w="full"
-                  size="lg"
                   sx={{
                     '@media (min-width: 30em)': {
                       w: 'auto'
                     }
                   }}
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  cursor="default"
+                  userSelect="none"
+                  position="relative"
+                  overflow="hidden"
+                  bg="rgba(255, 255, 255, 0.2)"
+                  backdropFilter="blur(8px)"
+                  transform="translateY(-2px)"
+                  shadow="lg"
+                  fontWeight="bold"
+                  borderWidth="2px"
+                  borderColor="purple.400"
+                  px={6}
+                  py={3}
+                  fontSize="lg"
+                  _before={{
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000)',
+                    backgroundSize: '400% 400%',
+                    animation: `${rainbowAnimation} 3s ease infinite`,
+                    opacity: 0.3,
+                    zIndex: 0
+                  }}
+                  _after={{
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1))',
+                    backdropFilter: 'blur(8px)',
+                    opacity: 0.8,
+                    zIndex: 1
+                  }}
                 >
-                  Aprende con IA
-                </MagicButton>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap={2}
+                    position="relative"
+                    zIndex={2}
+                    fontWeight="bold"
+                    textShadow="0 0 10px rgba(255,255,255,0.5)"
+                    whiteSpace="nowrap"
+                  >
+                    <Box
+                      animation={`${sparkleAnimation} 2s ease-in-out infinite`}
+                      zIndex={2}
+                    >
+                      <Sparkles size="1.1em" />
+                    </Box>
+                    Aprende con IA
+                  </Box>
+                </Box>
                 <Button
                   leftIcon={<Sparkles />}
                   variant="outline"
@@ -646,22 +704,15 @@ const Applicants: NextPage = () => {
             Comprar curso
           </Button>
         </a>
-        <Box
-          as="span"
+        <Text
           mt={1}
-          px={3}
-          py={1}
-          borderRadius="full"
-          bg="orange.50"
           color="orange.500"
           fontWeight="bold"
           fontSize="0.85em"
-          boxShadow="sm"
           textAlign="center"
-          display="inline-block"
         >
-          <Flame className="w-4 h-4" /> ¡PRUEBA 2 CLASES GRATIS!
-        </Box>
+          ¡PRUEBA 2 CLASES GRATIS!
+        </Text>
         <Box mt={3} mx={3} maxW="95%">
           <GuaranteeBox size="xs" />
         </Box>
