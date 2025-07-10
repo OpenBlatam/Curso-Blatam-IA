@@ -16,6 +16,9 @@ export default function Document() {
         <link rel="dns-prefetch" href="https://analytics.tiktok.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
+        {/* Facebook Domain Verification */}
+        <meta name="facebook-domain-verification" content="0wdjdwzlar8yqudyag3tpsl5kb467t" />
+
         {/* Preload critical resources */}
         <link
           rel="preload"
