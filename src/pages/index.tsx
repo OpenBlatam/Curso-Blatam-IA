@@ -96,7 +96,7 @@ const AnimatedCounter = ({ target, duration = 2000 }: AnimatedCounterProps) => {
 
 const Home: NextPage = () => {
   // WhatsApp configuration
-const WHATSAPP_NUMBER = '15558009407';
+const WHATSAPP_NUMBER = '15558115629';
 
   return (
     <>
