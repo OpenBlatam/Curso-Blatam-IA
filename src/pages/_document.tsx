@@ -17,7 +17,7 @@ export default function Document() {
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
         {/* Facebook Domain Verification */}
-        <meta name="facebook-domain-verification" content="0wdjdwzlar8yqudyag3tpsl5kb467t" />
+        <meta name="facebook-domain-verification" content="makg8jd2b9st1r5fcfrcbyibo1us6y" />
 
         {/* Preload critical resources */}
         <link
