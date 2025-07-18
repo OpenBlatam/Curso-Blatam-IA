@@ -2,6 +2,7 @@ import { Box, Link, Stack, Drawer, DrawerOverlay, DrawerContent, DrawerHeader, D
 import { FC, useEffect, useRef } from 'react';
 import NextLink from 'next/link';
 import { X } from 'lucide-react';
+import { FaHome, FaGraduationCap, FaHandshake } from 'react-icons/fa';
 
 import { PageText } from '..';
 import { SidebarLink } from '../../../types';
@@ -10,6 +11,20 @@ interface Props {
   sidebarLinks: SidebarLink[];
   sectionsInView: boolean[];
 }
+
+// Icon mapping for sidebar links
+const getIconForLink = (text: string) => {
+  switch (text) {
+    case 'Inicio':
+      return FaHome;
+    case 'Cursos':
+      return FaGraduationCap;
+    case 'Becas':
+      return FaHandshake;
+    default:
+      return FaHome;
+  }
+};
 
 export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -99,6 +114,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
     const isInternalSection = link.href.includes('#');
     const isActive = sectionsInView[idx];
     const color = isActive ? activeColor : inactiveColor;
+    const IconComponent = getIconForLink(link.text);
 
     const linkProps = {
       key: link.href,
@@ -109,6 +125,16 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
       onClick,
     };
 
+    const linkContent = (
+      <Flex align="center" gap={3}>
+        <IconComponent 
+          size={18} 
+          color={isActive ? '#F50087' : '#30354b'} 
+        />
+        <PageText {...linkProps}>{link.text}</PageText>
+      </Flex>
+    );
+
     if (isExternal) {
       return (
         <a
@@ -118,7 +144,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
           rel="noopener noreferrer"
           style={{ textDecoration: 'none' }}
         >
-          <PageText {...linkProps}>{link.text}</PageText>
+          {linkContent}
         </a>
       );
     }
@@ -132,7 +158,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
           _hover={{ textDecoration: 'none' }}
           passHref
         >
-          <PageText {...linkProps}>{link.text}</PageText>
+          {linkContent}
         </Link>
       );
     }
@@ -145,7 +171,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
         _hover={{ textDecoration: 'none' }}
         passHref
       >
-        <PageText {...linkProps}>{link.text}</PageText>
+        {linkContent}
       </Link>
     );
   };
@@ -163,10 +189,14 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
           left={4}
           zIndex={120}
           bg="white"
+          color="brand.accent"
           boxShadow="lg"
           borderRadius="lg"
+          border="2px solid"
+          borderColor="brand.accent"
           _hover={{
-            bg: 'gray.50',
+            bg: 'brand.accent',
+            color: 'white',
             transform: 'scale(1.05)',
             boxShadow: 'xl'
           }}
@@ -177,19 +207,19 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
           <DrawerContent 
             ref={drawerRef} 
             maxW="280px" 
-            bgGradient="linear(to-b, #667eea 0%, #764ba2 100%)"
+            bgGradient="linear(to-b, brand.applicants.bgGradient.start 0%, brand.applicants.bgGradient.end 100%)"
             boxShadow="2xl"
             borderRightRadius="xl"
           >
             <DrawerHeader 
               p={6} 
               borderBottomWidth="2px" 
-              borderColor="rgba(255, 255, 255, 0.2)"
+              borderColor="brand.accent"
               position="relative"
               bg="rgba(255, 255, 255, 0.1)"
               backdropFilter="blur(10px)"
             >
-              <Box fontWeight="bold" fontSize="xl" color="white" textShadow="0 2px 4px rgba(0,0,0,0.3)">
+              <Box fontWeight="bold" fontSize="xl" color="brand.heading" textShadow="0 2px 4px rgba(0,0,0,0.1)">
                 Navegación
               </Box>
               <IconButton
@@ -201,18 +231,18 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
                 top={4}
                 right={4}
                 variant="ghost"
-                color="white"
+                color="brand.accent"
                 bg="rgba(255, 255, 255, 0.2)"
                 backdropFilter="blur(10px)"
                 boxShadow="md"
                 _hover={{ 
-                  bg: 'rgba(255, 255, 255, 0.3)', 
+                  bg: 'brand.accent', 
                   color: 'white',
                   transform: 'scale(1.1)',
                   boxShadow: 'lg'
                 }}
                 _active={{ 
-                  bg: 'rgba(255, 255, 255, 0.4)',
+                  bg: 'brand.hover',
                   transform: 'scale(0.95)'
                 }}
                 transition="all 0.3s ease"
@@ -231,11 +261,11 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
                     borderRadius="lg"
                     backdropFilter="blur(10px)"
                     border="1px solid"
-                    borderColor="rgba(255, 255, 255, 0.2)"
+                    borderColor="brand.accent"
                     _hover={{
-                      bg: 'rgba(255, 255, 255, 0.2)',
+                      bg: 'brand.accent',
                       transform: 'translateX(8px)',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                      boxShadow: '0 4px 12px rgba(245, 0, 135, 0.3)'
                     }}
                     transition="all 0.3s ease"
                   >
@@ -251,13 +281,15 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
                 left="50%" 
                 transform="translateX(-50%)"
                 textAlign="center"
-                color="rgba(255, 255, 255, 0.8)"
+                color="brand.ready.text"
                 fontSize="xs"
-                bg="rgba(0, 0, 0, 0.3)"
+                bg="rgba(255, 255, 255, 0.9)"
                 px={3}
                 py={1}
                 borderRadius="full"
                 backdropFilter="blur(10px)"
+                border="1px solid"
+                borderColor="brand.accent"
               >
                 ← Desliza para cerrar
               </Box>
@@ -274,12 +306,17 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
         w="240px"
         h="fit-content"
         mr={12}
-        bg="white"
+        bgGradient="linear(to-b, brand.sidebar.bgGradient.start 0%, brand.sidebar.bgGradient.end 100%)"
         p={6}
         borderRadius="xl"
         boxShadow="lg"
-        border="1px solid"
-        borderColor="gray.200"
+        border="2px solid"
+        borderColor="brand.accent"
+        _hover={{
+          boxShadow: 'xl',
+          transform: 'translateY(-2px)'
+        }}
+        transition="all 0.3s ease"
       >
         <Stack spacing={4}>
           {sidebarLinks.map((link, idx) => (
@@ -287,11 +324,15 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
               key={link.href}
               p={3}
               borderRadius="lg"
-              bg="gray.50"
+              bg="rgba(255, 255, 255, 0.6)"
+              border="1px solid"
+              borderColor="brand.border"
               _hover={{
-                bg: 'blue.50',
+                bg: 'brand.accent',
+                color: 'white',
                 transform: 'translateX(4px)',
-                boxShadow: 'md'
+                boxShadow: '0 4px 12px rgba(245, 0, 135, 0.3)',
+                borderColor: 'brand.accent'
               }}
               transition="all 0.3s ease"
             >
