@@ -12,7 +12,7 @@ interface CourseBuyButtonProps {
 const CourseBuyButton: React.FC<CourseBuyButtonProps> = ({
   itemType,
   gumroadLink,
-  offerText = '¡PRUEBA 2 CLASES GRATIS!',
+  offerText = '🔥 ¡PRUEBA 2 CLASES GRATIS!',
   tooltipText = 'Si en las primeras 2 clases del primer curso no alcanzamos tus expectativas, te devolvemos la totalidad del dinero invertido. Solo aplica para tu primer curso en Blatam.',
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);

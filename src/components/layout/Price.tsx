@@ -19,7 +19,7 @@ const PricingBanner: React.FC = () => {
       {/* Texto sin tooltip */}
       <div className="mt-4 flex justify-center items-center text-sm font-semibold text-black">
         🔥
-        ¡PRUEBA 2 CLASES GRATIS!
+        🔥 ¡PRUEBA 2 CLASES GRATIS!
       </div>
     </div>
   );

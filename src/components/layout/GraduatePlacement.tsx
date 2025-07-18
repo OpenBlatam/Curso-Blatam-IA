@@ -1,5 +1,5 @@
 // components/GraduatePlacement.tsx
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image'; // If you plan to use actual image files for logos
 import styles from './GraduatePlacement.module.css';
 
@@ -7,40 +7,93 @@ import styles from './GraduatePlacement.module.css';
 interface CompanyPlacement {
   name: string;
   logoUrl: string; // Path to your logo image or a placeholder
-  graduates: string; // e.g., "+1.805 graduados"
+  graduates: number; // Number of graduates for animation
   altText: string;
 }
+
+// Animated Counter Component
+interface AnimatedCounterProps {
+  target: number;
+  duration?: number;
+}
+
+const AnimatedCounter = ({ target, duration = 2000 }: AnimatedCounterProps) => {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (isVisible) {
+      let startTime: number | null = null;
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const currentCount = Math.floor(progress * target);
+        setCount(currentCount);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+      requestAnimationFrame(animate);
+    }
+  }, [isVisible, target, duration]);
+
+  return (
+    <span ref={ref} className={styles.graduatesCount}>
+      +{count} graduados
+    </span>
+  );
+};
 
 // Data for the companies
 const companyPlacementsData: CompanyPlacement[] = [
   {
     name: 'Mercado Libre',
     logoUrl: '/logos/mercadolibre.svg', // Replace with actual path or import SVG
-    graduates: '+8 graduados',
+    graduates: 8,
     altText: 'Mercado Libre Logo',
   },
   {
     name: 'Accenture',
     logoUrl: '/logos/Accenture.svg', // Replace with actual path
-    graduates: '+80 graduados',
+    graduates: 80,
     altText: 'Accenture Logo',
   },
   {
     name: 'Globant',
     logoUrl: '/logos/Globant_Logo.svg', // Replace with actual path
-    graduates: '+688 graduados',
+    graduates: 688,
     altText: 'Globant Logo',
   },
   {
     name: 'Galicia',
     logoUrl: '/logos/Logo_Banco_Galicia.svg', // Replace with actual path
-    graduates: '+883 graduados',
+    graduates: 883,
     altText: 'Galicia Logo',
   },
   {
     name: 'NaranjaX',
     logoUrl: '/logos/naranja-x-1.svg', // Replace with actual path
-    graduates: '+584 graduados',
+    graduates: 584,
     altText: 'NaranjaX Logo',
   },
 ];
@@ -88,7 +141,7 @@ const GraduatePlacement: React.FC<GraduatePlacementProps> = ({ windowSize }) => 
                 className={styles.companyLogoImage}
               />
             </div>
-            <p className={styles.graduatesCount}>{company.graduates}</p>
+            <AnimatedCounter target={company.graduates} />
           </div>
         ))}
       </div>

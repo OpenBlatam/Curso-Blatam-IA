@@ -21,6 +21,10 @@ import {
   MagicButton,
   GuaranteeBox
 } from '../../components/UI';
+import Testimonials from '../../components/layout/Testimonials';
+import GraduatePlacement from '../../components/layout/GraduatePlacement';
+import PricingSection from '../../components/layout/PricingSection';
+import { Accordion } from '@chakra-ui/react';
 
 // SVG paths - using Next.js Image component for better Turbopack compatibility
 const SVG_PATHS = {
@@ -247,51 +251,6 @@ const Applicants: NextPage = () => {
 
           <Box w={{ base: '100%', lg: '70%' }} px={{ base: 4, md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8} spacing={{ base: 6, md: 8 }}>
-              {/* Newsletter Section */}
-              <Box 
-                bg="purple.50" 
-                p={{ base: 4, md: 8 }} 
-                borderRadius="xl" 
-                mb={{ base: 4, md: 8 }}
-                position="relative"
-                overflow="hidden"
-                boxShadow="md"
-              >
-                <Box 
-                  position="absolute" 
-                  top="-30%" 
-                  right="-15%" 
-                  opacity="0.05"
-                  zIndex={0}
-                >
-                  <Image
-                    src="/images/background-circles.png"
-                    alt="Background circles"
-                    width={80}
-                    height={80}
-                    loading="lazy"
-                  />
-                </Box>
-                <Box 
-                  position="absolute" 
-                  bottom="-20%" 
-                  left="-10%" 
-                  opacity="0.05"
-                  zIndex={0}
-                >
-                  <Image
-                    src="/images/background-circles.png"
-                    alt="Background circles"
-                    width={60}
-                    height={60}
-                    loading="lazy"
-                  />
-                </Box>
-                
-                <Stack spacing={{ base: 3, md: 4 }} position="relative" zIndex={1}>
-                  <NewsletterSignup />
-                </Stack>
-              </Box>
 
               <PageSubheading mb={{ base: 4, md: 6 }} fontSize={{ base: 'xl', md: '2xl' }}>
                 ¿Qué lograrás con esta certificación?
@@ -658,6 +617,108 @@ const Applicants: NextPage = () => {
                   </Stack>
                 </Center>
               </section>
+
+                          {/* Pricing Section */}
+            <section>
+              <PricingSection windowSize={{ width: 1200, height: 800 }} />
+            </section>
+
+            {/* Graduate Placement Section */}
+            <section>
+              <GraduatePlacement windowSize={{ width: 1200, height: 800 }} />
+            </section>
+
+            {/* Testimonials Section */}
+            <section>
+              <Testimonials windowSize={{ width: 1200, height: 800 }} />
+            </section>
+
+            {/* FAQ Section */}
+            <section>
+              <Box 
+                bg="white" 
+                p={{ base: 4, md: 8 }} 
+                borderRadius="xl" 
+                mb={{ base: 4, md: 8 }}
+                boxShadow="md"
+              >
+                <PageSection mb={6}>Preguntas frecuentes</PageSection>
+                
+                <Accordion allowToggle>
+                  <FAQItem question='¿Hay facilidades de pago?'>
+                    <PageText>
+                      Aceptamos 4 formas de pago: Tarjeta de crédito, transferencia bancaria, criptomonedas y Paypal. Con este último puedes tener hasta <strong>12 MSI</strong>. En nuestro sitio web los pagos se realizan con <strong>Stripe</strong>.
+                    </PageText>
+                  </FAQItem>
+
+                  <FAQItem question='¿Qué pasa si se me complica el horario establecido del curso?'>
+                    <PageText>
+                      ¡No te preocupes! Las clases se graban, así que puedes ver la clase grabada en tu plataforma cuando quieras. Además, puedes asistir a cualquier otra generación presencial y recuperar tu clase.
+                    </PageText>
+                  </FAQItem>
+
+                  <FAQItem question='¿La certificación tiene algún respaldo?'>
+                    <PageText>
+                      Ser la única academia de blockchain afiliada a <strong>ETH Global</strong>, así como las empresas que colaboran con nosotros nos respaldan.
+                    </PageText>
+                  </FAQItem>
+                </Accordion>
+
+                <Box mt={8} textAlign="center">
+                  <PageText fontSize="lg" fontWeight="bold" color="purple.600">
+                    Mejora tus oportunidades profesionales e incremente tus ingresos
+                  </PageText>
+                </Box>
+              </Box>
+            </section>
+
+            {/* Newsletter Section */}
+            <section>
+              <Box 
+                bg="purple.50" 
+                p={{ base: 4, md: 8 }} 
+                borderRadius="xl" 
+                mb={{ base: 4, md: 8 }}
+                position="relative"
+                overflow="hidden"
+                boxShadow="md"
+              >
+                <Box 
+                  position="absolute" 
+                  top="-30%" 
+                  right="-15%" 
+                  opacity="0.05"
+                  zIndex={0}
+                >
+                  <Image
+                    src="/images/background-circles.png"
+                    alt="Background circles"
+                    width={80}
+                    height={80}
+                    loading="lazy"
+                  />
+                </Box>
+                <Box 
+                  position="absolute" 
+                  bottom="-20%" 
+                  left="-10%" 
+                  opacity="0.05"
+                  zIndex={0}
+                >
+                  <Image
+                    src="/images/background-circles.png"
+                    alt="Background circles"
+                    width={60}
+                    height={60}
+                    loading="lazy"
+                  />
+                </Box>
+                
+                <Stack spacing={{ base: 3, md: 4 }} position="relative" zIndex={1}>
+                  <NewsletterSignup />
+                </Stack>
+              </Box>
+            </section>
             </Stack>
           </Box>
         </Flex>
@@ -711,7 +772,7 @@ const Applicants: NextPage = () => {
           fontSize="0.85em"
           textAlign="center"
         >
-          ¡PRUEBA 2 CLASES GRATIS!
+          🔥 ¡PRUEBA 2 CLASES GRATIS!
         </Text>
         <Box mt={3} mx={3} maxW="95%">
           <GuaranteeBox size="xs" />

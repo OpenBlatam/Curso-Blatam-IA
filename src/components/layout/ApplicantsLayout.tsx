@@ -466,7 +466,6 @@ export const ApplicantsLayout: FC<ApplicantsLayoutProps> = React.memo(({ childre
             pb={0}
           >
             <Stack mb={{ base: 4, md: 8 }}>{children}</Stack>
-            <PricingSection windowSize={windowSize} />
           </Stack>
         </Stack>
       </Box>

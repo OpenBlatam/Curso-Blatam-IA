@@ -55,6 +55,7 @@
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-bootstrap": "^2.10.1",
     "react-cool-dimensions": "^3.0.1",
+    "react-country-flag": "^3.1.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-floating-whatsapp": "^5.0.8",
