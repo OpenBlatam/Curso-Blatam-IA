@@ -118,7 +118,7 @@ const Header: React.FC = () => {
                 {priceText}
               </Text>
             )}
-            <Link href="https://blatam.org/en/login" passHref>
+            <Link href="https://blatam.gumroad.com/l/ia" passHref>
               <Button
                 as="a"
                 target="_blank"
@@ -150,7 +150,7 @@ const Header: React.FC = () => {
                 }}
                 transition="all 0.3s ease"
                 role="button"
-                aria-label="Acceder a la plataforma de Blatam"
+                aria-label="Comprar curso de IA en Gumroad"
                 position="relative"
                 overflow="hidden"
                 border="2px solid"
@@ -189,7 +189,7 @@ const Header: React.FC = () => {
                   },
                 }}
               >
-                Acceder
+                Comprar
               </Button>
             </Link>
           </Flex>
