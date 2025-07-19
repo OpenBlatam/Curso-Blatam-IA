@@ -53,7 +53,7 @@ import {
 // Dynamic imports for heavy components
 // Future optimization: Add dynamic imports for heavy components when needed
 
-const WHATSAPP_NUMBER = '15558024388';
+const WHATSAPP_NUMBER = '12183043126';
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const rainbowAnimation = keyframes`
