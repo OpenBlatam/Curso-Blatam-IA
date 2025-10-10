@@ -6,6 +6,7 @@ import { FaHome, FaGraduationCap, FaHandshake } from 'react-icons/fa';
 
 import { PageText } from '..';
 import { SidebarLink } from '../../../types';
+import { getSafeGradient } from '../../../../utils/themeUtils';
 
 interface Props {
   sidebarLinks: SidebarLink[];
@@ -207,7 +208,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
           <DrawerContent 
             ref={drawerRef} 
             maxW="280px" 
-            bgGradient="linear(to-b, brand.applicants.bgGradient.start 0%, brand.applicants.bgGradient.end 100%)"
+            bgGradient={getSafeGradient('applicants', 'to-b')}
             boxShadow="2xl"
             borderRightRadius="xl"
           >
@@ -306,7 +307,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
         w="240px"
         h="fit-content"
         mr={12}
-        bgGradient="linear(to-b, brand.sidebar.bgGradient.start 0%, brand.sidebar.bgGradient.end 100%)"
+        bgGradient={getSafeGradient('sidebar', 'to-b')}
         p={6}
         borderRadius="xl"
         boxShadow="lg"
